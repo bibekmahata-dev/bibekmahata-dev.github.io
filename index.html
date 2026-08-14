@@ -2589,6 +2589,156 @@
             animation: spin-slow 2s linear infinite;
         }
 
+
+        /* ======================================
+           COMPREHENSIVE MOBILE OPTIMIZATION ENGINE
+           ====================================== */
+        @media (max-width: 768px) {
+            /* 1. Prevent Top Banner Stacking & Collisions */
+            .announcement-banner {
+                position: relative !important;
+                top: auto !important;
+                padding: 8px 12px !important;
+                font-size: 13px !important;
+                z-index: 10 !important;
+            }
+
+            /* 2. Responsive Multi-Row Header */
+            .header {
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 1000 !important;
+                padding: 8px 12px !important;
+                background: rgba(9, 13, 22, 0.96) !important;
+                backdrop-filter: blur(12px) !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+            }
+            .header__inner {
+                height: auto !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 8px !important;
+            }
+            .header__brand {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                width: 100% !important;
+            }
+            .header__logo {
+                font-size: 20px !important;
+            }
+            .header__badge {
+                display: none !important; /* Hide long sub-badge on tiny screens */
+            }
+
+            /* 3. Smooth Horizontal Scroll for Navigation Links */
+            .header__nav {
+                display: flex !important;
+                width: 100% !important;
+                overflow-x: auto !important;
+                white-space: nowrap !important;
+                gap: 6px !important;
+                padding: 2px 0 6px !important;
+                scrollbar-width: none !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            .header__nav::-webkit-scrollbar {
+                display: none !important;
+            }
+            .header__nav-link {
+                padding: 4px 10px !important;
+                font-size: 12px !important;
+                background: rgba(255, 255, 255, 0.04) !important;
+                border-radius: 6px !important;
+                border: 1px solid rgba(255, 255, 255, 0.06) !important;
+                flex-shrink: 0 !important;
+            }
+
+            /* 4. Streamlined Controls & Search */
+            .header__controls {
+                width: 100% !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 6px !important;
+                justify-content: space-between !important;
+            }
+            .search-bar {
+                flex: 1 !important;
+                min-width: 120px !important;
+                margin: 0 !important;
+            }
+            .search-bar__input {
+                height: 36px !important;
+                font-size: 13px !important;
+                padding-left: 32px !important;
+            }
+            .search-bar__icon {
+                font-size: 12px !important;
+                left: 10px !important;
+            }
+            #theme-btn {
+                padding: 4px 8px !important;
+                font-size: 11px !important;
+                height: 36px !important;
+            }
+            #google_translate_element {
+                max-width: 120px !important;
+                overflow: hidden !important;
+            }
+            #google_translate_element select {
+                padding: 4px !important;
+                font-size: 11.5px !important;
+                height: 34px !important;
+                border-radius: 6px !important;
+                background: #1e293b !important;
+                color: #fff !important;
+                border: 1px solid rgba(255,255,255,0.15) !important;
+            }
+
+            /* 5. Clean Main Spacing & Grids */
+            .main {
+                padding: 12px 10px 90px !important;
+            }
+            .member-grid, .leaderboard-grid, .hall-grid {
+                grid-template-columns: 1fr !important;
+                gap: 14px !important;
+            }
+
+            /* 6. Floating Dock Clean Centering (No FAB overlap) */
+            .floating-dock {
+                bottom: 12px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                width: calc(100% - 24px) !important;
+                max-width: 440px !important;
+                padding: 6px 10px !important;
+                justify-content: space-around !important;
+                z-index: 10000 !important;
+                background: rgba(15, 23, 42, 0.94) !important;
+                backdrop-filter: blur(16px) !important;
+                border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                border-radius: 30px !important;
+            }
+            .dock-btn {
+                padding: 6px 8px !important;
+                font-size: 11.5px !important;
+                gap: 2px !important;
+            }
+            #fab-share {
+                display: none !important; /* Integrated into dock to prevent overlapping */
+            }
+
+            /* 7. Quiz & Accordion Mobile Spacing */
+            .hq-card-container {
+                padding: 16px !important;
+            }
+            .hq-btn {
+                padding: 12px 14px !important;
+                font-size: 13.5px !important;
+            }
+        }
+
 </style>
 </head>
 <body>
@@ -2600,73 +2750,7 @@
         </div>
     </div>
     
-    <!-- ========== GLOBAL SEARCH ========== -->
-    <div style="background: var(--bg-card); border-bottom: 1px solid var(--border-color); padding: 15px 20px; position: sticky; top: 60px; z-index: 99; backdrop-filter: blur(10px);">
-        <div style="max-width: 1400px; margin: 0 auto; display: flex; gap: 10px;">
-            <input type="text" id="global-search-input" placeholder="🔍 Search for trains, buses, or places in West Bengal..." style="flex: 1; padding: 12px 20px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 16px; outline: none; transition: 0.3s;" oninput="runGlobalSearch()">
-        </div>
-    </div>
-    
-    <script>
-        let globalSearchQuery = '';
-        
-        function runGlobalSearch() {
-            globalSearchQuery = document.getElementById('global-search-input').value.toLowerCase().trim();
-            
-            // 1. Filter Explorer Grid Places
-            document.querySelectorAll('.place-card').forEach(card => {
-                const name = card.querySelector('.place-name').innerText.toLowerCase();
-                if(name.includes(globalSearchQuery)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-            
-            // 2. Filter Trains
-            updateUpcomingTrains();
-            renderTrainPage();
-            
-            // 3. Filter Buses
-            const busContainer = document.getElementById('bus-results-container');
-            const busList = document.getElementById('bus-results-list');
-            const busTitle = document.getElementById('bus-route-title');
-            
-            if(globalSearchQuery !== '') {
-                const matchedBuses = busDatabase.filter(b => b.from.toLowerCase().includes(globalSearchQuery) || b.to.toLowerCase().includes(globalSearchQuery) || b.name.toLowerCase().includes(globalSearchQuery));
-                if(matchedBuses.length > 0) {
-                    busContainer.style.display = 'block';
-                    busTitle.textContent = `Search Results (${matchedBuses.length})`;
-                    let busHtml = '';
-                    matchedBuses.forEach(bus => {
-                        busHtml += `
-                            <div class="fade-up" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-                                <div>
-                                    <div style="color: white; font-weight: 700; font-size: 16px; margin-bottom: 4px;">${bus.name}</div>
-                                    <div style="color: var(--text-muted); font-size: 13px;">${bus.from} ➔ ${bus.to} • <span style="color: #38bdf8;">${bus.type}</span></div>
-                                </div>
-                                <div style="display: flex; gap: 24px; align-items: center;">
-                                    <div style="text-align: right;">
-                                        <div style="color: var(--text-muted); font-size: 11px; text-transform: uppercase;">Departs</div>
-                                        <div style="color: white; font-family: 'Space Grotesk', monospace; font-weight: 700; font-size: 16px;">${bus.time}</div>
-                                    </div>
-                                    <div style="text-align: right;">
-                                        <div style="color: var(--text-muted); font-size: 11px; text-transform: uppercase;">Fare</div>
-                                        <div style="color: #10b981; font-weight: 700; font-size: 18px;">${bus.price}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                    });
-                    busList.innerHTML = busHtml;
-                } else {
-                    busContainer.style.display = 'none';
-                }
-            } else {
-                busContainer.style.display = 'none';
-            }
-        }
-    </script>
+    <!-- Global search consolidated in top header -->
     <script>
         async function fetchBreakingNews() {
             try {
@@ -2730,6 +2814,7 @@
         <button class="dock-btn" onclick="document.getElementById('hangout-map').scrollIntoView({behavior: 'smooth'})" title="Interactive Tourism & Route Map">🗺️ Map</button>
         <button class="dock-btn" onclick="document.getElementById('hangout-quiz-section').scrollIntoView({behavior: 'smooth'})" title="Bengal Travel Persona Quiz">🧭 Quiz</button>
         <a href="blog.html" class="dock-btn" style="text-decoration: none; color: #f8fafc;" title="Travel Chronicles Blog">📖 Blog</a>
+        <button class="dock-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied to clipboard!');" title="Share Portal">🔗 Share</button>
         <button class="dock-btn dock-btn--top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Scroll to Top of Page">⬆️ Top</button>
     </div>
 
@@ -3436,6 +3521,156 @@
             display: inline-block;
             font-size: 40px;
             animation: spin-slow 2s linear infinite;
+        }
+
+
+        /* ======================================
+           COMPREHENSIVE MOBILE OPTIMIZATION ENGINE
+           ====================================== */
+        @media (max-width: 768px) {
+            /* 1. Prevent Top Banner Stacking & Collisions */
+            .announcement-banner {
+                position: relative !important;
+                top: auto !important;
+                padding: 8px 12px !important;
+                font-size: 13px !important;
+                z-index: 10 !important;
+            }
+
+            /* 2. Responsive Multi-Row Header */
+            .header {
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 1000 !important;
+                padding: 8px 12px !important;
+                background: rgba(9, 13, 22, 0.96) !important;
+                backdrop-filter: blur(12px) !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+            }
+            .header__inner {
+                height: auto !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 8px !important;
+            }
+            .header__brand {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                width: 100% !important;
+            }
+            .header__logo {
+                font-size: 20px !important;
+            }
+            .header__badge {
+                display: none !important; /* Hide long sub-badge on tiny screens */
+            }
+
+            /* 3. Smooth Horizontal Scroll for Navigation Links */
+            .header__nav {
+                display: flex !important;
+                width: 100% !important;
+                overflow-x: auto !important;
+                white-space: nowrap !important;
+                gap: 6px !important;
+                padding: 2px 0 6px !important;
+                scrollbar-width: none !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            .header__nav::-webkit-scrollbar {
+                display: none !important;
+            }
+            .header__nav-link {
+                padding: 4px 10px !important;
+                font-size: 12px !important;
+                background: rgba(255, 255, 255, 0.04) !important;
+                border-radius: 6px !important;
+                border: 1px solid rgba(255, 255, 255, 0.06) !important;
+                flex-shrink: 0 !important;
+            }
+
+            /* 4. Streamlined Controls & Search */
+            .header__controls {
+                width: 100% !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 6px !important;
+                justify-content: space-between !important;
+            }
+            .search-bar {
+                flex: 1 !important;
+                min-width: 120px !important;
+                margin: 0 !important;
+            }
+            .search-bar__input {
+                height: 36px !important;
+                font-size: 13px !important;
+                padding-left: 32px !important;
+            }
+            .search-bar__icon {
+                font-size: 12px !important;
+                left: 10px !important;
+            }
+            #theme-btn {
+                padding: 4px 8px !important;
+                font-size: 11px !important;
+                height: 36px !important;
+            }
+            #google_translate_element {
+                max-width: 120px !important;
+                overflow: hidden !important;
+            }
+            #google_translate_element select {
+                padding: 4px !important;
+                font-size: 11.5px !important;
+                height: 34px !important;
+                border-radius: 6px !important;
+                background: #1e293b !important;
+                color: #fff !important;
+                border: 1px solid rgba(255,255,255,0.15) !important;
+            }
+
+            /* 5. Clean Main Spacing & Grids */
+            .main {
+                padding: 12px 10px 90px !important;
+            }
+            .member-grid, .leaderboard-grid, .hall-grid {
+                grid-template-columns: 1fr !important;
+                gap: 14px !important;
+            }
+
+            /* 6. Floating Dock Clean Centering (No FAB overlap) */
+            .floating-dock {
+                bottom: 12px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                width: calc(100% - 24px) !important;
+                max-width: 440px !important;
+                padding: 6px 10px !important;
+                justify-content: space-around !important;
+                z-index: 10000 !important;
+                background: rgba(15, 23, 42, 0.94) !important;
+                backdrop-filter: blur(16px) !important;
+                border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                border-radius: 30px !important;
+            }
+            .dock-btn {
+                padding: 6px 8px !important;
+                font-size: 11.5px !important;
+                gap: 2px !important;
+            }
+            #fab-share {
+                display: none !important; /* Integrated into dock to prevent overlapping */
+            }
+
+            /* 7. Quiz & Accordion Mobile Spacing */
+            .hq-card-container {
+                padding: 16px !important;
+            }
+            .hq-btn {
+                padding: 12px 14px !important;
+                font-size: 13.5px !important;
+            }
         }
 
 </style>
@@ -6661,6 +6896,156 @@ document.addEventListener('keydown', (e) => {
             display: inline-block;
             font-size: 40px;
             animation: spin-slow 2s linear infinite;
+        }
+
+
+        /* ======================================
+           COMPREHENSIVE MOBILE OPTIMIZATION ENGINE
+           ====================================== */
+        @media (max-width: 768px) {
+            /* 1. Prevent Top Banner Stacking & Collisions */
+            .announcement-banner {
+                position: relative !important;
+                top: auto !important;
+                padding: 8px 12px !important;
+                font-size: 13px !important;
+                z-index: 10 !important;
+            }
+
+            /* 2. Responsive Multi-Row Header */
+            .header {
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 1000 !important;
+                padding: 8px 12px !important;
+                background: rgba(9, 13, 22, 0.96) !important;
+                backdrop-filter: blur(12px) !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+            }
+            .header__inner {
+                height: auto !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 8px !important;
+            }
+            .header__brand {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                width: 100% !important;
+            }
+            .header__logo {
+                font-size: 20px !important;
+            }
+            .header__badge {
+                display: none !important; /* Hide long sub-badge on tiny screens */
+            }
+
+            /* 3. Smooth Horizontal Scroll for Navigation Links */
+            .header__nav {
+                display: flex !important;
+                width: 100% !important;
+                overflow-x: auto !important;
+                white-space: nowrap !important;
+                gap: 6px !important;
+                padding: 2px 0 6px !important;
+                scrollbar-width: none !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            .header__nav::-webkit-scrollbar {
+                display: none !important;
+            }
+            .header__nav-link {
+                padding: 4px 10px !important;
+                font-size: 12px !important;
+                background: rgba(255, 255, 255, 0.04) !important;
+                border-radius: 6px !important;
+                border: 1px solid rgba(255, 255, 255, 0.06) !important;
+                flex-shrink: 0 !important;
+            }
+
+            /* 4. Streamlined Controls & Search */
+            .header__controls {
+                width: 100% !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 6px !important;
+                justify-content: space-between !important;
+            }
+            .search-bar {
+                flex: 1 !important;
+                min-width: 120px !important;
+                margin: 0 !important;
+            }
+            .search-bar__input {
+                height: 36px !important;
+                font-size: 13px !important;
+                padding-left: 32px !important;
+            }
+            .search-bar__icon {
+                font-size: 12px !important;
+                left: 10px !important;
+            }
+            #theme-btn {
+                padding: 4px 8px !important;
+                font-size: 11px !important;
+                height: 36px !important;
+            }
+            #google_translate_element {
+                max-width: 120px !important;
+                overflow: hidden !important;
+            }
+            #google_translate_element select {
+                padding: 4px !important;
+                font-size: 11.5px !important;
+                height: 34px !important;
+                border-radius: 6px !important;
+                background: #1e293b !important;
+                color: #fff !important;
+                border: 1px solid rgba(255,255,255,0.15) !important;
+            }
+
+            /* 5. Clean Main Spacing & Grids */
+            .main {
+                padding: 12px 10px 90px !important;
+            }
+            .member-grid, .leaderboard-grid, .hall-grid {
+                grid-template-columns: 1fr !important;
+                gap: 14px !important;
+            }
+
+            /* 6. Floating Dock Clean Centering (No FAB overlap) */
+            .floating-dock {
+                bottom: 12px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                width: calc(100% - 24px) !important;
+                max-width: 440px !important;
+                padding: 6px 10px !important;
+                justify-content: space-around !important;
+                z-index: 10000 !important;
+                background: rgba(15, 23, 42, 0.94) !important;
+                backdrop-filter: blur(16px) !important;
+                border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                border-radius: 30px !important;
+            }
+            .dock-btn {
+                padding: 6px 8px !important;
+                font-size: 11.5px !important;
+                gap: 2px !important;
+            }
+            #fab-share {
+                display: none !important; /* Integrated into dock to prevent overlapping */
+            }
+
+            /* 7. Quiz & Accordion Mobile Spacing */
+            .hq-card-container {
+                padding: 16px !important;
+            }
+            .hq-btn {
+                padding: 12px 14px !important;
+                font-size: 13.5px !important;
+            }
         }
 
 </style>
