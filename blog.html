@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ========== PRIMARY SEO ========== -->
+    <title>Bengal Explorers Chronicles — Official West Bengal Travel & Heritage Blog</title>
+    <meta name="description" content="In-depth travel guides, heritage expeditions, and local photography stories across West Bengal. Curated by the Class 12 student creator team of Bengal Explorers.">
+    <meta name="keywords" content="West Bengal Travel Blog, Gangani Grand Canyon, Garhbeta, Darjeeling Toy Train, Bishnupur Terracotta Temples, Digha Beach, Sundarbans Tiger Reserve, Bengal Explorers, Bibek Mahata">
+    <meta name="author" content="Bibek Mahata & Bengal Explorers Team">
+    <meta name="robots" content="index, follow">
+
+        <link rel="canonical" href="https://bengalexplorers.com/blog.html">
+
+    <!-- Open Graph & Social Cards -->
+    <meta property="og:title" content="Bengal Explorers Chronicles — Travel & Heritage Blog">
+    <meta property="og:description" content="Discover West Bengal's breathtaking canyons, mountain railways, terracotta heritage, and coastal horizons.">
+    <meta property="og:image" content="https://bengalexplorers.com/assets/agents/bibek.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://bengalexplorers.com/blog.html">
+    <meta property="og:site_name" content="Bengal Explorers">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bengal Explorers Chronicles — Travel & Heritage Blog">
+    <meta name="twitter:description" content="Discover West Bengal's breathtaking canyons, mountain railways, and coastal horizons.">
+    <meta name="twitter:image" content="https://bengalexplorers.com/assets/agents/bibek.jpg">
+
+    <!-- JSON-LD Structured Data for Blog & Breadcrumbs -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Bengal Explorers Chronicles",
+        "url": "https://bengalexplorers.com/blog.html",
+        "description": "In-depth travel guides, heritage expeditions, and local photography stories across West Bengal.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Bengal Explorers Student Creator Initiative",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://bengalexplorers.com/assets/agents/bibek.jpg"
+            }
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://bengalexplorers.com/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Chronicles Blog",
+                    "item": "https://bengalexplorers.com/blog.html"
+                }
+            ]
+        }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-body: #090d16;
+            --bg-card: #111827;
+            --bg-card-hover: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+            --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+            --font-title: 'Outfit', sans-serif;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* Top Sticky Header */
+        .blog-header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 14px 24px;
+            position: sticky; top: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 12px;
+        }
+        .blog-header__brand {
+            font-family: var(--font-title);
+            font-size: 20px; font-weight: 800; color: #38bdf8;
+            letter-spacing: 1px; text-decoration: none;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .blog-header__controls {
+            display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+        }
+        .blog-header__nav { display: flex; gap: 14px; align-items: center; }
+        .blog-header__nav a {
+            color: var(--text-secondary); text-decoration: none; font-size: 13.5px;
+            font-weight: 600; transition: color 0.2s;
+        }
+        .blog-header__nav a:hover { color: #38bdf8; }
+
+        /* Hero */
+        .blog-hero {
+            text-align: center; padding: 70px 24px 50px;
+            background: linear-gradient(180deg, rgba(56, 189, 248, 0.08) 0%, transparent 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .blog-hero__badge {
+            display: inline-block; background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8;
+            font-size: 11px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 2px; padding: 4px 14px; border-radius: 20px;
+            margin-bottom: 14px;
+        }
+        .blog-hero h1 {
+            font-family: var(--font-title);
+            font-size: clamp(28px, 5vw, 44px); font-weight: 900;
+            color: #fff; letter-spacing: -0.5px; margin-bottom: 12px;
+        }
+        .blog-hero p {
+            color: var(--text-muted); font-size: 15px; max-width: 680px;
+            margin: 0 auto; line-height: 1.6;
+        }
+
+        /* Blog Container */
+        .blog-container {
+            max-width: 920px; margin: 0 auto; padding: 40px 20px 80px;
+        }
+        .blog-post {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg); margin-bottom: 36px;
+            overflow: hidden; transition: border-color 0.3s, transform 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .blog-post:hover { border-color: rgba(56, 189, 248, 0.4); transform: translateY(-2px); }
+
+        .blog-post__header {
+            padding: 28px 28px 0;
+        }
+        .blog-post__meta {
+            display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .blog-post__date {
+            font-size: 11.5px; color: var(--text-muted); font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .blog-post__tag {
+            font-size: 10.5px; padding: 3px 10px; border-radius: 20px;
+            font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .tag-guide { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+        .tag-history { background: rgba(234, 179, 8, 0.15); color: #eab308; border: 1px solid rgba(234, 179, 8, 0.3); }
+        .tag-nature { background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); }
+        .tag-coast { background: rgba(168, 85, 247, 0.15); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.3); }
+
+        .blog-post__title {
+            font-family: var(--font-title); font-size: 24px; font-weight: 800;
+            color: var(--text-primary); margin-bottom: 12px; line-height: 1.35;
+        }
+        .blog-post__excerpt {
+            color: var(--text-secondary); font-size: 14.5px; line-height: 1.7;
+            padding: 0 28px 18px;
+        }
+        .blog-post__body {
+            display: none; padding: 0 28px 28px;
+            color: var(--text-secondary); font-size: 14.5px; line-height: 1.8;
+            border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px;
+        }
+        .blog-post__body p { margin-bottom: 16px; }
+        .blog-post__body h3 {
+            color: #38bdf8; font-size: 17px; font-weight: 700; margin: 22px 0 10px;
+        }
+        .blog-post__body ul { padding-left: 20px; margin-bottom: 16px; }
+        .blog-post__body li { margin-bottom: 6px; }
+
+        .blog-tip-box {
+            background: rgba(56, 189, 248, 0.08); border-left: 4px solid #38bdf8;
+            border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 20px 0;
+            font-size: 13.5px; color: #cbd5e1;
+        }
+
+        .blog-post__footer {
+            padding: 16px 28px; background: rgba(0,0,0,0.25);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 12px;
+        }
+        .blog-post__author {
+            display: flex; align-items: center; gap: 10px; font-size: 13px;
+            color: var(--text-muted); font-weight: 600;
+        }
+        .blog-post__author img {
+            width: 32px; height: 32px; border-radius: 50%; object-fit: cover;
+            border: 2px solid #38bdf8;
+        }
+        .read-more-btn {
+            background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #38bdf8; padding: 8px 18px; border-radius: 8px; font-weight: 700;
+            font-size: 12.5px; cursor: pointer; transition: all 0.2s;
+        }
+        .read-more-btn:hover {
+            background: #38bdf8; color: #090d16;
+        }
+
+        /* Footer */
+        .blog-footer {
+            background: rgba(15, 23, 42, 0.95); border-top: 1px solid var(--border-color);
+            padding: 30px 24px; text-align: center; color: var(--text-muted); font-size: 13px;
+        }
+        .blog-footer a { color: #38bdf8; text-decoration: none; font-weight: 700; }
+
+        /* Google Translate Custom Theme */
+        .goog-te-gadget {
+            font-family: var(--font-body) !important;
+            color: var(--text-secondary) !important;
+            font-size: 12px !important;
+        }
+        .goog-te-gadget .goog-te-combo {
+            background: #1e293b !important;
+            color: #38bdf8 !important;
+            border: 1px solid rgba(56, 189, 248, 0.4) !important;
+            border-radius: 8px !important;
+            padding: 6px 12px !important;
+            font-size: 12px !important;
+            font-weight: 700 !important;
+            outline: none !important;
+            cursor: pointer !important;
+        }
+        #google_translate_element_blog img, .goog-te-banner-frame, .skiptranslate iframe {
+            display: none !important;
+        }
+        body { top: 0 !important; }
+        .goog-tooltip, .goog-tooltip:hover { display: none !important; }
+        .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
+    </style>
+</head>
+<body>
+
+    <!-- ========== STICKY TOP HEADER ========== -->
+    <header class="blog-header">
+        <a href="index.html" class="blog-header__brand">
+            🧭 Bengal Explorers <span style="font-size: 12px; color: #94a3b8; font-weight: 500;">• Chronicles</span>
+        </a>
+        
+        <div class="blog-header__controls">
+            <!-- Google Translate Widget Container (Top Header) -->
+            <div id="google_translate_element_blog"></div>
+
+            <nav class="blog-header__nav">
+                <a href="index.html">🏠 Home Portal</a>
+                <a href="index.html#hangout-map">🗺️ Travel Map</a>
+                <a href="index.html#squad-section">👥 Student Crew</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="blog-hero">
+        <div class="blog-hero__badge">🎓 CLASS 12 CREATOR INITIATIVE • PASCHIM MEDINIPUR</div>
+        <h1>Bengal Explorers Chronicles</h1>
+        <p>In-depth travel field guides, photography expeditions, and route insights curated by our student creator team to showcase the cultural and natural wonders of West Bengal.</p>
+    </section>
+
+    <!-- ========== BLOG POSTS CONTAINER ========== -->
+    <div class="blog-container">
+
+        <!-- Article 1: Gangani Grand Canyon -->
+        <article class="blog-post" id="post-1">
+            <div class="blog-post__header">
+                <div class="blog-post__meta">
+                    <span class="blog-post__date">August 2026</span>
+                    <span class="blog-post__tag tag-guide">Expedition Guide</span>
+                    <span style="font-size: 11px; color: #64748b;">• 6 Min Read</span>
+                </div>
+                <h2 class="blog-post__title">The Grand Canyon of Bengal: Exploring Gangani & Garhbeta (Paschim Medinipur)</h2>
+            </div>
+            <div class="blog-post__excerpt">
+                Tucked along the banks of the Shilabati River in Paschim Medinipur lies Gangani — a stunning natural geological wonder of 70-foot deep red soil gorges carved over millions of years.
+            </div>
+            <div class="blog-post__body" id="post-1-body">
+                <p>Located just a few kilometers from Garhbeta town, <strong>Gangani</strong> is affectionately known as the "Grand Canyon of Bengal". The dramatic red laterite clay cliffs have been eroded by wind and the meandering Shilabati River into intricate labyrinthine pillars, caves, and natural amphitheatres that glow fiery orange during sunrise and sunset.</p>
+
+                <h3>🗺️ How to Reach Gangani</h3>
+                <p>Gangani is exceptionally accessible for budget travelers and day-trippers from Kolkata and Kharagpur:</p>
+                <ul>
+                    <li><strong>By Train:</strong> Board the Rupashi Bangla Express or Aranyak Express from Howrah to <em>Garhbeta Railway Station (GBA)</em>. From the station, Toto (e-rickshaws) and auto-rickshaws reach the canyon in under 10 minutes.</li>
+                    <li><strong>By Road:</strong> Drive along NH-14 or the State Highway via Medinipur/Chandrakona Road. Ample parking is available near the entrance park.</li>
+                </ul>
+
+                                <!-- Explorer Booking Companion (Affiliate Revenue Stream) -->
+                <div class="affiliate-stay-card" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9)); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 14px 18px; margin: 18px 0; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="font-size: 26px;">🏨</div>
+                        <div>
+                            <div style="font-weight: 800; color: #fff; font-size: 13.5px;">Planning a Trip to Gangani & Garhbeta?</div>
+                            <div style="color: #94a3b8; font-size: 12px;">Find verified lodges, heritage homestays & local transport.</div>
+                        </div>
+                    </div>
+                    <a href="https://www.booking.com/searchresults.html?ss=Medinipur" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #0284c7, #38bdf8); color: #090d16; padding: 7px 15px; border-radius: 8px; font-size: 12px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(56,189,248,0.25);">
+                        🔍 Check Rates & Stays
+                    </a>
+                </div>
+
+                <div class="blog-tip-box">
+                    💡 <strong>Creator Photography Tip by Bibek Mahata:</strong> Visit between 4:30 PM and 5:45 PM for golden hour lighting. The setting sun illuminates the textured canyon cliffs and casts long shadows across the river sandbanks.
+                </div>
+
+                <h3>🏛️ Local Folklore & Surrounding Heritage</h3>
+                <p>Local legends connect the rugged terrain of Gangani to the epic Mahabharata, where Bhima fought the demon Bakasura. Beyond the canyon, explore the ancient Sarbamangala Temple in Garhbeta and the historic Raikota Fort ruins dating back to the Bagdi Raja dynasty.</p>
+            </div>
+            <div class="blog-post__footer">
+                <div class="blog-post__author">
+                    <img src="assets/agents/bibek.jpg" alt="Bibek Mahata" loading="lazy" decoding="async">
+                    <span>Bibek Mahata — Lead Developer & Creator</span>
+                </div>
+                <button class="read-more-btn" onclick="togglePost('post-1')">Read Full Story</button>
+            </div>
+        </article>
+
+        <!-- Article 2: Darjeeling Toy Train -->
+        <article class="blog-post" id="post-2">
+            <div class="blog-post__header">
+                <div class="blog-post__meta">
+                    <span class="blog-post__date">August 2026</span>
+                    <span class="blog-post__tag tag-history">Historic Routes</span>
+                    <span style="font-size: 11px; color: #64748b;">• 7 Min Read</span>
+                </div>
+                <h2 class="blog-post__title">Riding the Heritage Queen: A Journey on the Darjeeling Himalayan Toy Train</h2>
+            </div>
+            <div class="blog-post__excerpt">
+                A UNESCO World Heritage engineering marvel that has carried passengers through misty mountain tea estates and loops since 1881. Here is what you need to know before boarding.
+            </div>
+            <div class="blog-post__body" id="post-2-body">
+                <p>The <strong>Darjeeling Himalayan Railway (DHR)</strong>, popularly known as the Toy Train, is a two-foot narrow-gauge railway that climbs from New Jalpaiguri up into the clouds at Darjeeling (over 6,800 feet elevation). Built between 1879 and 1881, it utilizes ingenious zig-zags, loops, and steam locomotives that continue to mesmerize travelers worldwide.</p>
+
+                <h3>🚂 The Iconic Joy Ride Route: Darjeeling to Ghoom</h3>
+                <p>If you don't have the time for the full 8-hour journey from Siliguri, the 2-hour <em>Joy Ride</em> from Darjeeling to Ghoom (India's highest railway station at 7,407 ft) is a must-experience adventure:</p>
+                <ul>
+                    <li><strong>Batasia Loop:</strong> The train navigates a 360-degree spiral loop around the Gorkha War Memorial with panoramic views of Mount Kanchenjunga on clear days.</li>
+                    <li><strong>DHR Ghoom Museum:</strong> A quick 30-minute halt to see the historic 'Baby Sivok' engine and rare photographic archives.</li>
+                </ul>
+
+                                <!-- Explorer Booking Companion (Affiliate Revenue Stream) -->
+                <div class="affiliate-stay-card" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9)); border: 1px solid rgba(234, 179, 8, 0.3); border-radius: 12px; padding: 14px 18px; margin: 18px 0; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="font-size: 26px;">🏔️</div>
+                        <div>
+                            <div style="font-weight: 800; color: #fff; font-size: 13.5px;">Looking for Darjeeling Mountain Resorts?</div>
+                            <div style="color: #94a3b8; font-size: 12px;">Compare top-rated tea estate stays & Toy Train viewpoints.</div>
+                        </div>
+                    </div>
+                    <a href="https://www.booking.com/searchresults.html?ss=Darjeeling" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #eab308, #fef08a); color: #090d16; padding: 7px 15px; border-radius: 8px; font-size: 12px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(234,179,8,0.25);">
+                        🔍 Check Mountain Stays
+                    </a>
+                </div>
+
+                <div class="blog-tip-box">
+                    💡 <strong>Adventure Advice by Gobinda Nag:</strong> Book your Joy Ride ticket on IRCTC at least 30 days in advance during peak spring (March–April) and autumn (October–November) seasons.
+                </div>
+            </div>
+            <div class="blog-post__footer">
+                <div class="blog-post__author">
+                    <img src="assets/agents/gobinda.jpg" alt="Gobinda Nag" loading="lazy" decoding="async">
+                    <span>Gobinda Nag — Cycling & Outdoor Adventure Lead</span>
+                </div>
+                <button class="read-more-btn" onclick="togglePost('post-2')">Read Full Story</button>
+            </div>
+        </article>
+
+        <!-- ========== GOOGLE ADSENSE IN-ARTICLE BANNER ========== -->
+        <div class="adsense-slot-container" style="max-width: 900px; margin: 32px auto; text-align: center;">
+            <div style="font-size: 10px; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; font-weight: 700;">Sponsored Travel Story</div>
+            <div class="adsense-wrapper" style="min-height: 90px; background: rgba(15, 23, 42, 0.45); border: 1px dashed rgba(56, 189, 248, 0.25); border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 12px;">
+                <div style="color: #64748b; font-size: 12.5px;">
+                    <span style="color: #38bdf8; font-weight: 700;">Google AdSense In-Article Unit</span> • Responsive travel monetization banner
+                </div>
+            </div>
+        </div>
+
+        <!-- Article 3: Bishnupur Terracotta Temples -->
+        <article class="blog-post" id="post-3">
+            <div class="blog-post__header">
+                <div class="blog-post__meta">
+                    <span class="blog-post__date">July 2026</span>
+                    <span class="blog-post__tag tag-history">Cultural Heritage</span>
+                    <span style="font-size: 11px; color: #64748b;">• 5 Min Read</span>
+                </div>
+                <h2 class="blog-post__title">Untold Whispers of Terracotta: Discovering the 17th-Century Temples of Bishnupur</h2>
+            </div>
+            <div class="blog-post__excerpt">
+                Why build temples in stone when you can sculpt baked clay with poetic devotion? An exploratory walk through the terracotta masterpieces of Bankura.
+            </div>
+            <div class="blog-post__body" id="post-3-body">
+                <p>Located in the Bankura district of West Bengal, <strong>Bishnupur</strong> was the illustrious capital of the Malla kings. Because stone was scarce in the alluvial plains of Bengal, Malla architects mastered the art of burnt clay (terracotta), constructing magnificent structures decorated with thousands of intricately sculpted tiles.</p>
+
+                <h3>🏛️ Essential Sites to Witness</h3>
+                <ul>
+                    <li><strong>Rasmancha (1600 AD):</strong> A unique pyramidal stepped structure used to display Radha-Krishna idols during the annual Ras festival.</li>
+                    <li><strong>Jor Bangla Temple (1655 AD):</strong> Modeled after the traditional twin thatched huts of rural Bengal, adorned with epic battle scenes from the Ramayana.</li>
+                    <li><strong>Shyamrai Temple:</strong> Renowned for its Pancha-Ratna (five pinnacles) roof and exquisite ceiling carvings of Krishna Leela.</li>
+                </ul>
+
+                                <!-- Explorer Booking Companion (Affiliate Revenue Stream) -->
+                <div class="affiliate-stay-card" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9)); border: 1px solid rgba(234, 179, 8, 0.3); border-radius: 12px; padding: 14px 18px; margin: 18px 0; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="font-size: 26px;">🏛️</div>
+                        <div>
+                            <div style="font-weight: 800; color: #fff; font-size: 13.5px;">Visiting Bishnupur Terracotta Circuit?</div>
+                            <div style="color: #94a3b8; font-size: 12px;">Book WBTDC tourist lodges & guided heritage walking tours.</div>
+                        </div>
+                    </div>
+                    <a href="https://www.booking.com/searchresults.html?ss=Bishnupur" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #eab308, #fef08a); color: #090d16; padding: 7px 15px; border-radius: 8px; font-size: 12px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(234,179,8,0.25);">
+                        🔍 Explore Heritage Hotels
+                    </a>
+                </div>
+
+                <div class="blog-tip-box">
+                    💡 <strong>Cultural Insight by Aritra Dey:</strong> Don't leave Bishnupur without visiting the local weaver colonies of Sankharipara to watch authentic Baluchari and Swarnachari silk sarees being handwoven on traditional looms.
+                </div>
+            </div>
+            <div class="blog-post__footer">
+                <div class="blog-post__author">
+                    <img src="assets/agents/aritra.jpg" alt="Aritra Dey" loading="lazy" decoding="async">
+                    <span>Aritra Dey — Local Heritage & Cultural Writer</span>
+                </div>
+                <button class="read-more-btn" onclick="togglePost('post-3')">Read Full Story</button>
+            </div>
+        </article>
+
+        <!-- Article 4: Digha & Mandarmani Coastal Trails -->
+        <article class="blog-post" id="post-4">
+            <div class="blog-post__header">
+                <div class="blog-post__meta">
+                    <span class="blog-post__date">July 2026</span>
+                    <span class="blog-post__tag tag-coast">Coastal Escapes</span>
+                    <span style="font-size: 11px; color: #64748b;">• 6 Min Read</span>
+                </div>
+                <h2 class="blog-post__title">Coastal Escapes: Sunset Secrets & Marine Trails Along Digha & Mandarmani</h2>
+            </div>
+            <div class="blog-post__excerpt">
+                From the bustling promenade of Old Digha to the tranquil red-crab beaches of Tajpur and Mandarmani's 13-km beach stretch, here is our ultimate coastal itinerary.
+            </div>
+            <div class="blog-post__body" id="post-4-body">
+                <p>The coastline of Purba Medinipur offers the premier beach vacation circuit in Eastern India. Whether you crave the lively evening fish stalls of Old Digha or the peaceful secluded shores of Tajpur and Shankarpur, the Bay of Bengal coastline has something for every explorer.</p>
+
+                <h3>🌊 Weekend Coastal Itinerary</h3>
+                <ul>
+                    <li><strong>Day 1: Digha Heritage:</strong> Morning stroll at Old Digha beach, a visit to the Marine Aquarium & Regional Centre (MARC), and evening street seafood sampling.</li>
+                    <li><strong>Day 2: Mandarmani & Tajpur:</strong> Take a scenic coastal drive to Mandarmani. Walk among thousands of harmless red ghost crabs on the untouched beaches of Tajpur.</li>
+                </ul>
+
+                                <!-- Explorer Booking Companion (Affiliate Revenue Stream) -->
+                <div class="affiliate-stay-card" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9)); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 14px 18px; margin: 18px 0; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="font-size: 26px;">🌊</div>
+                        <div>
+                            <div style="font-weight: 800; color: #fff; font-size: 13.5px;">Planning a Digha & Mandarmani Beach Trip?</div>
+                            <div style="color: #94a3b8; font-size: 12px;">Find sea-facing luxury resorts, beach cottages & swimming pool stays.</div>
+                        </div>
+                    </div>
+                    <a href="https://www.booking.com/searchresults.html?ss=Digha" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #a855f7, #c084fc); color: #090d16; padding: 7px 15px; border-radius: 8px; font-size: 12px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(168,85,247,0.25);">
+                        🔍 Compare Beach Deals
+                    </a>
+                </div>
+
+                <div class="blog-tip-box">
+                    💡 <strong>Photography Note by Rudranil Pal:</strong> Early morning at Shankarpur fishing harbour provides spectacular documentary photography opportunities as local trawlers return with the day's catch.
+                </div>
+            </div>
+            <div class="blog-post__footer">
+                <div class="blog-post__author">
+                    <img src="assets/agents/rudranil_pal.jpg" alt="Rudranil Pal" loading="lazy" decoding="async">
+                    <span>Rudranil Pal — Scenic Spots & Coastal Photography</span>
+                </div>
+                <button class="read-more-btn" onclick="togglePost('post-4')">Read Full Story</button>
+            </div>
+        </article>
+
+        <!-- Article 5: Sundarbans Mangrove Biosphere -->
+        <article class="blog-post" id="post-5">
+            <div class="blog-post__header">
+                <div class="blog-post__meta">
+                    <span class="blog-post__date">June 2026</span>
+                    <span class="blog-post__tag tag-nature">Wildlife & Delta</span>
+                    <span style="font-size: 11px; color: #64748b;">• 8 Min Read</span>
+                </div>
+                <h2 class="blog-post__title">Into the Mangrove Labyrinth: An Insider's Expedition to Sundarbans Biosphere</h2>
+            </div>
+            <div class="blog-post__excerpt">
+                The world's largest contiguous mangrove forest is a mystical delta where the Royal Bengal Tiger swims across tidal estuaries and crocodiles bask on mudflats.
+            </div>
+            <div class="blog-post__body" id="post-5-body">
+                <p>Spanning over 10,000 square kilometers across India and Bangladesh, the <strong>Sundarbans</strong> is a UNESCO World Heritage Biosphere Reserve. Formed by the confluence of the Ganges, Brahmaputra, and Meghna rivers, this delta is home to spotted deer, estuarine crocodiles, kingfishers, and the elusive Royal Bengal Tiger.</p>
+
+                <h3>⛵ Navigating the Waterways Safely</h3>
+                <p>Exploring the Sundarbans is conducted entirely by motorized wooden houseboats operated by certified forest department guides from Godkhali Port:</p>
+                <ul>
+                    <li><strong>Sajnekhali Watchtower:</strong> Key hub with a crocodile pond, turtle hatchery, and interpretation museum.</li>
+                    <li><strong>Dobanki Canopy Walk:</strong> A protected 20-foot high raised canopy walkway through dense sundari and golpata trees.</li>
+                    <li><strong>Sudhanyakhali Watchtower:</strong> The most frequent location for wildlife sightings around the freshwater watering hole.</li>
+                </ul>
+
+                                <!-- Explorer Booking Companion (Affiliate Revenue Stream) -->
+                <div class="affiliate-stay-card" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9)); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 12px; padding: 14px 18px; margin: 18px 0; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="font-size: 26px;">🐅</div>
+                        <div>
+                            <div style="font-weight: 800; color: #fff; font-size: 13.5px;">Book Certified Sundarbans Eco-Safaris</div>
+                            <div style="color: #94a3b8; font-size: 12px;">Official forest department houseboats, meals & certified naturalist guides.</div>
+                        </div>
+                    </div>
+                    <a href="https://www.booking.com/searchresults.html?ss=Sundarbans" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #22c55e, #86efac); color: #090d16; padding: 7px 15px; border-radius: 8px; font-size: 12px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(34,197,94,0.25);">
+                        🔍 Check Safari Packages
+                    </a>
+                </div>
+
+                <div class="blog-tip-box">
+                    💡 <strong>Wildlife Travel Tip by Arka Sarkar:</strong> Carry 8x42 or 10x42 binoculars and a long telephoto lens (300mm+). Always choose registered eco-resorts that support local village conservation communities.
+                </div>
+            </div>
+            <div class="blog-post__footer">
+                <div class="blog-post__author">
+                    <img src="assets/agents/arka.jpg" alt="Arka Sarkar" loading="lazy" decoding="async">
+                    <span>Arka Sarkar — Highway & Route Explorer</span>
+                </div>
+                <button class="read-more-btn" onclick="togglePost('post-5')">Read Full Story</button>
+            </div>
+        </article>
+
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="blog-footer">
+        <div style="font-family: var(--font-title); font-size: 18px; font-weight: 800; color: #38bdf8; margin-bottom: 8px;">
+            🧭 Bengal Explorers Chronicles
+        </div>
+        <p>BENGAL EXPLORERS © 2026 — Built with ❤️ by Class 12 Students of Paschim Medinipur, West Bengal</p>
+        <div style="margin-top: 12px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; font-size: 13px;">
+            <a href="https://github.com/bibekmahata-dev" target="_blank" style="color: #f8fafc; font-weight: 700;">🐙 GitHub</a>
+            <span style="color: #475569;">•</span>
+            <a href="index.html">Main Travel Dashboard</a>
+            <span style="color: #475569;">•</span>
+            <a href="index.html#hangout-map">Interactive Map</a>
+            <span style="color: #475569;">•</span>
+            <a href="index.html#squad-section">Meet Our Team</a>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT LOGIC ========== -->
+    <script>
+    // Expand / Collapse Story Accordion
+    function togglePost(postId) {
+        const body = document.getElementById(postId + '-body');
+        const btn = document.querySelector(`#${postId} .read-more-btn`);
+        if (!body || !btn) return;
+        
+        if (body.style.display === 'block') {
+            body.style.display = 'none';
+            btn.textContent = 'Read Full Story';
+        } else {
+            body.style.display = 'block';
+            btn.textContent = 'Collapse Story';
+        }
+    }
+    </script>
+
+    <!-- Google Translate Script & Init -->
+    <script type="text/javascript">
+        function googleTranslateElementInitBlog() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,bn,hi,ta,ml',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element_blog');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInitBlog"></script>
+    <!-- ========== COOKIE & PRIVACY CONSENT BANNER (ADSENSE & GDPR COMPLIANT) ========== -->
+    <div id="cookie-consent-banner" style="display: none; position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); width: 92%; max-width: 720px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 16px; padding: 14px 20px; z-index: 9999; box-shadow: 0 20px 50px rgba(0,0,0,0.7); align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 12px; flex: 1; min-width: 260px;">
+            <div style="font-size: 26px;">🍪</div>
+            <div style="font-size: 12.5px; color: #cbd5e1; line-height: 1.5;">
+                We use cookies and local storage to optimize your transit data, analyze regional traffic, and serve personalized travel ads via <strong>Google AdSense</strong>. Learn more in our <a href="privacy.html" style="color: #38bdf8; text-decoration: underline; font-weight: 700;">Privacy Policy</a>.
+            </div>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+            <button onclick="acceptCookieConsent()" style="background: linear-gradient(135deg, #0284c7, #38bdf8); color: #090d16; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 800; font-size: 12.5px; cursor: pointer; transition: all 0.2s; white-space: nowrap;">Accept & Continue</button>
+        </div>
+    </div>
+    <script>
+    function checkCookieConsent() {
+        if (!localStorage.getItem('bengal_cookie_consent')) {
+            const b = document.getElementById('cookie-consent-banner');
+            if (b) b.style.display = 'flex';
+        }
+    }
+    function acceptCookieConsent() {
+        localStorage.setItem('bengal_cookie_consent', 'accepted');
+        const b = document.getElementById('cookie-consent-banner');
+        if (b) b.style.display = 'none';
+    }
+    window.addEventListener('DOMContentLoaded', checkCookieConsent);
+    </script>
+
+</body>
+</html>

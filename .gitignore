@@ -1,0 +1,5 @@
+_temp_scripts/
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
