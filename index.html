@@ -2763,6 +2763,158 @@
             }
         }
 
+
+        /* ========================================================
+           📱 APP-GRADE MOBILE HEADER & SEARCH CANVAS ENGINE
+           ======================================================== */
+        @media (max-width: 768px) {
+            /* 1. Header Container */
+            .header {
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 1000 !important;
+                padding: 6px 8px !important;
+                background: rgba(9, 13, 22, 0.98) !important;
+                backdrop-filter: blur(20px) !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            .header__inner {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 6px !important;
+                width: 100% !important;
+                height: auto !important;
+                padding: 0 !important;
+            }
+
+            /* 2. Top Row: Brand on Left, Theme & Language on Right */
+            .header__brand {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                width: 100% !important;
+            }
+            .header__logo {
+                font-size: 17px !important;
+                font-weight: 800 !important;
+                letter-spacing: -0.3px !important;
+            }
+            .header__badge {
+                display: none !important; /* Conceal long subtitle to keep header compact */
+            }
+
+            /* 3. Controls Row (Clean 100% Full Width Alignment) */
+            .header__controls {
+                width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 6px !important;
+                align-items: stretch !important;
+            }
+            
+            /* Quick Tools Mini Row */
+            .header-mini-tools {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: flex-end !important;
+                gap: 6px !important;
+            }
+
+            /* 4. Full-Width Clean Search Bar Canvas */
+            .search-bar {
+                width: 100% !important;
+                min-width: 100% !important;
+                max-width: 100% !important;
+                height: 36px !important;
+                position: relative !important;
+                margin: 0 !important;
+                display: block !important;
+            }
+            .search-bar__input {
+                width: 100% !important;
+                height: 36px !important;
+                font-size: 12.5px !important;
+                padding: 0 12px 0 34px !important;
+                border-radius: 8px !important;
+                background: rgba(255, 255, 255, 0.06) !important;
+                border: 1px solid rgba(56, 189, 248, 0.25) !important;
+                color: #ffffff !important;
+                outline: none !important;
+                box-sizing: border-box !important;
+            }
+            .search-bar__input:focus {
+                border-color: #38bdf8 !important;
+                background: rgba(0, 0, 0, 0.4) !important;
+            }
+            .search-bar__icon {
+                font-size: 13px !important;
+                left: 10px !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                position: absolute !important;
+                color: #94a3b8 !important;
+                pointer-events: none !important;
+            }
+
+            /* 5. Theme & Translate Buttons */
+            #theme-btn {
+                padding: 3px 8px !important;
+                font-size: 11px !important;
+                height: 28px !important;
+                border-radius: 6px !important;
+                border: 1px solid rgba(212, 175, 55, 0.4) !important;
+                background: rgba(212, 175, 55, 0.15) !important;
+                color: #facc15 !important;
+                cursor: pointer !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 3px !important;
+            }
+            #google_translate_element {
+                display: inline-flex !important;
+                align-items: center !important;
+                height: 28px !important;
+            }
+            #google_translate_element select {
+                padding: 2px 6px !important;
+                font-size: 11px !important;
+                height: 28px !important;
+                border-radius: 6px !important;
+                background: #1e293b !important;
+                color: #ffffff !important;
+                border: 1px solid rgba(255, 255, 255, 0.2) !important;
+                outline: none !important;
+            }
+
+            /* 6. Swipeable Horizontal Navigation Ribbon */
+            .header__nav {
+                display: flex !important;
+                width: 100% !important;
+                overflow-x: auto !important;
+                white-space: nowrap !important;
+                gap: 5px !important;
+                padding: 2px 0 3px !important;
+                scrollbar-width: none !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            .header__nav::-webkit-scrollbar {
+                display: none !important;
+            }
+            .header__nav-link {
+                padding: 4px 10px !important;
+                font-size: 11.5px !important;
+                border-radius: 6px !important;
+                background: rgba(255, 255, 255, 0.05) !important;
+                border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                color: #cbd5e1 !important;
+                flex-shrink: 0 !important;
+                text-decoration: none !important;
+                font-weight: 600 !important;
+            }
+        }
+
 </style>
 </head>
 <body>
@@ -2818,14 +2970,17 @@
                 <a href="#West Bengal-guide-section" class="header__nav-link" style="color: #22c55e; font-weight: 700;">📍 Guide</a>
             </nav>
             <div class="header__controls">
-                <button class="vibe-btn" id="theme-btn" onclick="toggleTheme()" style="padding: 6px 12px; font-size: 12px; margin-right: 6px;">👑 Gold</button>
-                
-                <!-- Google Translate Widget Container -->
-                <div id="google_translate_element" style="display: inline-block; vertical-align: middle; margin-right: 6px;"></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <div style="color: #38bdf8; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">⚡ Bengal Portal</div>
+                    <div style="display: flex; gap: 6px; align-items: center;">
+                        <button class="vibe-btn" id="theme-btn" onclick="toggleTheme()" style="padding: 4px 10px; font-size: 11.5px;">👑 Gold</button>
+                        <div id="google_translate_element" style="display: inline-flex; vertical-align: middle;"></div>
+                    </div>
+                </div>
 
                 <div class="search-bar">
-                    <span class="search-bar__icon">🔍 </span>
-                    <input type="text" class="search-bar__input" id="search-input" placeholder="Search squad... (Press Ctrl+K or /)" autocomplete="off">
+                    <span class="search-bar__icon">🔍</span>
+                    <input type="text" class="search-bar__input" id="search-input" placeholder="Search squad, places, trains & guides..." autocomplete="off">
                 </div>
             </div>
         </div>
@@ -3715,6 +3870,158 @@
                 padding-left: 4px !important;
                 padding-right: 4px !important;
                 box-sizing: border-box !important;
+            }
+        }
+
+
+        /* ========================================================
+           📱 APP-GRADE MOBILE HEADER & SEARCH CANVAS ENGINE
+           ======================================================== */
+        @media (max-width: 768px) {
+            /* 1. Header Container */
+            .header {
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 1000 !important;
+                padding: 6px 8px !important;
+                background: rgba(9, 13, 22, 0.98) !important;
+                backdrop-filter: blur(20px) !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            .header__inner {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 6px !important;
+                width: 100% !important;
+                height: auto !important;
+                padding: 0 !important;
+            }
+
+            /* 2. Top Row: Brand on Left, Theme & Language on Right */
+            .header__brand {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                width: 100% !important;
+            }
+            .header__logo {
+                font-size: 17px !important;
+                font-weight: 800 !important;
+                letter-spacing: -0.3px !important;
+            }
+            .header__badge {
+                display: none !important; /* Conceal long subtitle to keep header compact */
+            }
+
+            /* 3. Controls Row (Clean 100% Full Width Alignment) */
+            .header__controls {
+                width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 6px !important;
+                align-items: stretch !important;
+            }
+            
+            /* Quick Tools Mini Row */
+            .header-mini-tools {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: flex-end !important;
+                gap: 6px !important;
+            }
+
+            /* 4. Full-Width Clean Search Bar Canvas */
+            .search-bar {
+                width: 100% !important;
+                min-width: 100% !important;
+                max-width: 100% !important;
+                height: 36px !important;
+                position: relative !important;
+                margin: 0 !important;
+                display: block !important;
+            }
+            .search-bar__input {
+                width: 100% !important;
+                height: 36px !important;
+                font-size: 12.5px !important;
+                padding: 0 12px 0 34px !important;
+                border-radius: 8px !important;
+                background: rgba(255, 255, 255, 0.06) !important;
+                border: 1px solid rgba(56, 189, 248, 0.25) !important;
+                color: #ffffff !important;
+                outline: none !important;
+                box-sizing: border-box !important;
+            }
+            .search-bar__input:focus {
+                border-color: #38bdf8 !important;
+                background: rgba(0, 0, 0, 0.4) !important;
+            }
+            .search-bar__icon {
+                font-size: 13px !important;
+                left: 10px !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                position: absolute !important;
+                color: #94a3b8 !important;
+                pointer-events: none !important;
+            }
+
+            /* 5. Theme & Translate Buttons */
+            #theme-btn {
+                padding: 3px 8px !important;
+                font-size: 11px !important;
+                height: 28px !important;
+                border-radius: 6px !important;
+                border: 1px solid rgba(212, 175, 55, 0.4) !important;
+                background: rgba(212, 175, 55, 0.15) !important;
+                color: #facc15 !important;
+                cursor: pointer !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 3px !important;
+            }
+            #google_translate_element {
+                display: inline-flex !important;
+                align-items: center !important;
+                height: 28px !important;
+            }
+            #google_translate_element select {
+                padding: 2px 6px !important;
+                font-size: 11px !important;
+                height: 28px !important;
+                border-radius: 6px !important;
+                background: #1e293b !important;
+                color: #ffffff !important;
+                border: 1px solid rgba(255, 255, 255, 0.2) !important;
+                outline: none !important;
+            }
+
+            /* 6. Swipeable Horizontal Navigation Ribbon */
+            .header__nav {
+                display: flex !important;
+                width: 100% !important;
+                overflow-x: auto !important;
+                white-space: nowrap !important;
+                gap: 5px !important;
+                padding: 2px 0 3px !important;
+                scrollbar-width: none !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            .header__nav::-webkit-scrollbar {
+                display: none !important;
+            }
+            .header__nav-link {
+                padding: 4px 10px !important;
+                font-size: 11.5px !important;
+                border-radius: 6px !important;
+                background: rgba(255, 255, 255, 0.05) !important;
+                border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                color: #cbd5e1 !important;
+                flex-shrink: 0 !important;
+                text-decoration: none !important;
+                font-weight: 600 !important;
             }
         }
 
@@ -7114,6 +7421,158 @@ document.addEventListener('keydown', (e) => {
                 padding-left: 4px !important;
                 padding-right: 4px !important;
                 box-sizing: border-box !important;
+            }
+        }
+
+
+        /* ========================================================
+           📱 APP-GRADE MOBILE HEADER & SEARCH CANVAS ENGINE
+           ======================================================== */
+        @media (max-width: 768px) {
+            /* 1. Header Container */
+            .header {
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 1000 !important;
+                padding: 6px 8px !important;
+                background: rgba(9, 13, 22, 0.98) !important;
+                backdrop-filter: blur(20px) !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            .header__inner {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 6px !important;
+                width: 100% !important;
+                height: auto !important;
+                padding: 0 !important;
+            }
+
+            /* 2. Top Row: Brand on Left, Theme & Language on Right */
+            .header__brand {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                width: 100% !important;
+            }
+            .header__logo {
+                font-size: 17px !important;
+                font-weight: 800 !important;
+                letter-spacing: -0.3px !important;
+            }
+            .header__badge {
+                display: none !important; /* Conceal long subtitle to keep header compact */
+            }
+
+            /* 3. Controls Row (Clean 100% Full Width Alignment) */
+            .header__controls {
+                width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 6px !important;
+                align-items: stretch !important;
+            }
+            
+            /* Quick Tools Mini Row */
+            .header-mini-tools {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: flex-end !important;
+                gap: 6px !important;
+            }
+
+            /* 4. Full-Width Clean Search Bar Canvas */
+            .search-bar {
+                width: 100% !important;
+                min-width: 100% !important;
+                max-width: 100% !important;
+                height: 36px !important;
+                position: relative !important;
+                margin: 0 !important;
+                display: block !important;
+            }
+            .search-bar__input {
+                width: 100% !important;
+                height: 36px !important;
+                font-size: 12.5px !important;
+                padding: 0 12px 0 34px !important;
+                border-radius: 8px !important;
+                background: rgba(255, 255, 255, 0.06) !important;
+                border: 1px solid rgba(56, 189, 248, 0.25) !important;
+                color: #ffffff !important;
+                outline: none !important;
+                box-sizing: border-box !important;
+            }
+            .search-bar__input:focus {
+                border-color: #38bdf8 !important;
+                background: rgba(0, 0, 0, 0.4) !important;
+            }
+            .search-bar__icon {
+                font-size: 13px !important;
+                left: 10px !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                position: absolute !important;
+                color: #94a3b8 !important;
+                pointer-events: none !important;
+            }
+
+            /* 5. Theme & Translate Buttons */
+            #theme-btn {
+                padding: 3px 8px !important;
+                font-size: 11px !important;
+                height: 28px !important;
+                border-radius: 6px !important;
+                border: 1px solid rgba(212, 175, 55, 0.4) !important;
+                background: rgba(212, 175, 55, 0.15) !important;
+                color: #facc15 !important;
+                cursor: pointer !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 3px !important;
+            }
+            #google_translate_element {
+                display: inline-flex !important;
+                align-items: center !important;
+                height: 28px !important;
+            }
+            #google_translate_element select {
+                padding: 2px 6px !important;
+                font-size: 11px !important;
+                height: 28px !important;
+                border-radius: 6px !important;
+                background: #1e293b !important;
+                color: #ffffff !important;
+                border: 1px solid rgba(255, 255, 255, 0.2) !important;
+                outline: none !important;
+            }
+
+            /* 6. Swipeable Horizontal Navigation Ribbon */
+            .header__nav {
+                display: flex !important;
+                width: 100% !important;
+                overflow-x: auto !important;
+                white-space: nowrap !important;
+                gap: 5px !important;
+                padding: 2px 0 3px !important;
+                scrollbar-width: none !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            .header__nav::-webkit-scrollbar {
+                display: none !important;
+            }
+            .header__nav-link {
+                padding: 4px 10px !important;
+                font-size: 11.5px !important;
+                border-radius: 6px !important;
+                background: rgba(255, 255, 255, 0.05) !important;
+                border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                color: #cbd5e1 !important;
+                flex-shrink: 0 !important;
+                text-decoration: none !important;
+                font-weight: 600 !important;
             }
         }
 
