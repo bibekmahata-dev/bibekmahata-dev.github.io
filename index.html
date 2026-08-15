@@ -6046,40 +6046,35 @@ document.querySelectorAll('.card, .section-title, .about-card, .footer__inner, .
 });
 document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
 
-// 4. Live Cloud-Synchronized Global Visitor Counter Engine
+// 4. Pure Organic Cloud Visitor Counter (Starts from 0, Increments 1 by 1 for Every Visit)
 async function updateGlobalVisitorCount() {
     const counterDisplay = document.getElementById('elite-visitor-count');
     if (!counterDisplay) return;
 
-    // Show initial cached count immediately to avoid lag
-    let cachedVisits = parseInt(localStorage.getItem('bengal_global_visits_cache') || '148', 10);
-    counterDisplay.textContent = cachedVisits.toLocaleString();
+    // Reset old caches
+    localStorage.removeItem('bengal_global_visits_cache');
+    localStorage.removeItem('bengal_real_visits_v1');
 
     try {
         // Fetch Live Global Count from Cloud Hit API
-        const res = await fetch('https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fbibekmahata-dev.github.io', { cache: 'no-cache' });
+        const res = await fetch('https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fbibekmahata-dev.github.io%2Flive_portal_counter_v1', { cache: 'no-cache' });
         const svgText = await res.text();
         const match = svgText.match(/VISITORS:\s*([0-9,]+)/i);
         
         if (match && match[1]) {
             const rawCloudCount = parseInt(match[1].replace(/,/g, ''), 10);
-            // Combined with authentic launch community baseline
-            const totalCommunityVisits = 1420 + rawCloudCount;
+            counterDisplay.textContent = rawCloudCount.toLocaleString();
             
-            counterDisplay.textContent = totalCommunityVisits.toLocaleString();
-            localStorage.setItem('bengal_global_visits_cache', totalCommunityVisits.toString());
-            
-            // Add subtle glow pulse
+            // Subtle pulse animation
             counterDisplay.style.transition = 'all 0.3s ease';
             counterDisplay.style.textShadow = '0 0 10px #38bdf8';
             setTimeout(() => { counterDisplay.style.textShadow = 'none'; }, 1500);
+        } else {
+            counterDisplay.textContent = '1';
         }
     } catch (err) {
         console.warn("Cloud visitor counter fallback active:", err);
-        // Fallback realistic incremental visitor tracking
-        cachedVisits += 1;
-        counterDisplay.textContent = cachedVisits.toLocaleString();
-        localStorage.setItem('bengal_global_visits_cache', cachedVisits.toString());
+        counterDisplay.textContent = '1';
     }
 }
 updateGlobalVisitorCount();
