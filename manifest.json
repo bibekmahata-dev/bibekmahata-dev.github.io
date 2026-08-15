@@ -1,0 +1,21 @@
+{
+    "name": "Bengal Explorers",
+    "short_name": "BengalExplorers",
+    "description": "Student-Led West Bengal Travel, Transit & Cultural Tourism Portal",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#090d16",
+    "theme_color": "#090d16",
+    "icons": [
+        {
+            "src": "assets/agents/bibek.jpg",
+            "sizes": "192x192",
+            "type": "image/jpeg"
+        },
+        {
+            "src": "assets/agents/bibek.jpg",
+            "sizes": "512x512",
+            "type": "image/jpeg"
+        }
+    ]
+}

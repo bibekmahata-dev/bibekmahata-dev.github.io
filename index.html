@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- High-Concurrency Enterprise Preconnects & Resource Hints -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#090d16">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+    <link rel="preconnect" href="https://tile.openstreetmap.org">
+    <link rel="dns-prefetch" href="https://api.open-meteo.com">
+    <link rel="dns-prefetch" href="https://api.rss2json.com">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9222942521747755" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -3071,23 +3082,42 @@
     </div>
     
     <!-- Global search consolidated in top header -->
-    <script>
+        <script>
+        // High-Scale Smart Cached Global News Engine (10-minute LocalStorage TTL)
         async function fetchBreakingNews() {
+            const cacheKey = 'bengal_news_cache_v1';
+            const cacheTimeKey = 'bengal_news_time_v1';
+            const cachedData = localStorage.getItem(cacheKey);
+            const cachedTime = localStorage.getItem(cacheTimeKey);
+            const now = Date.now();
+
+            // 1. Serve immediately from cache if younger than 10 minutes (600,000 ms)
+            if (cachedData && cachedTime && (now - parseInt(cachedTime)) < 600000) {
+                document.getElementById('breaking-news-marquee').innerHTML = cachedData;
+                return;
+            }
+
             try {
-                // Fetching World News (Global - English) via RSS2JSON (BBC News)
                 const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Fworld%2Frss.xml');
                 const data = await res.json();
                 if(data && data.items && data.items.length > 0) {
                     const headlines = data.items.slice(0, 15).map(item => item.title).join(' &nbsp;&nbsp;&nbsp; 🔴 &nbsp;&nbsp;&nbsp; ');
-                    document.getElementById('breaking-news-marquee').innerHTML = '🚨 <strong>LIVE GLOBAL NEWS:</strong> &nbsp;&nbsp;&nbsp; ' + headlines;
+                    const html = '🚨 <strong>LIVE GLOBAL NEWS:</strong> &nbsp;&nbsp;&nbsp; ' + headlines;
+                    document.getElementById('breaking-news-marquee').innerHTML = html;
+                    localStorage.setItem(cacheKey, html);
+                    localStorage.setItem(cacheTimeKey, now.toString());
                 }
             } catch(e) {
-                console.error("News fetch error:", e);
-                document.getElementById('breaking-news-marquee').innerHTML = '⚠️ <strong>NEWS OFFLINE:</strong> Unable to connect to global news feed. Please try again later.';
+                console.warn("News fetch fallback active:", e);
+                if (cachedData) {
+                    document.getElementById('breaking-news-marquee').innerHTML = cachedData;
+                } else {
+                    document.getElementById('breaking-news-marquee').innerHTML = '🚨 <strong>BENGAL EXPLORERS LIVE:</strong> Welcome to the official West Bengal Student Travel & Transit Portal!';
+                }
             }
         }
         fetchBreakingNews();
-        setInterval(fetchBreakingNews, 60000); 
+        setInterval(fetchBreakingNews, 300000); // 5 min background refresh
     </script>
 
     <!-- Splash Screen Optimized Out -->
