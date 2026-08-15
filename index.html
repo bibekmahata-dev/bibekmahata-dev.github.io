@@ -3520,6 +3520,191 @@
             }
         }
 
+
+        /* ==========================================================================
+           🗺️ MASTER STANDALONE GIS MAP (10%+ BIGGER & COMPLETELY UNJOINED)
+           ========================================================================== */
+        
+        /* 1. STANDALONE INDEPENDENT MAP CARD */
+        .standalone-map-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(9, 13, 22, 0.99)) !important;
+            border: 2px solid rgba(56, 189, 248, 0.45) !important;
+            border-radius: 16px !important;
+            overflow: hidden !important;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.2) !important;
+            margin: 28px 0 32px 0 !important; /* Prominent separation gap */
+            width: 100% !important;
+            box-sizing: border-box !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .map-card-header {
+            padding: 14px 20px !important;
+            background: rgba(15, 23, 42, 0.99) !important;
+            border-bottom: 1.5px solid rgba(56, 189, 248, 0.3) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            flex-shrink: 0 !important;
+        }
+
+        .map-card-title {
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+        }
+
+        /* 10%+ BIGGER MAP FRAME (400px on mobile, 480px on desktop) */
+        .standalone-map-frame {
+            width: 100% !important;
+            height: 480px !important; /* 10%+ Bigger */
+            position: relative !important;
+            background: #0b1120 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            flex: 1 1 auto !important;
+            display: block !important;
+            overflow: hidden !important;
+        }
+
+        #map {
+            width: 100% !important;
+            height: 100% !important;
+            min-height: 100% !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            z-index: 1 !important;
+        }
+
+        /* 2. STANDALONE INDEPENDENT TOURIST PLACES CARD */
+        .standalone-places-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(9, 13, 22, 0.99)) !important;
+            border: 2px solid rgba(56, 189, 248, 0.35) !important;
+            border-radius: 16px !important;
+            padding: 24px 18px !important;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.12) !important;
+            margin: 32px 0 28px 0 !important; /* Standalone gap */
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .places-section-header {
+            margin-bottom: 16px !important;
+        }
+
+        /* Filter Pills - Pure Cyber Glassmorphism (NO WHITE BG) */
+        #map-category-filters {
+            display: flex !important;
+            gap: 8px !important;
+            margin-bottom: 16px !important;
+            overflow-x: auto !important;
+            padding: 4px 2px !important;
+            scrollbar-width: none !important;
+        }
+
+        .map-filter-btn {
+            background: rgba(255, 255, 255, 0.06) !important;
+            border: 1px solid rgba(56, 189, 248, 0.3) !important;
+            color: #cbd5e1 !important;
+            padding: 8px 16px !important;
+            border-radius: 20px !important;
+            font-size: 13px !important;
+            font-weight: 700 !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+            white-space: nowrap !important;
+        }
+        .map-filter-btn:hover {
+            background: rgba(56, 189, 248, 0.15) !important;
+            color: #38bdf8 !important;
+            border-color: #38bdf8 !important;
+        }
+        .map-filter-btn.active {
+            background: linear-gradient(135deg, #38bdf8, #0284c7) !important;
+            color: #090d16 !important;
+            font-weight: 800 !important;
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.45) !important;
+        }
+
+        /* Search Box - Cyber Dark Styling */
+        .explorer-search-box {
+            display: flex !important;
+            gap: 10px !important;
+            margin-bottom: 20px !important;
+            width: 100% !important;
+        }
+        .explorer-search-input {
+            flex: 1 1 auto !important;
+            padding: 12px 16px !important;
+            background: rgba(15, 23, 42, 0.95) !important;
+            border: 1.5px solid rgba(56, 189, 248, 0.35) !important;
+            border-radius: 10px !important;
+            color: #ffffff !important;
+            font-size: 14px !important;
+            outline: none !important;
+            transition: border-color 0.2s, box-shadow 0.2s !important;
+        }
+        .explorer-search-input:focus {
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.35) !important;
+        }
+        #explorer-search-btn {
+            background: linear-gradient(135deg, #38bdf8, #0284c7) !important;
+            color: #090d16 !important;
+            border: none !important;
+            border-radius: 10px !important;
+            padding: 12px 22px !important;
+            font-weight: 800 !important;
+            font-size: 13.5px !important;
+            cursor: pointer !important;
+            transition: transform 0.2s, box-shadow 0.2s !important;
+            white-space: nowrap !important;
+        }
+        #explorer-search-btn:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4) !important;
+        }
+
+        /* Mobile Precision Tuning */
+        @media (max-width: 768px) {
+            .standalone-map-card {
+                margin: 20px 0 24px 0 !important;
+                border-radius: 14px !important;
+            }
+            .map-card-header {
+                padding: 10px 14px !important;
+            }
+            .standalone-map-frame {
+                height: 400px !important; /* 10%+ Bigger on mobile! */
+            }
+            .standalone-places-card {
+                margin: 24px 0 20px 0 !important;
+                padding: 16px 12px !important;
+                border-radius: 14px !important;
+            }
+            .map-filter-btn {
+                padding: 6px 12px !important;
+                font-size: 12px !important;
+            }
+            .explorer-search-box {
+                gap: 8px !important;
+                margin-bottom: 14px !important;
+            }
+            .explorer-search-input {
+                padding: 10px 12px !important;
+                font-size: 13px !important;
+            }
+            #explorer-search-btn {
+                padding: 10px 16px !important;
+                font-size: 12.5px !important;
+            }
+        }
+
 </style>
 </head>
 <body>
@@ -5235,6 +5420,191 @@
             }
             .explorer-card__desc {
                 font-size: 11px !important;
+            }
+        }
+
+
+        /* ==========================================================================
+           🗺️ MASTER STANDALONE GIS MAP (10%+ BIGGER & COMPLETELY UNJOINED)
+           ========================================================================== */
+        
+        /* 1. STANDALONE INDEPENDENT MAP CARD */
+        .standalone-map-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(9, 13, 22, 0.99)) !important;
+            border: 2px solid rgba(56, 189, 248, 0.45) !important;
+            border-radius: 16px !important;
+            overflow: hidden !important;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.2) !important;
+            margin: 28px 0 32px 0 !important; /* Prominent separation gap */
+            width: 100% !important;
+            box-sizing: border-box !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .map-card-header {
+            padding: 14px 20px !important;
+            background: rgba(15, 23, 42, 0.99) !important;
+            border-bottom: 1.5px solid rgba(56, 189, 248, 0.3) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            flex-shrink: 0 !important;
+        }
+
+        .map-card-title {
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+        }
+
+        /* 10%+ BIGGER MAP FRAME (400px on mobile, 480px on desktop) */
+        .standalone-map-frame {
+            width: 100% !important;
+            height: 480px !important; /* 10%+ Bigger */
+            position: relative !important;
+            background: #0b1120 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            flex: 1 1 auto !important;
+            display: block !important;
+            overflow: hidden !important;
+        }
+
+        #map {
+            width: 100% !important;
+            height: 100% !important;
+            min-height: 100% !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            z-index: 1 !important;
+        }
+
+        /* 2. STANDALONE INDEPENDENT TOURIST PLACES CARD */
+        .standalone-places-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(9, 13, 22, 0.99)) !important;
+            border: 2px solid rgba(56, 189, 248, 0.35) !important;
+            border-radius: 16px !important;
+            padding: 24px 18px !important;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.12) !important;
+            margin: 32px 0 28px 0 !important; /* Standalone gap */
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .places-section-header {
+            margin-bottom: 16px !important;
+        }
+
+        /* Filter Pills - Pure Cyber Glassmorphism (NO WHITE BG) */
+        #map-category-filters {
+            display: flex !important;
+            gap: 8px !important;
+            margin-bottom: 16px !important;
+            overflow-x: auto !important;
+            padding: 4px 2px !important;
+            scrollbar-width: none !important;
+        }
+
+        .map-filter-btn {
+            background: rgba(255, 255, 255, 0.06) !important;
+            border: 1px solid rgba(56, 189, 248, 0.3) !important;
+            color: #cbd5e1 !important;
+            padding: 8px 16px !important;
+            border-radius: 20px !important;
+            font-size: 13px !important;
+            font-weight: 700 !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+            white-space: nowrap !important;
+        }
+        .map-filter-btn:hover {
+            background: rgba(56, 189, 248, 0.15) !important;
+            color: #38bdf8 !important;
+            border-color: #38bdf8 !important;
+        }
+        .map-filter-btn.active {
+            background: linear-gradient(135deg, #38bdf8, #0284c7) !important;
+            color: #090d16 !important;
+            font-weight: 800 !important;
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.45) !important;
+        }
+
+        /* Search Box - Cyber Dark Styling */
+        .explorer-search-box {
+            display: flex !important;
+            gap: 10px !important;
+            margin-bottom: 20px !important;
+            width: 100% !important;
+        }
+        .explorer-search-input {
+            flex: 1 1 auto !important;
+            padding: 12px 16px !important;
+            background: rgba(15, 23, 42, 0.95) !important;
+            border: 1.5px solid rgba(56, 189, 248, 0.35) !important;
+            border-radius: 10px !important;
+            color: #ffffff !important;
+            font-size: 14px !important;
+            outline: none !important;
+            transition: border-color 0.2s, box-shadow 0.2s !important;
+        }
+        .explorer-search-input:focus {
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.35) !important;
+        }
+        #explorer-search-btn {
+            background: linear-gradient(135deg, #38bdf8, #0284c7) !important;
+            color: #090d16 !important;
+            border: none !important;
+            border-radius: 10px !important;
+            padding: 12px 22px !important;
+            font-weight: 800 !important;
+            font-size: 13.5px !important;
+            cursor: pointer !important;
+            transition: transform 0.2s, box-shadow 0.2s !important;
+            white-space: nowrap !important;
+        }
+        #explorer-search-btn:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4) !important;
+        }
+
+        /* Mobile Precision Tuning */
+        @media (max-width: 768px) {
+            .standalone-map-card {
+                margin: 20px 0 24px 0 !important;
+                border-radius: 14px !important;
+            }
+            .map-card-header {
+                padding: 10px 14px !important;
+            }
+            .standalone-map-frame {
+                height: 400px !important; /* 10%+ Bigger on mobile! */
+            }
+            .standalone-places-card {
+                margin: 24px 0 20px 0 !important;
+                padding: 16px 12px !important;
+                border-radius: 14px !important;
+            }
+            .map-filter-btn {
+                padding: 6px 12px !important;
+                font-size: 12px !important;
+            }
+            .explorer-search-box {
+                gap: 8px !important;
+                margin-bottom: 14px !important;
+            }
+            .explorer-search-input {
+                padding: 10px 12px !important;
+                font-size: 13px !important;
+            }
+            #explorer-search-btn {
+                padding: 10px 16px !important;
+                font-size: 12.5px !important;
             }
         }
 
@@ -7801,7 +8171,7 @@ document.addEventListener('keydown', (e) => {
             layers: [defaultMap],
             tap: false, // prevents buggy click behavior on mobile
             scrollWheelZoom: false // prevents page scroll trapping
-        }).setView([22.9868, 87.8550], 7); // Center around West Bengal
+        }).setView([24.1000, 87.8550], 7); // Center around West Bengal
 
         L.control.zoom({ position: 'bottomright' }).addTo(map);
 
@@ -9259,6 +9629,191 @@ document.addEventListener('keydown', (e) => {
             }
         }
 
+
+        /* ==========================================================================
+           🗺️ MASTER STANDALONE GIS MAP (10%+ BIGGER & COMPLETELY UNJOINED)
+           ========================================================================== */
+        
+        /* 1. STANDALONE INDEPENDENT MAP CARD */
+        .standalone-map-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(9, 13, 22, 0.99)) !important;
+            border: 2px solid rgba(56, 189, 248, 0.45) !important;
+            border-radius: 16px !important;
+            overflow: hidden !important;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.2) !important;
+            margin: 28px 0 32px 0 !important; /* Prominent separation gap */
+            width: 100% !important;
+            box-sizing: border-box !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .map-card-header {
+            padding: 14px 20px !important;
+            background: rgba(15, 23, 42, 0.99) !important;
+            border-bottom: 1.5px solid rgba(56, 189, 248, 0.3) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            flex-shrink: 0 !important;
+        }
+
+        .map-card-title {
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+        }
+
+        /* 10%+ BIGGER MAP FRAME (400px on mobile, 480px on desktop) */
+        .standalone-map-frame {
+            width: 100% !important;
+            height: 480px !important; /* 10%+ Bigger */
+            position: relative !important;
+            background: #0b1120 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            flex: 1 1 auto !important;
+            display: block !important;
+            overflow: hidden !important;
+        }
+
+        #map {
+            width: 100% !important;
+            height: 100% !important;
+            min-height: 100% !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            z-index: 1 !important;
+        }
+
+        /* 2. STANDALONE INDEPENDENT TOURIST PLACES CARD */
+        .standalone-places-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(9, 13, 22, 0.99)) !important;
+            border: 2px solid rgba(56, 189, 248, 0.35) !important;
+            border-radius: 16px !important;
+            padding: 24px 18px !important;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.12) !important;
+            margin: 32px 0 28px 0 !important; /* Standalone gap */
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .places-section-header {
+            margin-bottom: 16px !important;
+        }
+
+        /* Filter Pills - Pure Cyber Glassmorphism (NO WHITE BG) */
+        #map-category-filters {
+            display: flex !important;
+            gap: 8px !important;
+            margin-bottom: 16px !important;
+            overflow-x: auto !important;
+            padding: 4px 2px !important;
+            scrollbar-width: none !important;
+        }
+
+        .map-filter-btn {
+            background: rgba(255, 255, 255, 0.06) !important;
+            border: 1px solid rgba(56, 189, 248, 0.3) !important;
+            color: #cbd5e1 !important;
+            padding: 8px 16px !important;
+            border-radius: 20px !important;
+            font-size: 13px !important;
+            font-weight: 700 !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+            white-space: nowrap !important;
+        }
+        .map-filter-btn:hover {
+            background: rgba(56, 189, 248, 0.15) !important;
+            color: #38bdf8 !important;
+            border-color: #38bdf8 !important;
+        }
+        .map-filter-btn.active {
+            background: linear-gradient(135deg, #38bdf8, #0284c7) !important;
+            color: #090d16 !important;
+            font-weight: 800 !important;
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.45) !important;
+        }
+
+        /* Search Box - Cyber Dark Styling */
+        .explorer-search-box {
+            display: flex !important;
+            gap: 10px !important;
+            margin-bottom: 20px !important;
+            width: 100% !important;
+        }
+        .explorer-search-input {
+            flex: 1 1 auto !important;
+            padding: 12px 16px !important;
+            background: rgba(15, 23, 42, 0.95) !important;
+            border: 1.5px solid rgba(56, 189, 248, 0.35) !important;
+            border-radius: 10px !important;
+            color: #ffffff !important;
+            font-size: 14px !important;
+            outline: none !important;
+            transition: border-color 0.2s, box-shadow 0.2s !important;
+        }
+        .explorer-search-input:focus {
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.35) !important;
+        }
+        #explorer-search-btn {
+            background: linear-gradient(135deg, #38bdf8, #0284c7) !important;
+            color: #090d16 !important;
+            border: none !important;
+            border-radius: 10px !important;
+            padding: 12px 22px !important;
+            font-weight: 800 !important;
+            font-size: 13.5px !important;
+            cursor: pointer !important;
+            transition: transform 0.2s, box-shadow 0.2s !important;
+            white-space: nowrap !important;
+        }
+        #explorer-search-btn:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4) !important;
+        }
+
+        /* Mobile Precision Tuning */
+        @media (max-width: 768px) {
+            .standalone-map-card {
+                margin: 20px 0 24px 0 !important;
+                border-radius: 14px !important;
+            }
+            .map-card-header {
+                padding: 10px 14px !important;
+            }
+            .standalone-map-frame {
+                height: 400px !important; /* 10%+ Bigger on mobile! */
+            }
+            .standalone-places-card {
+                margin: 24px 0 20px 0 !important;
+                padding: 16px 12px !important;
+                border-radius: 14px !important;
+            }
+            .map-filter-btn {
+                padding: 6px 12px !important;
+                font-size: 12px !important;
+            }
+            .explorer-search-box {
+                gap: 8px !important;
+                margin-bottom: 14px !important;
+            }
+            .explorer-search-input {
+                padding: 10px 12px !important;
+                font-size: 13px !important;
+            }
+            #explorer-search-btn {
+                padding: 10px 16px !important;
+                font-size: 12.5px !important;
+            }
+        }
+
 </style>
     <script type="text/javascript">
         function googleTranslateElementInit() {
@@ -9669,7 +10224,7 @@ document.addEventListener('keydown', (e) => {
                     setTimeout(() => {
                         map.invalidateSize();
                         if (typeof placesData !== 'undefined' && placesData['digha']) {
-                            map.setView([22.9868, 87.8550], 7);
+                            map.setView([24.1000, 87.8550], 7);
                         }
                     }, 400);
                 }
