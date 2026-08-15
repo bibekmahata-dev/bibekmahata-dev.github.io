@@ -3705,6 +3705,24 @@
             }
         }
 
+
+        /* Leaflet Compact Micro Attribution */
+        .leaflet-control-attribution {
+            font-size: 8.5px !important;
+            background: rgba(15, 23, 42, 0.75) !important;
+            backdrop-filter: blur(4px) !important;
+            -webkit-backdrop-filter: blur(4px) !important;
+            color: #64748b !important;
+            border-radius: 4px !important;
+            padding: 2px 6px !important;
+            margin: 0 4px 4px 0 !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        }
+        .leaflet-control-attribution a {
+            color: #38bdf8 !important;
+            text-decoration: none !important;
+        }
+
 </style>
 </head>
 <body>
@@ -3919,10 +3937,12 @@
                 <button class="map-filter-btn" data-category="beach" onclick="filterMapCards('beach', this)">🏖️ Beach</button>
             </div>
 
-            <!-- Search Bar UI -->
+            <!-- Streamlined Full-Width Real-Time Search Bar -->
             <div class="explorer-search-box">
-                <input type="text" id="explorer-search-input" placeholder="Search for famous spots, temples, or beaches..." class="explorer-search-input" oninput="performSearch()" onkeyup="if(event.key === 'Enter') performSearch()">
-                <button id="explorer-search-btn" onclick="performSearch()">🔍 Search</button>
+                <div style="position: relative; width: 100%;">
+                    <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 14px; color: #38bdf8; pointer-events: none;">🔍</span>
+                    <input type="text" id="explorer-search-input" placeholder="Search famous spots, temples, hills, or beaches in real-time..." class="explorer-search-input" oninput="performSearch()" style="width: 100%; padding: 12px 14px 12px 38px !important; box-sizing: border-box;">
+                </div>
             </div>
 
             <!-- Tourist Cards Grid -->
@@ -5606,6 +5626,24 @@
                 padding: 10px 16px !important;
                 font-size: 12.5px !important;
             }
+        }
+
+
+        /* Leaflet Compact Micro Attribution */
+        .leaflet-control-attribution {
+            font-size: 8.5px !important;
+            background: rgba(15, 23, 42, 0.75) !important;
+            backdrop-filter: blur(4px) !important;
+            -webkit-backdrop-filter: blur(4px) !important;
+            color: #64748b !important;
+            border-radius: 4px !important;
+            padding: 2px 6px !important;
+            margin: 0 4px 4px 0 !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        }
+        .leaflet-control-attribution a {
+            color: #38bdf8 !important;
+            text-decoration: none !important;
         }
 
 </style>
@@ -8039,7 +8077,7 @@ document.addEventListener('keydown', (e) => {
                 title: 'Gangani Grand Canyon',
                 category: 'heritage',
                 image: 'assets/gangani/gangani-1.png',
-                rating: '4.8 ⭐ (14,200+ Reviews)',
+                rating: '★ 4.8',
                 desc: 'Known as the Grand Canyon of Bengal, a stunning red-laterite natural canyon carved by the sacred Silabati River in Garhbeta.',
                 highlights: ['Red Laterite Canyons', 'Silabati River Gorge', 'Sunset Viewpoint'],
                 coords: { lat: 22.8617, lng: 87.3512 }
@@ -8048,7 +8086,7 @@ document.addEventListener('keydown', (e) => {
                 title: 'Kalimpong',
                 category: 'hill',
                 image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=500&auto=format&fit=crop&q=80',
-                rating: '4.6 ⭐ (5,200+ Reviews)',
+                rating: '★ 4.6',
                 desc: 'A serene Himalayan hill station known for historic monasteries, exotic orchid nurseries, and panoramic views of Kanchenjunga.',
                 highlights: ['Deolo Hill', 'Durpin Monastery', 'Pine View Nursery'],
                 coords: { lat: 27.0594, lng: 88.4695 }
@@ -8057,7 +8095,7 @@ document.addEventListener('keydown', (e) => {
                 title: 'Darjeeling Himalayan Hills',
                 category: 'hill',
                 image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=500&auto=format&fit=crop&q=80',
-                rating: '4.8 ⭐ (18,500+ Reviews)',
+                rating: '★ 4.8',
                 desc: 'The Queen of the Hills, home to the UNESCO World Heritage Toy Train, sprawling emerald tea estates, and Tiger Hill golden sunrises.',
                 highlights: ['DHR Toy Train', 'Batasia Loop', 'Tiger Hill Sunrise'],
                 coords: { lat: 27.0360, lng: 88.2627 }
@@ -8066,7 +8104,7 @@ document.addEventListener('keydown', (e) => {
                 title: 'Bishnupur Terracotta Temples',
                 category: 'heritage',
                 image: 'https://images.unsplash.com/photo-1599837965416-092523b03657?w=500&auto=format&fit=crop&q=80',
-                rating: '4.7 ⭐ (4,800+ Reviews)',
+                rating: '★ 4.7',
                 desc: 'Legendary 17th-century terracotta temples built by the Malla dynasty, famous for Rasmancha, Jor Bangla, and Baluchari silk weavers.',
                 highlights: ['Rasmancha', 'Jor Bangla Temple', 'Baluchari Silk'],
                 coords: { lat: 23.0784, lng: 87.3204 }
@@ -8075,7 +8113,7 @@ document.addEventListener('keydown', (e) => {
                 title: 'Sundarbans Biosphere Reserve',
                 category: 'wildlife',
                 image: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=500&auto=format&fit=crop&q=80',
-                rating: '4.8 ⭐ (12,500+ Reviews)',
+                rating: '★ 4.8',
                 desc: 'The world\'s largest coastal mangrove forest and protected sanctuary for the iconic Royal Bengal Tiger, estuarine crocodiles, and spotted deer.',
                 highlights: ['Mangrove Boat Safari', 'Royal Bengal Tigers', 'Sajnekhali Watchtower'],
                 coords: { lat: 21.9497, lng: 88.8724 }
@@ -8084,7 +8122,7 @@ document.addEventListener('keydown', (e) => {
                 title: 'Victoria Memorial Palace',
                 category: 'heritage',
                 image: 'https://images.unsplash.com/photo-1558431382-27e303142255?w=500&auto=format&fit=crop&q=80',
-                rating: '4.8 ⭐ (35,000+ Reviews)',
+                rating: '★ 4.8',
                 desc: 'A magnificent white Makrana marble monument in Kolkata surrounded by lush 64-acre gardens, celebrating Bengal\'s cultural renaissance.',
                 highlights: ['Makrana Marble Dome', 'Royal Gallery', 'Illuminated Night Gardens'],
                 coords: { lat: 22.5448, lng: 88.3426 }
@@ -8093,7 +8131,7 @@ document.addEventListener('keydown', (e) => {
                 title: 'Digha Coastal Beach',
                 category: 'beach',
                 image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&auto=format&fit=crop&q=80',
-                rating: '4.4 ⭐ (22,000+ Reviews)',
+                rating: '★ 4.4',
                 desc: 'Bengal\'s premier seaside destination with flat sandy shores, safe gentle surf, marine aquariums, and the scenic Marine Drive.',
                 highlights: ['New Digha Sea Beach', 'Marine Aquarium', 'Udaipur Beach Seafood'],
                 coords: { lat: 21.6266, lng: 87.5074 }
@@ -8102,7 +8140,7 @@ document.addEventListener('keydown', (e) => {
                 title: 'Cooch Behar Royal Palace',
                 category: 'heritage',
                 image: 'https://images.unsplash.com/photo-1598890777032-bde835ba27c2?w=500&auto=format&fit=crop&q=80',
-                rating: '4.6 ⭐ (3,900+ Reviews)',
+                rating: '★ 4.6',
                 desc: 'A grand Classical Renaissance palace modeled after Buckingham Palace, celebrating the regal Koch Dynasty of North Bengal.',
                 highlights: ['Classical Renaissance Arch', 'Royal Durbar Hall', 'Palace Lake Gardens'],
                 coords: { lat: 26.3262, lng: 89.4452 }
@@ -8111,7 +8149,7 @@ document.addEventListener('keydown', (e) => {
                 title: 'Jaldapara National Park',
                 category: 'wildlife',
                 image: 'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?w=500&auto=format&fit=crop&q=80',
-                rating: '4.7 ⭐ (6,100+ Reviews)',
+                rating: '★ 4.7',
                 desc: 'Located at the foothills of Eastern Himalayas in Dooars, harboring the largest population of Great Indian One-Horned Rhinoceros in Bengal.',
                 highlights: ['One-Horned Rhinos', 'Hollong Elephant Safari', 'Dooars Savannah Grasslands'],
                 coords: { lat: 26.6806, lng: 89.2801 }
@@ -8120,7 +8158,7 @@ document.addEventListener('keydown', (e) => {
                 title: 'Shantiniketan Tagore Ashram',
                 category: 'heritage',
                 image: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=500&auto=format&fit=crop&q=80',
-                rating: '4.7 ⭐ (15,200+ Reviews)',
+                rating: '★ 4.7',
                 desc: 'UNESCO World Heritage open-air cultural university founded by Nobel Laureate Rabindranath Tagore, celebrating art, music, and nature.',
                 highlights: ['Visva-Bharati Ashram', 'Kala Bhavana', 'Kopai River Sonajhuri Haat'],
                 coords: { lat: 23.6823, lng: 87.6749 }
@@ -8129,7 +8167,7 @@ document.addEventListener('keydown', (e) => {
                 title: 'Mandarmani Drivable Beach',
                 category: 'beach',
                 image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&auto=format&fit=crop&q=80',
-                rating: '4.5 ⭐ (8,000+ Reviews)',
+                rating: '★ 4.5',
                 desc: 'A quiet coastal resort village featuring India\'s longest drivable beach, thrilling water sports, and millions of red ghost crabs.',
                 highlights: ['Drivable Beach Sands', 'Red Ghost Crabs', 'Luxury Beach Resorts'],
                 coords: { lat: 21.6669, lng: 87.6976 }
@@ -8138,7 +8176,7 @@ document.addEventListener('keydown', (e) => {
                 title: 'Hazarduari Palace Murshidabad',
                 category: 'heritage',
                 image: 'https://images.unsplash.com/photo-1598890777032-bde835ba27c2?w=500&auto=format&fit=crop&q=80',
-                rating: '4.6 ⭐ (10,400+ Reviews)',
+                rating: '★ 4.6',
                 desc: 'The palace with 1,000 doors (900 real and 100 false) built by Nawab Nazim Humayun Jah, housing a priceless armory and royal antiquities.',
                 highlights: ['1,000 Doors', 'Nawabi Weapon Armory', 'Bhagirathi River Ghat'],
                 coords: { lat: 24.1874, lng: 88.2678 }
@@ -8265,7 +8303,7 @@ document.addEventListener('keydown', (e) => {
                             <div class="explorer-card__title">${place.title}</div>
                         </div>
                         <div class="explorer-card__rating">
-                            <span style="color: #facc15; font-weight: 700;">${place.rating}</span>
+                            <span style="display: inline-flex; align-items: center; gap: 4px; background: rgba(250, 204, 21, 0.15); border: 1px solid rgba(250, 204, 21, 0.35); color: #facc15; font-weight: 800; font-size: 11px; padding: 2px 8px; border-radius: 12px;">${place.rating}</span>
                         </div>
                         <div class="explorer-card__desc">${place.desc}</div>
                         <div class="explorer-card__actions">
@@ -9812,6 +9850,24 @@ document.addEventListener('keydown', (e) => {
                 padding: 10px 16px !important;
                 font-size: 12.5px !important;
             }
+        }
+
+
+        /* Leaflet Compact Micro Attribution */
+        .leaflet-control-attribution {
+            font-size: 8.5px !important;
+            background: rgba(15, 23, 42, 0.75) !important;
+            backdrop-filter: blur(4px) !important;
+            -webkit-backdrop-filter: blur(4px) !important;
+            color: #64748b !important;
+            border-radius: 4px !important;
+            padding: 2px 6px !important;
+            margin: 0 4px 4px 0 !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        }
+        .leaflet-control-attribution a {
+            color: #38bdf8 !important;
+            text-decoration: none !important;
         }
 
 </style>
