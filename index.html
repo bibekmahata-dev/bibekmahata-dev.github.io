@@ -8503,7 +8503,7 @@ document.addEventListener('keydown', (e) => {
                         <div class="explorer-card__desc">${place.desc}</div>
                         <div class="explorer-card__actions">
                             <button class="btn-outline-pro" onclick="event.stopPropagation(); selectPlace('${id}')">🧭 Focus Pin</button>
-                            <button class="btn-primary-cyan" onclick="event.stopPropagation(); openDirections('${id}')">📍 Open Route</button>
+                            <button class="btn-primary-cyan" onclick="event.stopPropagation(); focusAndRouteToPlace('${id}')">📍 Route</button>
                         </div>
                     </div>
                 </div>
