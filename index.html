@@ -10195,5 +10195,488 @@ document.addEventListener('keydown', (e) => {
             });
         </script>
 
+
+    <!-- ========================================================
+         🗺️ COMPLETE MASTER GEOSPATIAL & 18-DESTINATION ENGINE
+         ======================================================== -->
+    <script>
+        const placesData = {
+            'gangani': {
+                title: 'Gangani Grand Canyon',
+                category: 'heritage',
+                image: 'assets/gangani/gangani-1.png',
+                rating: '★ 4.8',
+                desc: 'The Grand Canyon of Bengal, carved by the Silabati River in Garhbeta into vibrant red-laterite gorges.',
+                coords: { lat: 22.8617, lng: 87.3512 }
+            },
+            'kalimpong': {
+                title: 'Kalimpong Hills',
+                category: 'hill',
+                image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.6',
+                desc: 'A serene Himalayan hill station known for historic monasteries, orchid nurseries, and Kanchenjunga panoramas.',
+                coords: { lat: 27.0594, lng: 88.4695 }
+            },
+            'darjeeling': {
+                title: 'Darjeeling Himalayan Hills',
+                category: 'hill',
+                image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.8',
+                desc: 'Queen of the Hills, home to UNESCO Toy Train, sprawling emerald tea estates, and Tiger Hill golden sunrises.',
+                coords: { lat: 27.0360, lng: 88.2627 }
+            },
+            'bishnupur': {
+                title: 'Bishnupur Terracotta Temples',
+                category: 'heritage',
+                image: 'https://images.unsplash.com/photo-1599837965416-092523b03657?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.7',
+                desc: 'Legendary 17th-century terracotta temples built by the Malla kings, famous for Rasmancha and Baluchari silks.',
+                coords: { lat: 23.0784, lng: 87.3204 }
+            },
+            'sundarbans': {
+                title: 'Sundarbans Biosphere Reserve',
+                category: 'wildlife',
+                image: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.8',
+                desc: 'World\'s largest coastal mangrove forest and sanctuary for the swimming Royal Bengal Tigers and estuarine crocodiles.',
+                coords: { lat: 21.9497, lng: 88.9004 }
+            },
+            'victoria': {
+                title: 'Victoria Memorial & Kolkata',
+                category: 'heritage',
+                image: 'https://images.unsplash.com/photo-1558431382-27e303142255?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.7',
+                desc: 'White Makrana marble monument surrounded by lush 64-acre gardens, celebrating Bengal\'s cultural renaissance.',
+                coords: { lat: 22.5448, lng: 88.3426 }
+            },
+            'digha': {
+                title: 'Digha Beach & Marine Drive',
+                category: 'beach',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.5',
+                desc: 'Premier seaside destination with flat sandy shores, gentle surf, marine aquariums, and scenic Marine Drive.',
+                coords: { lat: 21.6266, lng: 87.5074 }
+            },
+            'coochbehar': {
+                title: 'Cooch Behar Royal Palace',
+                category: 'heritage',
+                image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.7',
+                desc: 'Majestic classical Renaissance palace modelled after Buckingham Palace, built by Maharaja Nripendra Narayan.',
+                coords: { lat: 26.3239, lng: 89.4447 }
+            },
+            'jaldapara': {
+                title: 'Jaldapara Rhino Sanctuary',
+                category: 'wildlife',
+                image: 'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.8',
+                desc: 'Vast riverine grassland sanctuary on the Torsa river holding India\'s second largest population of Great Indian One-horned Rhinos.',
+                coords: { lat: 26.6975, lng: 89.2882 }
+            },
+            'shantiniketan': {
+                title: 'Santiniketan Ashram & World Heritage',
+                category: 'heritage',
+                image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.8',
+                desc: 'UNESCO World Heritage university town founded by Rabindranath Tagore, celebrating open-air education, Baul music, and Poush Mela.',
+                coords: { lat: 23.6797, lng: 87.6897 }
+            },
+            'mandarmani': {
+                title: 'Mandarmani Drivable Beach',
+                category: 'beach',
+                image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.6',
+                desc: 'India\'s longest drivable sand beach, featuring thrilling watersports, beachfront luxury resorts, and red ghost crabs.',
+                coords: { lat: 21.6667, lng: 87.7000 }
+            },
+            'hazarduari': {
+                title: 'Hazarduari Palace (Murshidabad)',
+                category: 'heritage',
+                image: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.7',
+                desc: 'Historic palace with 1,000 doors on the banks of Bhagirathi River, showcasing weapons, armory, and Nizamat royal heritage.',
+                coords: { lat: 24.1856, lng: 88.2686 }
+            },
+            'mukutmanipur': {
+                title: 'Mukutmanipur Dam & Lake',
+                category: 'hill',
+                image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.6',
+                desc: 'India\'s second largest earthen dam at the confluence of Kangsabati and Kumari rivers, surrounded by verdant hillocks.',
+                coords: { lat: 22.9575, lng: 86.7825 }
+            },
+            'kurseong': {
+                title: 'Kurseong White Orchid Ridge',
+                category: 'hill',
+                image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.6',
+                desc: 'The Land of White Orchids nestled between Siliguri and Darjeeling, offering tea garden walks, Eagle\'s Crag viewpoints, and peace.',
+                coords: { lat: 26.8814, lng: 88.2778 }
+            },
+            'mirik': {
+                title: 'Mirik Sumendu Lake & Pines',
+                category: 'hill',
+                image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.5',
+                desc: 'A tranquil Himalayan hamlet centered around the 1.25 km long Sumendu Lake with an arched footbridge and dense pine ridges.',
+                coords: { lat: 26.8897, lng: 88.1754 }
+            },
+            'buxa': {
+                title: 'Buxa Tiger Reserve & Fort',
+                category: 'wildlife',
+                image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.7',
+                desc: 'A dense subtropical forest reserve along the Bhutan border featuring elephants, leopards, and the historic Buxa hill fortress.',
+                coords: { lat: 26.7583, lng: 89.5833 }
+            },
+            'gadiara': {
+                title: 'Gadiara River Confluence',
+                category: 'beach',
+                image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.4',
+                desc: 'Scenic delta point in Howrah where the Hooghly, Damodar, and Rupnarayan rivers merge into a vast expanse of water.',
+                coords: { lat: 22.2167, lng: 88.0333 }
+            },
+            'massanjore': {
+                title: 'Massanjore Mayurakshi Valley',
+                category: 'hill',
+                image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=500&auto=format&fit=crop&q=80',
+                rating: '★ 4.6',
+                desc: 'A majestic hydro-dam surrounded by lush forested hills on the Mayurakshi river, offering speed boating and panoramic hill walks.',
+                coords: { lat: 24.1167, lng: 87.3167 }
+            }
+        };
+
+        let userLocation = null;
+        let activeRoutePolyline = null;
+        const markers = {};
+
+        const catConfig = {
+            'wildlife': { icon: '🦁', colorClass: 'marker-wildlife' },
+            'hill': { icon: '⛰️', colorClass: 'marker-hill' },
+            'heritage': { icon: '🏛️', colorClass: 'marker-heritage' },
+            'beach': { icon: '🏖️', colorClass: 'marker-beach' }
+        };
+
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return Math.round(R * c);
+        }
+
+        // Initialize Map Engine
+        function initMasterMapEngine() {
+            const mapContainer = document.getElementById('map');
+            if (!mapContainer) return;
+
+            const defaultMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: 'OSM'
+            });
+
+            const satelliteMap = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+                maxZoom: 20,
+                attribution: 'Google Satellite'
+            });
+
+            window.map = L.map('map', {
+                zoomControl: false,
+                layers: [defaultMap],
+                tap: false,
+                scrollWheelZoom: false
+            }).setView([24.1000, 87.8550], 7);
+
+            L.control.zoom({ position: 'bottomright' }).addTo(window.map);
+            L.control.layers({ "Standard Map": defaultMap, "Satellite Radar": satelliteMap }, null, { position: 'topright' }).addTo(window.map);
+
+            // Add Custom Static Neon Markers
+            for (const [id, place] of Object.entries(placesData)) {
+                const cfg = catConfig[place.category] || catConfig['heritage'];
+                
+                const customIcon = L.divIcon({
+                    className: 'leaflet-custom-div',
+                    html: `<div class="custom-neon-marker ${cfg.colorClass}" title="${place.title}">${cfg.icon}</div>`,
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 16],
+                    popupAnchor: [0, -18]
+                });
+
+                const marker = L.marker([place.coords.lat, place.coords.lng], { icon: customIcon }).addTo(window.map);
+                
+                marker.bindPopup(`
+                    <div style="width: 220px; font-family: 'Plus Jakarta Sans', sans-serif;">
+                        <img src="${place.image}" style="width: 100%; height: 110px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;" alt="${place.title}" onerror="this.src='assets/agents/bibek.jpg'">
+                        <div style="font-weight: 800; font-size: 14px; color: #ffffff; line-height: 1.25; margin-bottom: 4px;">${place.title}</div>
+                        <div style="font-size: 11px; color: #facc15; font-weight: 700; margin-bottom: 8px;">${place.rating} • <span style="color: #38bdf8; text-transform: uppercase;">${place.category}</span></div>
+                        <div style="display: flex; gap: 6px;">
+                            <button onclick="drawLiveRoute(${place.coords.lat}, ${place.coords.lng}, '${place.title}')" style="flex: 1; background: linear-gradient(135deg, #38bdf8, #0284c7); border: none; color: #090d16; font-weight: 800; font-size: 11px; padding: 6px; border-radius: 6px; cursor: pointer;">📍 Route</button>
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=${place.coords.lat},${place.coords.lng}" target="_blank" style="flex: 1; text-align: center; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-weight: 700; font-size: 11px; padding: 6px; border-radius: 6px; text-decoration: none;">🗺️ GPS</a>
+                        </div>
+                    </div>
+                `);
+
+                markers[id] = marker;
+            }
+
+            setTimeout(forceMapRedraw, 200);
+            setTimeout(forceMapRedraw, 600);
+            setTimeout(forceMapRedraw, 1200);
+        }
+
+        function forceMapRedraw() {
+            if (window.map && typeof window.map.invalidateSize === 'function') {
+                window.map.invalidateSize();
+            }
+        }
+
+        function scrollToMapRadar() {
+            const mapEl = document.getElementById('hangout-map');
+            if (mapEl) {
+                mapEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        function drawLiveRoute(destLat, destLng, destTitle) {
+            const startLat = userLocation ? userLocation.lat : 22.8617;
+            const startLng = userLocation ? userLocation.lng : 87.3512;
+            const startLabel = userLocation ? "Your Current Location" : "Garhbeta Hub";
+
+            if (activeRoutePolyline && window.map) {
+                window.map.removeLayer(activeRoutePolyline);
+            }
+
+            const distKm = calculateDistance(startLat, startLng, destLat, destLng);
+            const estHours = (distKm / 45).toFixed(1);
+
+            const midLat = (startLat + destLat) / 2 + (destLng - startLng) * 0.08;
+            const midLng = (startLng + destLng) / 2 - (destLat - startLat) * 0.08;
+            const pathCoords = [[startLat, startLng], [midLat, midLng], [destLat, destLng]];
+
+            activeRoutePolyline = L.polyline(pathCoords, {
+                color: '#38bdf8',
+                weight: 4,
+                opacity: 0.85,
+                dashArray: '8, 8',
+                lineCap: 'round'
+            }).addTo(window.map);
+
+            window.map.fitBounds(activeRoutePolyline.getBounds(), { padding: [40, 40] });
+
+            const statusEl = document.getElementById('integrated-map-status');
+            if (statusEl) {
+                statusEl.innerHTML = `📍 <strong>Route to ${destTitle}</strong>: ${distKm} KM (~${estHours}h drive from ${startLabel})`;
+                statusEl.style.display = 'block';
+                setTimeout(() => { statusEl.style.display = 'none'; }, 8000);
+            }
+        }
+
+        function selectPlace(id) {
+            const place = placesData[id];
+            if (!place) return;
+
+            scrollToMapRadar();
+
+            setTimeout(() => {
+                if (window.map) {
+                    window.map.flyTo([place.coords.lat, place.coords.lng], 11, { duration: 1.2 });
+                }
+                const marker = markers[id];
+                if (marker) {
+                    setTimeout(() => { marker.openPopup(); }, 500);
+                }
+            }, 200);
+
+            document.querySelectorAll('.explorer-card').forEach(c => c.classList.remove('active'));
+            const selectedCard = document.getElementById(`card-${id}`);
+            if (selectedCard) selectedCard.classList.add('active');
+        }
+
+        function focusAndRouteToPlace(id) {
+            const place = placesData[id];
+            if (!place) return;
+
+            scrollToMapRadar();
+
+            setTimeout(() => {
+                drawLiveRoute(place.coords.lat, place.coords.lng, place.title);
+                const marker = markers[id];
+                if (marker) {
+                    setTimeout(() => { marker.openPopup(); }, 600);
+                }
+            }, 250);
+
+            document.querySelectorAll('.explorer-card').forEach(c => c.classList.remove('active'));
+            const selectedCard = document.getElementById(`card-${id}`);
+            if (selectedCard) selectedCard.classList.add('active');
+        }
+
+        function renderExplorerCards(sortByDistance = false) {
+            const container = document.getElementById('explorer-cards-container');
+            if(!container) return;
+
+            let placeEntries = Object.entries(placesData);
+
+            if (sortByDistance && userLocation) {
+                placeEntries.sort((a, b) => {
+                    const distA = calculateDistance(userLocation.lat, userLocation.lng, a[1].coords.lat, a[1].coords.lng);
+                    const distB = calculateDistance(userLocation.lat, userLocation.lng, b[1].coords.lat, b[1].coords.lng);
+                    return distA - distB;
+                });
+            }
+
+            let html = '';
+            for (const [id, place] of placeEntries) {
+                let distBadge = '';
+                if (userLocation) {
+                    const d = calculateDistance(userLocation.lat, userLocation.lng, place.coords.lat, place.coords.lng);
+                    distBadge = `<span class="distance-pill-badge">📍 ${d} km</span>`;
+                }
+
+                html += `
+                <div class="explorer-card" id="card-${id}" onclick="selectPlace('${id}')" data-category="${place.category}">
+                    <div class="explorer-card__thumb-box">
+                        <img src="${place.image}" alt="${place.title}" class="explorer-card__img-real" loading="lazy" onerror="this.src='assets/agents/bibek.jpg'">
+                        <span class="category-badge-chip">${place.category}</span>
+                    </div>
+                    <div class="explorer-card__content">
+                        <div class="explorer-card__header">
+                            <div class="explorer-card__title">${place.title}</div>
+                        </div>
+                        <div class="explorer-card__rating" style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                            <span style="display: inline-flex; align-items: center; gap: 4px; background: rgba(250, 204, 21, 0.15); border: 1px solid rgba(250, 204, 21, 0.35); color: #facc15; font-weight: 800; font-size: 11px; padding: 2px 8px; border-radius: 12px;">${place.rating}</span>
+                            ${distBadge}
+                        </div>
+                        <div class="explorer-card__desc">${place.desc}</div>
+                        <div class="explorer-card__actions">
+                            <button class="btn-outline-pro" onclick="event.stopPropagation(); selectPlace('${id}')">🧭 Focus Pin</button>
+                            <button class="btn-primary-cyan" onclick="event.stopPropagation(); focusAndRouteToPlace('${id}')">📍 Route</button>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        function activateProximityRadar(btnElement) {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+                        
+                        const userIcon = L.divIcon({
+                            className: 'user-loc-div',
+                            html: `<div style="width: 16px; height: 16px; background: #38bdf8; border: 3px solid #ffffff; border-radius: 50%; box-shadow: 0 0 15px #38bdf8;"></div>`,
+                            iconSize: [16, 16],
+                            iconAnchor: [8, 8]
+                        });
+                        if (window.map) {
+                            L.marker([userLocation.lat, userLocation.lng], { icon: userIcon }).addTo(window.map).bindPopup("📍 You Are Here").openPopup();
+                        }
+                        
+                        renderExplorerCards(true);
+                        
+                        if(btnElement) {
+                            btnElement.classList.add('active');
+                            btnElement.innerHTML = '📍 Sorted by Nearest!';
+                        }
+                    },
+                    (err) => {
+                        alert("Please enable GPS location access on your phone to calculate distance.");
+                    },
+                    { enableHighAccuracy: true, timeout: 8000 }
+                );
+            }
+        }
+
+        function filterMapCards(category, btnElement) {
+            const btns = document.querySelectorAll('.map-filter-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            if(btnElement) btnElement.classList.add('active');
+
+            const cards = document.querySelectorAll('.explorer-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            for (const [id, marker] of Object.entries(markers)) {
+                const place = placesData[id];
+                if (category === 'all' || place.category === category) {
+                    if (window.map && !window.map.hasLayer(marker)) window.map.addLayer(marker);
+                } else {
+                    if (window.map && window.map.hasLayer(marker)) window.map.removeLayer(marker);
+                }
+            }
+        }
+
+        function performSearch() {
+            const expInput = document.getElementById('explorer-search-input');
+            const expTitle = document.getElementById('explorer-results-title');
+            if (!expInput) return;
+            
+            const query = expInput.value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.explorer-card');
+            let foundCount = 0;
+            let firstMatchedId = null;
+
+            if (query === "") {
+                if (expTitle) expTitle.textContent = "Famous Tourist Places in West Bengal";
+                cards.forEach(c => c.style.display = 'flex');
+                if (typeof markers !== 'undefined' && window.map) {
+                    for (const [id, marker] of Object.entries(markers)) {
+                        if (!window.map.hasLayer(marker)) window.map.addLayer(marker);
+                    }
+                }
+                return;
+            }
+
+            cards.forEach(c => {
+                const id = c.id.replace('card-', '');
+                const place = placesData[id];
+                if (place && (place.title.toLowerCase().includes(query) || place.desc.toLowerCase().includes(query) || place.category.toLowerCase().includes(query))) {
+                    c.style.display = 'flex';
+                    foundCount++;
+                    if (!firstMatchedId) firstMatchedId = id;
+                    if (markers[id] && window.map && !window.map.hasLayer(markers[id])) {
+                        window.map.addLayer(markers[id]);
+                    }
+                } else {
+                    c.style.display = 'none';
+                    if (markers[id] && window.map && window.map.hasLayer(markers[id])) {
+                        window.map.removeLayer(markers[id]);
+                    }
+                }
+            });
+
+            if (expTitle) {
+                expTitle.textContent = `Search Results: ${foundCount} Place${foundCount === 1 ? '' : 's'} Found`;
+            }
+
+            if (firstMatchedId && placesData[firstMatchedId] && window.map) {
+                window.map.flyTo([placesData[firstMatchedId].coords.lat, placesData[firstMatchedId].coords.lng], 10, { duration: 1 });
+            }
+        }
+
+        // Initialize Everything on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            initMasterMapEngine();
+            renderExplorerCards();
+        });
+
+        window.addEventListener('load', () => {
+            forceMapRedraw();
+        });
+        window.addEventListener('resize', forceMapRedraw);
+    </script>
+
 </body>
 </html>
