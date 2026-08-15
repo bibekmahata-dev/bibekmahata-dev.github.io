@@ -3612,6 +3612,81 @@
             }
         }
 
+
+        /* ========================================================
+           🗺️ UNJOINTED STANDALONE MAP & TOURIST PLACES STYLING
+           (Completely Separates Map & Places into Independent Cards)
+           ======================================================== */
+        
+        .standalone-map-card {
+            background: #090d16;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin: 24px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .map-card-header {
+            padding: 14px 18px;
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+        }
+        .map-card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .standalone-map-frame {
+            width: 100%;
+            height: 380px;
+            position: relative;
+            background: #0b1120;
+        }
+
+        .standalone-places-card {
+            background: #090d16;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 16px;
+            padding: 20px 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin: 24px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .places-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 12px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Mobile Separation & Touch Scaling */
+        @media (max-width: 768px) {
+            .standalone-map-card {
+                margin: 14px 0 !important;
+                border-radius: 12px !important;
+            }
+            .map-card-header {
+                padding: 10px 12px !important;
+            }
+            .standalone-map-frame {
+                height: 280px !important;
+            }
+            .standalone-places-card {
+                margin: 14px 0 !important;
+                padding: 14px 10px !important;
+                border-radius: 12px !important;
+            }
+            .places-grid-container {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+        }
+
 </style>
 </head>
 <body>
@@ -3783,41 +3858,60 @@
             </div>
         </div>
 
-        <!-- Famous Tourist Places List Section -->
-        <div class="map-explorer-wrapper fade-up" id="hangout-map">
-            <div class="map-explorer">
-                <div class="map-explorer__list">
-                    <!-- Filters UI -->
-                    <div style="display:flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none;" id="map-category-filters">
-                        <button class="map-filter-btn active" data-category="all" onclick="filterMapCards('all', this)">All</button>
-                        <button class="map-filter-btn" data-category="wildlife" onclick="filterMapCards('wildlife', this)">🦁 Wildlife</button>
-                        <button class="map-filter-btn" data-category="hill" onclick="filterMapCards('hill', this)">⛰️ Hills</button>
-                        <button class="map-filter-btn" data-category="heritage" onclick="filterMapCards('heritage', this)">🏛️ Heritage</button>
-                        <button class="map-filter-btn" data-category="beach" onclick="filterMapCards('beach', this)">🏖️ Beach</button>
-                    </div>
-
-                    <!-- Search Bar UI -->
-                    <div class="explorer-search-box">
-                        <input type="text" id="explorer-search-input" placeholder="Search for famous spots, temples, or beaches..." class="explorer-search-input" oninput="performSearch()" onkeyup="if(event.key === 'Enter') performSearch()">
-                        <button id="explorer-search-btn" class="btn-primary-green" style="border-radius: 8px;" onclick="performSearch()">Search</button>
-                    </div>
-
-                    <div class="explorer-header-title" id="explorer-results-title">Famous Tourist Places in West Bengal</div>
-                    
-                    <div id="explorer-cards-container">
-                        <!-- JS injected cards go here -->
-                    </div>
-
-                </div>
-
-                <!-- Persistent Right-Side Map -->
-                <div class="map-explorer__map" id="integrated-map-container">
-                    <div id="map" style="width: 100%; height: 100%; z-index: 1;"></div>
-                    <div id="integrated-map-status" style="position: absolute; top: 16px; left: 16px; right: 16px; text-align: center; background: rgba(0,0,0,0.8); color: white; padding: 12px 16px; border-radius: 8px; font-weight: 600; font-size: 14px; z-index: 1000; display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
-                        📍 Live GPS Route Connected!
+                <!-- ========================================================
+             🗺️ SECTION 1: STANDALONE INTERACTIVE GIS MAP RADAR
+             ======================================================== -->
+        <div class="standalone-map-card fade-up" id="hangout-map">
+            <div class="map-card-header">
+                <div class="map-card-title">
+                    <span style="font-size: 20px;">🗺️</span>
+                    <div>
+                        <h2 style="font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; color: #fff; margin: 0;">Interactive West Bengal GIS Travel Radar</h2>
+                        <div style="font-size: 11.5px; color: #38bdf8; font-weight: 600;">Live Satellite Imagery, Rain Radar & GPS Route Navigator</div>
                     </div>
                 </div>
             </div>
+            
+            <div class="standalone-map-frame">
+                <div id="map" style="width: 100%; height: 100%; z-index: 1;"></div>
+                <div id="integrated-map-status" style="position: absolute; top: 14px; left: 14px; right: 14px; text-align: center; background: rgba(15,23,42,0.92); backdrop-filter: blur(10px); color: #38bdf8; border: 1px solid rgba(56,189,248,0.4); padding: 10px 14px; border-radius: 8px; font-weight: 700; font-size: 13px; z-index: 1000; display: none; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+                    📍 Live Route Focused!
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================
+             🏛️ SECTION 2: STANDALONE FAMOUS TOURIST PLACES DIRECTORY
+             ======================================================== -->
+        <div class="standalone-places-card fade-up" id="hangout-places-guide">
+            <div class="places-section-header">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                    <span style="font-size: 20px;">🏛️</span>
+                    <h2 style="font-family: 'Outfit', sans-serif; font-size: 19px; font-weight: 800; color: #fff; margin: 0;" id="explorer-results-title">Famous Tourist Places in West Bengal</h2>
+                </div>
+                <div style="font-size: 12px; color: #94a3b8; margin-bottom: 14px;">Select any destination to focus the map pin or get instant GPS directions</div>
+            </div>
+
+            <!-- Filters UI -->
+            <div style="display:flex; gap: 8px; margin-bottom: 14px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none;" id="map-category-filters">
+                <button class="map-filter-btn active" data-category="all" onclick="filterMapCards('all', this)">All Places</button>
+                <button class="map-filter-btn" data-category="wildlife" onclick="filterMapCards('wildlife', this)">🦁 Wildlife</button>
+                <button class="map-filter-btn" data-category="hill" onclick="filterMapCards('hill', this)">⛰️ Hills</button>
+                <button class="map-filter-btn" data-category="heritage" onclick="filterMapCards('heritage', this)">🏛️ Heritage</button>
+                <button class="map-filter-btn" data-category="beach" onclick="filterMapCards('beach', this)">🏖️ Beach</button>
+            </div>
+
+            <!-- Search Bar UI -->
+            <div class="explorer-search-box">
+                <input type="text" id="explorer-search-input" placeholder="Search for famous spots, temples, or beaches..." class="explorer-search-input" oninput="performSearch()" onkeyup="if(event.key === 'Enter') performSearch()">
+                <button id="explorer-search-btn" onclick="performSearch()">🔍 Search</button>
+            </div>
+
+            <!-- Tourist Cards Grid -->
+            <div id="explorer-cards-container" class="places-grid-container">
+                <!-- JS injected cards go here -->
+            </div>
+        </div>
         </div>
 
         <script>
@@ -5427,6 +5521,81 @@
                 padding: 12px 8px 30px !important;
                 width: 100% !important;
                 box-sizing: border-box !important;
+            }
+        }
+
+
+        /* ========================================================
+           🗺️ UNJOINTED STANDALONE MAP & TOURIST PLACES STYLING
+           (Completely Separates Map & Places into Independent Cards)
+           ======================================================== */
+        
+        .standalone-map-card {
+            background: #090d16;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin: 24px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .map-card-header {
+            padding: 14px 18px;
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+        }
+        .map-card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .standalone-map-frame {
+            width: 100%;
+            height: 380px;
+            position: relative;
+            background: #0b1120;
+        }
+
+        .standalone-places-card {
+            background: #090d16;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 16px;
+            padding: 20px 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin: 24px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .places-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 12px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Mobile Separation & Touch Scaling */
+        @media (max-width: 768px) {
+            .standalone-map-card {
+                margin: 14px 0 !important;
+                border-radius: 12px !important;
+            }
+            .map-card-header {
+                padding: 10px 12px !important;
+            }
+            .standalone-map-frame {
+                height: 280px !important;
+            }
+            .standalone-places-card {
+                margin: 14px 0 !important;
+                padding: 14px 10px !important;
+                border-radius: 12px !important;
+            }
+            .places-grid-container {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
             }
         }
 
@@ -9556,6 +9725,81 @@ document.addEventListener('keydown', (e) => {
                 padding: 12px 8px 30px !important;
                 width: 100% !important;
                 box-sizing: border-box !important;
+            }
+        }
+
+
+        /* ========================================================
+           🗺️ UNJOINTED STANDALONE MAP & TOURIST PLACES STYLING
+           (Completely Separates Map & Places into Independent Cards)
+           ======================================================== */
+        
+        .standalone-map-card {
+            background: #090d16;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin: 24px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .map-card-header {
+            padding: 14px 18px;
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+        }
+        .map-card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .standalone-map-frame {
+            width: 100%;
+            height: 380px;
+            position: relative;
+            background: #0b1120;
+        }
+
+        .standalone-places-card {
+            background: #090d16;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 16px;
+            padding: 20px 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin: 24px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .places-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 12px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Mobile Separation & Touch Scaling */
+        @media (max-width: 768px) {
+            .standalone-map-card {
+                margin: 14px 0 !important;
+                border-radius: 12px !important;
+            }
+            .map-card-header {
+                padding: 10px 12px !important;
+            }
+            .standalone-map-frame {
+                height: 280px !important;
+            }
+            .standalone-places-card {
+                margin: 14px 0 !important;
+                padding: 14px 10px !important;
+                border-radius: 12px !important;
+            }
+            .places-grid-container {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
             }
         }
 
