@@ -3354,6 +3354,172 @@
             }
         }
 
+
+        /* ==========================================================================
+           🖼️ STRICT IN-CANVAS DESTINATION IMAGE ENGINE (ZERO OVERFLOW / SPILL)
+           ========================================================================== */
+        
+        .places-grid-container {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+            gap: 12px !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+        }
+
+        .explorer-card {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: stretch !important;
+            gap: 12px !important;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(9, 13, 22, 0.98)) !important;
+            border: 1px solid rgba(56, 189, 248, 0.25) !important;
+            border-radius: 12px !important;
+            padding: 10px !important;
+            margin-bottom: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+            position: relative !important;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+        }
+        .explorer-card:hover {
+            border-color: #38bdf8 !important;
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.2) !important;
+            transform: translateY(-2px) !important;
+        }
+        .explorer-card.active {
+            border-color: #38bdf8 !important;
+            border-left: 4px solid #38bdf8 !important;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.35) !important;
+        }
+
+        /* Thumb Box Container - Strict Strict Boundings */
+        .explorer-card__thumb-box {
+            width: 105px !important;
+            min-width: 105px !important;
+            max-width: 105px !important;
+            height: 105px !important;
+            min-height: 105px !important;
+            max-height: 105px !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+            position: relative !important;
+            flex-shrink: 0 !important;
+            background: #0f172a !important;
+            border: 1px solid rgba(56, 189, 248, 0.3) !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Image Itself - Stays 100% Strictly Inside Canvas */
+        .explorer-card__img-real {
+            width: 100% !important;
+            min-width: 100% !important;
+            max-width: 100% !important;
+            height: 100% !important;
+            min-height: 100% !important;
+            max-height: 100% !important;
+            object-fit: cover !important;
+            object-position: center !important;
+            display: block !important;
+            border-radius: 8px !important;
+            transition: transform 0.3s ease !important;
+        }
+        .explorer-card:hover .explorer-card__img-real {
+            transform: scale(1.08) !important;
+        }
+
+        .category-badge-chip {
+            position: absolute !important;
+            bottom: 4px !important;
+            left: 4px !important;
+            background: rgba(9, 13, 22, 0.88) !important;
+            backdrop-filter: blur(4px) !important;
+            -webkit-backdrop-filter: blur(4px) !important;
+            color: #38bdf8 !important;
+            font-size: 8.5px !important;
+            font-weight: 800 !important;
+            text-transform: uppercase !important;
+            padding: 2px 6px !important;
+            border-radius: 4px !important;
+            border: 1px solid rgba(56, 189, 248, 0.4) !important;
+            z-index: 2 !important;
+            pointer-events: none !important;
+        }
+
+        .explorer-card__content {
+            flex: 1 1 auto !important;
+            min-width: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            overflow: hidden !important;
+        }
+        .explorer-card__header {
+            margin-bottom: 2px !important;
+        }
+        .explorer-card__title {
+            color: #ffffff !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 15px !important;
+            font-weight: 700 !important;
+            line-height: 1.25 !important;
+            margin: 0 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
+        .explorer-card__rating {
+            font-size: 11.5px !important;
+            margin-bottom: 4px !important;
+        }
+        .explorer-card__desc {
+            color: #94a3b8 !important;
+            font-size: 11.5px !important;
+            line-height: 1.35 !important;
+            margin-bottom: 6px !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+        }
+        .explorer-card__actions {
+            display: flex !important;
+            gap: 6px !important;
+            align-items: center !important;
+        }
+
+        /* Mobile Precision */
+        @media (max-width: 768px) {
+            .places-grid-container {
+                grid-template-columns: 1fr !important;
+                gap: 8px !important;
+            }
+            .explorer-card {
+                gap: 10px !important;
+                padding: 8px !important;
+                border-radius: 10px !important;
+            }
+            .explorer-card__thumb-box {
+                width: 85px !important;
+                min-width: 85px !important;
+                max-width: 85px !important;
+                height: 85px !important;
+                min-height: 85px !important;
+                max-height: 85px !important;
+                border-radius: 8px !important;
+            }
+            .explorer-card__title {
+                font-size: 14px !important;
+            }
+            .explorer-card__desc {
+                font-size: 11px !important;
+            }
+        }
+
 </style>
 </head>
 <body>
@@ -4903,6 +5069,172 @@
             .places-grid-container {
                 grid-template-columns: 1fr !important;
                 gap: 10px !important;
+            }
+        }
+
+
+        /* ==========================================================================
+           🖼️ STRICT IN-CANVAS DESTINATION IMAGE ENGINE (ZERO OVERFLOW / SPILL)
+           ========================================================================== */
+        
+        .places-grid-container {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+            gap: 12px !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+        }
+
+        .explorer-card {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: stretch !important;
+            gap: 12px !important;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(9, 13, 22, 0.98)) !important;
+            border: 1px solid rgba(56, 189, 248, 0.25) !important;
+            border-radius: 12px !important;
+            padding: 10px !important;
+            margin-bottom: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+            position: relative !important;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+        }
+        .explorer-card:hover {
+            border-color: #38bdf8 !important;
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.2) !important;
+            transform: translateY(-2px) !important;
+        }
+        .explorer-card.active {
+            border-color: #38bdf8 !important;
+            border-left: 4px solid #38bdf8 !important;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.35) !important;
+        }
+
+        /* Thumb Box Container - Strict Strict Boundings */
+        .explorer-card__thumb-box {
+            width: 105px !important;
+            min-width: 105px !important;
+            max-width: 105px !important;
+            height: 105px !important;
+            min-height: 105px !important;
+            max-height: 105px !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+            position: relative !important;
+            flex-shrink: 0 !important;
+            background: #0f172a !important;
+            border: 1px solid rgba(56, 189, 248, 0.3) !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Image Itself - Stays 100% Strictly Inside Canvas */
+        .explorer-card__img-real {
+            width: 100% !important;
+            min-width: 100% !important;
+            max-width: 100% !important;
+            height: 100% !important;
+            min-height: 100% !important;
+            max-height: 100% !important;
+            object-fit: cover !important;
+            object-position: center !important;
+            display: block !important;
+            border-radius: 8px !important;
+            transition: transform 0.3s ease !important;
+        }
+        .explorer-card:hover .explorer-card__img-real {
+            transform: scale(1.08) !important;
+        }
+
+        .category-badge-chip {
+            position: absolute !important;
+            bottom: 4px !important;
+            left: 4px !important;
+            background: rgba(9, 13, 22, 0.88) !important;
+            backdrop-filter: blur(4px) !important;
+            -webkit-backdrop-filter: blur(4px) !important;
+            color: #38bdf8 !important;
+            font-size: 8.5px !important;
+            font-weight: 800 !important;
+            text-transform: uppercase !important;
+            padding: 2px 6px !important;
+            border-radius: 4px !important;
+            border: 1px solid rgba(56, 189, 248, 0.4) !important;
+            z-index: 2 !important;
+            pointer-events: none !important;
+        }
+
+        .explorer-card__content {
+            flex: 1 1 auto !important;
+            min-width: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            overflow: hidden !important;
+        }
+        .explorer-card__header {
+            margin-bottom: 2px !important;
+        }
+        .explorer-card__title {
+            color: #ffffff !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 15px !important;
+            font-weight: 700 !important;
+            line-height: 1.25 !important;
+            margin: 0 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
+        .explorer-card__rating {
+            font-size: 11.5px !important;
+            margin-bottom: 4px !important;
+        }
+        .explorer-card__desc {
+            color: #94a3b8 !important;
+            font-size: 11.5px !important;
+            line-height: 1.35 !important;
+            margin-bottom: 6px !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+        }
+        .explorer-card__actions {
+            display: flex !important;
+            gap: 6px !important;
+            align-items: center !important;
+        }
+
+        /* Mobile Precision */
+        @media (max-width: 768px) {
+            .places-grid-container {
+                grid-template-columns: 1fr !important;
+                gap: 8px !important;
+            }
+            .explorer-card {
+                gap: 10px !important;
+                padding: 8px !important;
+                border-radius: 10px !important;
+            }
+            .explorer-card__thumb-box {
+                width: 85px !important;
+                min-width: 85px !important;
+                max-width: 85px !important;
+                height: 85px !important;
+                min-height: 85px !important;
+                max-height: 85px !important;
+                border-radius: 8px !important;
+            }
+            .explorer-card__title {
+                font-size: 14px !important;
+            }
+            .explorer-card__desc {
+                font-size: 11px !important;
             }
         }
 
@@ -8758,6 +9090,172 @@ document.addEventListener('keydown', (e) => {
             .places-grid-container {
                 grid-template-columns: 1fr !important;
                 gap: 10px !important;
+            }
+        }
+
+
+        /* ==========================================================================
+           🖼️ STRICT IN-CANVAS DESTINATION IMAGE ENGINE (ZERO OVERFLOW / SPILL)
+           ========================================================================== */
+        
+        .places-grid-container {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+            gap: 12px !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+        }
+
+        .explorer-card {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: stretch !important;
+            gap: 12px !important;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(9, 13, 22, 0.98)) !important;
+            border: 1px solid rgba(56, 189, 248, 0.25) !important;
+            border-radius: 12px !important;
+            padding: 10px !important;
+            margin-bottom: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+            position: relative !important;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+        }
+        .explorer-card:hover {
+            border-color: #38bdf8 !important;
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.2) !important;
+            transform: translateY(-2px) !important;
+        }
+        .explorer-card.active {
+            border-color: #38bdf8 !important;
+            border-left: 4px solid #38bdf8 !important;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.35) !important;
+        }
+
+        /* Thumb Box Container - Strict Strict Boundings */
+        .explorer-card__thumb-box {
+            width: 105px !important;
+            min-width: 105px !important;
+            max-width: 105px !important;
+            height: 105px !important;
+            min-height: 105px !important;
+            max-height: 105px !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+            position: relative !important;
+            flex-shrink: 0 !important;
+            background: #0f172a !important;
+            border: 1px solid rgba(56, 189, 248, 0.3) !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Image Itself - Stays 100% Strictly Inside Canvas */
+        .explorer-card__img-real {
+            width: 100% !important;
+            min-width: 100% !important;
+            max-width: 100% !important;
+            height: 100% !important;
+            min-height: 100% !important;
+            max-height: 100% !important;
+            object-fit: cover !important;
+            object-position: center !important;
+            display: block !important;
+            border-radius: 8px !important;
+            transition: transform 0.3s ease !important;
+        }
+        .explorer-card:hover .explorer-card__img-real {
+            transform: scale(1.08) !important;
+        }
+
+        .category-badge-chip {
+            position: absolute !important;
+            bottom: 4px !important;
+            left: 4px !important;
+            background: rgba(9, 13, 22, 0.88) !important;
+            backdrop-filter: blur(4px) !important;
+            -webkit-backdrop-filter: blur(4px) !important;
+            color: #38bdf8 !important;
+            font-size: 8.5px !important;
+            font-weight: 800 !important;
+            text-transform: uppercase !important;
+            padding: 2px 6px !important;
+            border-radius: 4px !important;
+            border: 1px solid rgba(56, 189, 248, 0.4) !important;
+            z-index: 2 !important;
+            pointer-events: none !important;
+        }
+
+        .explorer-card__content {
+            flex: 1 1 auto !important;
+            min-width: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            overflow: hidden !important;
+        }
+        .explorer-card__header {
+            margin-bottom: 2px !important;
+        }
+        .explorer-card__title {
+            color: #ffffff !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 15px !important;
+            font-weight: 700 !important;
+            line-height: 1.25 !important;
+            margin: 0 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
+        .explorer-card__rating {
+            font-size: 11.5px !important;
+            margin-bottom: 4px !important;
+        }
+        .explorer-card__desc {
+            color: #94a3b8 !important;
+            font-size: 11.5px !important;
+            line-height: 1.35 !important;
+            margin-bottom: 6px !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+        }
+        .explorer-card__actions {
+            display: flex !important;
+            gap: 6px !important;
+            align-items: center !important;
+        }
+
+        /* Mobile Precision */
+        @media (max-width: 768px) {
+            .places-grid-container {
+                grid-template-columns: 1fr !important;
+                gap: 8px !important;
+            }
+            .explorer-card {
+                gap: 10px !important;
+                padding: 8px !important;
+                border-radius: 10px !important;
+            }
+            .explorer-card__thumb-box {
+                width: 85px !important;
+                min-width: 85px !important;
+                max-width: 85px !important;
+                height: 85px !important;
+                min-height: 85px !important;
+                max-height: 85px !important;
+                border-radius: 8px !important;
+            }
+            .explorer-card__title {
+                font-size: 14px !important;
+            }
+            .explorer-card__desc {
+                font-size: 11px !important;
             }
         }
 
