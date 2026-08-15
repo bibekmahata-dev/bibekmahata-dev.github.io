@@ -3070,6 +3070,89 @@
             top: 0px !important;
         }
 
+
+        /* ========================================================
+           🌟 SUPER-HIGHLIGHTED GLOWING LANGUAGE SELECTOR ENGINE
+           ======================================================== */
+        .language-picker-badge {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 5px !important;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(139, 92, 246, 0.3)) !important;
+            border: 1.5px solid #38bdf8 !important;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.5), inset 0 0 8px rgba(56, 189, 248, 0.2) !important;
+            border-radius: 20px !important;
+            padding: 2px 8px !important;
+            height: 32px !important;
+            transition: all 0.3s ease !important;
+            animation: pulse-translate-glow 3s infinite alternate !important;
+        }
+        .language-picker-badge:hover {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.8), inset 0 0 12px rgba(56, 189, 248, 0.3) !important;
+            transform: scale(1.03) !important;
+        }
+        @keyframes pulse-translate-glow {
+            0% { box-shadow: 0 0 8px rgba(56, 189, 248, 0.4); }
+            100% { box-shadow: 0 0 16px rgba(139, 92, 246, 0.7); }
+        }
+
+        #google_translate_element {
+            display: inline-flex !important;
+            align-items: center !important;
+            vertical-align: middle !important;
+            z-index: 1000 !important;
+        }
+        .goog-te-gadget {
+            font-family: inherit !important;
+            color: transparent !important;
+            font-size: 0px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+        .goog-te-gadget .goog-te-combo {
+            background: rgba(15, 23, 42, 0.9) !important;
+            color: #38bdf8 !important;
+            border: 1px solid rgba(56, 189, 248, 0.6) !important;
+            border-radius: 12px !important;
+            padding: 3px 8px !important;
+            font-size: 11.5px !important;
+            font-weight: 800 !important;
+            outline: none !important;
+            cursor: pointer !important;
+            height: 26px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+        .goog-te-gadget .goog-te-combo option {
+            background: #0f172a !important;
+            color: #ffffff !important;
+            font-weight: 600 !important;
+        }
+        .goog-te-gadget-simple {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            font-size: 11.5px !important;
+            font-weight: 800 !important;
+            color: #38bdf8 !important;
+            cursor: pointer !important;
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+        .goog-te-gadget-simple .goog-te-menu-value span {
+            color: #38bdf8 !important;
+            font-weight: 800 !important;
+            font-size: 11.5px !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+        }
+        .goog-te-gadget-simple img {
+            display: none !important;
+        }
+        .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame {
+            display: none !important;
+        }
+
 </style>
 </head>
 <body>
@@ -3128,11 +3211,14 @@
             <!-- Row 1: Brand Logo on Left, Language Dropdown & Theme on Right -->
             <div class="header__brand">
                 <div class="header__logo">Bengal Explorers</div>
-                <div style="display: flex; gap: 6px; align-items: center;">
-                    <!-- Google Translate Widget -->
-                    <div id="google_translate_element" title="Change Language"></div>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <!-- Highlighted Glowing Multilingual Badge -->
+                    <div class="language-picker-badge" title="Switch Website Language">
+                        <span style="font-size: 14px;">🌐</span>
+                        <div id="google_translate_element"></div>
+                    </div>
                     <!-- Theme Toggle -->
-                    <button class="vibe-btn" id="theme-btn" onclick="toggleTheme()" style="padding: 4px 9px; font-size: 11px; height: 30px; border-radius: 8px;">👑 Gold</button>
+                    <button class="vibe-btn" id="theme-btn" onclick="toggleTheme()" style="padding: 4px 10px; font-size: 11px; height: 32px; border-radius: 20px; font-weight: 700;">👑 Gold</button>
                 </div>
             </div>
 
@@ -4341,6 +4427,89 @@
         }
         body {
             top: 0px !important;
+        }
+
+
+        /* ========================================================
+           🌟 SUPER-HIGHLIGHTED GLOWING LANGUAGE SELECTOR ENGINE
+           ======================================================== */
+        .language-picker-badge {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 5px !important;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(139, 92, 246, 0.3)) !important;
+            border: 1.5px solid #38bdf8 !important;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.5), inset 0 0 8px rgba(56, 189, 248, 0.2) !important;
+            border-radius: 20px !important;
+            padding: 2px 8px !important;
+            height: 32px !important;
+            transition: all 0.3s ease !important;
+            animation: pulse-translate-glow 3s infinite alternate !important;
+        }
+        .language-picker-badge:hover {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.8), inset 0 0 12px rgba(56, 189, 248, 0.3) !important;
+            transform: scale(1.03) !important;
+        }
+        @keyframes pulse-translate-glow {
+            0% { box-shadow: 0 0 8px rgba(56, 189, 248, 0.4); }
+            100% { box-shadow: 0 0 16px rgba(139, 92, 246, 0.7); }
+        }
+
+        #google_translate_element {
+            display: inline-flex !important;
+            align-items: center !important;
+            vertical-align: middle !important;
+            z-index: 1000 !important;
+        }
+        .goog-te-gadget {
+            font-family: inherit !important;
+            color: transparent !important;
+            font-size: 0px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+        .goog-te-gadget .goog-te-combo {
+            background: rgba(15, 23, 42, 0.9) !important;
+            color: #38bdf8 !important;
+            border: 1px solid rgba(56, 189, 248, 0.6) !important;
+            border-radius: 12px !important;
+            padding: 3px 8px !important;
+            font-size: 11.5px !important;
+            font-weight: 800 !important;
+            outline: none !important;
+            cursor: pointer !important;
+            height: 26px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+        .goog-te-gadget .goog-te-combo option {
+            background: #0f172a !important;
+            color: #ffffff !important;
+            font-weight: 600 !important;
+        }
+        .goog-te-gadget-simple {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            font-size: 11.5px !important;
+            font-weight: 800 !important;
+            color: #38bdf8 !important;
+            cursor: pointer !important;
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+        .goog-te-gadget-simple .goog-te-menu-value span {
+            color: #38bdf8 !important;
+            font-weight: 800 !important;
+            font-size: 11.5px !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+        }
+        .goog-te-gadget-simple img {
+            display: none !important;
+        }
+        .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame {
+            display: none !important;
         }
 
 </style>
@@ -8036,6 +8205,89 @@ document.addEventListener('keydown', (e) => {
         }
         body {
             top: 0px !important;
+        }
+
+
+        /* ========================================================
+           🌟 SUPER-HIGHLIGHTED GLOWING LANGUAGE SELECTOR ENGINE
+           ======================================================== */
+        .language-picker-badge {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 5px !important;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(139, 92, 246, 0.3)) !important;
+            border: 1.5px solid #38bdf8 !important;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.5), inset 0 0 8px rgba(56, 189, 248, 0.2) !important;
+            border-radius: 20px !important;
+            padding: 2px 8px !important;
+            height: 32px !important;
+            transition: all 0.3s ease !important;
+            animation: pulse-translate-glow 3s infinite alternate !important;
+        }
+        .language-picker-badge:hover {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.8), inset 0 0 12px rgba(56, 189, 248, 0.3) !important;
+            transform: scale(1.03) !important;
+        }
+        @keyframes pulse-translate-glow {
+            0% { box-shadow: 0 0 8px rgba(56, 189, 248, 0.4); }
+            100% { box-shadow: 0 0 16px rgba(139, 92, 246, 0.7); }
+        }
+
+        #google_translate_element {
+            display: inline-flex !important;
+            align-items: center !important;
+            vertical-align: middle !important;
+            z-index: 1000 !important;
+        }
+        .goog-te-gadget {
+            font-family: inherit !important;
+            color: transparent !important;
+            font-size: 0px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+        .goog-te-gadget .goog-te-combo {
+            background: rgba(15, 23, 42, 0.9) !important;
+            color: #38bdf8 !important;
+            border: 1px solid rgba(56, 189, 248, 0.6) !important;
+            border-radius: 12px !important;
+            padding: 3px 8px !important;
+            font-size: 11.5px !important;
+            font-weight: 800 !important;
+            outline: none !important;
+            cursor: pointer !important;
+            height: 26px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+        .goog-te-gadget .goog-te-combo option {
+            background: #0f172a !important;
+            color: #ffffff !important;
+            font-weight: 600 !important;
+        }
+        .goog-te-gadget-simple {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            font-size: 11.5px !important;
+            font-weight: 800 !important;
+            color: #38bdf8 !important;
+            cursor: pointer !important;
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+        .goog-te-gadget-simple .goog-te-menu-value span {
+            color: #38bdf8 !important;
+            font-weight: 800 !important;
+            font-size: 11.5px !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+        }
+        .goog-te-gadget-simple img {
+            display: none !important;
+        }
+        .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame {
+            display: none !important;
         }
 
 </style>
