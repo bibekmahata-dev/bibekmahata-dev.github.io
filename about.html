@@ -14,7 +14,7 @@
     <link rel="dns-prefetch" href="https://api.rss2json.com">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9222942521747755" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>About Bibek Mahata & Bengal Explorers — Student Creator Initiative</title>
     <meta name="description" content="Meet Bibek Mahata, Founder and Lead Developer of Bengal Explorers — a digital travel and transit portal for West Bengal built with passion in Paschim Medinipur.">
     <meta name="keywords" content="Bibek Mahata, Bibek Mahata developer, Bibek Mahata Garhbeta, Bengal Explorers, Paschim Medinipur web developer, student creator">
@@ -29,8 +29,6 @@
     <meta property="og:url" content="https://bibekmahata-dev.github.io/about.html">
     <meta property="og:type" content="profile">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     
     <!-- JSON-LD Google Knowledge Graph for Bibek Mahata -->
@@ -61,58 +59,101 @@
 
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
             background: #090d16;
             color: #cbd5e1;
-            line-height: 1.8;
-            padding: 40px 20px 80px;
-            min-height: 100vh;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            line-height: 1.7;
         }
-        .container {
-            max-width: 860px;
+
+        /* Top App Bar */
+        .top-nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid #1e293b;
+            padding: 12px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        .back-btn {
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+            padding: 6px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 12.5px;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .back-btn:hover { background: #38bdf8; color: #090d16; }
+
+        .main-wrapper {
+            max-width: 1050px;
             margin: 0 auto;
+            padding: 24px 16px 80px;
+            width: 100%;
+        }
+
+        .content-card {
             background: #111827;
             border: 1px solid #1e293b;
             border-radius: 16px;
-            padding: 36px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            margin-bottom: 24px;
+            width: 100%;
         }
+
         h1 {
             font-family: 'Outfit', sans-serif;
             color: #fff;
-            font-size: 28px;
-            margin-bottom: 8px;
+            font-size: clamp(22px, 3.5vw, 30px);
             font-weight: 800;
+            margin-bottom: 6px;
         }
         .subtitle {
             color: #38bdf8;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
             border-bottom: 1px solid #1e293b;
         }
         h2 {
             font-family: 'Outfit', sans-serif;
             color: #38bdf8;
-            font-size: 20px;
-            margin: 28px 0 10px;
+            font-size: clamp(17px, 2.5vw, 21px);
+            margin: 24px 0 10px;
             font-weight: 700;
         }
-        p { margin-bottom: 16px; font-size: 14.5px; }
-        ul { padding-left: 20px; margin-bottom: 16px; font-size: 14.5px; }
-        li { margin-bottom: 6px; }
+        p { margin-bottom: 14px; font-size: 14.5px; }
 
         /* Creator Spotlight Card */
         .creator-card {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9));
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.95));
             border: 1px solid rgba(56, 189, 248, 0.35);
             border-radius: 14px;
             padding: 24px;
-            margin: 24px 0;
+            margin: 20px 0;
             display: flex;
             align-items: center;
             gap: 20px;
@@ -126,7 +167,7 @@
             border: 3px solid #38bdf8;
             box-shadow: 0 0 20px rgba(56,189,248,0.4);
         }
-        .creator-details { flex: 1; min-width: 250px; }
+        .creator-details { flex: 1; min-width: 240px; }
         .creator-name {
             font-family: 'Outfit', sans-serif;
             font-size: 22px;
@@ -137,88 +178,134 @@
             color: #38bdf8;
             font-size: 13px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .social-pills {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
             margin-top: 10px;
         }
         .social-pill {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 600;
             text-decoration: none;
-            transition: all 0.2s;
+            transition: transform 0.2s, background 0.2s;
         }
-        .pill-ig { background: rgba(244, 63, 94, 0.15); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.3); }
-        .pill-fb { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
-        .pill-yt { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
-        .pill-mail { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+        .pill-gh { background: #24292e; color: #fff; border: 1px solid #444d56; }
+        .pill-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+        .pill-fb { background: #1877f2; color: #fff; }
+        .pill-yt { background: #ff0000; color: #fff; }
+        .pill-mail { background: rgba(56,189,248,0.2); color: #38bdf8; border: 1px solid rgba(56,189,248,0.4); }
+        .social-pill:hover { transform: translateY(-2px); }
 
-        .back-link {
-            display: inline-block;
-            margin-top: 24px;
-            background: rgba(56, 189, 248, 0.15);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            color: #38bdf8;
-            padding: 8px 18px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 13px;
-            transition: all 0.2s;
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
         }
-        .back-link:hover { background: #38bdf8; color: #090d16; }
+        .mission-box {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-left: 3px solid #38bdf8;
+            padding: 16px;
+            border-radius: 0 10px 10px 0;
+        }
+        .mission-box h3 { color: #fff; font-size: 15px; margin-bottom: 6px; }
+        .mission-box p { font-size: 13px; color: #94a3b8; margin: 0; }
+
+        /* Mobile Edge-to-Edge Optimization */
+        @media (max-width: 768px) {
+            .main-wrapper {
+                padding: 12px 6px 75px !important;
+            }
+            .content-card {
+                padding: 16px 12px !important;
+                border-radius: 12px !important;
+            }
+            .creator-card {
+                padding: 16px !important;
+                flex-direction: column !important;
+                text-align: center !important;
+            }
+            .creator-details {
+                text-align: center !important;
+            }
+            .social-pills {
+                justify-content: center !important;
+            }
+            .mission-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>About Bengal Explorers</h1>
-        <div class="subtitle">Class 12 Student Creator Initiative • Paschim Medinipur, West Bengal</div>
+    <div class="top-nav">
+        <a href="index.html" class="nav-logo">Bengal Explorers</a>
+        <a href="index.html" class="back-btn">← Back to Portal</a>
+    </div>
 
-        <!-- Creator Spotlight: Bibek Mahata -->
-        <div class="creator-card">
-            <img src="assets/agents/bibek.jpg" alt="Bibek Mahata">
-            <div class="creator-details">
-                <div class="creator-name">Bibek Mahata</div>
-                <div class="creator-role">Founder, Lead Architect & Web Developer</div>
-                <p style="margin: 0; font-size: 13.5px; color: #cbd5e1;">
-                    Higher Secondary Class 12 student developer from Garhbeta, Paschim Medinipur. Dedicated to building fast, free digital utilities, railway radars, and cultural tourism archives for West Bengal.
-                </p>
-                <div class="social-pills">
-                    <a href="https://www.instagram.com/bibek.cs?igsh=MXFxdjNxa25oNGFodA==" target="_blank" class="social-pill pill-ig">📸 Instagram @bibek.cs</a>
-                    <a href="https://www.facebook.com/share/1Z9HSMDvAV/" target="_blank" class="social-pill pill-fb">📘 Facebook</a>
-                    <a href="https://youtube.com/@bibekgamer_444?si=Tpliwr4pKk8DpN09" target="_blank" class="social-pill pill-yt">▶️ YouTube</a>
-                    <a href="mailto:bibek.workdev01@gmail.com" class="social-pill pill-mail">✉️ Email</a>
+    <div class="main-wrapper">
+        <div class="content-card">
+            <h1>About Bengal Explorers & Founder</h1>
+            <div class="subtitle">Class 12 Student Creator Initiative • Paschim Medinipur, West Bengal</div>
+
+            <!-- Founder Profile Spotlight -->
+            <div class="creator-card">
+                <img src="assets/agents/bibek.jpg" alt="Bibek Mahata — Founder & Lead Developer">
+                <div class="creator-details">
+                    <div class="creator-name">Bibek Mahata</div>
+                    <div class="creator-role">Founder & Lead Software Engineer</div>
+                    <p style="margin: 0; font-size: 13.5px; color: #cbd5e1;">
+                        Student web developer from <strong>Garhbeta, Paschim Medinipur, West Bengal (PIN: 721157)</strong>. Creator of the Bengal Explorers digital platform, dedicated to empowering regional travelers with live transit radars, meteorological archives, and tourism guides.
+                    </p>
+                    <div class="social-pills">
+                        <a href="https://github.com/bibekmahata-dev" target="_blank" class="social-pill pill-gh">🐙 GitHub</a>
+                        <a href="https://www.instagram.com/bibek.cs" target="_blank" class="social-pill pill-ig">📸 Instagram</a>
+                        <a href="https://www.facebook.com/share/1Z9HSMDvAV/" target="_blank" class="social-pill pill-fb">📘 Facebook</a>
+                        <a href="https://youtube.com/@bibekgamer_444?si=Tpliwr4pKk8DpN09" target="_blank" class="social-pill pill-yt">▶️ YouTube</a>
+                        <a href="mailto:bibek.workdev01@gmail.com" class="social-pill pill-mail">📧 Email</a>
+                    </div>
                 </div>
             </div>
+
+            <h2>Our Mission & Vision</h2>
+            <p>
+                <strong>Bengal Explorers</strong> was born out of a shared vision among 15 Class 12 students in Paschim Medinipur. We recognized that while West Bengal boasts world-renowned destinations like the Darjeeling Himalayan Railway, the Grand Canyon of Garhbeta (Gangani), and the terracotta temples of Bishnupur, reliable open digital tools were scattered across different sources.
+            </p>
+
+            <div class="mission-grid">
+                <div class="mission-box">
+                    <h3>🚆 Live Transit Accessibility</h3>
+                    <p>Real-time railway departure count-downs for Howrah and Sealdah, paired with rural and inter-district bus schedules.</p>
+                </div>
+                <div class="mission-box">
+                    <h3>🛰️ Open-Meteo Satellite Weather</h3>
+                    <p>Live district-wise meteorology feeds tracking temperature, humidity, and rainfall conditions across Bengal.</p>
+                </div>
+                <div class="mission-box">
+                    <h3>📖 Cultural Archival & Guides</h3>
+                    <p>Comprehensive English travel field guides, booking companions, and interactive Leaflet GIS route mapping.</p>
+                </div>
+            </div>
+
+            <h2>Open-Source & Student-Led Spirit</h2>
+            <p>
+                Every line of code on this portal is developed client-side using pure web standards (HTML5, CSS3, and JavaScript) to ensure high-concurrency performance, zero database crashes, and full accessibility on low-bandwidth rural mobile networks.
+            </p>
+
+            <h2>Get in Touch</h2>
+            <p>
+                For suggestions, local route contributions, or student collaborations, reach out directly at <strong style="color: #38bdf8;">bibek.workdev01@gmail.com</strong>.
+            </p>
         </div>
-        
-        <h2>Our Mission</h2>
-        <p><strong>Bengal Explorers</strong> is an independent digital travel, transit, and cultural portal conceptualized and developed by <strong>Bibek Mahata</strong> alongside a crew of 15 passionate Class 12 student creators from Garhbeta and Paschim Medinipur.</p>
-        <p>Our mission is to build modern, high-speed public utilities — including real-time Howrah/Sealdah train boards, statewide bus route finders, live multi-district weather feeds, and rich cultural festival archives — while capturing the authentic beauty of Bengal through photography and travel field guides.</p>
-
-        <h2>Who We Are</h2>
-        <p>Our team includes student coders, highway explorers, cyclists, nature photographers, and cultural writers studying in Higher Secondary (Class 12). Rather than relying on generic corporate portals, we build authentic local tools directly from the ground up.</p>
-
-        <h2>Core Platform Features</h2>
-        <ul>
-            <li><strong>Live Transit Radar:</strong> Real-time station departure boards for Howrah (HWH), Sealdah (SDAH), and South Eastern Railway routes.</li>
-            <li><strong>Meteorology Hub:</strong> Open-Meteo live weather radar across Kolkata, Garhbeta, Darjeeling, Digha, and Siliguri.</li>
-            <li><strong>2026 Cultural Calendar:</strong> Master schedule of Bengal Pujas, State Holidays, and Lunar tide phases.</li>
-            <li><strong>Chronicles Travel Blog:</strong> In-depth field guides to Gangani Canyon, Bishnupur temples, and the Darjeeling Toy Train.</li>
-        </ul>
-
-        <h2>Contact Bibek Mahata & The Team</h2>
-        <p>We welcome feedback, suggestions, and student collaborations! Reach Bibek Mahata directly at: <strong style="color: #38bdf8;">bibek.workdev01@gmail.com</strong>.</p>
-
-        <a href="index.html" class="back-link">← Return to Main Portal</a>
     </div>
 </body>
 </html>

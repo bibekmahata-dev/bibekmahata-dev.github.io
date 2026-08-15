@@ -14,97 +14,161 @@
     <link rel="dns-prefetch" href="https://api.rss2json.com">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9222942521747755" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Contact & Feedback — Bengal Explorers</title>
+    <meta name="description" content="Contact Bibek Mahata and the student creator team of Bengal Explorers for inquiries, travel suggestions, or feedback.">
+    <link rel="canonical" href="https://bibekmahata-dev.github.io/contact.html">
+
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
             background: #090d16;
             color: #cbd5e1;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
             line-height: 1.8;
-            padding: 40px 20px 80px;
-            min-height: 100vh;
         }
-        .container {
-            max-width: 800px;
+
+        .top-nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid #1e293b;
+            padding: 12px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        .back-btn {
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+            padding: 6px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 12.5px;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .back-btn:hover { background: #38bdf8; color: #090d16; }
+
+        .main-wrapper {
+            max-width: 1050px;
             margin: 0 auto;
+            padding: 24px 16px 80px;
+            width: 100%;
+        }
+
+        .content-card {
             background: #111827;
             border: 1px solid #1e293b;
             border-radius: 16px;
-            padding: 36px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            width: 100%;
         }
+
         h1 {
             font-family: 'Outfit', sans-serif;
             color: #fff;
-            font-size: 28px;
-            margin-bottom: 8px;
+            font-size: clamp(22px, 3.5vw, 30px);
             font-weight: 800;
+            margin-bottom: 6px;
         }
         .subtitle {
             color: #38bdf8;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
             border-bottom: 1px solid #1e293b;
         }
         h2 {
             font-family: 'Outfit', sans-serif;
             color: #38bdf8;
-            font-size: 18px;
+            font-size: clamp(16px, 2.5vw, 19px);
             margin: 24px 0 8px;
             font-weight: 700;
         }
-        p { margin-bottom: 16px; font-size: 14.5px; }
-        ul { padding-left: 20px; margin-bottom: 16px; font-size: 14.5px; }
-        li { margin-bottom: 6px; }
-        .back-link {
-            display: inline-block;
-            margin-top: 24px;
-            background: rgba(56, 189, 248, 0.15);
+        p { margin-bottom: 14px; font-size: 14.5px; }
+
+        .contact-channel-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9));
             border: 1px solid rgba(56, 189, 248, 0.3);
-            color: #38bdf8;
-            padding: 8px 18px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 13px;
-            transition: all 0.2s;
+            border-left: 4px solid #38bdf8;
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
-        .back-link:hover {
-            background: #38bdf8;
-            color: #090d16;
+        .channel-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .main-wrapper { padding: 12px 6px 75px !important; }
+            .content-card { padding: 16px 12px !important; border-radius: 12px !important; }
+            .contact-channel-card { padding: 14px !important; }
         }
     </style>
-    <title>Contact & Feedback — Bengal Explorers</title>
-    <meta name="description" content="Contact the student creator team of Bengal Explorers for inquiries, travel suggestions, or feedback.">
-    <link rel="canonical" href="https://bibekmahata-dev.github.io/contact.html">
 </head>
 <body>
-    <div class="container">
-        <h1>Contact & Feedback</h1>
-        <div class="subtitle">We would love to hear from fellow explorers and travelers</div>
-        
-        <h2>Get in Touch</h2>
-        <p>Have questions about a travel route in West Bengal? Want to contribute local photography, suggest a new bus route, or report an issue?</p>
+    <div class="top-nav">
+        <a href="index.html" class="nav-logo">Bengal Explorers</a>
+        <a href="index.html" class="back-btn">← Back to Portal</a>
+    </div>
 
-        <div style="background: rgba(0,0,0,0.3); border-left: 3px solid #38bdf8; padding: 16px; border-radius: 0 8px 8px 0; margin: 20px 0;">
-            <p style="margin: 0; color: #fff;"><strong>📧 Official Email:</strong> <a href="mailto:bibek.workdev01@gmail.com" style="color: #38bdf8; text-decoration: none;">bibek.workdev01@gmail.com</a></p>
-            <p style="margin: 6px 0 0; color: #94a3b8;"><strong>📍 Location:</strong> Garhbeta, Paschim Medinipur, West Bengal 721127, India</p>
-            <p style="margin: 6px 0 0; color: #94a3b8;"><strong>🎓 Creator Team:</strong> Class 12 Student Explorer Initiative</p>
-            <p style="margin: 6px 0 0; color: #cbd5e1;"><strong>🐙 GitHub:</strong> <a href="https://github.com/bibekmahata-dev" target="_blank" style="color: #38bdf8; text-decoration: none;">github.com/bibekmahata-dev</a></p>
+    <div class="main-wrapper">
+        <div class="content-card">
+            <h1>Contact & Feedback Hub</h1>
+            <div class="subtitle">Direct Communication with Bibek Mahata & The Student Team</div>
+            
+            <h2>Get in Touch</h2>
+            <p>Have questions regarding transit timetables, local photography contributions, or regional field guides? We welcome all traveler messages and constructive feedback!</p>
+
+            <div class="contact-channel-card">
+                <div class="channel-item">
+                    <span>📧</span>
+                    <div><strong>Official Contact:</strong> <a href="mailto:bibek.workdev01@gmail.com" style="color: #38bdf8; text-decoration: none; font-weight: 700;">bibek.workdev01@gmail.com</a></div>
+                </div>
+                <div class="channel-item">
+                    <span>📍</span>
+                    <div><strong>Headquarters:</strong> Garhbeta, Paschim Medinipur, West Bengal 721127, India</div>
+                </div>
+                <div class="channel-item">
+                    <span>🎓</span>
+                    <div><strong>Initiative:</strong> Class 12 Student Creator & Developer Crew</div>
+                </div>
+                <div class="channel-item">
+                    <span>🐙</span>
+                    <div><strong>GitHub:</strong> <a href="https://github.com/bibekmahata-dev" target="_blank" style="color: #38bdf8; text-decoration: none;">github.com/bibekmahata-dev</a></div>
+                </div>
+            </div>
+
+            <h2>Response Time</h2>
+            <p>As full-time Class 12 students, we typically respond to inquiries within <strong>24 to 48 hours</strong>. Thank you for supporting open student creators in West Bengal!</p>
         </div>
-
-        <h2>Response Time</h2>
-        <p>As we are full-time Class 12 students, we typically review emails within 24–48 hours after school hours. Thank you for your support!</p>
-
-        <a href="index.html" class="back-link">← Return to Main Portal</a>
     </div>
 </body>
 </html>
