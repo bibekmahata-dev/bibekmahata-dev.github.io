@@ -8399,7 +8399,7 @@ document.addEventListener('keydown', (e) => {
         });
 
         // Initialize Map
-        const map = L.map('map', {
+        window.map = L.map('map', {
             zoomControl: false, // We can add it custom position if needed, or leave default
             layers: [defaultMap],
             tap: false, // prevents buggy click behavior on mobile
@@ -8409,8 +8409,8 @@ document.addEventListener('keydown', (e) => {
         L.control.zoom({ position: 'bottomright' }).addTo(map);
 
         // Ensure map renders properly on load & viewport resize
-        setTimeout(() => { if (map) map.invalidateSize(); }, 300);
-        window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
+        setTimeout(() => { if (window.map && typeof window.map.invalidateSize === 'function') window.if (window.map && typeof window.map.invalidateSize === 'function') window.map.invalidateSize(); }, 300);
+        window.addEventListener('resize', () => { if (window.map && typeof window.map.invalidateSize === 'function') window.if (window.map && typeof window.map.invalidateSize === 'function') window.map.invalidateSize(); });
 
         // Add Layer Control
         const baseMaps = {
@@ -8452,21 +8452,6 @@ document.addEventListener('keydown', (e) => {
                 }
             })
             .catch(err => console.error("Could not fetch live weather radar."));
-
-        // Legacy map engine cleaned up, 8000);
-                } else {
-                    mapStatus.textContent = '⛔ Route not found via roads';
-                    mapStatus.style.background = 'rgba(239, 68, 68, 0.9)';
-                    setTimeout(() => mapStatus.style.display = 'none', 4000);
-                }
-            })
-            .catch(e => {
-                console.error("Routing error:", e);
-                mapStatus.textContent = '⛔ Navigation offline';
-                mapStatus.style.background = 'rgba(239, 68, 68, 0.9)';
-                setTimeout(() => mapStatus.style.display = 'none', 4000);
-            });
-        }
 
         // Heart Icon Interactions
         document.querySelectorAll('.heart-icon').forEach(heart => {
@@ -10196,7 +10181,7 @@ document.addEventListener('keydown', (e) => {
             window.addEventListener('load', () => {
                 if (typeof map !== 'undefined' && map) {
                     setTimeout(() => {
-                        map.invalidateSize();
+                        if (window.map && typeof window.map.invalidateSize === 'function') window.map.invalidateSize();
                         if (typeof placesData !== 'undefined' && placesData['digha']) {
                             map.setView([24.1000, 87.8550], 7);
                         }
@@ -10205,7 +10190,7 @@ document.addEventListener('keydown', (e) => {
             });
             window.addEventListener('resize', () => {
                 if (typeof map !== 'undefined' && map) {
-                    map.invalidateSize();
+                    if (window.map && typeof window.map.invalidateSize === 'function') window.map.invalidateSize();
                 }
             });
         </script>
