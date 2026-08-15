@@ -3006,6 +3006,59 @@
             margin-bottom: 8px !important;
         }
 
+
+        /* ========================================================
+           🌐 PROMINENT LANGUAGE SELECTOR & GOOGLE TRANSLATE STYLING
+           ======================================================== */
+        #google_translate_element {
+            display: inline-flex !important;
+            align-items: center !important;
+            vertical-align: middle !important;
+            z-index: 1000 !important;
+        }
+        .goog-te-gadget {
+            font-family: inherit !important;
+            color: transparent !important; /* Hide Google text, show dropdown cleanly */
+            font-size: 0px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+        .goog-te-gadget .goog-te-combo,
+        .goog-te-gadget-simple {
+            background: rgba(15, 23, 42, 0.95) !important;
+            color: #38bdf8 !important;
+            border: 1px solid rgba(56, 189, 248, 0.4) !important;
+            border-radius: 8px !important;
+            padding: 4px 8px !important;
+            font-size: 11.5px !important;
+            font-weight: 700 !important;
+            outline: none !important;
+            cursor: pointer !important;
+            height: 30px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+        }
+        .goog-te-gadget .goog-te-combo option {
+            background: #0f172a !important;
+            color: #ffffff !important;
+        }
+        .goog-te-gadget-simple .goog-te-menu-value span {
+            color: #38bdf8 !important;
+            font-weight: 700 !important;
+            font-size: 11.5px !important;
+        }
+        .goog-te-gadget-simple img {
+            display: inline-block !important;
+            margin-right: 4px !important;
+        }
+        .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame {
+            display: none !important;
+        }
+        body {
+            top: 0px !important;
+        }
+
 </style>
 </head>
 <body>
@@ -3040,40 +3093,40 @@
     <!-- Splash Screen Optimized Out -->
 
     <!-- ========== HEADER ========== -->
-    <header class="header">
+        <header class="header">
         <div class="header__inner">
+            <!-- Row 1: Brand Logo on Left, Language Dropdown & Theme on Right -->
             <div class="header__brand">
                 <div class="header__logo">Bengal Explorers</div>
-                <div class="header__badge">Class 12 Student Creators • Paschim Medinipur, WB</div>
+                <div style="display: flex; gap: 6px; align-items: center;">
+                    <!-- Google Translate Widget -->
+                    <div id="google_translate_element" title="Change Language"></div>
+                    <!-- Theme Toggle -->
+                    <button class="vibe-btn" id="theme-btn" onclick="toggleTheme()" style="padding: 4px 9px; font-size: 11px; height: 30px; border-radius: 8px;">👑 Gold</button>
+                </div>
             </div>
+
+            <!-- Row 2: Full Width Clean Search Bar -->
+            <div class="search-bar">
+                <span class="search-bar__icon">🔍</span>
+                <input type="text" class="search-bar__input" id="search-input" placeholder="Search squad, places, trains & guides..." autocomplete="off">
+            </div>
+
+            <!-- Row 3: Swipeable Navigation Ribbon -->
             <nav class="header__nav">
                 <a href="#squad-section" class="header__nav-link">🏠 Squad</a>
+                <a href="#transit-section" class="header__nav-link" style="color: #38bdf8; font-weight: 700;">🚆 Transit</a>
+                <a href="#West Bengal-guide-section" class="header__nav-link" style="color: #22c55e; font-weight: 700;">🛰️ Weather</a>
+                <a href="#hangout-map" class="header__nav-link">🗺️ Map</a>
+                <a href="#hangout-quiz-section" class="header__nav-link">🧭 Quiz</a>
+                <a href="blog.html" class="header__nav-link" style="color: #d4af37; font-weight: 700;">📖 Blog</a>
                 <a href="#hall-section" class="header__nav-link">🏆 Awards</a>
                 <a href="#quote-wall" class="header__nav-link">✨ Quotes</a>
                 <a href="#" onclick="openCompareModal(); return false;" class="header__nav-link">⚔️ Compare</a>
-                <a href="blog.html" class="header__nav-link" style="color: #d4af37; font-weight: 700;">📖 Blog</a>
-                <a href="https://www.facebook.com/share/1Z9HSMDvAV/" target="_blank" class="header__nav-link" style="color: #3b82f6; font-weight: 700;">📘 Facebook</a>
-                <a href="https://www.instagram.com/bibek.cs?igsh=MXFxdjNxa25oNGFodA==" target="_blank" class="header__nav-link" style="color: #f43f5e; font-weight: 700;">📸 Instagram</a>
-                <a href="https://youtube.com/@bibekgamer_444?si=Tpliwr4pKk8DpN09" target="_blank" class="header__nav-link" style="color: #ef4444; font-weight: 700;">▶️ YouTube</a>
-                <a href="#hangout-map" class="header__nav-link">🗺️ Map</a>
-                <a href="#gallery-section" class="header__nav-link">📸 Gallery</a>
                 <a href="#about-section" class="header__nav-link">ℹ️ About</a>
-                <a href="#West Bengal-guide-section" class="header__nav-link" style="color: #22c55e; font-weight: 700;">📍 Guide</a>
+                <a href="https://www.facebook.com/share/1Z9HSMDvAV/" target="_blank" class="header__nav-link" style="color: #3b82f6;">📘 FB</a>
+                <a href="https://www.instagram.com/bibek.cs?igsh=MXFxdjNxa25oNGFodA==" target="_blank" class="header__nav-link" style="color: #f43f5e;">📸 Insta</a>
             </nav>
-            <div class="header__controls">
-                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                    <div style="color: #38bdf8; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">⚡ Bengal Portal</div>
-                    <div style="display: flex; gap: 6px; align-items: center;">
-                        <button class="vibe-btn" id="theme-btn" onclick="toggleTheme()" style="padding: 4px 10px; font-size: 11.5px;">👑 Gold</button>
-                        <div id="google_translate_element" style="display: inline-flex; vertical-align: middle;"></div>
-                    </div>
-                </div>
-
-                <div class="search-bar">
-                    <span class="search-bar__icon">🔍</span>
-                    <input type="text" class="search-bar__input" id="search-input" placeholder="Search squad, places, trains & guides..." autocomplete="off">
-                </div>
-            </div>
         </div>
     </header>
 
@@ -4205,6 +4258,59 @@
             width: 100% !important;
             box-sizing: border-box !important;
             margin-bottom: 8px !important;
+        }
+
+
+        /* ========================================================
+           🌐 PROMINENT LANGUAGE SELECTOR & GOOGLE TRANSLATE STYLING
+           ======================================================== */
+        #google_translate_element {
+            display: inline-flex !important;
+            align-items: center !important;
+            vertical-align: middle !important;
+            z-index: 1000 !important;
+        }
+        .goog-te-gadget {
+            font-family: inherit !important;
+            color: transparent !important; /* Hide Google text, show dropdown cleanly */
+            font-size: 0px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+        .goog-te-gadget .goog-te-combo,
+        .goog-te-gadget-simple {
+            background: rgba(15, 23, 42, 0.95) !important;
+            color: #38bdf8 !important;
+            border: 1px solid rgba(56, 189, 248, 0.4) !important;
+            border-radius: 8px !important;
+            padding: 4px 8px !important;
+            font-size: 11.5px !important;
+            font-weight: 700 !important;
+            outline: none !important;
+            cursor: pointer !important;
+            height: 30px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+        }
+        .goog-te-gadget .goog-te-combo option {
+            background: #0f172a !important;
+            color: #ffffff !important;
+        }
+        .goog-te-gadget-simple .goog-te-menu-value span {
+            color: #38bdf8 !important;
+            font-weight: 700 !important;
+            font-size: 11.5px !important;
+        }
+        .goog-te-gadget-simple img {
+            display: inline-block !important;
+            margin-right: 4px !important;
+        }
+        .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame {
+            display: none !important;
+        }
+        body {
+            top: 0px !important;
         }
 
 </style>
@@ -7847,6 +7953,59 @@ document.addEventListener('keydown', (e) => {
             width: 100% !important;
             box-sizing: border-box !important;
             margin-bottom: 8px !important;
+        }
+
+
+        /* ========================================================
+           🌐 PROMINENT LANGUAGE SELECTOR & GOOGLE TRANSLATE STYLING
+           ======================================================== */
+        #google_translate_element {
+            display: inline-flex !important;
+            align-items: center !important;
+            vertical-align: middle !important;
+            z-index: 1000 !important;
+        }
+        .goog-te-gadget {
+            font-family: inherit !important;
+            color: transparent !important; /* Hide Google text, show dropdown cleanly */
+            font-size: 0px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+        .goog-te-gadget .goog-te-combo,
+        .goog-te-gadget-simple {
+            background: rgba(15, 23, 42, 0.95) !important;
+            color: #38bdf8 !important;
+            border: 1px solid rgba(56, 189, 248, 0.4) !important;
+            border-radius: 8px !important;
+            padding: 4px 8px !important;
+            font-size: 11.5px !important;
+            font-weight: 700 !important;
+            outline: none !important;
+            cursor: pointer !important;
+            height: 30px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+        }
+        .goog-te-gadget .goog-te-combo option {
+            background: #0f172a !important;
+            color: #ffffff !important;
+        }
+        .goog-te-gadget-simple .goog-te-menu-value span {
+            color: #38bdf8 !important;
+            font-weight: 700 !important;
+            font-size: 11.5px !important;
+        }
+        .goog-te-gadget-simple img {
+            display: inline-block !important;
+            margin-right: 4px !important;
+        }
+        .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame {
+            display: none !important;
+        }
+        body {
+            top: 0px !important;
         }
 
 </style>
