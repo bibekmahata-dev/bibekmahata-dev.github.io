@@ -2915,6 +2915,97 @@
             }
         }
 
+
+        /* ========================================================
+           📱 FLOATING QUICK DOCK & BOTTOM CANVAS CLEARANCE ENGINE
+           (Zero Text Cutoffs, Full Swipe Support & No Hidden Content)
+           ======================================================== */
+        
+        /* 1. Global Bottom Padding so Dock Never Covers Content */
+        body {
+            padding-bottom: 80px !important;
+        }
+        .main {
+            padding-bottom: 80px !important;
+        }
+        .footer {
+            padding-bottom: 95px !important;
+        }
+
+        /* 2. Floating Quick Dock Responsive Engine */
+        .floating-dock {
+            position: fixed !important;
+            bottom: 10px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 96% !important;
+            max-width: 480px !important;
+            height: 42px !important;
+            background: rgba(15, 23, 42, 0.95) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border: 1px solid rgba(56, 189, 248, 0.3) !important;
+            border-radius: 30px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            overflow-x: auto !important;
+            white-space: nowrap !important;
+            gap: 4px !important;
+            padding: 3px 8px !important;
+            z-index: 99999 !important;
+            scrollbar-width: none !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+        .floating-dock::-webkit-scrollbar {
+            display: none !important;
+        }
+
+        .dock-btn {
+            flex-shrink: 0 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 3px !important;
+            padding: 5px 9px !important;
+            font-size: 11px !important;
+            font-weight: 600 !important;
+            color: #f1f5f9 !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            border-radius: 20px !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+            text-decoration: none !important;
+            white-space: nowrap !important;
+        }
+        .dock-btn:hover, .dock-btn:active {
+            background: rgba(56, 189, 248, 0.25) !important;
+            border-color: #38bdf8 !important;
+            color: #38bdf8 !important;
+            transform: scale(0.96) !important;
+        }
+        .dock-btn--top {
+            background: rgba(212, 175, 55, 0.15) !important;
+            border-color: rgba(212, 175, 55, 0.4) !important;
+            color: #facc15 !important;
+        }
+
+        /* 3. Quiz & Accordion Card Spacing (Zero Hidden Options) */
+        #hangout-quiz-section {
+            margin-bottom: 30px !important;
+            padding-bottom: 20px !important;
+        }
+        .hq-card-container {
+            border-radius: 12px !important;
+            margin-bottom: 20px !important;
+        }
+        .hq-btn {
+            width: 100% !important;
+            box-sizing: border-box !important;
+            margin-bottom: 8px !important;
+        }
+
 </style>
 </head>
 <body>
@@ -4023,6 +4114,97 @@
                 text-decoration: none !important;
                 font-weight: 600 !important;
             }
+        }
+
+
+        /* ========================================================
+           📱 FLOATING QUICK DOCK & BOTTOM CANVAS CLEARANCE ENGINE
+           (Zero Text Cutoffs, Full Swipe Support & No Hidden Content)
+           ======================================================== */
+        
+        /* 1. Global Bottom Padding so Dock Never Covers Content */
+        body {
+            padding-bottom: 80px !important;
+        }
+        .main {
+            padding-bottom: 80px !important;
+        }
+        .footer {
+            padding-bottom: 95px !important;
+        }
+
+        /* 2. Floating Quick Dock Responsive Engine */
+        .floating-dock {
+            position: fixed !important;
+            bottom: 10px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 96% !important;
+            max-width: 480px !important;
+            height: 42px !important;
+            background: rgba(15, 23, 42, 0.95) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border: 1px solid rgba(56, 189, 248, 0.3) !important;
+            border-radius: 30px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            overflow-x: auto !important;
+            white-space: nowrap !important;
+            gap: 4px !important;
+            padding: 3px 8px !important;
+            z-index: 99999 !important;
+            scrollbar-width: none !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+        .floating-dock::-webkit-scrollbar {
+            display: none !important;
+        }
+
+        .dock-btn {
+            flex-shrink: 0 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 3px !important;
+            padding: 5px 9px !important;
+            font-size: 11px !important;
+            font-weight: 600 !important;
+            color: #f1f5f9 !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            border-radius: 20px !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+            text-decoration: none !important;
+            white-space: nowrap !important;
+        }
+        .dock-btn:hover, .dock-btn:active {
+            background: rgba(56, 189, 248, 0.25) !important;
+            border-color: #38bdf8 !important;
+            color: #38bdf8 !important;
+            transform: scale(0.96) !important;
+        }
+        .dock-btn--top {
+            background: rgba(212, 175, 55, 0.15) !important;
+            border-color: rgba(212, 175, 55, 0.4) !important;
+            color: #facc15 !important;
+        }
+
+        /* 3. Quiz & Accordion Card Spacing (Zero Hidden Options) */
+        #hangout-quiz-section {
+            margin-bottom: 30px !important;
+            padding-bottom: 20px !important;
+        }
+        .hq-card-container {
+            border-radius: 12px !important;
+            margin-bottom: 20px !important;
+        }
+        .hq-btn {
+            width: 100% !important;
+            box-sizing: border-box !important;
+            margin-bottom: 8px !important;
         }
 
 </style>
@@ -7574,6 +7756,97 @@ document.addEventListener('keydown', (e) => {
                 text-decoration: none !important;
                 font-weight: 600 !important;
             }
+        }
+
+
+        /* ========================================================
+           📱 FLOATING QUICK DOCK & BOTTOM CANVAS CLEARANCE ENGINE
+           (Zero Text Cutoffs, Full Swipe Support & No Hidden Content)
+           ======================================================== */
+        
+        /* 1. Global Bottom Padding so Dock Never Covers Content */
+        body {
+            padding-bottom: 80px !important;
+        }
+        .main {
+            padding-bottom: 80px !important;
+        }
+        .footer {
+            padding-bottom: 95px !important;
+        }
+
+        /* 2. Floating Quick Dock Responsive Engine */
+        .floating-dock {
+            position: fixed !important;
+            bottom: 10px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 96% !important;
+            max-width: 480px !important;
+            height: 42px !important;
+            background: rgba(15, 23, 42, 0.95) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border: 1px solid rgba(56, 189, 248, 0.3) !important;
+            border-radius: 30px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            overflow-x: auto !important;
+            white-space: nowrap !important;
+            gap: 4px !important;
+            padding: 3px 8px !important;
+            z-index: 99999 !important;
+            scrollbar-width: none !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+        .floating-dock::-webkit-scrollbar {
+            display: none !important;
+        }
+
+        .dock-btn {
+            flex-shrink: 0 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 3px !important;
+            padding: 5px 9px !important;
+            font-size: 11px !important;
+            font-weight: 600 !important;
+            color: #f1f5f9 !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            border-radius: 20px !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+            text-decoration: none !important;
+            white-space: nowrap !important;
+        }
+        .dock-btn:hover, .dock-btn:active {
+            background: rgba(56, 189, 248, 0.25) !important;
+            border-color: #38bdf8 !important;
+            color: #38bdf8 !important;
+            transform: scale(0.96) !important;
+        }
+        .dock-btn--top {
+            background: rgba(212, 175, 55, 0.15) !important;
+            border-color: rgba(212, 175, 55, 0.4) !important;
+            color: #facc15 !important;
+        }
+
+        /* 3. Quiz & Accordion Card Spacing (Zero Hidden Options) */
+        #hangout-quiz-section {
+            margin-bottom: 30px !important;
+            padding-bottom: 20px !important;
+        }
+        .hq-card-container {
+            border-radius: 12px !important;
+            margin-bottom: 20px !important;
+        }
+        .hq-btn {
+            width: 100% !important;
+            box-sizing: border-box !important;
+            margin-bottom: 8px !important;
         }
 
 </style>
