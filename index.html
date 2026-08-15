@@ -3153,6 +3153,275 @@
             display: none !important;
         }
 
+
+        /* ========================================================
+           🗺️ PRO CYBER-TRAVEL GIS MAP & HD DESTINATION CARDS
+           (Replaces Childish Layout with Modern Pro-App GIS Interface)
+           ======================================================== */
+        
+        .map-explorer-wrapper {
+            background: #090d16;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .map-explorer {
+            display: flex;
+            height: 650px;
+            background: #0b1120;
+            width: 100%;
+        }
+
+        .map-explorer__list {
+            width: 46%;
+            height: 100%;
+            overflow-y: auto;
+            padding: 16px;
+            background: #090d16;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .map-explorer__map {
+            width: 54%;
+            height: 100%;
+            position: relative;
+            background: #0f172a;
+        }
+
+        /* Pro Category Filter Chips */
+        #map-category-filters {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            scrollbar-width: none;
+        }
+        #map-category-filters::-webkit-scrollbar { display: none; }
+        .map-filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #94a3b8;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .map-filter-btn:hover {
+            border-color: #38bdf8;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+        }
+        .map-filter-btn.active {
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            border-color: #38bdf8;
+            color: #090d16;
+            font-weight: 800;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+        }
+
+        /* Pro Search Box */
+        .explorer-search-box {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+            width: 100%;
+        }
+        .explorer-search-input {
+            flex: 1;
+            padding: 10px 14px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 13.5px;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .explorer-search-input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+            background: rgba(0,0,0,0.5);
+        }
+        #explorer-search-btn {
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            color: #090d16;
+            border: none;
+            padding: 0 18px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        #explorer-search-btn:hover { transform: scale(1.02); }
+
+        .explorer-header-title {
+            color: #38bdf8;
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin-bottom: 10px;
+        }
+
+        /* Pro Travel Cards */
+        .explorer-card {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.9), rgba(15, 23, 42, 0.95));
+            border: 1px solid rgba(56, 189, 248, 0.18);
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            gap: 12px;
+            align-items: stretch;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .explorer-card:hover {
+            border-color: #38bdf8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(56, 189, 248, 0.15);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 1));
+        }
+        .explorer-card.active {
+            border-color: #38bdf8;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+            border-left: 4px solid #38bdf8;
+        }
+
+        .explorer-card__thumb-box {
+            width: 95px;
+            min-width: 95px;
+            height: 95px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            background: #1e293b;
+        }
+        .explorer-card__img-real {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .explorer-card:hover .explorer-card__img-real {
+            transform: scale(1.08);
+        }
+        .category-badge-chip {
+            position: absolute;
+            bottom: 4px;
+            left: 4px;
+            background: rgba(9, 13, 22, 0.85);
+            backdrop-filter: blur(4px);
+            color: #38bdf8;
+            font-size: 8.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .explorer-card__content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-width: 0;
+        }
+        .explorer-card__title {
+            color: #f8fafc;
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 2px;
+        }
+        .explorer-card__rating {
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+        .explorer-card__desc {
+            color: #94a3b8;
+            font-size: 11.5px;
+            line-height: 1.35;
+            margin-bottom: 6px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .explorer-card__actions {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .btn-outline-pro {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-outline-pro:hover {
+            border-color: #38bdf8;
+            color: #38bdf8;
+        }
+        .btn-primary-cyan {
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            border: none;
+            color: #090d16;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-primary-cyan:hover { transform: scale(1.03); }
+
+        /* Mobile Layout */
+        @media (max-width: 768px) {
+            .map-explorer {
+                flex-direction: column !important;
+                height: auto !important;
+            }
+            .map-explorer__map {
+                width: 100% !important;
+                height: 220px !important;
+                order: 1 !important;
+                border-bottom: 1px solid rgba(56, 189, 248, 0.2) !important;
+            }
+            .map-explorer__list {
+                width: 100% !important;
+                order: 2 !important;
+                padding: 10px 6px !important;
+                overflow-y: visible !important;
+            }
+            .explorer-card__thumb-box {
+                width: 80px !important;
+                min-width: 80px !important;
+                height: 80px !important;
+            }
+        }
+
 </style>
 </head>
 <body>
@@ -4510,6 +4779,275 @@
         }
         .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame {
             display: none !important;
+        }
+
+
+        /* ========================================================
+           🗺️ PRO CYBER-TRAVEL GIS MAP & HD DESTINATION CARDS
+           (Replaces Childish Layout with Modern Pro-App GIS Interface)
+           ======================================================== */
+        
+        .map-explorer-wrapper {
+            background: #090d16;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .map-explorer {
+            display: flex;
+            height: 650px;
+            background: #0b1120;
+            width: 100%;
+        }
+
+        .map-explorer__list {
+            width: 46%;
+            height: 100%;
+            overflow-y: auto;
+            padding: 16px;
+            background: #090d16;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .map-explorer__map {
+            width: 54%;
+            height: 100%;
+            position: relative;
+            background: #0f172a;
+        }
+
+        /* Pro Category Filter Chips */
+        #map-category-filters {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            scrollbar-width: none;
+        }
+        #map-category-filters::-webkit-scrollbar { display: none; }
+        .map-filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #94a3b8;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .map-filter-btn:hover {
+            border-color: #38bdf8;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+        }
+        .map-filter-btn.active {
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            border-color: #38bdf8;
+            color: #090d16;
+            font-weight: 800;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+        }
+
+        /* Pro Search Box */
+        .explorer-search-box {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+            width: 100%;
+        }
+        .explorer-search-input {
+            flex: 1;
+            padding: 10px 14px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 13.5px;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .explorer-search-input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+            background: rgba(0,0,0,0.5);
+        }
+        #explorer-search-btn {
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            color: #090d16;
+            border: none;
+            padding: 0 18px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        #explorer-search-btn:hover { transform: scale(1.02); }
+
+        .explorer-header-title {
+            color: #38bdf8;
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin-bottom: 10px;
+        }
+
+        /* Pro Travel Cards */
+        .explorer-card {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.9), rgba(15, 23, 42, 0.95));
+            border: 1px solid rgba(56, 189, 248, 0.18);
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            gap: 12px;
+            align-items: stretch;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .explorer-card:hover {
+            border-color: #38bdf8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(56, 189, 248, 0.15);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 1));
+        }
+        .explorer-card.active {
+            border-color: #38bdf8;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+            border-left: 4px solid #38bdf8;
+        }
+
+        .explorer-card__thumb-box {
+            width: 95px;
+            min-width: 95px;
+            height: 95px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            background: #1e293b;
+        }
+        .explorer-card__img-real {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .explorer-card:hover .explorer-card__img-real {
+            transform: scale(1.08);
+        }
+        .category-badge-chip {
+            position: absolute;
+            bottom: 4px;
+            left: 4px;
+            background: rgba(9, 13, 22, 0.85);
+            backdrop-filter: blur(4px);
+            color: #38bdf8;
+            font-size: 8.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .explorer-card__content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-width: 0;
+        }
+        .explorer-card__title {
+            color: #f8fafc;
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 2px;
+        }
+        .explorer-card__rating {
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+        .explorer-card__desc {
+            color: #94a3b8;
+            font-size: 11.5px;
+            line-height: 1.35;
+            margin-bottom: 6px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .explorer-card__actions {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .btn-outline-pro {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-outline-pro:hover {
+            border-color: #38bdf8;
+            color: #38bdf8;
+        }
+        .btn-primary-cyan {
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            border: none;
+            color: #090d16;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-primary-cyan:hover { transform: scale(1.03); }
+
+        /* Mobile Layout */
+        @media (max-width: 768px) {
+            .map-explorer {
+                flex-direction: column !important;
+                height: auto !important;
+            }
+            .map-explorer__map {
+                width: 100% !important;
+                height: 220px !important;
+                order: 1 !important;
+                border-bottom: 1px solid rgba(56, 189, 248, 0.2) !important;
+            }
+            .map-explorer__list {
+                width: 100% !important;
+                order: 2 !important;
+                padding: 10px 6px !important;
+                overflow-y: visible !important;
+            }
+            .explorer-card__thumb-box {
+                width: 80px !important;
+                min-width: 80px !important;
+                height: 80px !important;
+            }
         }
 
 </style>
@@ -6927,212 +7465,115 @@ document.addEventListener('keydown', (e) => {
 });
 </script>
     <script>
-        // Place Details Modal Logic
+                // Place Details Database with Real HD Photography
         const placesData = {
+            'gangani': {
+                title: 'Gangani Grand Canyon',
+                category: 'heritage',
+                image: 'assets/gangani/gangani-1.png',
+                rating: '4.8 ⭐ (14,200+ Reviews)',
+                desc: 'Known as the Grand Canyon of Bengal, a stunning red-laterite natural canyon carved by the sacred Silabati River in Garhbeta.',
+                highlights: ['Red Laterite Canyons', 'Silabati River Gorge', 'Sunset Viewpoint'],
+                coords: { lat: 22.8617, lng: 87.3512 }
+            },
             'kalimpong': {
                 title: 'Kalimpong',
-                category: 'hill station',
-                rating: '4.6 <span class="rating-dots" style="color:#008a05">★</span> (5,200+ Reviews)',
-                desc: 'A serene hill station known for its educational institutions, orchids, and panoramic views of the Himalayas.',
+                category: 'hill',
+                image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=500&auto=format&fit=crop&q=80',
+                rating: '4.6 ⭐ (5,200+ Reviews)',
+                desc: 'A serene Himalayan hill station known for historic monasteries, exotic orchid nurseries, and panoramic views of Kanchenjunga.',
+                highlights: ['Deolo Hill', 'Durpin Monastery', 'Pine View Nursery'],
                 coords: { lat: 27.0594, lng: 88.4695 }
             },
+            'darjeeling': {
+                title: 'Darjeeling Himalayan Hills',
+                category: 'hill',
+                image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=500&auto=format&fit=crop&q=80',
+                rating: '4.8 ⭐ (18,500+ Reviews)',
+                desc: 'The Queen of the Hills, home to the UNESCO World Heritage Toy Train, sprawling emerald tea estates, and Tiger Hill golden sunrises.',
+                highlights: ['DHR Toy Train', 'Batasia Loop', 'Tiger Hill Sunrise'],
+                coords: { lat: 27.0360, lng: 88.2627 }
+            },
             'bishnupur': {
-                title: 'Bishnupur',
+                title: 'Bishnupur Terracotta Temples',
                 category: 'heritage',
-                rating: '4.7 <span class="rating-dots" style="color:#008a05">★</span> (4,800+ Reviews)',
-                desc: 'Famous for its terracotta temples built by the Malla rulers, classical music, and Baluchari sarees.',
+                image: 'https://images.unsplash.com/photo-1599837965416-092523b03657?w=500&auto=format&fit=crop&q=80',
+                rating: '4.7 ⭐ (4,800+ Reviews)',
+                desc: 'Legendary 17th-century terracotta temples built by the Malla dynasty, famous for Rasmancha, Jor Bangla, and Baluchari silk weavers.',
+                highlights: ['Rasmancha', 'Jor Bangla Temple', 'Baluchari Silk'],
                 coords: { lat: 23.0784, lng: 87.3204 }
             },
-            'cooch_behar': {
-                title: 'Cooch Behar Palace',
+            'sundarbans': {
+                title: 'Sundarbans Biosphere Reserve',
+                category: 'wildlife',
+                image: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=500&auto=format&fit=crop&q=80',
+                rating: '4.8 ⭐ (12,500+ Reviews)',
+                desc: 'The world\'s largest coastal mangrove forest and protected sanctuary for the iconic Royal Bengal Tiger, estuarine crocodiles, and spotted deer.',
+                highlights: ['Mangrove Boat Safari', 'Royal Bengal Tigers', 'Sajnekhali Watchtower'],
+                coords: { lat: 21.9497, lng: 88.8724 }
+            },
+            'victoria': {
+                title: 'Victoria Memorial Palace',
                 category: 'heritage',
-                rating: '4.5 <span class="rating-dots" style="color:#008a05">★</span> (3,900+ Reviews)',
-                desc: 'A magnificent palace modeled after Buckingham Palace, reflecting the grandeur of the Koch dynasty.',
+                image: 'https://images.unsplash.com/photo-1558431382-27e303142255?w=500&auto=format&fit=crop&q=80',
+                rating: '4.8 ⭐ (35,000+ Reviews)',
+                desc: 'A magnificent white Makrana marble monument in Kolkata surrounded by lush 64-acre gardens, celebrating Bengal\'s cultural renaissance.',
+                highlights: ['Makrana Marble Dome', 'Royal Gallery', 'Illuminated Night Gardens'],
+                coords: { lat: 22.5448, lng: 88.3426 }
+            },
+            'digha': {
+                title: 'Digha Coastal Beach',
+                category: 'beach',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&auto=format&fit=crop&q=80',
+                rating: '4.4 ⭐ (22,000+ Reviews)',
+                desc: 'Bengal\'s premier seaside destination with flat sandy shores, safe gentle surf, marine aquariums, and the scenic Marine Drive.',
+                highlights: ['New Digha Sea Beach', 'Marine Aquarium', 'Udaipur Beach Seafood'],
+                coords: { lat: 21.6266, lng: 87.5074 }
+            },
+            'cooch_behar': {
+                title: 'Cooch Behar Royal Palace',
+                category: 'heritage',
+                image: 'https://images.unsplash.com/photo-1598890777032-bde835ba27c2?w=500&auto=format&fit=crop&q=80',
+                rating: '4.6 ⭐ (3,900+ Reviews)',
+                desc: 'A grand Classical Renaissance palace modeled after Buckingham Palace, celebrating the regal Koch Dynasty of North Bengal.',
+                highlights: ['Classical Renaissance Arch', 'Royal Durbar Hall', 'Palace Lake Gardens'],
                 coords: { lat: 26.3262, lng: 89.4452 }
             },
             'jaldapara': {
                 title: 'Jaldapara National Park',
                 category: 'wildlife',
-                rating: '4.7 <span class="rating-dots" style="color:#008a05">★</span> (6,100+ Reviews)',
-                desc: 'Home to the largest population of the Indian one-horned rhinoceros in the state, offering exciting elephant safaris.',
+                image: 'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?w=500&auto=format&fit=crop&q=80',
+                rating: '4.7 ⭐ (6,100+ Reviews)',
+                desc: 'Located at the foothills of Eastern Himalayas in Dooars, harboring the largest population of Great Indian One-Horned Rhinoceros in Bengal.',
+                highlights: ['One-Horned Rhinos', 'Hollong Elephant Safari', 'Dooars Savannah Grasslands'],
                 coords: { lat: 26.6806, lng: 89.2801 }
             },
-            'belur_math': {
-                title: 'Belur Math',
-                category: 'pilgrimage',
-                rating: '4.9 <span class="rating-dots" style="color:#008a05">★</span> (15,000+ Reviews)',
-                desc: 'The headquarters of the Ramakrishna Math and Mission, featuring architecture that fuses Hindu, Islamic, and Christian motifs.',
-                coords: { lat: 22.6322, lng: 88.3562 }
-            },
-            'dakshineswar': {
-                title: 'Dakshineswar Kali Temple',
-                category: 'pilgrimage',
-                rating: '4.8 <span class="rating-dots" style="color:#008a05">★</span> (20,000+ Reviews)',
-                desc: 'A historic Hindu navaratna temple situated on the eastern bank of the Hooghly River, closely associated with Ramakrishna Paramahamsa.',
-                coords: { lat: 22.6543, lng: 88.3575 }
-            },
-            'kurseong': {
-                title: 'Kurseong',
-                category: 'hill station',
-                rating: '4.5 <span class="rating-dots" style="color:#008a05">★</span> (2,500+ Reviews)',
-                desc: 'Known as the Land of White Orchids, a quiet hill station offering beautiful viewpoints, tea estates, and pleasant weather.',
-                coords: { lat: 26.8824, lng: 88.2800 }
-            },
-            'gorumara': {
-                title: 'Gorumara National Park',
-                category: 'wildlife',
-                rating: '4.6 <span class="rating-dots" style="color:#008a05">★</span> (4,200+ Reviews)',
-                desc: 'A medium-sized park located in the Dooars region, primarily known for its population of Indian rhinoceros and lush green forests.',
-                coords: { lat: 26.7570, lng: 88.8041 }
-            },
-            'mukutmanipur': {
-                title: 'Mukutmanipur',
-                category: 'nature',
-                rating: '4.4 <span class="rating-dots" style="color:#008a05">★</span> (3,100+ Reviews)',
-                desc: 'Features the second biggest earth dam in India, offering serene boating experiences and beautiful sunsets over the massive reservoir.',
-                coords: { lat: 22.9566, lng: 86.7794 }
-            },
-            'mayapur': {
-                title: 'Mayapur',
-                category: 'pilgrimage',
-                rating: '4.8 <span class="rating-dots" style="color:#008a05">★</span> (11,000+ Reviews)',
-                desc: 'The global headquarters of ISKCON. A vibrant spiritual hub on the banks of the Ganges, attracting devotees from all over the world.',
-                coords: { lat: 23.4246, lng: 88.3897 }
-            },
-
-            'sundarbans': {
-                title: 'Sundarbans National Park',
-                category: 'wildlife',
-                rating: '4.8 <span class="rating-dots" style="color:#008a05">●●●●●</span> (12,500+ Reviews)',
-                desc: 'The largest mangrove forest in the world and home to the majestic Royal Bengal Tiger. Experience thrilling boat safaris through the dense river network.',
-                highlights: ['Mangrove Forest', 'Royal Bengal Tigers', 'Boat Safari'],
-                images: [],
-                customEmbedUrl: 'https://maps.google.com/maps?q=Sundarbans+National+Park&t=&z=10&ie=UTF8&iwloc=B&output=embed',
-                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Sundarbans+National+Park',
-                coords: { lat: 21.9497, lng: 88.8724 },
-                address: 'Dayapur, Gosaba, West Bengal',
-                hours: '08:00 AM - 05:00 PM',
-                phone: 'Not available',
-                website: 'wbtourism.gov.in',
-                reviewsData: [
-                    { name: 'Arindam Ghosh', rating: 5, time: '2 weeks ago', text: 'An absolutely mesmerizing experience. The boat safari through the dense mangroves was surreal. We were lucky enough to spot a Royal Bengal Tiger on our second day! The guides are very knowledgeable about the local ecosystem.', color: '#3b82f6' },
-                    { name: 'Priya Sen', rating: 5, time: '1 month ago', text: 'Beautiful place. The silence of the forest is only broken by bird calls and the splashing of water. Stayed at a local eco-resort and the hospitality was top notch. A must-visit for wildlife photography enthusiasts.', color: '#10b981' },
-                    { name: 'Rahul Chatterjee', rating: 4, time: '3 months ago', text: 'Great biodiversity. Didn\'t see a tiger, but saw plenty of crocodiles, deer, and exotic birds. The sheer scale of the mangrove forest is humbling. Make sure to carry mosquito repellent!', color: '#8b5cf6' }
-                ]
-            },
-            'darjeeling': {
-                title: 'Darjeeling',
-                category: 'hill',
-                rating: '4.7 <span class="rating-dots" style="color:#008a05">●●●●●</span> (8,200+ Reviews)',
-                desc: 'Known as the Queen of the Hills, famous for its tea gardens, the historic Toy Train, and breathtaking sunrise views over Mount Kanchenjunga from Tiger Hill.',
-                highlights: ['Toy Train', 'Tiger Hill Sunrise', 'Tea Gardens'],
-                images: [],
-                customEmbedUrl: 'https://maps.google.com/maps?q=Darjeeling&t=&z=13&ie=UTF8&iwloc=B&output=embed',
-                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Darjeeling',
-                coords: { lat: 27.0360, lng: 88.2627 },
-                address: 'Darjeeling, West Bengal',
-                hours: 'Open 24 hours',
-                phone: 'Not available',
-                website: 'wbtourism.gov.in',
-                reviewsData: [
-                    { name: 'Sarah Williams', rating: 5, time: '1 week ago', text: 'Darjeeling is magical! Waking up at 4 AM to see the sunrise at Tiger Hill was totally worth it. The view of Kanchenjunga turning golden is something I will never forget.', color: '#f43f5e' },
-                    { name: 'Sayan Mitra', rating: 5, time: '2 months ago', text: 'The Joy Ride on the heritage Toy Train from Ghoom to Darjeeling is a timeless experience. The weather was perfect, misty and cool. Don\'t forget to try the authentic Darjeeling tea at Glenary\'s!', color: '#eab308' },
-                    { name: 'Aditi Roy', rating: 4, time: '4 months ago', text: 'Gorgeous views of the Himalayas and lush green tea estates. The mall road is quite bustling with great cafes. The only downside is the traffic congestion in the main town area during peak season.', color: '#06b6d4' }
-                ]
-            },
-            'victoria': {
-                title: 'Victoria Memorial',
-                category: 'heritage',
-                rating: '4.8 <span class="rating-dots" style="color:#008a05">●●●●●</span> (35,000+ Reviews)',
-                desc: 'An iconic marble building in Kolkata built in memory of Queen Victoria. It is a stunning piece of colonial architecture surrounded by beautiful gardens.',
-                highlights: ['Colonial Architecture', 'Museum', 'Gardens'],
-                images: [],
-                customEmbedUrl: 'https://maps.google.com/maps?q=Victoria+Memorial+Kolkata&t=&z=15&ie=UTF8&iwloc=B&output=embed',
-                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Victoria+Memorial+Kolkata',
-                coords: { lat: 22.5448, lng: 88.3426 },
-                address: 'Maidan, Kolkata, West Bengal 700071',
-                hours: '10:00 AM - 06:00 PM',
-                phone: '+91 33 2223 1890',
-                website: 'victoriamemorial-cal.org',
-                reviewsData: [
-                    { name: 'Ananya Das', rating: 5, time: '3 days ago', text: 'A stunning piece of architecture that stands as a symbol of Kolkata\'s colonial past. The white marble is impeccably maintained, and the surrounding gardens are perfect for a winter afternoon stroll.', color: '#ec4899' },
-                    { name: 'David Smith', rating: 5, time: '1 month ago', text: 'The museum inside is highly informative and houses a vast collection of paintings, weapons, and artifacts from the British era. The light and sound show in the evening is a nice touch.', color: '#64748b' },
-                    { name: 'Kunal Banerjee', rating: 4, time: '2 months ago', text: 'Very photogenic and well-kept. The 16-foot tall bronze figure of Victoria at the top of the dome is majestic. It gets quite crowded on weekends, so early morning visits are recommended.', color: '#14b8a6' }
-                ]
-            },
-            'digha': {
-                title: 'Digha Beach',
-                category: 'beach',
-                rating: '4.3 <span class="rating-dots" style="color:#008a05">●●●●○</span> (22,000+ Reviews)',
-                desc: 'West Bengal\'s most popular seaside resort town, featuring a long coastline, calm waters, and spectacular sunrise views over the Bay of Bengal.',
-                highlights: ['Sea Beach', 'Marine Aquarium', 'Seafood'],
-                images: [],
-                customEmbedUrl: 'https://maps.google.com/maps?q=Digha+Beach&t=&z=13&ie=UTF8&iwloc=B&output=embed',
-                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Digha+Beach',
-                coords: { lat: 21.6266, lng: 87.5074 },
-                address: 'Digha, Purba Medinipur, West Bengal',
-                hours: 'Open 24 hours',
-                phone: 'Not available',
-                website: 'wbtourism.gov.in',
-                reviewsData: [
-                    { name: 'Subhojit Sarkar', rating: 4, time: '1 week ago', text: 'The most accessible weekend getaway from Kolkata. The new marine drive project makes the coastline look beautiful. Enjoyed the fresh fried seafood right on the beach at Udaipur.', color: '#f97316' },
-                    { name: 'Neha Gupta', rating: 5, time: '3 weeks ago', text: 'Digha has changed a lot! It\'s much cleaner now. The sunrise view from Old Digha beach is breathtaking. The Amarabati Park and the Marine Aquarium are great for kids.', color: '#84cc16' },
-                    { name: 'Ravi Verma', rating: 4, time: '5 months ago', text: 'Good place for a quick trip. The sea is usually calm, making it safe for bathing. New Digha is a bit less crowded and has better hotels compared to the old town.', color: '#6366f1' }
-                ]
-            },
             'shantiniketan': {
-                title: 'Shantiniketan',
+                title: 'Shantiniketan Tagore Ashram',
                 category: 'heritage',
-                rating: '4.6 <span class="rating-dots" style="color:#008a05">●●●●○</span> (15,200+ Reviews)',
-                desc: 'A neighborhood of Bolpur established by Maharshi Devendranath Tagore, and later expanded by Rabindranath Tagore whose vision became the renowned Visva-Bharati University.',
-                highlights: ['Visva-Bharati', 'Tagore Ashram', 'Kopai River'],
-                images: [],
-                customEmbedUrl: 'https://maps.google.com/maps?q=Shantiniketan&t=&z=13&ie=UTF8&iwloc=B&output=embed',
-                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Shantiniketan',
-                coords: { lat: 23.6823, lng: 87.6749 },
-                address: 'Bolpur, Birbhum, West Bengal',
-                hours: '10:00 AM - 05:00 PM (Closed Wed)',
-                phone: '+91 3463 262 751',
-                website: 'visvabharati.ac.in',
-                reviewsData: [
-                    { name: 'Koushik Sen', rating: 5, time: '2 weeks ago', text: 'Peaceful and culturally enriching. The open-air classrooms under the trees are a beautiful sight.', color: '#a855f7' }
-                ]
-            },
-            'murshidabad': {
-                title: 'Hazarduari Palace',
-                category: 'heritage',
-                rating: '4.5 <span class="rating-dots" style="color:#008a05">●●●●○</span> (10,400+ Reviews)',
-                desc: 'The palace with a thousand doors. Built in the 19th century, it is a magnificent testament to Nawabi architecture and now serves as a sprawling museum.',
-                highlights: ['1000 Doors', 'Museum', 'Nawabi Heritage'],
-                images: [],
-                customEmbedUrl: 'https://maps.google.com/maps?q=Hazarduari+Palace&t=&z=15&ie=UTF8&iwloc=B&output=embed',
-                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Hazarduari+Palace',
-                coords: { lat: 24.1874, lng: 88.2678 },
-                address: 'Murshidabad, West Bengal',
-                hours: '09:00 AM - 05:00 PM (Closed Fri)',
-                phone: 'Not available',
-                website: 'wbtourism.gov.in',
-                reviewsData: [
-                    { name: 'Amit Jha', rating: 4, time: '1 month ago', text: 'Stunning palace with incredible history. The armory and the library collections are fascinating.', color: '#ef4444' }
-                ]
+                image: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=500&auto=format&fit=crop&q=80',
+                rating: '4.7 ⭐ (15,200+ Reviews)',
+                desc: 'UNESCO World Heritage open-air cultural university founded by Nobel Laureate Rabindranath Tagore, celebrating art, music, and nature.',
+                highlights: ['Visva-Bharati Ashram', 'Kala Bhavana', 'Kopai River Sonajhuri Haat'],
+                coords: { lat: 23.6823, lng: 87.6749 }
             },
             'mandarmani': {
-                title: 'Mandarmani Beach',
+                title: 'Mandarmani Drivable Beach',
                 category: 'beach',
-                rating: '4.2 <span class="rating-dots" style="color:#008a05">●●●●○</span> (8,000+ Reviews)',
-                desc: 'A seaside resort village boasting the longest driveable beach in India. Known for its quiet atmosphere and countless red crabs crawling on the sand.',
-                highlights: ['Driveable Beach', 'Quiet Atmosphere', 'Red Crabs'],
-                images: [],
-                customEmbedUrl: 'https://maps.google.com/maps?q=Mandarmani&t=&z=13&ie=UTF8&iwloc=B&output=embed',
-                mapUrl: 'https://www.google.com/maps/search/?api=1&query=Mandarmani',
-                coords: { lat: 21.6669, lng: 87.6976 },
-                address: 'Mandarmani, Purba Medinipur, West Bengal',
-                hours: 'Open 24 hours',
-                phone: 'Not available',
-                website: 'wbtourism.gov.in',
-                reviewsData: [
-                    { name: 'Sreya Guha', rating: 5, time: '3 weeks ago', text: 'Much cleaner and less crowded than Digha. Driving on the beach was a thrilling experience!', color: '#0ea5e9' }
-                ]
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&auto=format&fit=crop&q=80',
+                rating: '4.5 ⭐ (8,000+ Reviews)',
+                desc: 'A quiet coastal resort village featuring India\'s longest drivable beach, thrilling water sports, and millions of red ghost crabs.',
+                highlights: ['Drivable Beach Sands', 'Red Ghost Crabs', 'Luxury Beach Resorts'],
+                coords: { lat: 21.6669, lng: 87.6976 }
+            },
+            'hazarduari': {
+                title: 'Hazarduari Palace Murshidabad',
+                category: 'heritage',
+                image: 'https://images.unsplash.com/photo-1598890777032-bde835ba27c2?w=500&auto=format&fit=crop&q=80',
+                rating: '4.6 ⭐ (10,400+ Reviews)',
+                desc: 'The palace with 1,000 doors (900 real and 100 false) built by Nawab Nazim Humayun Jah, housing a priceless armory and royal antiquities.',
+                highlights: ['1,000 Doors', 'Nawabi Weapon Armory', 'Bhagirathi River Ghat'],
+                coords: { lat: 24.1874, lng: 88.2678 }
             }
         };
 
@@ -7238,6 +7679,7 @@ document.addEventListener('keydown', (e) => {
         // Add markers for all places
         const markers = {};
         
+                // Render High-Definition Travel Explorer Cards
         function renderExplorerCards() {
             const container = document.getElementById('explorer-cards-container');
             if(!container) return;
@@ -7246,34 +7688,22 @@ document.addEventListener('keydown', (e) => {
             for (const [id, place] of Object.entries(placesData)) {
                 html += `
                 <div class="explorer-card" id="card-${id}" onclick="selectPlace('${id}')" data-category="${place.category}">
-                    <div style="height: 140px; background: #334155; display: flex; align-items: center; justify-content: center; font-size: 40px;">
-                        ${place.category === 'wildlife' ? '🐅' : place.category === 'hill' ? '⛰️' : place.category === 'heritage' ? '🏛️' : place.category === 'beach' ? '🏖️' : '🗺️'}
+                    <div class="explorer-card__thumb-box">
+                        <img src="${place.image}" alt="${place.title}" class="explorer-card__img-real" loading="lazy" onerror="this.src='assets/agents/bibek.jpg'">
+                        <span class="category-badge-chip">${place.category}</span>
                     </div>
-                    <div class="heart-icon">♡</div>
                     <div class="explorer-card__content">
                         <div class="explorer-card__header">
                             <div class="explorer-card__title">${place.title}</div>
-                            <div class="explorer-card__price" style="text-transform: capitalize;">${place.category}</div>
                         </div>
                         <div class="explorer-card__rating">
-                            ${place.rating}
+                            <span style="color: #facc15; font-weight: 700;">${place.rating}</span>
                         </div>
-                        <div class="explorer-card__desc">
-                            ${place.desc}
-                        </div>
-                        
+                        <div class="explorer-card__desc">${place.desc}</div>
                         <div class="explorer-card__actions">
-                            <button class="btn-outline" onclick="toggleDetails(event, '${id}')">View Details ⌄</button>
-                            <button class="btn-primary-green" onclick="getIntegratedDirections(event, '${id}')">Get Directions</button>
+                            <button class="btn-outline-pro" onclick="event.stopPropagation(); selectPlace('${id}')">🧭 Focus Pin</button>
+                            <button class="btn-primary-cyan" onclick="event.stopPropagation(); openDirections('${id}')">📍 Open Route</button>
                         </div>
-                    </div>
-
-                    <!-- Inline Details Accordion -->
-                    <div class="inline-details" id="inline-details-${id}">
-                        <div class="inline-gallery" id="inline-gallery-${id}"></div>
-                        <div style="font-size: 13px; color: #555; margin-bottom: 8px;" id="inline-desc-${id}"></div>
-                        <div style="font-size: 13px; font-weight: 600; color: #008a05; margin-bottom: 4px;">Highlights:</div>
-                        <ul style="font-size: 13px; color: #555; padding-left: 16px; margin: 0 0 12px 0;" id="inline-highlights-${id}"></ul>
                     </div>
                 </div>
                 `;
@@ -8288,6 +8718,275 @@ document.addEventListener('keydown', (e) => {
         }
         .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame {
             display: none !important;
+        }
+
+
+        /* ========================================================
+           🗺️ PRO CYBER-TRAVEL GIS MAP & HD DESTINATION CARDS
+           (Replaces Childish Layout with Modern Pro-App GIS Interface)
+           ======================================================== */
+        
+        .map-explorer-wrapper {
+            background: #090d16;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .map-explorer {
+            display: flex;
+            height: 650px;
+            background: #0b1120;
+            width: 100%;
+        }
+
+        .map-explorer__list {
+            width: 46%;
+            height: 100%;
+            overflow-y: auto;
+            padding: 16px;
+            background: #090d16;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .map-explorer__map {
+            width: 54%;
+            height: 100%;
+            position: relative;
+            background: #0f172a;
+        }
+
+        /* Pro Category Filter Chips */
+        #map-category-filters {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            scrollbar-width: none;
+        }
+        #map-category-filters::-webkit-scrollbar { display: none; }
+        .map-filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #94a3b8;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .map-filter-btn:hover {
+            border-color: #38bdf8;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+        }
+        .map-filter-btn.active {
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            border-color: #38bdf8;
+            color: #090d16;
+            font-weight: 800;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+        }
+
+        /* Pro Search Box */
+        .explorer-search-box {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+            width: 100%;
+        }
+        .explorer-search-input {
+            flex: 1;
+            padding: 10px 14px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 13.5px;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .explorer-search-input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+            background: rgba(0,0,0,0.5);
+        }
+        #explorer-search-btn {
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            color: #090d16;
+            border: none;
+            padding: 0 18px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        #explorer-search-btn:hover { transform: scale(1.02); }
+
+        .explorer-header-title {
+            color: #38bdf8;
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin-bottom: 10px;
+        }
+
+        /* Pro Travel Cards */
+        .explorer-card {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.9), rgba(15, 23, 42, 0.95));
+            border: 1px solid rgba(56, 189, 248, 0.18);
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            gap: 12px;
+            align-items: stretch;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .explorer-card:hover {
+            border-color: #38bdf8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(56, 189, 248, 0.15);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 1));
+        }
+        .explorer-card.active {
+            border-color: #38bdf8;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+            border-left: 4px solid #38bdf8;
+        }
+
+        .explorer-card__thumb-box {
+            width: 95px;
+            min-width: 95px;
+            height: 95px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            background: #1e293b;
+        }
+        .explorer-card__img-real {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .explorer-card:hover .explorer-card__img-real {
+            transform: scale(1.08);
+        }
+        .category-badge-chip {
+            position: absolute;
+            bottom: 4px;
+            left: 4px;
+            background: rgba(9, 13, 22, 0.85);
+            backdrop-filter: blur(4px);
+            color: #38bdf8;
+            font-size: 8.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .explorer-card__content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-width: 0;
+        }
+        .explorer-card__title {
+            color: #f8fafc;
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 2px;
+        }
+        .explorer-card__rating {
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+        .explorer-card__desc {
+            color: #94a3b8;
+            font-size: 11.5px;
+            line-height: 1.35;
+            margin-bottom: 6px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .explorer-card__actions {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .btn-outline-pro {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-outline-pro:hover {
+            border-color: #38bdf8;
+            color: #38bdf8;
+        }
+        .btn-primary-cyan {
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            border: none;
+            color: #090d16;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-primary-cyan:hover { transform: scale(1.03); }
+
+        /* Mobile Layout */
+        @media (max-width: 768px) {
+            .map-explorer {
+                flex-direction: column !important;
+                height: auto !important;
+            }
+            .map-explorer__map {
+                width: 100% !important;
+                height: 220px !important;
+                order: 1 !important;
+                border-bottom: 1px solid rgba(56, 189, 248, 0.2) !important;
+            }
+            .map-explorer__list {
+                width: 100% !important;
+                order: 2 !important;
+                padding: 10px 6px !important;
+                overflow-y: visible !important;
+            }
+            .explorer-card__thumb-box {
+                width: 80px !important;
+                min-width: 80px !important;
+                height: 80px !important;
+            }
         }
 
 </style>
