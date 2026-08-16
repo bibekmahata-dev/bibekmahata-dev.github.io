@@ -10209,31 +10209,91 @@ function renderCompareCard(m, cardEl) {
     `;
 }
 
-// ======================================
-// LOCAL STORAGE HYPES SYSTEM (STARTS AT 0, CAPS AT 99+)
-// ======================================
+// ================================================================
+// 🌐 GLOBAL REAL-TIME CLOUD HYPES ENGINE (SYNCS ACROSS ALL PHONES)
+// ================================================================
 function formatLikes(count) {
-    if (count >= 99) return "99+";
+    if (count >= 999) return "999+";
     return count;
 }
 
+// In-memory global cache + local persistence
+let globalHypeCache = {};
+
 function getHypes() {
     try {
-        return JSON.parse(localStorage.getItem('bengal_hypes_v2')) || {};
+        const local = JSON.parse(localStorage.getItem('bengal_global_hypes_v3')) || {};
+        return { ...local, ...globalHypeCache };
     } catch (e) {
-        return {};
+        return globalHypeCache;
     }
 }
 
-function saveHype(id) {
+// Increment Hype locally & broadcast to Cloud API
+async function saveHype(id) {
     playClickSound();
     const hypes = getHypes();
-    const current = hypes[id] || 0;
-    const newCount = Math.min(100, current + 1);
-    hypes[id] = newCount;
-    localStorage.setItem('bengal_hypes_v2', JSON.stringify(hypes));
-    return newCount;
+    const current = (hypes[id] || 0) + 1;
+    hypes[id] = current;
+    globalHypeCache[id] = current;
+    localStorage.setItem('bengal_global_hypes_v3', JSON.stringify(hypes));
+
+    // Send Live Upvote to Cloud Counter API (Non-blocking async)
+    try {
+        fetch(`https://api.counterapi.dev/v1/bengal_squad_${id}/up`, { mode: 'cors' })
+            .then(res => res.json())
+            .then(data => {
+                if (data && typeof data.count === 'number') {
+                    globalHypeCache[id] = Math.max(data.count, current);
+                    localStorage.setItem('bengal_global_hypes_v3', JSON.stringify(globalHypeCache));
+                    updateLiveHypeCounters();
+                }
+            })
+            .catch(() => { /* offline fallback maintained */ });
+    } catch (err) {}
+
+    return current;
 }
+
+// Fetch Global Live Hypes from Cloud for all 15 members
+async function fetchGlobalLiveHypes() {
+    if (typeof MEMBERS === 'undefined') return;
+    
+    for (const m of MEMBERS) {
+        try {
+            fetch(`https://api.counterapi.dev/v1/bengal_squad_${m.id}`, { mode: 'cors' })
+                .then(res => res.json())
+                .then(data => {
+                    if (data && typeof data.count === 'number') {
+                        const local = getHypes()[m.id] || 0;
+                        globalHypeCache[m.id] = Math.max(data.count, local);
+                        localStorage.setItem('bengal_global_hypes_v3', JSON.stringify(globalHypeCache));
+                        updateLiveHypeCounters();
+                    }
+                })
+                .catch(() => {});
+        } catch (e) {}
+    }
+}
+
+// Refresh UI badges & Leaderboard without re-rendering entire DOM
+function updateLiveHypeCounters() {
+    const hypes = getHypes();
+    document.querySelectorAll('.hype-btn').forEach(btn => {
+        const id = btn.dataset.id;
+        if (id && hypes[id] !== undefined) {
+            const span = btn.querySelector('.hype-count');
+            if (span) span.textContent = formatLikes(hypes[id]);
+        }
+    });
+    if (typeof renderLeaderboard === 'function') {
+        renderLeaderboard();
+    }
+}
+
+// Background Live Sync: Poll cloud every 15 seconds so other phones get updates automatically
+setInterval(fetchGlobalLiveHypes, 15000);
+setTimeout(fetchGlobalLiveHypes, 1200);
 
 // ======================================
 // MODAL & PASS LOGIC
