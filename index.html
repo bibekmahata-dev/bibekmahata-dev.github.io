@@ -3896,6 +3896,39 @@
             }
         }
 
+
+        /* Multi-Device Station Board Responsiveness (Mobile, Tablet, Desktop, TV) */
+        #dynamic-train-list {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+            gap: 14px !important;
+            width: 100% !important;
+        }
+
+        @media (max-width: 640px) {
+            #dynamic-train-list {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+            .train-card {
+                padding: 12px !important;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            #dynamic-train-list {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            #dynamic-train-list {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+                gap: 18px !important;
+            }
+        }
+
 </style>
 </head>
 <body>
@@ -5996,10 +6029,44 @@
             }
         }
 
+
+        /* Multi-Device Station Board Responsiveness (Mobile, Tablet, Desktop, TV) */
+        #dynamic-train-list {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+            gap: 14px !important;
+            width: 100% !important;
+        }
+
+        @media (max-width: 640px) {
+            #dynamic-train-list {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+            .train-card {
+                padding: 12px !important;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            #dynamic-train-list {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            #dynamic-train-list {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+                gap: 18px !important;
+            }
+        }
+
 </style>
 
                     <script>
                         // Master West Bengal Multi-Station Schedule Dataset (KGP, GBA, VSU, HWH, SDAH)
+                        var currentStationFilter = 'KGP'; (KGP, GBA, VSU, HWH, SDAH)
                         const trainScheduleData = [
                             // --- KHARAGPUR (KGP) ---
                             { no: '12821', name: 'Dhauli Express', route: 'To Puri (via BBS)', time24: '09:20', displayTime: '09:20 AM', pf: '3', station: 'KGP' },
@@ -6162,6 +6229,33 @@
                             });
                             
                             container.innerHTML = html;
+                        }
+
+                        
+                        const stationNamesMap = {
+                            'KGP': 'KHARAGPUR (KGP)',
+                            'GBA': 'GARHBETA (GBA)',
+                            'VSU': 'BISHNUPUR (VSU)',
+                            'HWH': 'HOWRAH (HWH)',
+                            'SDAH': 'SEALDAH (SDAH)',
+                            'ALL': 'ALL STATIONS (SER / ER)'
+                        };
+
+                        function toggleStation() {
+                            const select = document.getElementById('station-toggle');
+                            if (!select) return;
+                            currentStationFilter = select.value;
+                            
+                            const display = document.getElementById('station-code-display');
+                            if (display) display.textContent = currentStationFilter;
+
+                            const clockStation = document.querySelector('#transit-section [style*="monospace"]');
+                            if (clockStation) {
+                                clockStation.textContent = 'STATION: ' + (stationNamesMap[currentStationFilter] || currentStationFilter);
+                            }
+                            
+                            updateUpcomingTrains();
+                            renderTrainPage();
                         }
 
                         function updateRealTimeClock() {
@@ -8591,8 +8685,8 @@ document.addEventListener('keydown', (e) => {
         L.control.zoom({ position: 'bottomright' }).addTo(map);
 
         // Ensure map renders properly on load & viewport resize
-        setTimeout(() => { if (window.map && typeof window.map.invalidateSize === 'function') window.if (window.map && typeof window.map.invalidateSize === 'function') window.map.invalidateSize(); }, 300);
-        window.addEventListener('resize', () => { if (window.map && typeof window.map.invalidateSize === 'function') window.if (window.map && typeof window.map.invalidateSize === 'function') window.map.invalidateSize(); });
+        setTimeout(() => { if (window.map && typeof window.map.invalidateSize === 'function') if (window.map && typeof window.map.invalidateSize === 'function') window.map.invalidateSize(); }, 300);
+        window.addEventListener('resize', () => { if (window.map && typeof window.map.invalidateSize === 'function') if (window.map && typeof window.map.invalidateSize === 'function') window.map.invalidateSize(); });
 
         // Add Layer Control
         const baseMaps = {
@@ -10028,6 +10122,39 @@ document.addEventListener('keydown', (e) => {
             .btn-focus-pin-pro {
                 font-size: 12px !important;
                 padding: 8px 10px !important;
+            }
+        }
+
+
+        /* Multi-Device Station Board Responsiveness (Mobile, Tablet, Desktop, TV) */
+        #dynamic-train-list {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+            gap: 14px !important;
+            width: 100% !important;
+        }
+
+        @media (max-width: 640px) {
+            #dynamic-train-list {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+            .train-card {
+                padding: 12px !important;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            #dynamic-train-list {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            #dynamic-train-list {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+                gap: 18px !important;
             }
         }
 
