@@ -13675,5 +13675,220 @@ document.addEventListener('keydown', (e) => {
         }
     </script>
 
+
+    <!-- ========================================================
+         🧲 VISITOR RETENTION ENGINE 5: GLOWING TOP SCROLL PROGRESS BAR
+         ======================================================== -->
+    <div id="scroll-progress-bar" style="position: fixed; top: 0; left: 0; height: 3.5px; width: 0%; background: linear-gradient(90deg, #38bdf8, #06b6d4, #10b981, #f59e0b); z-index: 99999999; box-shadow: 0 0 12px #38bdf8; transition: width 0.1s ease-out; pointer-events: none;"></div>
+
+    <!-- ========================================================
+         🧲 VISITOR RETENTION ENGINE 2: MY SAVED COMMUTES & FAVORITES MODAL
+         ======================================================== -->
+    <div id="saved-favorites-modal" style="display: none; position: fixed; inset: 0; z-index: 999999; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 16px;">
+        <div style="background: linear-gradient(145deg, #0f172a, #1e293b); border: 1px solid rgba(251, 191, 36, 0.4); border-radius: 20px; width: 100%; max-width: 520px; max-height: 85vh; display: flex; flex-direction: column; padding: 24px; box-shadow: 0 25px 60px rgba(0,0,0,0.8); position: relative; box-sizing: border-box;">
+            
+            <button onclick="closeSavedFavoritesModal()" style="position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;">✕</button>
+
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+                <span style="font-size: 28px;">⭐</span>
+                <div>
+                    <h3 style="color: #ffffff; font-size: 19px; font-weight: 800; font-family: var(--font-title); margin: 0;">My Saved Commutes & Trips</h3>
+                    <div style="color: #fbbf24; font-size: 11.5px;">Pinned routes & destinations saved in your browser memory</div>
+                </div>
+            </div>
+
+            <div id="saved-favorites-list" style="overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; padding-right: 4px;">
+                <!-- Injected by JS -->
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px;">
+                <span style="font-size: 11px; color: #94a3b8;">🔒 Stored 100% locally on your device</span>
+                <button onclick="clearAllSavedFavorites()" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #f87171; padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer;">Clear All</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================
+         🧲 VISITOR RETENTION ENGINE 3: SMART EXIT-INTENT MODAL
+         ======================================================== -->
+    <div id="exit-intent-modal" style="display: none; position: fixed; inset: 0; z-index: 999999; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 16px;">
+        <div style="background: linear-gradient(145deg, #0f172a, #1e293b); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 20px; width: 100%; max-width: 460px; padding: 26px; box-shadow: 0 25px 60px rgba(0,0,0,0.85); position: relative; text-align: center; box-sizing: border-box;">
+            
+            <button onclick="closeExitIntentModal()" style="position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;">✕</button>
+
+            <div style="font-size: 40px; margin-bottom: 8px;">⏳</div>
+            <h3 style="color: #ffffff; font-size: 21px; font-weight: 800; font-family: var(--font-title); margin: 0 0 6px 0;">Wait! Don't Lose Your Live Timetable</h3>
+            <p style="color: #94a3b8; font-size: 13px; line-height: 1.5; margin-bottom: 20px;">
+                Bookmark Bengal Explorers on your browser or save your route so you can check live train delays, bus departures, and weather on the go!
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
+                <button onclick="bookmarkPortalAction()" style="background: linear-gradient(135deg, #0ea5e9, #0284c7); color: #ffffff; border: none; padding: 12px; border-radius: 10px; font-size: 13.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35);">
+                    <span>⭐</span> Bookmark Portal (Ctrl + D)
+                </button>
+                <button onclick="openViralShareModal(); closeExitIntentModal();" style="background: #25D366; color: #ffffff; border: none; padding: 12px; border-radius: 10px; font-size: 13.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);">
+                    <span>💬</span> Send Link to My WhatsApp
+                </button>
+            </div>
+
+            <div style="font-size: 11px; color: #64748b;">
+                Free live public service maintained by Class 12 student creators • Paschim Medinipur
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================
+         🧲 RETENTION SCRIPTS SUITE (1, 2, 3, 4, 5)
+         ======================================================== -->
+    <script>
+        // --------------------------------------------------------
+        // 1. DYNAMIC TAB RE-ENGAGEMENT TITLE SWITCHER
+        // --------------------------------------------------------
+        const defaultPageTitle = document.title;
+        let tabFlippingTimer = null;
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                let flipState = false;
+                tabFlippingTimer = setInterval(() => {
+                    document.title = flipState ? '👋 Live Bengal Transit Waiting... 🚆' : '⚡ Don\'t Forget Your Bengal Trip! 🗺️';
+                    flipState = !flipState;
+                }, 1800);
+            } else {
+                if (tabFlippingTimer) clearInterval(tabFlippingTimer);
+                document.title = defaultPageTitle;
+            }
+        });
+
+        // --------------------------------------------------------
+        // 5. GLOWING TOP SCROLL PROGRESS BAR
+        // --------------------------------------------------------
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            if (height > 0) {
+                const scrolled = (winScroll / height) * 100;
+                const bar = document.getElementById('scroll-progress-bar');
+                if (bar) bar.style.width = scrolled + '%';
+            }
+        });
+
+        // --------------------------------------------------------
+        // 2. MY SAVED COMMUTES & FAVORITES ENGINE
+        // --------------------------------------------------------
+        function getStoredFavorites() {
+            try {
+                return JSON.parse(localStorage.getItem('bengal_saved_favorites') || '[]');
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveFavoriteItem(type, id, title, subtitle) {
+            let list = getStoredFavorites();
+            const exists = list.some(item => item.id === id);
+
+            if (exists) {
+                list = list.filter(item => item.id !== id);
+                localStorage.setItem('bengal_saved_favorites', JSON.stringify(list));
+                showQuickToast('Removed from Saved Favorites ⭐');
+            } else {
+                list.push({ type, id, title, subtitle, savedAt: new Date().toLocaleDateString() });
+                localStorage.setItem('bengal_saved_favorites', JSON.stringify(list));
+                showQuickToast('Saved to My Favorites! ⭐');
+            }
+            updateSavedFavoritesBadge();
+        }
+
+        function updateSavedFavoritesBadge() {
+            const count = getStoredFavorites().length;
+            const badge = document.getElementById('saved-favorites-count-badge');
+            if (badge) badge.textContent = count;
+        }
+
+        function openSavedFavoritesModal() {
+            const modal = document.getElementById('saved-favorites-modal');
+            const listEl = document.getElementById('saved-favorites-list');
+            if (!modal || !listEl) return;
+
+            const items = getStoredFavorites();
+            if (items.length === 0) {
+                listEl.innerHTML = `
+                    <div style="text-align: center; padding: 30px 10px; color: #94a3b8;">
+                        <div style="font-size: 32px; margin-bottom: 6px;">⭐</div>
+                        <div style="font-weight: 700; color: #ffffff; margin-bottom: 4px;">No saved trips or spots yet!</div>
+                        <div style="font-size: 12px;">Pin any train corridor, bus route, or destination for 1-tap quick access.</div>
+                    </div>
+                `;
+            } else {
+                listEl.innerHTML = items.map(item => `
+                    <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+                        <div>
+                            <div style="color: #ffffff; font-weight: 800; font-size: 14px;">${item.title}</div>
+                            <div style="color: #38bdf8; font-size: 11.5px; margin-top: 2px;">${item.subtitle}</div>
+                        </div>
+                        <button onclick="saveFavoriteItem('${item.type}', '${item.id}', '', '')" style="background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #f87171; padding: 4px 8px; border-radius: 6px; font-size: 11px; cursor: pointer;">Remove</button>
+                    </div>
+                `).join('');
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function closeSavedFavoritesModal() {
+            const modal = document.getElementById('saved-favorites-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function clearAllSavedFavorites() {
+            localStorage.removeItem('bengal_saved_favorites');
+            openSavedFavoritesModal();
+            updateSavedFavoritesBadge();
+            showQuickToast('All saved favorites cleared');
+        }
+
+        function showQuickToast(msg) {
+            let toast = document.getElementById('bengal-quick-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'bengal-quick-toast';
+                toast.style.cssText = 'position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); background: rgba(15, 23, 42, 0.95); border: 1px solid #38bdf8; color: #ffffff; padding: 10px 20px; border-radius: 20px; font-size: 12.5px; font-weight: 700; z-index: 9999999; box-shadow: 0 10px 30px rgba(0,0,0,0.6); pointer-events: none; transition: opacity 0.3s;';
+                document.body.appendChild(toast);
+            }
+            toast.textContent = msg;
+            toast.style.opacity = '1';
+            setTimeout(() => { toast.style.opacity = '0'; }, 2200);
+        }
+
+        // --------------------------------------------------------
+        // 3. SMART EXIT-INTENT MODAL TRIGGER
+        // --------------------------------------------------------
+        let exitModalTriggered = false;
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 15 && !exitModalTriggered && !sessionStorage.getItem('bengal_exit_seen')) {
+                exitModalTriggered = true;
+                sessionStorage.setItem('bengal_exit_seen', 'true');
+                const modal = document.getElementById('exit-intent-modal');
+                if (modal) modal.style.display = 'flex';
+            }
+        });
+
+        function closeExitIntentModal() {
+            const modal = document.getElementById('exit-intent-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function bookmarkPortalAction() {
+            alert('Press Ctrl + D (or Cmd + D on Mac) on your keyboard to bookmark Bengal Explorers! ⭐');
+            closeExitIntentModal();
+        }
+
+        // Auto-initialize badge on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSavedFavoritesBadge();
+        });
+        updateSavedFavoritesBadge();
+    </script>
+
 </body>
 </html>
