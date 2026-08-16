@@ -4609,11 +4609,14 @@
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <div style="font-size: 28px;">🚆</div>
-                            <h3 style="color: var(--text-primary); font-size: 22px; margin: 0; font-family: var(--font-title); font-weight: 700;"><span style="font-size: 24px;">🚂</span> Live Station Board (<span id="station-code-display">HWH</span>)
-    <select id="station-toggle" onchange="toggleStation()" style="margin-left: auto; padding: 6px 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 6px; outline: none; cursor: pointer; font-size: 13px;">
-        <option value="ALL">All Stations</option>
+                            <h3 style="color: var(--text-primary); font-size: 22px; margin: 0; font-family: var(--font-title); font-weight: 700;"><span style="font-size: 24px;">🚂</span> Live Station Board (<span id="station-code-display">KGP</span>)
+    <select id="station-toggle" onchange="toggleStation()" style="margin-left: auto; padding: 7px 14px; background: rgba(15,23,42,0.9); border: 1.5px solid #38bdf8; color: #ffffff; border-radius: 8px; outline: none; cursor: pointer; font-size: 13px; font-weight: 700; box-shadow: 0 2px 8px rgba(56,189,248,0.25);">
+        <option value="KGP" selected>Kharagpur (KGP)</option>
+        <option value="GBA">Garhbeta (GBA)</option>
+        <option value="VSU">Bishnupur (VSU)</option>
         <option value="HWH">Howrah (HWH)</option>
         <option value="SDAH">Sealdah (SDAH)</option>
+        <option value="ALL">All Stations</option>
     </select>
     </h3>
                         </div>
@@ -4628,7 +4631,7 @@
                         <div style="background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; min-width: 250px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);">
                             <div id="real-time-date" style="color: #94a3b8; font-size: 12px; text-transform: uppercase; font-weight: 600; letter-spacing: 1.5px; margin-bottom: 8px;"></div>
                             <div id="real-time-clock" style="color: #38bdf8; font-size: 32px; font-family: 'Space Grotesk', monospace; font-weight: 700; letter-spacing: 2px; text-shadow: 0 0 10px rgba(56,189,248,0.4);">--:--:-- --</div>
-                            <div style="color: rgba(255,255,255,0.5); font-size: 11px; margin-top: 8px; font-family: monospace;">STATION: HOWRAH (HWH)</div>
+                            <div style="color: rgba(255,255,255,0.5); font-size: 11px; margin-top: 8px; font-family: monospace;">STATION: KHARAGPUR (KGP)</div>
                         </div>
                         
                         <!-- Departures Board -->
@@ -5996,32 +5999,53 @@
 </style>
 
                     <script>
-                        // Expanded "API" Dataset for Howrah
+                        // Master West Bengal Multi-Station Schedule Dataset (KGP, GBA, VSU, HWH, SDAH)
                         const trainScheduleData = [
-                            { no: '12301', name: 'Howrah - New Delhi Rajdhani', route: 'To New Delhi', time24: '16:50', displayTime: '04:50 PM', pf: '9' },
-                            { no: '12245', name: 'Howrah - Yesvantpur Duronto', route: 'To Yesvantpur', time24: '10:50', displayTime: '10:50 AM', pf: '21' },
-                            { no: '12810', name: 'Howrah - Mumbai Mail', route: 'To Mumbai CSMT', time24: '19:50', displayTime: '07:50 PM', pf: '18' },
-                            { no: '12860', name: 'Gitanjali Express', route: 'To Mumbai CSMT', time24: '14:05', displayTime: '02:05 PM', pf: '21' },
-                            { no: '12841', name: 'Coromandel Express', route: 'To Chennai Central', time24: '15:20', displayTime: '03:20 PM', pf: '22' },
-                            { no: '12262', name: 'Howrah - CSMT Duronto Exp', route: 'To Mumbai CSMT', time24: '05:45', displayTime: '05:45 AM', pf: '20' },
-                            { no: '12019', name: 'Shatabdi Express', route: 'To Ranchi', time24: '06:05', displayTime: '06:05 AM', pf: '11' },
-                            { no: '22897', name: 'Kandari Express', route: 'To Digha', time24: '14:25', displayTime: '02:25 PM', pf: '19' },
-                            { no: '13005', name: 'Howrah - Amritsar Mail', route: 'To Amritsar', time24: '19:15', displayTime: '07:15 PM', pf: '8' },
-                            { no: '12321', name: 'Howrah - Mumbai Mail (via Chheoki)', route: 'To Mumbai CSMT', time24: '23:35', displayTime: '11:35 PM', pf: '9' },
-                            { no: '12837', name: 'Howrah - Puri SF Express', route: 'To Puri', time24: '22:40', displayTime: '10:40 PM', pf: '23' },
-                            { no: '12343', name: 'Darjeeling Mail', route: 'To NJP', time24: '22:05', displayTime: '10:05 PM', pf: '12' },
-                            { no: '12303', name: 'Poorva Express', route: 'To New Delhi', time24: '08:00', displayTime: '08:00 AM', pf: '9' },
-                            { no: '12222', name: 'Howrah - Pune Duronto Exp', route: 'To Pune', time24: '05:45', displayTime: '05:45 AM', pf: '20' },
-                            { no: '22301', name: 'Vande Bharat Express', route: 'To NJP', time24: '05:55', displayTime: '05:55 AM', pf: '11' },
-                            { no: '12339', name: 'Coalfield Express', route: 'To Dhanbad', time24: '17:20', displayTime: '05:20 PM', pf: '12' },
-                            { no: '22387', name: 'Black Diamond Express', route: 'To Dhanbad', time24: '06:15', displayTime: '06:15 AM', pf: '9' },
-                            { no: '12703', name: 'Falaknuma Express', route: 'To Secunderabad', time24: '08:35', displayTime: '08:35 AM', pf: '21' },
-                            { no: '12341', name: 'Agniveena Express', route: 'To Asansol', time24: '18:20', displayTime: '06:20 PM', pf: '12' },
-                            { no: '22321', name: 'Hool Express', route: 'To Siuri', time24: '06:45', displayTime: '06:45 AM', pf: '8' },
-                            { no: '12337', name: 'Santiniketan Express', route: 'To Bolpur', time24: '10:10', displayTime: '10:10 AM', pf: '12' },
-                            { no: '12857', name: 'Tamralipta Express', route: 'To Digha', time24: '10:35', displayTime: '10:35 AM', pf: '18' },
-                            { no: '12883', name: 'Rupasi Bangla Express', route: 'To Purulia', time24: '06:25', displayTime: '06:25 AM', pf: '22' },
-                            { no: '13019', name: 'Bagh Express', route: 'To Kathgodam', time24: '21:45', displayTime: '09:45 PM', pf: '8' }
+                            // --- KHARAGPUR (KGP) ---
+                            { no: '12821', name: 'Dhauli Express', route: 'To Puri (via BBS)', time24: '09:20', displayTime: '09:20 AM', pf: '3', station: 'KGP' },
+                            { no: '12871', name: 'Ispat Express', route: 'To Titlagarh / Rourkela', time24: '08:35', displayTime: '08:35 AM', pf: '2', station: 'KGP' },
+                            { no: '12841', name: 'Coromandel Express', route: 'To Chennai Central', time24: '17:05', displayTime: '05:05 PM', pf: '1', station: 'KGP' },
+                            { no: '12703', name: 'Falaknuma Express', route: 'To Secunderabad', time24: '10:15', displayTime: '10:15 AM', pf: '1', station: 'KGP' },
+                            { no: '12813', name: 'Steel Express', route: 'To Tatanagar', time24: '19:25', displayTime: '07:25 PM', pf: '2', station: 'KGP' },
+                            { no: '38703', name: 'Howrah - Kharagpur Local', route: 'To Kharagpur Jn', time24: '08:00', displayTime: '08:00 AM', pf: '4', station: 'KGP' },
+                            { no: '38805', name: 'Howrah - Medinipur Local', route: 'To Medinipur (via KGP)', time24: '07:15', displayTime: '07:15 AM', pf: '5', station: 'KGP' },
+                            { no: '12883', name: 'Rupashi Bangla Express', route: 'To Purulia (via GBA, VSU)', time24: '07:55', displayTime: '07:55 AM', pf: '2', station: 'KGP' },
+
+                            // --- GARHBETA (GBA) ---
+                            { no: '12883', name: 'Rupashi Bangla Express', route: 'To Purulia (via Bishnupur, Bankura)', time24: '08:42', displayTime: '08:42 AM', pf: '2', station: 'GBA' },
+                            { no: '12884', name: 'Rupashi Bangla Express', route: 'To Howrah Jn', time24: '18:25', displayTime: '06:25 PM', pf: '1', station: 'GBA' },
+                            { no: '12885', name: 'Aranyak Express', route: 'To Bhojudih (via Adra)', time24: '10:18', displayTime: '10:18 AM', pf: '2', station: 'GBA' },
+                            { no: '12886', name: 'Aranyak Express', route: 'To Shalimar (Kolkata)', time24: '16:32', displayTime: '04:32 PM', pf: '1', station: 'GBA' },
+                            { no: '12827', name: 'Purulia Express', route: 'To Purulia Jn', time24: '19:05', displayTime: '07:05 PM', pf: '2', station: 'GBA' },
+                            { no: '12828', name: 'Purulia Express', route: 'To Howrah Jn', time24: '08:15', displayTime: '08:15 AM', pf: '1', station: 'GBA' },
+                            { no: '58015', name: 'Shiromani Fast Passenger', route: 'To Adra (via Bishnupur)', time24: '19:48', displayTime: '07:48 PM', pf: '2', station: 'GBA' },
+                            { no: '68089', name: 'KGP - Adra MEMU', route: 'To Adra Jn', time24: '06:10', displayTime: '06:10 AM', pf: '1', station: 'GBA' },
+
+                            // --- BISHNUPUR (VSU) ---
+                            { no: '12883', name: 'Rupashi Bangla Express', route: 'To Purulia (via Bankura)', time24: '09:08', displayTime: '09:08 AM', pf: '2', station: 'VSU' },
+                            { no: '12884', name: 'Rupashi Bangla Express', route: 'To Howrah (via Garhbeta)', time24: '18:00', displayTime: '06:00 PM', pf: '1', station: 'VSU' },
+                            { no: '12885', name: 'Aranyak Express', route: 'To Bhojudih', time24: '10:46', displayTime: '10:46 AM', pf: '2', station: 'VSU' },
+                            { no: '12886', name: 'Aranyak Express', route: 'To Shalimar (via Garhbeta)', time24: '16:05', displayTime: '04:05 PM', pf: '1', station: 'VSU' },
+                            { no: '12827', name: 'Purulia Express', route: 'To Purulia Jn', time24: '19:33', displayTime: '07:33 PM', pf: '2', station: 'VSU' },
+                            { no: '58015', name: 'Shiromani Fast Passenger', route: 'To Adra Jn', time24: '20:15', displayTime: '08:15 PM', pf: '2', station: 'VSU' },
+                            { no: '73152', name: 'Bishnupur - Tarakeswar EMU', route: 'To Tarakeswar', time24: '07:30', displayTime: '07:30 AM', pf: '3', station: 'VSU' },
+                            { no: '58021', name: 'Kharagpur - Gomoh Passenger', route: 'To Gomoh Jn', time24: '14:10', displayTime: '02:10 PM', pf: '1', station: 'VSU' },
+
+                            // --- HOWRAH (HWH) ---
+                            { no: '12301', name: 'Howrah - New Delhi Rajdhani', route: 'To New Delhi', time24: '16:50', displayTime: '04:50 PM', pf: '9', station: 'HWH' },
+                            { no: '12303', name: 'Poorva Express', route: 'To New Delhi', time24: '08:00', displayTime: '08:00 AM', pf: '9', station: 'HWH' },
+                            { no: '12860', name: 'Gitanjali Express', route: 'To Mumbai CSMT', time24: '14:05', displayTime: '02:05 PM', pf: '21', station: 'HWH' },
+                            { no: '22897', name: 'Kandari Express', route: 'To Digha', time24: '14:25', displayTime: '02:25 PM', pf: '19', station: 'HWH' },
+                            { no: '12857', name: 'Tamralipta Express', route: 'To Digha', time24: '10:35', displayTime: '10:35 AM', pf: '18', station: 'HWH' },
+                            { no: '22387', name: 'Black Diamond Express', route: 'To Dhanbad', time24: '06:15', displayTime: '06:15 AM', pf: '9', station: 'HWH' },
+                            { no: '12337', name: 'Santiniketan Express', route: 'To Bolpur', time24: '10:10', displayTime: '10:10 AM', pf: '12', station: 'HWH' },
+
+                            // --- SEALDAH (SDAH) ---
+                            { no: '12343', name: 'Darjeeling Mail', route: 'To Haldibari / NJP', time24: '22:05', displayTime: '10:05 PM', pf: '12', station: 'SDAH' },
+                            { no: '12377', name: 'Padatik Express', route: 'To New Alipurduar', time24: '23:20', displayTime: '11:20 PM', pf: '9B', station: 'SDAH' },
+                            { no: '12313', name: 'Sealdah - New Delhi Rajdhani', route: 'To New Delhi', time24: '16:50', displayTime: '04:50 PM', pf: '11', station: 'SDAH' },
+                            { no: '13141', name: 'Teesta Torsa Express', route: 'To New Alipurduar', time24: '14:45', displayTime: '02:45 PM', pf: '8', station: 'SDAH' },
+                            { no: '13149', name: 'Kanchan Kanya Express', route: 'To Alipurduar', time24: '20:35', displayTime: '08:35 PM', pf: '10', station: 'SDAH' }
                         ];
 
                         let sortedUpcomingTrains = [];
@@ -6063,8 +6087,14 @@
                             const currentTimeStr = `${currentHours}:${currentMinutes}`;
                             const dateStr = now.toDateString();
                             
-                            // Sort all trains by time24
-                            let allTrains = [...trainScheduleData].sort((a, b) => a.time24.localeCompare(b.time24));
+                            // Filter by active station if not ALL
+                            let stationTrains = [...trainScheduleData];
+                            if (currentStationFilter !== 'ALL') {
+                                stationTrains = stationTrains.filter(t => t.station === currentStationFilter);
+                            }
+
+                            // Sort by time24
+                            let allTrains = stationTrains.sort((a, b) => a.time24.localeCompare(b.time24));
                             
                             // Split into today and tomorrow based on current time
                             let todayTrains = allTrains.filter(t => t.time24 >= currentTimeStr);
@@ -6112,7 +6142,7 @@
                                         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
                                             <div>
                                                 <div style="color: white; font-weight: 700; font-size: 16px; margin-bottom: 2px;">${train.name}</div>
-                                                <div style="color: var(--text-muted); font-size: 12px; font-weight: 500;">${train.no} • ${train.route}</div>
+                                                <div style="color: var(--text-muted); font-size: 12px; font-weight: 500;">${train.no} • ${train.route} <span style='font-size: 10px; background: rgba(56,189,248,0.2); border: 1px solid rgba(56,189,248,0.4); color: #38bdf8; padding: 1px 6px; border-radius: 4px; margin-left: 6px;'>${train.station}</span></div>
                                             </div>
                                             <div class="status-badge ${train.status.class}">${train.status.msg}</div>
                                         </div>
@@ -10051,13 +10081,29 @@ document.addEventListener('keydown', (e) => {
 
     <!-- Phase 2 Upgrades -->
     <script>
-        // 1. Train Station Toggle
-        let currentStationFilter = 'ALL';
+        // Master Station Switcher (KGP, GBA, VSU, HWH, SDAH, ALL)
+        let currentStationFilter = 'KGP';
+
+        const stationNamesMap = {
+            'KGP': 'KHARAGPUR (KGP)',
+            'GBA': 'GARHBETA (GBA)',
+            'VSU': 'BISHNUPUR (VSU)',
+            'HWH': 'HOWRAH (HWH)',
+            'SDAH': 'SEALDAH (SDAH)',
+            'ALL': 'ALL STATIONS (SER / ER)'
+        };
+
         function toggleStation() {
             const select = document.getElementById('station-toggle');
             currentStationFilter = select.value;
+            
             const display = document.getElementById('station-code-display');
-            if(display) display.textContent = currentStationFilter === 'ALL' ? 'HWH & SDAH' : currentStationFilter;
+            if(display) display.textContent = currentStationFilter;
+
+            const clockStation = document.querySelector('#transit-section .monospace, #transit-section [style*="font-family: monospace"]');
+            if(clockStation) {
+                clockStation.textContent = 'STATION: ' + (stationNamesMap[currentStationFilter] || currentStationFilter);
+            }
             
             // Re-render
             updateUpcomingTrains();
