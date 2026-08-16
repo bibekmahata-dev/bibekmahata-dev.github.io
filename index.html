@@ -3951,9 +3951,7 @@
         }
 
 
-        /* =======================================================
-           WHERE IS MY TRAIN - BENGAL ROUTE FINDER PRO ENGINE
-           ======================================================= */
+        
         .wimt-container {
             background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
             border: 1px solid rgba(56, 189, 248, 0.3);
@@ -4179,6 +4177,303 @@
             border-color: #38bdf8;
             color: #ffffff;
             transform: translateY(-1px);
+        }
+
+
+        /* =======================================================
+           WHERE IS MY TRAIN - BENGAL 5-CARD MASTER TRANSIT SUITE
+           ======================================================= */
+        .wimt-app-card {
+            background: #0b1329;
+            border: 1.5px solid #1e293b;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .wimt-app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #0284c7;
+            padding: 12px 18px;
+            border-radius: 12px 12px 0 0;
+            margin: -18px -18px 16px -18px;
+            color: #ffffff;
+        }
+
+        .wimt-tab-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .wimt-tab-pill {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            text-align: center;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+        }
+
+        .wimt-tab-pill.active, .wimt-tab-pill:hover {
+            background: #0284c7;
+            border-color: #38bdf8;
+            color: #ffffff;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+        }
+
+        .wimt-search-box {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 14px 16px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .wimt-station-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wimt-station-circle {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2.5px solid #38bdf8;
+            background: #0f172a;
+            flex-shrink: 0;
+        }
+
+        .wimt-station-circle.dest {
+            border-color: #22c55e;
+        }
+
+        .wimt-station-tag {
+            background: #0369a1;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-family: 'Space Grotesk', monospace;
+            flex-shrink: 0;
+        }
+
+        .wimt-station-tag.dest {
+            background: #15803d;
+        }
+
+        .wimt-station-select {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 14.5px;
+            font-weight: 700;
+            outline: none;
+            cursor: pointer;
+            padding: 4px 0;
+        }
+
+        .wimt-station-select option {
+            background: #0f172a;
+            color: #ffffff;
+        }
+
+        .wimt-dotted-connector {
+            width: 2px;
+            height: 24px;
+            border-left: 2px dashed rgba(56, 189, 248, 0.4);
+            margin-left: 6px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        .wimt-swap-floating {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background: #0f172a;
+            border: 1.5px solid #22c55e;
+            color: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 800;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            transition: all 0.25s ease;
+            z-index: 5;
+        }
+
+        .wimt-swap-floating:hover {
+            background: #22c55e;
+            color: #ffffff;
+            transform: translateY(-50%) rotate(180deg) scale(1.1);
+        }
+
+        .wimt-green-action {
+            width: 100%;
+            background: #15803d;
+            border: 1px solid #22c55e;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 800;
+            padding: 13px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 14px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(21, 128, 61, 0.35);
+        }
+
+        .wimt-green-action:hover {
+            background: #16a34a;
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .wimt-lookup-card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .wimt-lookup-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-size: 13.5px;
+            font-weight: 600;
+        }
+
+        .wimt-lookup-btn {
+            background: #15803d;
+            border: none;
+            color: #ffffff;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+        .wimt-lookup-btn:hover {
+            background: #16a34a;
+            transform: scale(1.05);
+        }
+
+        .wimt-history-container {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+
+        .wimt-history-header {
+            padding: 8px 14px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .wimt-history-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .wimt-history-row:last-child {
+            border-bottom: none;
+        }
+
+        .wimt-history-row:hover {
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        .wimt-history-title {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .wimt-history-route {
+            color: #38bdf8;
+            font-size: 12px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .wimt-bottom-nav {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .wimt-bottom-btn {
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: #cbd5e1;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 12.5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .wimt-bottom-btn:hover {
+            background: #0284c7;
+            border-color: #38bdf8;
+            color: #ffffff;
         }
 
 </style>
@@ -4892,30 +5187,32 @@
 <!-- Dynamic Train Board Section -->
                 <div id="transit-section" style="margin-bottom: 40px; scroll-margin-top: 80px;">
                     
-                    <!-- WHERE IS MY TRAIN (BENGAL ROUTE FINDER ENGINE) -->
-                    <div class="wimt-container">
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-                            <div style="display: flex; align-items: center; gap: 8px;">
-                                <span style="font-size: 22px;">📍</span>
-                                <h4 style="color: #ffffff; font-size: 18px; margin: 0; font-weight: 800; font-family: var(--font-title);">Where is My Train — Bengal Route Finder</h4>
+                    <!-- WHERE IS MY TRAIN (NATIVE BENGAL 5-CARD SUITE) -->
+                    <div class="wimt-app-card">
+                        
+                        <!-- APP HEADER -->
+                        <div class="wimt-app-header">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span style="font-size: 20px;">☰</span>
+                                <h3 style="margin: 0; font-size: 18px; font-weight: 800; letter-spacing: 0.5px;">Where is My Train</h3>
                             </div>
-                            <span style="font-size: 11px; background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.3); color: #4ade80; font-weight: 700; padding: 3px 8px; border-radius: 6px; text-transform: uppercase;">Point-to-Point Search</span>
+                            <div style="font-size: 18px; cursor: pointer;">🎙️</div>
                         </div>
 
-                        <!-- Segmented Category Tabs -->
-                        <div class="wimt-tabs">
-                            <button class="wimt-tab-btn active" id="tab-all" onclick="setWimtFilter('ALL', this)">All Trains</button>
-                            <button class="wimt-tab-btn" id="tab-sf" onclick="setWimtFilter('SUPERFAST', this)">Express & SF</button>
-                            <button class="wimt-tab-btn" id="tab-local" onclick="setWimtFilter('LOCAL', this)">Local & MEMU</button>
+                        <!-- 1. CATEGORY TABS -->
+                        <div class="wimt-tab-nav">
+                            <div class="wimt-tab-pill active" id="tab-all" onclick="setWimtFilter('ALL', this)">EXPRESS</div>
+                            <div class="wimt-tab-pill" id="tab-local" onclick="setWimtFilter('LOCAL', this)">LOCALS & MEMU</div>
+                            <div class="wimt-tab-pill" id="tab-sf" onclick="setWimtFilter('SUPERFAST', this)">SUPERFAST</div>
                         </div>
 
-                        <!-- Route Selector Card (FROM / TO + SWAP) -->
-                        <div class="wimt-route-box">
+                        <!-- 2. CARD 1: FROM ➔ TO ROUTE CARD -->
+                        <div class="wimt-search-box">
                             <!-- FROM STATION -->
-                            <div class="wimt-station-row">
-                                <div class="wimt-station-dot"></div>
-                                <span class="wimt-code-badge" id="wimt-from-badge">VSU</span>
-                                <select class="wimt-select" id="wimt-from-station" onchange="updateWimtBadges()">
+                            <div class="wimt-station-item">
+                                <div class="wimt-station-circle"></div>
+                                <span class="wimt-station-tag" id="wimt-from-badge">VSU</span>
+                                <select class="wimt-station-select" id="wimt-from-station" onchange="updateWimtBadges()">
                                     <option value="VSU" selected>Bishnupur Junction (VSU)</option>
                                     <option value="GBA">Garhbeta (GBA)</option>
                                     <option value="KGP">Kharagpur Junction (KGP)</option>
@@ -4930,15 +5227,15 @@
                                 </select>
                             </div>
 
-                            <!-- DOTTED CONNECTOR & SWAP BUTTON -->
-                            <div class="wimt-dotted-line"></div>
-                            <button class="wimt-swap-btn" onclick="swapWimtStations()" title="Swap From ⇄ To Stations">⇅</button>
+                            <!-- DOTTED CONNECTOR & FLOATING SWAP BUTTON -->
+                            <div class="wimt-dotted-connector"></div>
+                            <button class="wimt-swap-floating" onclick="swapWimtStations()" title="Swap Stations">⇅</button>
 
                             <!-- TO STATION -->
-                            <div class="wimt-station-row">
-                                <div class="wimt-station-dot dest"></div>
-                                <span class="wimt-code-badge dest" id="wimt-to-badge">GBA</span>
-                                <select class="wimt-select" id="wimt-to-station" onchange="updateWimtBadges()">
+                            <div class="wimt-station-item">
+                                <div class="wimt-station-circle dest"></div>
+                                <span class="wimt-station-tag dest" id="wimt-to-badge">GBA</span>
+                                <select class="wimt-station-select" id="wimt-to-station" onchange="updateWimtBadges()">
                                     <option value="GBA" selected>Garhbeta (GBA)</option>
                                     <option value="VSU">Bishnupur Junction (VSU)</option>
                                     <option value="KGP">Kharagpur Junction (KGP)</option>
@@ -4955,26 +5252,65 @@
                         </div>
 
                         <!-- FIND TRAINS ACTION BUTTON -->
-                        <button class="wimt-find-btn" onclick="executeWimtRouteSearch()">
-                            <span>🔍</span> Find Connecting Trains
+                        <button class="wimt-green-action" onclick="executeWimtRouteSearch()">
+                            <span>Find trains</span>
                         </button>
 
-                        <!-- DIRECT SEARCH BY NUMBER OR NAME -->
-                        <div class="wimt-direct-search">
-                            <span style="font-size: 16px;">🚆</span>
-                            <input type="text" id="wimt-name-search" placeholder="Search by Train No. or Name (e.g. 12883, Rupashi, Aranyak)..." oninput="executeWimtDirectSearch(this.value)">
-                            <button onclick="executeWimtDirectSearch(document.getElementById('wimt-name-search').value)" style="background: #16a34a; border: none; color: #fff; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px;">Search</button>
+                        <!-- 3. CARD 2: TRAIN NO. / TRAIN NAME SEARCH CARD -->
+                        <div class="wimt-lookup-card">
+                            <span style="font-size: 18px;">🚆</span>
+                            <input type="text" class="wimt-lookup-input" id="wimt-name-search" placeholder="Train No. / Train Name (e.g. 12883, Rupashi)" oninput="executeWimtDirectSearch(this.value)">
+                            <button class="wimt-lookup-btn" onclick="executeWimtDirectSearch(document.getElementById('wimt-name-search').value)">🔍</button>
                         </div>
 
-                        <!-- QUICK POPULAR ROUTES -->
-                        <div class="wimt-chips-row">
-                            <span style="color: #94a3b8; font-size: 11.5px; font-weight: 700;">⚡ Popular Routes:</span>
-                            <span class="wimt-chip" onclick="quickSelectWimtRoute('VSU', 'GBA')">VSU ⇄ GBA</span>
-                            <span class="wimt-chip" onclick="quickSelectWimtRoute('GBA', 'VSU')">GBA ➔ VSU</span>
-                            <span class="wimt-chip" onclick="quickSelectWimtRoute('GBA', 'HWH')">GBA ⇄ HWH</span>
-                            <span class="wimt-chip" onclick="quickSelectWimtRoute('KGP', 'HWH')">KGP ⇄ HWH</span>
-                            <span class="wimt-chip" onclick="quickSelectWimtRoute('VSU', 'BQA')">VSU ⇄ BQA</span>
-                            <span class="wimt-chip" onclick="quickSelectWimtRoute('GBA', 'PRR')">GBA ⇄ PRR</span>
+                        <!-- 4. CARD 3: STATION DEPARTURE BOARD LOOKUP CARD -->
+                        <div class="wimt-lookup-card">
+                            <span style="font-size: 18px; color: #38bdf8;">📡</span>
+                            <select class="wimt-lookup-input" id="wimt-station-board-select" onchange="quickSwitchStationBoard(this.value)" style="cursor: pointer;">
+                                <option value="GBA">Station departure board: Garhbeta (GBA)</option>
+                                <option value="VSU">Station departure board: Bishnupur (VSU)</option>
+                                <option value="KGP">Station departure board: Kharagpur (KGP)</option>
+                                <option value="HWH">Station departure board: Howrah (HWH)</option>
+                                <option value="SDAH">Station departure board: Sealdah (SDAH)</option>
+                                <option value="ALL">Station departure board: All Stations</option>
+                            </select>
+                            <button class="wimt-lookup-btn" onclick="quickSwitchStationBoard(document.getElementById('wimt-station-board-select').value)">🔍</button>
+                        </div>
+
+                        <!-- 5. CARD 4: SEARCH HISTORY & RECENT BENGAL ROUTES -->
+                        <div class="wimt-history-container">
+                            <div class="wimt-history-header">Search History & Popular Routes</div>
+                            
+                            <div class="wimt-history-row" onclick="quickSelectWimtRoute('VSU', 'GBA')">
+                                <div class="wimt-history-title">68090 Adra - Midnapore MEMU</div>
+                                <div class="wimt-history-route">VSU - GBA <span>❯</span></div>
+                            </div>
+                            <div class="wimt-history-row" onclick="quickSelectWimtRoute('GBA', 'VSU')">
+                                <div class="wimt-history-title">68089 Midnapore - Adra MEMU</div>
+                                <div class="wimt-history-route">GBA - VSU <span>❯</span></div>
+                            </div>
+                            <div class="wimt-history-row" onclick="quickSelectWimtRoute('GBA', 'VSU')">
+                                <div class="wimt-history-title">12885 Aranyak Express</div>
+                                <div class="wimt-history-route">GBA - VSU <span>❯</span></div>
+                            </div>
+                            <div class="wimt-history-row" onclick="quickSelectWimtRoute('VSU', 'GBA')">
+                                <div class="wimt-history-title">12884 Rupashi Bangla Express</div>
+                                <div class="wimt-history-route">VSU - GBA <span>❯</span></div>
+                            </div>
+                            <div class="wimt-history-row" onclick="quickSelectWimtRoute('GBA', 'HWH')">
+                                <div class="wimt-history-title">12828 Purulia - Howrah SF</div>
+                                <div class="wimt-history-route">GBA - HWH <span>❯</span></div>
+                            </div>
+                        </div>
+
+                        <!-- 6. CARD 5: PNR & TICKETS BOTTOM BAR -->
+                        <div class="wimt-bottom-nav">
+                            <a href="https://www.indianrail.gov.in/enquiry/PNR/PnrEnquiry.html?locale=en" target="_blank" class="wimt-bottom-btn">
+                                <span>🔍</span> PNR Status
+                            </a>
+                            <a href="https://www.irctc.co.in/nget/train-search" target="_blank" class="wimt-bottom-btn">
+                                <span>🎫</span> IRCTC Tickets
+                            </a>
                         </div>
                     </div>
 
@@ -4982,11 +5318,11 @@
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <div style="font-size: 28px;">🚆</div>
-                            <h3 style="color: var(--text-primary); font-size: 22px; margin: 0; font-family: var(--font-title); font-weight: 700;"><span style="font-size: 24px;">🚂</span> Live Station Board (<span id="station-code-display">KGP</span>)
+                            <h3 style="color: var(--text-primary); font-size: 22px; margin: 0; font-family: var(--font-title); font-weight: 700;"><span style="font-size: 24px;">🚂</span> Live Station Board (<span id="station-code-display">VSU ➔ GBA</span>)
     <select id="station-toggle" onchange="toggleStation()" style="margin-left: auto; padding: 7px 14px; background: rgba(15,23,42,0.9); border: 1.5px solid #38bdf8; color: #ffffff; border-radius: 8px; outline: none; cursor: pointer; font-size: 13px; font-weight: 700; box-shadow: 0 2px 8px rgba(56,189,248,0.25);">
-        <option value="KGP" selected>Kharagpur (KGP)</option>
         <option value="GBA">Garhbeta (GBA)</option>
         <option value="VSU">Bishnupur (VSU)</option>
+        <option value="KGP">Kharagpur (KGP)</option>
         <option value="HWH">Howrah (HWH)</option>
         <option value="SDAH">Sealdah (SDAH)</option>
         <option value="ALL">All Stations</option>
@@ -6424,9 +6760,7 @@
         }
 
 
-        /* =======================================================
-           WHERE IS MY TRAIN - BENGAL ROUTE FINDER PRO ENGINE
-           ======================================================= */
+        
         .wimt-container {
             background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
             border: 1px solid rgba(56, 189, 248, 0.3);
@@ -6652,6 +6986,303 @@
             border-color: #38bdf8;
             color: #ffffff;
             transform: translateY(-1px);
+        }
+
+
+        /* =======================================================
+           WHERE IS MY TRAIN - BENGAL 5-CARD MASTER TRANSIT SUITE
+           ======================================================= */
+        .wimt-app-card {
+            background: #0b1329;
+            border: 1.5px solid #1e293b;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .wimt-app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #0284c7;
+            padding: 12px 18px;
+            border-radius: 12px 12px 0 0;
+            margin: -18px -18px 16px -18px;
+            color: #ffffff;
+        }
+
+        .wimt-tab-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .wimt-tab-pill {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            text-align: center;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+        }
+
+        .wimt-tab-pill.active, .wimt-tab-pill:hover {
+            background: #0284c7;
+            border-color: #38bdf8;
+            color: #ffffff;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+        }
+
+        .wimt-search-box {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 14px 16px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .wimt-station-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wimt-station-circle {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2.5px solid #38bdf8;
+            background: #0f172a;
+            flex-shrink: 0;
+        }
+
+        .wimt-station-circle.dest {
+            border-color: #22c55e;
+        }
+
+        .wimt-station-tag {
+            background: #0369a1;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-family: 'Space Grotesk', monospace;
+            flex-shrink: 0;
+        }
+
+        .wimt-station-tag.dest {
+            background: #15803d;
+        }
+
+        .wimt-station-select {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 14.5px;
+            font-weight: 700;
+            outline: none;
+            cursor: pointer;
+            padding: 4px 0;
+        }
+
+        .wimt-station-select option {
+            background: #0f172a;
+            color: #ffffff;
+        }
+
+        .wimt-dotted-connector {
+            width: 2px;
+            height: 24px;
+            border-left: 2px dashed rgba(56, 189, 248, 0.4);
+            margin-left: 6px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        .wimt-swap-floating {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background: #0f172a;
+            border: 1.5px solid #22c55e;
+            color: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 800;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            transition: all 0.25s ease;
+            z-index: 5;
+        }
+
+        .wimt-swap-floating:hover {
+            background: #22c55e;
+            color: #ffffff;
+            transform: translateY(-50%) rotate(180deg) scale(1.1);
+        }
+
+        .wimt-green-action {
+            width: 100%;
+            background: #15803d;
+            border: 1px solid #22c55e;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 800;
+            padding: 13px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 14px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(21, 128, 61, 0.35);
+        }
+
+        .wimt-green-action:hover {
+            background: #16a34a;
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .wimt-lookup-card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .wimt-lookup-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-size: 13.5px;
+            font-weight: 600;
+        }
+
+        .wimt-lookup-btn {
+            background: #15803d;
+            border: none;
+            color: #ffffff;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+        .wimt-lookup-btn:hover {
+            background: #16a34a;
+            transform: scale(1.05);
+        }
+
+        .wimt-history-container {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+
+        .wimt-history-header {
+            padding: 8px 14px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .wimt-history-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .wimt-history-row:last-child {
+            border-bottom: none;
+        }
+
+        .wimt-history-row:hover {
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        .wimt-history-title {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .wimt-history-route {
+            color: #38bdf8;
+            font-size: 12px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .wimt-bottom-nav {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .wimt-bottom-btn {
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: #cbd5e1;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 12.5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .wimt-bottom-btn:hover {
+            background: #0284c7;
+            border-color: #38bdf8;
+            color: #ffffff;
         }
 
 </style>
@@ -10590,9 +11221,7 @@ document.addEventListener('keydown', (e) => {
         }
 
 
-        /* =======================================================
-           WHERE IS MY TRAIN - BENGAL ROUTE FINDER PRO ENGINE
-           ======================================================= */
+        
         .wimt-container {
             background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
             border: 1px solid rgba(56, 189, 248, 0.3);
@@ -10818,6 +11447,303 @@ document.addEventListener('keydown', (e) => {
             border-color: #38bdf8;
             color: #ffffff;
             transform: translateY(-1px);
+        }
+
+
+        /* =======================================================
+           WHERE IS MY TRAIN - BENGAL 5-CARD MASTER TRANSIT SUITE
+           ======================================================= */
+        .wimt-app-card {
+            background: #0b1329;
+            border: 1.5px solid #1e293b;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .wimt-app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #0284c7;
+            padding: 12px 18px;
+            border-radius: 12px 12px 0 0;
+            margin: -18px -18px 16px -18px;
+            color: #ffffff;
+        }
+
+        .wimt-tab-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .wimt-tab-pill {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            text-align: center;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+        }
+
+        .wimt-tab-pill.active, .wimt-tab-pill:hover {
+            background: #0284c7;
+            border-color: #38bdf8;
+            color: #ffffff;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+        }
+
+        .wimt-search-box {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 14px 16px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .wimt-station-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wimt-station-circle {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2.5px solid #38bdf8;
+            background: #0f172a;
+            flex-shrink: 0;
+        }
+
+        .wimt-station-circle.dest {
+            border-color: #22c55e;
+        }
+
+        .wimt-station-tag {
+            background: #0369a1;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-family: 'Space Grotesk', monospace;
+            flex-shrink: 0;
+        }
+
+        .wimt-station-tag.dest {
+            background: #15803d;
+        }
+
+        .wimt-station-select {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 14.5px;
+            font-weight: 700;
+            outline: none;
+            cursor: pointer;
+            padding: 4px 0;
+        }
+
+        .wimt-station-select option {
+            background: #0f172a;
+            color: #ffffff;
+        }
+
+        .wimt-dotted-connector {
+            width: 2px;
+            height: 24px;
+            border-left: 2px dashed rgba(56, 189, 248, 0.4);
+            margin-left: 6px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        .wimt-swap-floating {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background: #0f172a;
+            border: 1.5px solid #22c55e;
+            color: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 800;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            transition: all 0.25s ease;
+            z-index: 5;
+        }
+
+        .wimt-swap-floating:hover {
+            background: #22c55e;
+            color: #ffffff;
+            transform: translateY(-50%) rotate(180deg) scale(1.1);
+        }
+
+        .wimt-green-action {
+            width: 100%;
+            background: #15803d;
+            border: 1px solid #22c55e;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 800;
+            padding: 13px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 14px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(21, 128, 61, 0.35);
+        }
+
+        .wimt-green-action:hover {
+            background: #16a34a;
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .wimt-lookup-card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .wimt-lookup-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-size: 13.5px;
+            font-weight: 600;
+        }
+
+        .wimt-lookup-btn {
+            background: #15803d;
+            border: none;
+            color: #ffffff;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+        .wimt-lookup-btn:hover {
+            background: #16a34a;
+            transform: scale(1.05);
+        }
+
+        .wimt-history-container {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+
+        .wimt-history-header {
+            padding: 8px 14px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .wimt-history-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .wimt-history-row:last-child {
+            border-bottom: none;
+        }
+
+        .wimt-history-row:hover {
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        .wimt-history-title {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .wimt-history-route {
+            color: #38bdf8;
+            font-size: 12px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .wimt-bottom-nav {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .wimt-bottom-btn {
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: #cbd5e1;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 12.5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .wimt-bottom-btn:hover {
+            background: #0284c7;
+            border-color: #38bdf8;
+            color: #ffffff;
         }
 
 </style>
