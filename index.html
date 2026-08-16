@@ -4745,6 +4745,44 @@
         }
     </style>
 
+<style id="map-critical-height-fix">
+        /* CRITICAL LEAFLET MAP & PLACES GRID FIX */
+        #map {
+            width: 100% !important;
+            height: 380px !important;
+            min-height: 380px !important;
+            display: block !important;
+            position: relative !important;
+            z-index: 1 !important;
+            background: #0f172a !important;
+        }
+        .standalone-map-frame {
+            width: 100% !important;
+            height: 380px !important;
+            min-height: 380px !important;
+            position: relative !important;
+            overflow: hidden !important;
+            border-radius: 0 0 14px 14px !important;
+            background: #0f172a !important;
+        }
+        .places-grid-container {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+            gap: 12px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            min-height: 200px !important;
+        }
+        @media (max-width: 768px) {
+            #map, .standalone-map-frame {
+                height: 320px !important;
+                min-height: 320px !important;
+            }
+            .places-grid-container {
+                grid-template-columns: 1fr !important;
+            }
+        }
+</style>
 </head>
 <body>
     <div class="announcement-banner">
@@ -13797,16 +13835,44 @@ document.addEventListener('keydown', (e) => {
             }
         }
 
-        // Initialize Everything on Load
-        document.addEventListener('DOMContentLoaded', () => {
-            initMasterMapEngine();
-            renderExplorerCards();
+        
+        // Bulletproof Immediate & Multi-Stage Map & Places Initializer
+        function launchMasterMapAndPlaces() {
+            try {
+                if (typeof initMasterMapEngine === 'function') {
+                    initMasterMapEngine();
+                }
+                if (typeof renderExplorerCards === 'function') {
+                    renderExplorerCards();
+                }
+                setTimeout(() => {
+                    if (window.map && typeof window.map.invalidateSize === 'function') {
+                        window.map.invalidateSize();
+                    }
+                }, 300);
+                setTimeout(() => {
+                    if (window.map && typeof window.map.invalidateSize === 'function') {
+                        window.map.invalidateSize();
+                    }
+                }, 1000);
+            } catch (err) {
+                console.error("Map initialization notice:", err);
+            }
+        }
+
+        // Execute immediately (handles when DOM is already interactive/complete)
+        launchMasterMapAndPlaces();
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', launchMasterMapAndPlaces);
+        }
+        window.addEventListener('load', launchMasterMapAndPlaces);
+        window.addEventListener('resize', () => {
+            if (window.map && typeof window.map.invalidateSize === 'function') {
+                window.map.invalidateSize();
+            }
         });
 
-        window.addEventListener('load', () => {
-            forceMapRedraw();
-        });
-        window.addEventListener('resize', forceMapRedraw);
     </script>
 
 
