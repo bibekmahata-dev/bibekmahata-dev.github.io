@@ -6764,7 +6764,487 @@
                 </div>
                 </div>
 
-                <!-- State Emergency Contacts -->
+                
+                <!-- ========================================================
+                     🧭 MULTI-MODAL JOURNEY PLANNER & COST COMPARISON ENGINE
+                     ======================================================== -->
+                <div id="multi-modal-planner-section" style="margin-bottom: 45px; scroll-margin-top: 80px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="font-size: 28px;">🧭</div>
+                            <div>
+                                <h3 style="color: var(--text-primary); font-size: 22px; margin: 0; font-family: var(--font-title); font-weight: 700;">Multi-Modal Journey Planner & Cost Comparator</h3>
+                                <div style="font-size: 12px; color: #38bdf8;">Compare Railway vs State Bus vs Self-Drive (Car & Bike) with exact journey times, fares & fuel estimates</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.1); padding: 6px 12px; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.25);">
+                            <span style="font-size: 13px;">⚖️</span>
+                            <span style="color: #38bdf8; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Triple-Mode Optimizer</span>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95)); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+                        
+                        <!-- ORIGIN / DESTINATION SELECTOR -->
+                        <div class="route-picker-grid" style="margin-bottom: 16px;">
+                            <!-- ORIGIN -->
+                            <div class="route-select-wrapper">
+                                <label class="route-label" style="color: #38bdf8;">
+                                    <span>🟢</span> FROM (ORIGIN POINT)
+                                </label>
+                                <select class="route-select-input" id="multi-origin" aria-label="Select Multi-Modal Origin">
+                                    <option value="Garhbeta" selected>Garhbeta (GBA / Paschim Medinipur)</option>
+                                    <option value="Kolkata">Kolkata (Howrah / Esplanade / Sealdah)</option>
+                                    <option value="Bishnupur">Bishnupur (VSU / Bankura)</option>
+                                    <option value="Medinipur">Medinipur (MDN / Paschim Medinipur)</option>
+                                    <option value="Kharagpur">Kharagpur (KGP Junction)</option>
+                                    <option value="Digha">Digha (DGHA / Coastal)</option>
+                                    <option value="Siliguri">Siliguri (SGU / NJP Junction)</option>
+                                    <option value="Darjeeling">Darjeeling (Himalayan Foothills)</option>
+                                    <option value="Bankura">Bankura (BQA)</option>
+                                    <option value="Durgapur">Durgapur (DGP)</option>
+                                </select>
+                            </div>
+
+                            <!-- SWAP BUTTON -->
+                            <button class="route-swap-btn" onclick="swapMultiModalRoutes()" title="Swap Multi-Modal Origin & Destination">⇌</button>
+
+                            <!-- DESTINATION -->
+                            <div class="route-select-wrapper">
+                                <label class="route-label" style="color: #4ade80;">
+                                    <span>🔴</span> TO (DESTINATION POINT)
+                                </label>
+                                <select class="route-select-input" id="multi-dest" aria-label="Select Multi-Modal Destination">
+                                    <option value="Kolkata" selected>Kolkata (Howrah / Esplanade / Sealdah)</option>
+                                    <option value="Garhbeta">Garhbeta (GBA / Paschim Medinipur)</option>
+                                    <option value="Bishnupur">Bishnupur (VSU / Bankura)</option>
+                                    <option value="Medinipur">Medinipur (MDN / Paschim Medinipur)</option>
+                                    <option value="Kharagpur">Kharagpur (KGP Junction)</option>
+                                    <option value="Digha">Digha (DGHA / Coastal)</option>
+                                    <option value="Siliguri">Siliguri (SGU / NJP Junction)</option>
+                                    <option value="Darjeeling">Darjeeling (Himalayan Foothills)</option>
+                                    <option value="Bankura">Bankura (BQA)</option>
+                                    <option value="Durgapur">Durgapur (DGP)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- COMPARE BUTTON -->
+                        <button onclick="compareMultiModalRoutes(true)" style="width: 100%; background: linear-gradient(135deg, #0ea5e9, #0284c7); color: white; border: 1px solid rgba(56, 189, 248, 0.4); padding: 13px; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <span>⚡</span> Compare Train vs Bus vs Road
+                        </button>
+
+                        <!-- QUICK POPULAR COMPARISON CHIPS -->
+                        <div class="route-quick-chips" style="margin-top: 14px; margin-bottom: 20px;">
+                            <span style="color: #94a3b8; font-size: 11.5px; font-weight: 700;">⚡ Popular Bengal Comparisons:</span>
+                            <span class="route-chip-btn" onclick="quickSelectMultiRoute('Garhbeta', 'Kolkata')">Garhbeta ⇄ Kolkata</span>
+                            <span class="route-chip-btn" onclick="quickSelectMultiRoute('Bishnupur', 'Kolkata')">Bishnupur ⇄ Kolkata</span>
+                            <span class="route-chip-btn" onclick="quickSelectMultiRoute('Kolkata', 'Digha')">Kolkata ⇄ Digha</span>
+                            <span class="route-chip-btn" onclick="quickSelectMultiRoute('Kolkata', 'Siliguri')">Kolkata ⇄ Siliguri</span>
+                            <span class="route-chip-btn" onclick="quickSelectMultiRoute('Siliguri', 'Darjeeling')">Siliguri ⇄ Darjeeling</span>
+                            <span class="route-chip-btn" onclick="quickSelectMultiRoute('Garhbeta', 'Bankura')">Garhbeta ⇄ Bankura</span>
+                            <span class="route-chip-btn" onclick="quickSelectMultiRoute('Medinipur', 'Durgapur')">Medinipur ⇄ Durgapur</span>
+                        </div>
+
+                        <!-- COMPARISON RESULTS MATRIX -->
+                        <div id="multi-modal-results-container" style="scroll-margin-top: 100px;">
+                            <!-- Injected by JS -->
+                        </div>
+
+                    </div>
+
+                    <script>
+                        // ================================================================
+                        // MULTI-MODAL ROUTE COMPARATOR DATABASE
+                        // ================================================================
+                        const multiModalDatabase = {
+                            'Garhbeta-Kolkata': {
+                                train: {
+                                    time: '3h 15m (Direct)',
+                                    fares: 'Gen: ₹45 | 2S: ₹110 | CC: ₹365 | 3AC: ₹760',
+                                    freq: '12 Daily Scheduled Trains',
+                                    keyServices: 'Rupashi Bangla (#12884), Aranyak Express (#12862), Shiromani Fast Passenger',
+                                    badge: '⚡ FASTEST & MOST ECONOMICAL',
+                                    badgeColor: '#22c55e',
+                                    bookingUrl: 'https://www.irctc.co.in/'
+                                },
+                                bus: {
+                                    time: '3h 45m',
+                                    fares: 'SBSTC Deluxe: ₹135 | AC Volvo: ₹240',
+                                    freq: '5 Daily Scheduled Departures',
+                                    keyServices: 'Garhbeta Stand Track 2 ➔ Esplanade Bay 4 via Arambagh',
+                                    badge: '🚏 DIRECT DROP AT ESPLANADE',
+                                    badgeColor: '#38bdf8',
+                                    bookingUrl: 'https://online.sbstc.co.in/'
+                                },
+                                road: {
+                                    distance: '142 km',
+                                    time: '3h 10m (Car) | 3h 30m (Bike)',
+                                    fuel: 'Car Petrol: ~₹1,150 | Bike: ~₹380',
+                                    tolls: 'Dankuni Toll Plaza (~₹120)',
+                                    roadQuality: '★ 4.4 / 5.0 (Smooth 4-lane NH-16 / 2-lane SH-4)',
+                                    badge: '🚗 MAXIMUM FLEXIBILITY',
+                                    badgeColor: '#f59e0b',
+                                    mapUrl: 'https://www.google.com/maps/dir/Garhbeta,+West+Bengal/Kolkata,+West+Bengal/'
+                                },
+                                verdict: '🚆 <strong>Railway is the smartest choice:</strong> 30 minutes faster than bus and saves over ₹1,000 in fuel/tolls compared to driving. The SBSTC bus is ideal if you need a direct drop at Esplanade Central without changing from Howrah.'
+                            },
+                            'Bishnupur-Kolkata': {
+                                train: {
+                                    time: '3h 30m (Direct)',
+                                    fares: 'Gen: ₹50 | 2S: ₹115 | CC: ₹385 | 3AC: ₹790',
+                                    freq: '10 Daily Trains',
+                                    keyServices: 'Rupashi Bangla, Purulia SF Express, Howrah Intercity',
+                                    badge: '⚡ FASTEST TRANSIT',
+                                    badgeColor: '#22c55e',
+                                    bookingUrl: 'https://www.irctc.co.in/'
+                                },
+                                bus: {
+                                    time: '3h 30m',
+                                    fares: 'SBSTC: ₹145 | AC Volvo: ₹250',
+                                    freq: '4 Daily Buses',
+                                    keyServices: 'Bishnupur Central Stand ➔ Esplanade Bay 3',
+                                    badge: '🚏 COMFORTABLE SEATER',
+                                    badgeColor: '#38bdf8',
+                                    bookingUrl: 'https://online.sbstc.co.in/'
+                                },
+                                road: {
+                                    distance: '138 km',
+                                    time: '3h 15m (Car) | 3h 35m (Bike)',
+                                    fuel: 'Car Petrol: ~₹1,100 | Bike: ~₹360',
+                                    tolls: 'Dankuni Toll Plaza (~₹120)',
+                                    roadQuality: '★ 4.3 / 5.0 (SH-2 / NH-16 Corridor)',
+                                    badge: '🚗 SCENIC DRIVE',
+                                    badgeColor: '#f59e0b',
+                                    mapUrl: 'https://www.google.com/maps/dir/Bishnupur,+West+Bengal/Kolkata,+West+Bengal/'
+                                },
+                                verdict: '🚆 <strong>Railway offers the highest comfort</strong> with AC Chair Car options. SBSTC deluxe buses offer direct entry to central Kolkata.'
+                            },
+                            'Kolkata-Digha': {
+                                train: {
+                                    time: '3h 15m (Direct Superfast)',
+                                    fares: 'Gen: ₹55 | 2S: ₹125 | CC: ₹425 | 3AC: ₹840',
+                                    freq: '6 Daily Trains',
+                                    keyServices: 'Tamralipta Express (#12857), Kandari Express (#18001), Digha AC SF',
+                                    badge: '⚡ FASTEST SPEED',
+                                    badgeColor: '#22c55e',
+                                    bookingUrl: 'https://www.irctc.co.in/'
+                                },
+                                bus: {
+                                    time: '4h 15m',
+                                    fares: 'SBSTC Super: ₹175 | Greenline AC Volvo: ₹380',
+                                    freq: 'Every 30 mins (25+ Daily Buses)',
+                                    keyServices: 'Esplanade Bay 6 & Karunamoyee ➔ Old Digha Beach Stand',
+                                    badge: '🚏 HIGHEST FREQUENCY',
+                                    badgeColor: '#38bdf8',
+                                    bookingUrl: 'https://online.sbstc.co.in/'
+                                },
+                                road: {
+                                    distance: '184 km',
+                                    time: '4h 00m (Car) | 4h 30m (Bike)',
+                                    fuel: 'Car Petrol: ~₹1,450 | Bike: ~₹480',
+                                    tolls: 'Vidyasagar Setu + NH-116 Tolls (~₹180)',
+                                    roadQuality: '★ 4.6 / 5.0 (Smooth NH-116B Expressway)',
+                                    badge: '🚗 ROADTRIP FAVORITE',
+                                    badgeColor: '#f59e0b',
+                                    mapUrl: 'https://www.google.com/maps/dir/Kolkata,+West+Bengal/Digha,+West+Bengal/'
+                                },
+                                verdict: '🚆 <strong>Tamralipta Express is the fastest mode (3h 15m).</strong> However, SBSTC and Volvo buses run every 30 minutes from Esplanade for maximum flexibility.'
+                            },
+                            'Kolkata-Siliguri': {
+                                train: {
+                                    time: '8h 30m (Vande Bharat) | 10h 30m (Overnight Sleeper)',
+                                    fares: 'Gen: ₹190 | 2S: ₹275 | 3AC: ₹1,050 | 2AC: ₹1,520 | VB: ₹1,565',
+                                    freq: '14 Daily Trains',
+                                    keyServices: 'Howrah-NJP Vande Bharat, Saraighat Express, Darjeeling Mail, Padatik Express',
+                                    badge: '⚡ FASTEST OVERDAY & SLEEPER',
+                                    badgeColor: '#22c55e',
+                                    bookingUrl: 'https://www.irctc.co.in/'
+                                },
+                                bus: {
+                                    time: '11h 45m - 12h 30m',
+                                    fares: 'NBSTC Rocket: ₹580 | Royal Cruiser Volvo Sleeper: ₹1,350',
+                                    freq: '20+ Daily Overnight Buses',
+                                    keyServices: 'Esplanade & Karunamoyee ➔ Siliguri Tenzing Norgay',
+                                    badge: '🛌 OVERNIGHT BED SLEEPER',
+                                    badgeColor: '#38bdf8',
+                                    bookingUrl: 'https://online.sbstc.co.in/'
+                                },
+                                road: {
+                                    distance: '585 km',
+                                    time: '12h 30m (Car)',
+                                    fuel: 'Car Petrol: ~₹4,600 | Bike: ~₹1,550',
+                                    tolls: 'NH-12 Expressway Toll Plazas (~₹550)',
+                                    roadQuality: '★ 4.2 / 5.0 (4-lane NH-12 Corridor)',
+                                    badge: '🚗 NORTH BENGAL ROAD EXPEDITION',
+                                    badgeColor: '#f59e0b',
+                                    mapUrl: 'https://www.google.com/maps/dir/Kolkata,+West+Bengal/Siliguri,+West+Bengal/'
+                                },
+                                verdict: '🚆 <strong>Vande Bharat is unmatched for day travel (8.5 hrs).</strong> For overnight travel, Darjeeling Mail (3AC) or Royal Cruiser Volvo Sleeper are top choices.'
+                            },
+                            'Siliguri-Darjeeling': {
+                                train: {
+                                    time: '7h 00m (Heritage DHR Toy Train)',
+                                    fares: 'Steam Joyride: ₹1,500 | Diesel Regular: ₹140',
+                                    freq: 'Daily UNESCO Heritage Run',
+                                    keyServices: 'Darjeeling Himalayan Railway (DHR) UNESCO World Heritage Train',
+                                    badge: '🚂 UNESCO HERITAGE EXPERIENCE',
+                                    badgeColor: '#f59e0b',
+                                    bookingUrl: 'https://www.irctc.co.in/'
+                                },
+                                bus: {
+                                    time: '3h 15m',
+                                    fares: 'NBSTC Hill Rider: ₹160 - ₹180',
+                                    freq: 'Every 45 mins from Junction',
+                                    keyServices: 'Siliguri Tenzing Norgay ➔ Darjeeling Chowrasta',
+                                    badge: '💰 FASTEST PUBLIC TRANSIT',
+                                    badgeColor: '#22c55e',
+                                    bookingUrl: 'https://online.sbstc.co.in/'
+                                },
+                                road: {
+                                    distance: '65 km',
+                                    time: '2h 30m (Car / Shared Taxi) | 2h 45m (Bike)',
+                                    fuel: 'Car Petrol: ~₹650 | Bike: ~₹220',
+                                    tolls: 'Nil (State Hill Highway)',
+                                    roadQuality: '★ 4.5 / 5.0 (Paved Hill Roads via Kurseong / Rohini)',
+                                    badge: '🏔️ SPECTACULAR HIMALAYAN DRIVE',
+                                    badgeColor: '#38bdf8',
+                                    mapUrl: 'https://www.google.com/maps/dir/Siliguri,+West+Bengal/Darjeeling,+West+Bengal/'
+                                },
+                                verdict: '🚗 <strong>Shared Taxi/Car via Rohini is the fastest transit (2.5 hrs).</strong> The UNESCO Toy Train is a bucket-list vintage heritage experience.'
+                            },
+                            'Garhbeta-Bankura': {
+                                train: {
+                                    time: '1h 10m (Direct)',
+                                    fares: 'Gen: ₹30 | 2S: ₹60',
+                                    freq: '8 Daily Trains',
+                                    keyServices: 'Shiromani Passenger, Aranyak Express, Adra Local',
+                                    badge: '⚡ FASTEST & CHEAPEST',
+                                    badgeColor: '#22c55e',
+                                    bookingUrl: 'https://www.irctc.co.in/'
+                                },
+                                bus: {
+                                    time: '1h 15m',
+                                    fares: 'SBSTC / Regional Express: ₹50 - ₹55',
+                                    freq: 'Every 45 mins from Garhbeta Stand',
+                                    keyServices: 'Garhbeta Stand ➔ Bankura Gobindanagar Stand',
+                                    badge: '🚏 HIGH FREQUENCY',
+                                    badgeColor: '#38bdf8',
+                                    bookingUrl: 'https://online.sbstc.co.in/'
+                                },
+                                road: {
+                                    distance: '48 km',
+                                    time: '1h 00m (Car) | 1h 10m (Bike)',
+                                    fuel: 'Car Petrol: ~₹380 | Bike: ~₹120',
+                                    tolls: 'Nil',
+                                    roadQuality: '★ 4.3 / 5.0 (SH-2 / SH-4 Highway)',
+                                    badge: '🚗 QUICK CONNECT',
+                                    badgeColor: '#f59e0b',
+                                    mapUrl: 'https://www.google.com/maps/dir/Garhbeta,+West+Bengal/Bankura,+West+Bengal/'
+                                },
+                                verdict: '🚆 Both Train and Bus are fast and ultra-economical (< ₹60 per person). Train is slightly faster.'
+                            },
+                            'Medinipur-Durgapur': {
+                                train: {
+                                    time: '3h 05m (via Junction)',
+                                    fares: 'Gen: ₹60 | 2S: ₹110 | CC: ₹320',
+                                    freq: '4 Daily Trains',
+                                    keyServices: 'HWH-BKSC Express, South Bengal Intercity',
+                                    badge: '🚆 DIRECT RAIL',
+                                    badgeColor: '#22c55e',
+                                    bookingUrl: 'https://www.irctc.co.in/'
+                                },
+                                bus: {
+                                    time: '3h 10m',
+                                    fares: 'SBSTC Industrial Express: ₹125',
+                                    freq: '4 Daily Direct Scheduled Services',
+                                    keyServices: 'Medinipur Central ➔ Durgapur City Centre',
+                                    badge: '🚏 DIRECT CORRIDOR',
+                                    badgeColor: '#38bdf8',
+                                    bookingUrl: 'https://online.sbstc.co.in/'
+                                },
+                                road: {
+                                    distance: '132 km',
+                                    time: '2h 50m (Car) | 3h 15m (Bike)',
+                                    fuel: 'Car Petrol: ~₹1,050 | Bike: ~₹350',
+                                    tolls: 'State Highway Toll (~₹80)',
+                                    roadQuality: '★ 4.4 / 5.0 (Direct State Corridor)',
+                                    badge: '🚗 DIRECT DRIVE',
+                                    badgeColor: '#f59e0b',
+                                    mapUrl: 'https://www.google.com/maps/dir/Medinipur,+West+Bengal/Durgapur,+West+Bengal/'
+                                },
+                                verdict: '🚌 <strong>SBSTC Industrial Express bus</strong> offers convenient direct point-to-point travel between Medinipur Central and Durgapur City Centre.'
+                            }
+                        };
+
+                        function swapMultiModalRoutes() {
+                            const o = document.getElementById('multi-origin');
+                            const d = document.getElementById('multi-dest');
+                            if (!o || !d) return;
+                            const temp = o.value;
+                            o.value = d.value;
+                            d.value = temp;
+                            compareMultiModalRoutes(true);
+                        }
+
+                        function quickSelectMultiRoute(orig, dest) {
+                            const o = document.getElementById('multi-origin');
+                            const d = document.getElementById('multi-dest');
+                            if (o) o.value = orig;
+                            if (d) d.value = dest;
+                            compareMultiModalRoutes(true);
+                        }
+
+                        function compareMultiModalRoutes(shouldScroll = false) {
+                            const o = document.getElementById('multi-origin');
+                            const d = document.getElementById('multi-dest');
+                            const container = document.getElementById('multi-modal-results-container');
+                            if (!o || !d || !container) return;
+
+                            const orig = o.value;
+                            const dest = d.value;
+
+                            if (orig === dest) {
+                                container.innerHTML = `
+                                    <div style="background: rgba(244, 63, 94, 0.1); border: 1px solid rgba(244, 63, 94, 0.2); border-radius: 8px; padding: 18px; text-align: center; color: #f43f5e; font-weight: 700;">
+                                        ⚠️ Origin and Destination cannot be the same!
+                                    </div>
+                                `;
+                                return;
+                            }
+
+                            // Lookup direct or reverse key
+                            const key1 = `${orig}-${dest}`;
+                            const key2 = `${dest}-${orig}`;
+                            const data = multiModalDatabase[key1] || multiModalDatabase[key2];
+
+                            if (!data) {
+                                container.innerHTML = `
+                                    <div style="background: rgba(15, 23, 42, 0.85); border: 1px dashed rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 25px 20px; text-align: center;">
+                                        <div style="font-size: 28px; margin-bottom: 6px;">🧭</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; margin-bottom: 4px;">Multi-Modal Data for ${orig} ⇄ ${dest} is currently being mapped!</div>
+                                        <div style="color: #94a3b8; font-size: 12px;">Try viewing our popular high-density corridors like <a href="javascript:void(0)" onclick="quickSelectMultiRoute('Garhbeta', 'Kolkata')" style="color: #38bdf8; text-decoration: underline;">Garhbeta ⇄ Kolkata</a> or <a href="javascript:void(0)" onclick="quickSelectMultiRoute('Kolkata', 'Digha')" style="color: #38bdf8; text-decoration: underline;">Kolkata ⇄ Digha</a>.</div>
+                                    </div>
+                                `;
+                                return;
+                            }
+
+                            container.innerHTML = `
+                                <div style="color: #38bdf8; font-weight: 800; font-size: 13.5px; text-transform: uppercase; margin-bottom: 16px; border-bottom: 1px solid rgba(56,189,248,0.25); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                                    <span>🟢 Route Comparison Matrix: <strong>${orig} ⇄ ${dest}</strong></span>
+                                    <span style="font-size: 11px; color: #94a3b8;">Triple-Mode Real Cost Algorithm</span>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 20px;">
+                                    
+                                    <!-- OPTION A: RAILWAY -->
+                                    <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(34, 197, 94, 0.35); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+                                        <div>
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                                <div style="font-size: 17px; font-weight: 800; color: #ffffff; display: flex; align-items: center; gap: 6px;">
+                                                    <span>🚆</span> By Railway (Train)
+                                                </div>
+                                                <span style="font-size: 10px; font-weight: 800; color: ${data.train.badgeColor}; background: rgba(34, 197, 94, 0.12); border: 1px solid rgba(34, 197, 94, 0.3); padding: 2px 6px; border-radius: 4px;">${data.train.badge}</span>
+                                            </div>
+                                            <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; margin-bottom: 12px;">
+                                                <div style="color: #38bdf8; font-size: 11px; text-transform: uppercase; font-weight: 700;">Journey Time</div>
+                                                <div style="font-size: 20px; font-family: 'Space Grotesk', monospace; font-weight: 800; color: #ffffff;">${data.train.time}</div>
+                                            </div>
+                                            <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 8px;">
+                                                <strong style="color: #4ade80;">Ticket Fares:</strong> ${data.train.fares}
+                                            </div>
+                                            <div style="font-size: 11.5px; color: #94a3b8; margin-bottom: 8px;">
+                                                <strong>Frequency:</strong> ${data.train.freq}
+                                            </div>
+                                            <div style="font-size: 11.5px; color: #94a3b8; margin-bottom: 16px;">
+                                                <strong>Key Trains:</strong> ${data.train.keyServices}
+                                            </div>
+                                        </div>
+                                        <a href="${data.train.bookingUrl}" target="_blank" style="width: 100%; text-align: center; background: rgba(34, 197, 94, 0.15); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.35); padding: 8px; border-radius: 6px; font-size: 12px; font-weight: 700; text-decoration: none; display: block; box-sizing: border-box;">
+                                            🎫 IRCTC Train Schedule & Booking
+                                        </a>
+                                    </div>
+
+                                    <!-- OPTION B: STATE BUS -->
+                                    <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+                                        <div>
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                                <div style="font-size: 17px; font-weight: 800; color: #ffffff; display: flex; align-items: center; gap: 6px;">
+                                                    <span>🚌</span> By Highway Bus
+                                                </div>
+                                                <span style="font-size: 10px; font-weight: 800; color: ${data.bus.badgeColor}; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 6px; border-radius: 4px;">${data.bus.badge}</span>
+                                            </div>
+                                            <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; margin-bottom: 12px;">
+                                                <div style="color: #38bdf8; font-size: 11px; text-transform: uppercase; font-weight: 700;">Journey Time</div>
+                                                <div style="font-size: 20px; font-family: 'Space Grotesk', monospace; font-weight: 800; color: #ffffff;">${data.bus.time}</div>
+                                            </div>
+                                            <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 8px;">
+                                                <strong style="color: #38bdf8;">Ticket Fares:</strong> ${data.bus.fares}
+                                            </div>
+                                            <div style="font-size: 11.5px; color: #94a3b8; margin-bottom: 8px;">
+                                                <strong>Frequency:</strong> ${data.bus.freq}
+                                            </div>
+                                            <div style="font-size: 11.5px; color: #94a3b8; margin-bottom: 16px;">
+                                                <strong>Terminal Track:</strong> ${data.bus.keyServices}
+                                            </div>
+                                        </div>
+                                        <a href="${data.bus.bookingUrl}" target="_blank" style="width: 100%; text-align: center; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 8px; border-radius: 6px; font-size: 12px; font-weight: 700; text-decoration: none; display: block; box-sizing: border-box;">
+                                            🎫 SBSTC / RedBus Portal
+                                        </a>
+                                    </div>
+
+                                    <!-- OPTION C: SELF DRIVE ROAD -->
+                                    <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+                                        <div>
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                                <div style="font-size: 17px; font-weight: 800; color: #ffffff; display: flex; align-items: center; gap: 6px;">
+                                                    <span>🚗</span> By Road (Car & Bike)
+                                                </div>
+                                                <span style="font-size: 10px; font-weight: 800; color: ${data.road.badgeColor}; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); padding: 2px 6px; border-radius: 4px;">${data.road.badge}</span>
+                                            </div>
+                                            <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; margin-bottom: 12px;">
+                                                <div style="color: #38bdf8; font-size: 11px; text-transform: uppercase; font-weight: 700;">Distance & Duration</div>
+                                                <div style="font-size: 20px; font-family: 'Space Grotesk', monospace; font-weight: 800; color: #ffffff;">${data.road.distance} • ${data.road.time.split('|')[0]}</div>
+                                            </div>
+                                            <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 8px;">
+                                                <strong style="color: #fbbf24;">Estimated Fuel:</strong> ${data.road.fuel}
+                                            </div>
+                                            <div style="font-size: 11.5px; color: #94a3b8; margin-bottom: 8px;">
+                                                <strong>Highway Tolls:</strong> ${data.road.tolls}
+                                            </div>
+                                            <div style="font-size: 11.5px; color: #94a3b8; margin-bottom: 16px;">
+                                                <strong>Highway Quality:</strong> ${data.road.roadQuality}
+                                            </div>
+                                        </div>
+                                        <a href="${data.road.mapUrl}" target="_blank" style="width: 100%; text-align: center; background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35); padding: 8px; border-radius: 6px; font-size: 12px; font-weight: 700; text-decoration: none; display: block; box-sizing: border-box;">
+                                            📍 View Live Google GPS Route
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                                <!-- COMPARISON VERDICT -->
+                                <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 14px 18px; font-size: 13px; color: #e2e8f0; line-height: 1.6;">
+                                    💡 ${data.verdict}
+                                </div>
+                            `;
+
+                            if (shouldScroll) {
+                                setTimeout(() => {
+                                    container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                }, 80);
+                            }
+                        }
+
+                        // Auto-run on initial load
+                        document.addEventListener('DOMContentLoaded', () => {
+                            compareMultiModalRoutes(false);
+                        });
+                        compareMultiModalRoutes(false);
+                    </script>
+                </div>
+
+<!-- State Emergency Contacts -->
                 <div style="margin-bottom: 40px;">
                     <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
                         <div style="font-size: 28px;">🚨</div>
@@ -6961,7 +7441,296 @@
                     </div>
                 </div>
 
-                <!-- Hall of Fame Awards -->
+                
+                <!-- ========================================================
+                     🏨 OFFICIAL WEST BENGAL GOVT (WBTDCL) & FOREST LODGE DIRECTORY
+                     ======================================================== -->
+                <div id="govt-lodges-section" style="margin-bottom: 45px; scroll-margin-top: 80px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="font-size: 28px;">🏨</div>
+                            <div>
+                                <h3 style="color: var(--text-primary); font-size: 22px; margin: 0; font-family: var(--font-title); font-weight: 700;">Official West Bengal Govt (WBTDCL) & Forest Lodge Directory</h3>
+                                <div style="font-size: 12px; color: #38bdf8;">Verified state government tourist lodges, forest rest houses & tariffs — Zero commission, direct booking</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 6px; background: rgba(34, 197, 94, 0.1); padding: 6px 12px; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.25);">
+                            <span style="color: #22c55e; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">✓ 100% Verified Govt Rates</span>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95)); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+                        
+                        <!-- DISTRICT FILTER TABS -->
+                        <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 18px; scrollbar-width: none;">
+                            <button onclick="filterGovtLodges('ALL', this)" class="lodge-tab-btn active" style="background: #0284c7; border: 1px solid #38bdf8; color: #ffffff; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 800; cursor: pointer; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">ALL PROPERTIES</button>
+                            <button onclick="filterGovtLodges('MEDINIPUR_BANKURA', this)" class="lodge-tab-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">🏛️ PASCHIM MEDINIPUR & BANKURA</button>
+                            <button onclick="filterGovtLodges('COASTAL_KOLKATA', this)" class="lodge-tab-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">🏖️ DIGHA & GREATER KOLKATA</button>
+                            <button onclick="filterGovtLodges('HILLS_NORTH_BENGAL', this)" class="lodge-tab-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">🏔️ DARJEELING & SILIGURI</button>
+                            <button onclick="filterGovtLodges('DOOARS_HERITAGE', this)" class="lodge-tab-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">🌲 DOOARS, BIRBHUM & MURSHIDABAD</button>
+                        </div>
+
+                        <!-- SEARCH LODGES BAR -->
+                        <div style="margin-bottom: 20px;">
+                            <input type="text" id="lodge-search-input" onkeyup="searchGovtLodges()" placeholder="🔍 Search govt lodge by name, district, or town (e.g. Bishnupur, Gangani, Digha, Darjeeling)..." style="width: 100%; padding: 12px 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; color: #ffffff; font-size: 14px; outline: none; box-sizing: border-box; transition: border-color 0.2s;">
+                        </div>
+
+                        <!-- LODGES GRID CONTAINER -->
+                        <div id="govt-lodges-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+                            <!-- Injected by JS -->
+                        </div>
+
+                    </div>
+
+                    <script>
+                        // ================================================================
+                        // OFFICIAL WBTDCL & WBFDC GOVT LODGES DATABASE
+                        // ================================================================
+                        var currentLodgeCategory = 'ALL';
+
+                        const govtLodgesData = [
+                            {
+                                id: 'bishnupur-lodge',
+                                name: 'WBTDCL Bishnupur Tourist Lodge',
+                                category: 'MEDINIPUR_BANKURA',
+                                org: 'WBTDCL Government Lodge',
+                                orgColor: '#22c55e',
+                                location: 'Rasmancha Road, Bishnupur, Bankura - 722122',
+                                tariff: '₹1,200 - ₹3,500 / night',
+                                phone: '03244252013',
+                                phoneDisplay: '03244-252013 / 252200',
+                                bookingUrl: 'https://www.wbtdcl.com/',
+                                amenities: ['❄️ AC & Non-AC Deluxe', '🍛 In-House Dining', '🌿 Lawn Garden', '🏛️ Near Terracotta Temples'],
+                                desc: 'The official state government property situated right in the heritage heart of Bishnupur, providing secure parking, clean suites, and close proximity to Rasmancha.'
+                            },
+                            {
+                                id: 'garhbeta-bungalow',
+                                name: 'Garhbeta Forest Bungalow & Rest House',
+                                category: 'MEDINIPUR_BANKURA',
+                                org: 'WBFDC Forest Dept Rest House',
+                                orgColor: '#10b981',
+                                location: 'Near Gangani Canyon Ridge, Garhbeta, Paschim Medinipur - 721157',
+                                tariff: '₹800 - ₹1,800 / night',
+                                phone: '03222275869',
+                                phoneDisplay: '03222-275869 (DFO Midnapore)',
+                                bookingUrl: 'https://wbfdc.net/',
+                                amenities: ['🌲 Peaceful Woodland', '🌅 Walking Distance to Gangani Gorges', '🛏️ Govt Guest Suites'],
+                                desc: 'State forest guest bungalow nestled amidst sal woodlands just minutes from the 70-foot red clay canyons of Gangani in Garhbeta.'
+                            },
+                            {
+                                id: 'digha-dighisha',
+                                name: 'WBTDCL Dighisha Tourist Property',
+                                category: 'COASTAL_KOLKATA',
+                                org: 'WBTDCL Government Property',
+                                orgColor: '#0ea5e9',
+                                location: 'Near Sea Beach, New Digha, Purba Medinipur - 721463',
+                                tariff: '₹1,800 - ₹4,800 / night',
+                                phone: '03220266258',
+                                phoneDisplay: '03220-266258',
+                                bookingUrl: 'https://www.wbtdcl.com/',
+                                amenities: ['🌊 200m from Sea Beach', '🏊 Swimming Pool', '🍽️ Multi-Cuisine Restaurant', '❄️ AC Luxury Suites'],
+                                desc: 'Premier beachside government resort offering spacious air-conditioned suites, on-site multi-cuisine dining, and verified government tariffs.'
+                            },
+                            {
+                                id: 'mukutmanipur-lodge',
+                                name: 'WBTDCL Mukutmanipur Tourist Lodge',
+                                category: 'MEDINIPUR_BANKURA',
+                                org: 'WBTDCL Government Property',
+                                orgColor: '#22c55e',
+                                location: 'Hilltop Dam View, Mukutmanipur, Bankura - 722135',
+                                tariff: '₹1,400 - ₹3,200 / night',
+                                phone: '03243253244',
+                                phoneDisplay: '03243-253244',
+                                bookingUrl: 'https://www.wbtdcl.com/',
+                                amenities: ['🏞️ Panoramic Dam View', '🚤 Boating Helpdesk', '❄️ AC Deluxe Cottages'],
+                                desc: 'Situated atop a breezy ridge overlooking the massive Kangsabati reservoir dam, featuring scenic lakeview balconies and evening sunset vistas.'
+                            },
+                            {
+                                id: 'siliguri-mainak',
+                                name: 'WBTDCL Mainak Tourist Lodge',
+                                category: 'HILLS_NORTH_BENGAL',
+                                org: 'WBTDCL Government Property',
+                                orgColor: '#0ea5e9',
+                                location: 'Hill Cart Road, Pradhan Nagar, Siliguri, Darjeeling - 734001',
+                                tariff: '₹2,200 - ₹5,500 / night',
+                                phone: '03532512859',
+                                phoneDisplay: '0353-2512859',
+                                bookingUrl: 'https://www.wbtdcl.com/',
+                                amenities: ['🏔️ Gateway to Hills', '🍸 Bar & Dining', '🚗 Secure Parking', '❄️ AC Executive Rooms'],
+                                desc: 'The landmark transit hotel of Siliguri run by the West Bengal Tourism Development Corporation, providing seamless connection to Darjeeling and Sikkim.'
+                            },
+                            {
+                                id: 'jaldapara-hollong',
+                                name: 'WBFDC Hollong / Aranya Forest Resort',
+                                category: 'DOOARS_HERITAGE',
+                                org: 'WBFDC Eco-Tourism Property',
+                                orgColor: '#10b981',
+                                location: 'Jaldapara National Park Core Zone, Alipurduar - 735220',
+                                tariff: '₹2,500 - ₹4,500 / night',
+                                phone: '03322370060',
+                                phoneDisplay: '033-2237-0060 (WBFDC Central)',
+                                bookingUrl: 'https://wbfdc.net/',
+                                amenities: ['🦏 Wildlife Salt-Lick View', '🐘 Morning Elephant Safari Desk', '🌲 Deep Jungle Immersion'],
+                                desc: 'Iconic forest resort deep within Jaldapara sanctuary where wild rhinos, elephants, and gaurs can be spotted directly from the verandah.'
+                            },
+                            {
+                                id: 'santiniketan-rangabitan',
+                                name: 'WBTDCL Rangabitan Tourist Property',
+                                category: 'DOOARS_HERITAGE',
+                                org: 'WBTDCL Government Property',
+                                orgColor: '#f59e0b',
+                                location: 'Bolpur Santiniketan, Birbhum - 731204',
+                                tariff: '₹1,600 - ₹4,200 / night',
+                                phone: '03463261499',
+                                phoneDisplay: '03463-261499',
+                                bookingUrl: 'https://www.wbtdcl.com/',
+                                amenities: ['🎨 Cultural Garden', '🎶 Baul Music Evenings', '🏛️ Near Visva-Bharati'],
+                                desc: 'Serene terracotta-style heritage tourist lodge located minutes away from Rabindranath Tagores Visva-Bharati university campus.'
+                            },
+                            {
+                                id: 'baharampore-lodge',
+                                name: 'WBTDCL Baharampore Tourist Lodge',
+                                category: 'DOOARS_HERITAGE',
+                                org: 'WBTDCL Government Property',
+                                orgColor: '#22c55e',
+                                location: 'Baharampore, Murshidabad - 742101',
+                                tariff: '₹1,200 - ₹3,000 / night',
+                                phone: '03482259508',
+                                phoneDisplay: '03482-259508',
+                                bookingUrl: 'https://www.wbtdcl.com/',
+                                amenities: ['🏰 15m to Hazarduari Palace', '🍛 Bengali Cuisine Restaurant', '🚗 Tour Guide Desk'],
+                                desc: 'The most popular base for exploring the 1000-door Hazarduari Palace, Katra Mosque, and historic Nawabi monuments along the Bhagirathi River.'
+                            },
+                            {
+                                id: 'kolkata-udayachal',
+                                name: 'WBTDCL Udayachal Tourist Property',
+                                category: 'COASTAL_KOLKATA',
+                                org: 'WBTDCL Government Property',
+                                orgColor: '#0ea5e9',
+                                location: 'Sector II, Salt Lake City, Kolkata - 700091',
+                                tariff: '₹1,500 - ₹3,800 / night',
+                                phone: '03323585189',
+                                phoneDisplay: '033-2358-5189',
+                                bookingUrl: 'https://www.wbtdcl.com/',
+                                amenities: ['🚇 Near Karunamoyee Metro & Bus Stand', '✈️ 20m from Airport', '❄️ AC Executive Rooms'],
+                                desc: 'State tourism property located in Salt Lake City, offering rapid connectivity to the airport, Karunamoyee Central Bus Terminus, and metro stations.'
+                            },
+                            {
+                                id: 'jhargram-rajbari',
+                                name: 'WBTDCL Jhargram Rajbari Tourism Resort',
+                                category: 'MEDINIPUR_BANKURA',
+                                org: 'WBTDCL Heritage Property',
+                                orgColor: '#f59e0b',
+                                location: 'Old Jhargram Palace Grounds, Jhargram - 721507',
+                                tariff: '₹1,800 - ₹4,500 / night',
+                                phone: '03221255005',
+                                phoneDisplay: '03221-255005',
+                                bookingUrl: 'https://www.wbtdcl.com/',
+                                amenities: ['👑 Royal Palace Grounds', '🏹 Tribal Craft Centre', '🌲 Sal Forest Canopy Trails'],
+                                desc: 'Experience royal palace heritage amidst the lush red-soil jungles of Jhargram with guided nature trails and authentic Santhali cultural performances.'
+                            }
+                        ];
+
+                        function filterGovtLodges(cat, el) {
+                            currentLodgeCategory = cat;
+                            document.querySelectorAll('.lodge-tab-btn').forEach(b => {
+                                b.classList.remove('active');
+                                b.style.background = 'rgba(255,255,255,0.05)';
+                                b.style.borderColor = 'rgba(255,255,255,0.1)';
+                                b.style.color = '#cbd5e1';
+                            });
+                            if (el) {
+                                el.classList.add('active');
+                                el.style.background = '#0284c7';
+                                el.style.borderColor = '#38bdf8';
+                                el.style.color = '#ffffff';
+                            }
+                            searchGovtLodges();
+                        }
+
+                        function searchGovtLodges() {
+                            const query = (document.getElementById('lodge-search-input')?.value || '').toLowerCase().trim();
+                            const container = document.getElementById('govt-lodges-list');
+                            if (!container) return;
+
+                            let filtered = govtLodgesData;
+                            if (currentLodgeCategory !== 'ALL') {
+                                filtered = filtered.filter(l => l.category === currentLodgeCategory);
+                            }
+
+                            if (query) {
+                                filtered = filtered.filter(l => 
+                                    l.name.toLowerCase().includes(query) || 
+                                    l.location.toLowerCase().includes(query) || 
+                                    l.desc.toLowerCase().includes(query)
+                                );
+                            }
+
+                            if (filtered.length === 0) {
+                                container.innerHTML = `
+                                    <div style="grid-column: 1 / -1; background: rgba(15, 23, 42, 0.85); border: 1px dashed rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 25px 20px; text-align: center;">
+                                        <div style="font-size: 28px; margin-bottom: 6px;">🏨</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; margin-bottom: 4px;">No government properties match "${query}"</div>
+                                        <div style="color: #94a3b8; font-size: 12px;">Try switching categories or clear your search query.</div>
+                                    </div>
+                                `;
+                                return;
+                            }
+
+                            let html = '';
+                            filtered.forEach(lodge => {
+                                const amenitiesHtml = lodge.amenities.map(a => `<span style="background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 4px; font-size: 11px; color: #cbd5e1;">${a}</span>`).join(' ');
+
+                                html += `
+                                    <div class="train-card visible" style="margin-bottom: 0; background: rgba(15, 23, 42, 0.85); display: flex; flex-direction: column; justify-content: space-between;">
+                                        <div>
+                                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                                                <div style="flex: 2; min-width: 200px;">
+                                                    <div style="color: #ffffff; font-weight: 800; font-size: 16px; margin-bottom: 4px;">${lodge.name}</div>
+                                                    <div style="color: #38bdf8; font-size: 11.5px; font-weight: 600;">📍 ${lodge.location}</div>
+                                                </div>
+                                                <span style="font-size: 10px; font-weight: 800; color: ${lodge.orgColor}; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">${lodge.org}</span>
+                                            </div>
+
+                                            <p style="color: #94a3b8; font-size: 12px; line-height: 1.5; margin-bottom: 12px;">${lodge.desc}</p>
+
+                                            <!-- TARIFF & AMENITIES -->
+                                            <div style="background: rgba(0,0,0,0.3); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 12px;">
+                                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                                    <span style="color: #94a3b8; font-size: 11px; text-transform: uppercase; font-weight: 700;">Verified Tariff:</span>
+                                                    <span style="color: #10b981; font-size: 16px; font-weight: 800; font-family: 'Space Grotesk', sans-serif;">${lodge.tariff}</span>
+                                                </div>
+                                                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                                    ${amenitiesHtml}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- DIRECT BUTTONS -->
+                                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
+                                            <a href="${lodge.bookingUrl}" target="_blank" style="flex: 1; text-align: center; background: rgba(34, 197, 94, 0.15); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.35); padding: 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700; text-decoration: none;">
+                                                🌐 Book on Official Portal
+                                            </a>
+                                            <a href="tel:${lodge.phone}" style="flex: 1; text-align: center; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700; text-decoration: none;">
+                                                📞 Call: ${lodge.phoneDisplay}
+                                            </a>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+
+                            container.innerHTML = html;
+                        }
+
+                        // Auto-run on load
+                        document.addEventListener('DOMContentLoaded', () => {
+                            searchGovtLodges();
+                        });
+                        searchGovtLodges();
+                    </script>
+                </div>
+
+<!-- Hall of Fame Awards -->
         <div class="hall-of-fame" id="hall-section">
             <div class="hall-title">🏆 Squad Hall of Fame</div>
             <div class="hall-grid">
