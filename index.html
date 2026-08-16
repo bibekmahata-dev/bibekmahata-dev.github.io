@@ -8298,7 +8298,7 @@ document.addEventListener('keydown', (e) => {
             'bishnupur': {
                 title: 'Bishnupur Terracotta Temples',
                 category: 'heritage',
-                image: 'https://images.unsplash.com/photo-1599837965416-092523b03657?w=500&auto=format&fit=crop&q=80',
+                image: 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=500&auto=format&fit=crop&q=80',
                 rating: '★ 4.7',
                 desc: 'Legendary 17th-century terracotta temples built by the Malla dynasty, famous for Rasmancha, Jor Bangla, and Baluchari silk weavers.',
                 highlights: ['Rasmancha', 'Jor Bangla Temple', 'Baluchari Silk'],
@@ -10228,7 +10228,7 @@ document.addEventListener('keydown', (e) => {
             'bishnupur': {
                 title: 'Bishnupur Terracotta Temples',
                 category: 'heritage',
-                image: 'https://images.unsplash.com/photo-1599837965416-092523b03657?w=500&auto=format&fit=crop&q=80',
+                image: 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=500&auto=format&fit=crop&q=80',
                 rating: '★ 4.7',
                 desc: 'Legendary 17th-century terracotta temples built by the Malla kings, famous for Rasmancha and Baluchari silks.',
                 coords: { lat: 23.0784, lng: 87.3204 }
@@ -10434,68 +10434,43 @@ document.addEventListener('keydown', (e) => {
             }
         }
 
+        
+        // Precision Smooth Scroll to Map without viewport jitter
         function scrollToMapRadar() {
             const mapEl = document.getElementById('hangout-map');
             if (mapEl) {
-                mapEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const yOffset = -75; // Account for sticky navbar
+                const y = mapEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
             }
         }
 
-        function drawLiveRoute(destLat, destLng, destTitle) {
-            const startLat = userLocation ? userLocation.lat : 22.8617;
-            const startLng = userLocation ? userLocation.lng : 87.3512;
-            const startLabel = userLocation ? "Your Current Location" : "Garhbeta Hub";
-
-            if (activeRoutePolyline && window.map) {
-                window.map.removeLayer(activeRoutePolyline);
-            }
-
-            const distKm = calculateDistance(startLat, startLng, destLat, destLng);
-            const estHours = (distKm / 45).toFixed(1);
-
-            const midLat = (startLat + destLat) / 2 + (destLng - startLng) * 0.08;
-            const midLng = (startLng + destLng) / 2 - (destLat - startLat) * 0.08;
-            const pathCoords = [[startLat, startLng], [midLat, midLng], [destLat, destLng]];
-
-            activeRoutePolyline = L.polyline(pathCoords, {
-                color: '#38bdf8',
-                weight: 4,
-                opacity: 0.85,
-                dashArray: '8, 8',
-                lineCap: 'round'
-            }).addTo(window.map);
-
-            window.map.fitBounds(activeRoutePolyline.getBounds(), { padding: [40, 40] });
-
-            const statusEl = document.getElementById('integrated-map-status');
-            if (statusEl) {
-                statusEl.innerHTML = `📍 <strong>Route to ${destTitle}</strong>: ${distKm} KM (~${estHours}h drive from ${startLabel})`;
-                statusEl.style.display = 'block';
-                setTimeout(() => { statusEl.style.display = 'none'; }, 8000);
-            }
-        }
-
+        // Focus Pin on Map with Zero Shaking
         function selectPlace(id) {
             const place = placesData[id];
             if (!place) return;
 
+            // 1. Smoothly scroll viewport up to the map
             scrollToMapRadar();
 
+            // 2. Center map cleanly after scroll settles (zero animation fighting)
             setTimeout(() => {
                 if (window.map) {
-                    window.map.flyTo([place.coords.lat, place.coords.lng], 11, { duration: 1.2 });
+                    window.map.panTo([place.coords.lat, place.coords.lng], { animate: true, duration: 0.5 });
                 }
                 const marker = markers[id];
                 if (marker) {
-                    setTimeout(() => { marker.openPopup(); }, 500);
+                    setTimeout(() => { marker.openPopup(); }, 300);
                 }
-            }, 200);
+            }, 350);
 
+            // 3. Highlight selected card
             document.querySelectorAll('.explorer-card').forEach(c => c.classList.remove('active'));
             const selectedCard = document.getElementById(`card-${id}`);
             if (selectedCard) selectedCard.classList.add('active');
         }
 
+        // Draw Route + Focus with Zero Shaking
         function focusAndRouteToPlace(id) {
             const place = placesData[id];
             if (!place) return;
@@ -10506,9 +10481,9 @@ document.addEventListener('keydown', (e) => {
                 drawLiveRoute(place.coords.lat, place.coords.lng, place.title);
                 const marker = markers[id];
                 if (marker) {
-                    setTimeout(() => { marker.openPopup(); }, 600);
+                    setTimeout(() => { marker.openPopup(); }, 400);
                 }
-            }, 250);
+            }, 350);
 
             document.querySelectorAll('.explorer-card').forEach(c => c.classList.remove('active'));
             const selectedCard = document.getElementById(`card-${id}`);
