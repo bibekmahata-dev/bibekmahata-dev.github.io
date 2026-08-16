@@ -4764,7 +4764,7 @@
 
         <!-- Featured Squad Inspirational Quote Wall -->
         <div class="quote-wall" id="quote-wall">
-            <img class="quote-wall__avatar" id="quote-avatar" src="assets/agents/gobinda.jpg" alt="Gobinda Nag" loading="lazy" decoding="async">
+            <img onerror="this.onerror=null; this.src='assets/agents/bibek.jpg';" class="quote-wall__avatar" id="quote-avatar" src="assets/agents/gobinda.jpg" alt="Gobinda Nag" loading="lazy" decoding="async">
             <div class="quote-wall__content">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
                     <span class="member-card__tag tag-rose" id="quote-counter" style="position:static; display:inline-block; font-size: 10.5px;">QUOTE #1 OF 15</span>
@@ -8834,7 +8834,7 @@
                         </div>
 
                         <div style="position: relative; display: inline-block; margin-bottom: 12px;">
-                            <img id="hq-result-photo" src="" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);" alt="Result Photo" loading="lazy" decoding="async">
+                            <img onerror="this.onerror=null; this.src='assets/agents/bibek.jpg';" id="hq-result-photo" src="" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);" alt="Result Photo" loading="lazy" decoding="async">
                             <div style="position: absolute; bottom: 4px; right: 4px; background: #22c55e; width: 18px; height: 18px; border-radius: 50%; border: 3px solid var(--bg-card);" title="Student Explorer Match"></div>
                         </div>
                         
@@ -8950,7 +8950,7 @@
     <!-- ========== SHARE CARD TEMPLATE (HIDDEN) ========== -->
     <div id="share-card" class="share-card-container">
         <div class="share-card-logo">🏛️ Bengal Explorers</div>
-        <img id="share-card-photo" class="share-card-photo" src="" alt="Photo" loading="lazy" decoding="async">
+        <img onerror="this.onerror=null; this.src='assets/agents/bibek.jpg';" id="share-card-photo" class="share-card-photo" src="" alt="Photo" loading="lazy" decoding="async">
         <div id="share-card-name" class="share-card-name"></div>
         <div id="share-card-tag" class="share-card-tag"></div>
         <div id="share-card-quote" class="share-card-quote"></div>
@@ -8972,7 +8972,7 @@
     <!-- ========== LIGHTBOX ========== -->
     <div class="lightbox-overlay" id="lightbox-overlay">
         <button class="modal__close" id="lightbox-close">✕</button>
-        <img class="lightbox__img" id="lightbox-img" src="" alt="Full view" loading="lazy" decoding="async">
+        <img onerror="this.onerror=null; this.src='assets/agents/bibek.jpg';" class="lightbox__img" id="lightbox-img" src="" alt="Full view" loading="lazy" decoding="async">
         <div class="lightbox__caption" id="lightbox-caption"></div>
     </div>
 
@@ -9904,7 +9904,7 @@ function updateComparison() {
 function renderCompareCard(m, cardEl) {
     const strengthsHTML = (m.strengths || []).map(s => `<li style="font-size: 11.5px; margin-bottom: 4px; text-align: left;">🌟 ${s}</li>`).join('');
     cardEl.innerHTML = `
-        <img src="${m.photo}" alt="${m.name}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 8px; border: 2px solid #38bdf8;" loading="lazy" decoding="async">
+        <img onerror="this.onerror=null; this.src='assets/agents/bibek.jpg';" src="${m.photo}" alt="${m.name}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 8px; border: 2px solid #38bdf8;" loading="lazy" decoding="async">
         <h3 style="font-size: 18px; color: #fff; font-family: var(--font-title);">${m.name}</h3>
         <div style="font-size: 12px; color: #38bdf8; font-weight: 700; margin-bottom: 6px;">${m.prestigeTitle || m.tag}</div>
         <div style="font-size: 11px; background: rgba(234, 179, 8, 0.15); color: #eab308; padding: 2px 8px; border-radius: 99px; display: inline-block; margin-bottom: 10px;">👑 ${m.distinction || 'HONORED MEMBER'}</div>
@@ -9978,7 +9978,7 @@ function openSquadPass(id) {
 
             <div class="cert-body">
                 <div class="cert-citation">This is to officially certify that</div>
-                <img class="cert-photo" src="${m.photo}" alt="${m.name}" style="${m.objectPosition ? `object-position: ${m.objectPosition};` : ''}" loading="lazy" decoding="async">
+                <img onerror="this.onerror=null; this.src='assets/agents/bibek.jpg';" class="cert-photo" src="${m.photo}" alt="${m.name}" style="${m.objectPosition ? `object-position: ${m.objectPosition};` : ''}" loading="lazy" decoding="async">
                 <div class="cert-member-name">${m.name}</div>
                 <div class="cert-role">${m.tag} &bull; ${m.location}</div>
                 <div class="cert-honors">
@@ -9987,7 +9987,7 @@ function openSquadPass(id) {
 
                 <!-- Verified Dynamic QR Code Box -->
                 <div class="cert-qr-box">
-                    <img class="cert-qr-img" src="${qrUrl}" alt="QR Credentials" loading="lazy" decoding="async">
+                    <img onerror="this.onerror=null; this.src='assets/agents/bibek.jpg';" class="cert-qr-img" src="${qrUrl}" alt="QR Credentials" loading="lazy" decoding="async">
                     <div class="cert-qr-text">
                         <div><strong>VERIFIED SQUAD CREDENTIAL</strong></div>
                         <div>PASS ID: HGC-2026-0${index + 1}</div>
@@ -10052,7 +10052,7 @@ function renderLeaderboard() {
         return `
             <div class="leaderboard-card rank-${rank}" onclick="openModal(MEMBERS.find(member => member.id === '${m.id}'))" style="cursor: pointer;">
                 <div class="leaderboard-rank">#${rank}</div>
-                <img src="${m.photo}" alt="${m.name}" class="leaderboard-photo" style="${m.objectPosition ? `object-position: ${m.objectPosition};` : ''}" loading="lazy" decoding="async">
+                <img onerror="this.onerror=null; this.src='assets/agents/bibek.jpg';" src="${m.photo}" alt="${m.name}" class="leaderboard-photo" style="${m.objectPosition ? `object-position: ${m.objectPosition};` : ''}" loading="lazy" decoding="async">
                 <div class="leaderboard-info">
                     <div class="leaderboard-name">${m.name}</div>
                     <div class="leaderboard-stats">❤️ ${formatLikes(count)} Hypes</div>
@@ -10080,7 +10080,7 @@ function renderCards() {
 
         card.innerHTML = `
             <div class="member-card__photo-container" data-photo="${m.photo}" data-name="${m.name}">
-                <img class="member-card__photo" src="${m.photo}" alt="${m.name}" style="${m.objectPosition ? `object-position: ${m.objectPosition};` : ''}" loading="lazy" decoding="async">
+                <img onerror="this.onerror=null; this.src='assets/agents/bibek.jpg';" class="member-card__photo" src="${m.photo}" alt="${m.name}" style="${m.objectPosition ? `object-position: ${m.objectPosition};` : ''}" loading="lazy" decoding="async">
                 <div class="member-card__photo-overlay">
                     <span class="member-card__photo-zoom">🔍 View Official Dossier</span>
                 </div>
@@ -10145,7 +10145,7 @@ function renderGallery() {
     if (!galleryGrid) return;
     galleryGrid.innerHTML = MEMBERS.map(m => `
         <div class="gallery-item" onclick="openLightbox('${m.photo}', '${m.name}')">
-            <img src="${m.photo}" alt="${m.name}" style="${m.objectPosition ? `object-position: ${m.objectPosition};` : ''}" loading="lazy" decoding="async">
+            <img onerror="this.onerror=null; this.src='assets/agents/bibek.jpg';" src="${m.photo}" alt="${m.name}" style="${m.objectPosition ? `object-position: ${m.objectPosition};` : ''}" loading="lazy" decoding="async">
             <div class="gallery-item__overlay">
                 <div class="gallery-item__name">${m.name}</div>
                 <div class="gallery-item__tag">${m.prestigeTitle || m.tag}</div>
@@ -10275,7 +10275,7 @@ function startQuiz() {
 
     modalBody.innerHTML = `
         <div style="text-align: center; padding: 10px 0;">
-            <img class="modal__photo" src="${matchedMember.photo}" alt="${matchedMember.name}" style="width: 140px; height: 140px; margin: 0 auto 16px; display: block; border-radius: 50%; border: 3px solid #ec4899; box-shadow: 0 0 25px rgba(236, 72, 153, 0.4);" loading="lazy" decoding="async">
+            <img onerror="this.onerror=null; this.src='assets/agents/bibek.jpg';" class="modal__photo" src="${matchedMember.photo}" alt="${matchedMember.name}" style="width: 140px; height: 140px; margin: 0 auto 16px; display: block; border-radius: 50%; border: 3px solid #ec4899; box-shadow: 0 0 25px rgba(236, 72, 153, 0.4);" loading="lazy" decoding="async">
             <div style="font-family: var(--font-accent); font-size: 13px; font-weight: 700; color: #ec4899; text-transform: uppercase; letter-spacing: 1px;">Match Result</div>
             <h3 style="font-family: var(--font-title); font-size: 28px; font-weight: 800; color: #ffffff; margin: 4px 0 10px;">${matchPercentage}% Affinity with ${matchedMember.name}!</h3>
             <div style="font-size: 14px; color: #38bdf8; font-weight: 700; margin-bottom: 8px;">Role: ${matchedMember.prestigeTitle || matchedMember.tag}</div>
@@ -10330,7 +10330,7 @@ function openModal(m) {
     const distinctionHTML = m.distinction ? `<span class="rarity-badge rarity-LEGENDARY">👑 ${m.distinction}</span>` : '';
 
     modalHeader.innerHTML = `
-        <img class="modal__photo" src="${m.photo}" alt="${m.name}" style="${m.objectPosition ? `object-position: ${m.objectPosition};` : ''}" id="modal-img-trigger" loading="lazy" decoding="async">
+        <img onerror="this.onerror=null; this.src='assets/agents/bibek.jpg';" class="modal__photo" src="${m.photo}" alt="${m.name}" style="${m.objectPosition ? `object-position: ${m.objectPosition};` : ''}" id="modal-img-trigger" loading="lazy" decoding="async">
         <div class="modal__title-group">
             <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
                 ${distinctionHTML}
@@ -13435,6 +13435,49 @@ document.addEventListener('keydown', (e) => {
             forceMapRedraw();
         });
         window.addEventListener('resize', forceMapRedraw);
+    </script>
+
+
+    <!-- Master Utility & Resilience Helper Engine -->
+    <script>
+        function closeGmapModal() {
+            const modal = document.getElementById('gmap-directions-modal');
+            if (modal) {
+                modal.style.display = 'none';
+                const iframe = document.getElementById('gmap-directions-iframe');
+                if (iframe) iframe.src = '';
+            }
+        }
+
+        function resetUserLocation() {
+            if (typeof userLat !== 'undefined') userLat = null;
+            if (typeof userLng !== 'undefined') userLng = null;
+            if (typeof routeLayer !== 'undefined' && routeLayer && typeof map !== 'undefined' && map) {
+                map.removeLayer(routeLayer);
+                routeLayer = null;
+            }
+            if (typeof animatedVehicleMarker !== 'undefined' && animatedVehicleMarker && typeof map !== 'undefined' && map) {
+                map.removeLayer(animatedVehicleMarker);
+                animatedVehicleMarker = null;
+            }
+            if (typeof animationFrameId !== 'undefined' && animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+            const mapStatus = document.getElementById('map-status');
+            if (mapStatus) {
+                mapStatus.textContent = '📍 User location reset. Click any destination to navigate.';
+                mapStatus.style.background = 'rgba(56, 189, 248, 0.9)';
+                mapStatus.style.display = 'block';
+                setTimeout(() => { mapStatus.style.display = 'none'; }, 3000);
+            }
+        }
+
+        // Global Network & Unhandled Rejection Error Boundary
+        window.addEventListener('unhandledrejection', function(event) {
+            console.warn('Network or API stream notice (handled gracefully):', event.reason);
+            event.preventDefault();
+        });
     </script>
 
 </body>
