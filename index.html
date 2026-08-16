@@ -8234,6 +8234,404 @@
                     </script>
                 </div>
 
+
+                <!-- ========================================================
+                     🍛 BENGAL HIGHWAY GASTRONOMY & ROADSIDE EATERY DIRECTORY (ALL 18 DESTINATIONS)
+                     ======================================================== -->
+                <div id="bengal-gastronomy-section" style="margin-bottom: 45px; scroll-margin-top: 80px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="font-size: 28px;">🍛</div>
+                            <div>
+                                <h3 style="color: var(--text-primary); font-size: 22px; margin: 0; font-family: var(--font-title); font-weight: 700;">Bengal Highway Gastronomy & Roadside Eatery Directory</h3>
+                                <div style="font-size: 12px; color: #38bdf8;">Authentic Breakfast Cabins (Sokal-er Jolkhabar), Midday Bengali Thalis (Dupur-er Bhaat) & Night Highway Dhabas across all 18 Destinations</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 6px; background: rgba(245, 158, 11, 0.1); padding: 6px 12px; border-radius: 20px; border: 1px solid rgba(245, 158, 11, 0.25);">
+                            <span style="font-size: 13px;">🍽️</span>
+                            <span style="color: #fbbf24; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">18 Destination Food Circuit</span>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95)); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+                        
+                        <!-- MEAL FILTER TABS -->
+                        <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 18px; scrollbar-width: none;">
+                            <button onclick="filterGastronomy('ALL', this)" class="gastro-tab-btn active" style="background: #d97706; border: 1px solid #f59e0b; color: #ffffff; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 800; cursor: pointer; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">ALL 18 FOOD HUBS</button>
+                            <button onclick="filterGastronomy('BREAKFAST', this)" class="gastro-tab-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">🍳 MORNING BREAKFAST (₹20-₹60)</button>
+                            <button onclick="filterGastronomy('MIDDAY', this)" class="gastro-tab-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">🍛 MIDDAY BENGALI THALIS (₹70-₹180)</button>
+                            <button onclick="filterGastronomy('DINNER', this)" class="gastro-tab-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">🌙 NIGHT HIGHWAY DHABAS (₹90-₹250)</button>
+                        </div>
+
+                        <!-- SEARCH FOOD BAR -->
+                        <div style="margin-bottom: 20px;">
+                            <input type="text" id="gastro-search-input" onkeyup="searchGastronomy()" placeholder="🔍 Search by dish, town, or specialty (e.g. Posto Bora, Hing Kochuri, Momos, Fish Thali, Tadka Roti, Chenabora)..." style="width: 100%; padding: 12px 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; color: #ffffff; font-size: 14px; outline: none; box-sizing: border-box; transition: border-color 0.2s;">
+                        </div>
+
+                        <!-- FOOD CARDS GRID (ALL 18 DESTINATIONS) -->
+                        <div id="gastronomy-list-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+                            <!-- Injected by JS -->
+                        </div>
+
+                    </div>
+
+                    <script>
+                        // ================================================================
+                        // COMPLETE 18-DESTINATION BENGAL GASTRONOMY DATABASE
+                        // ================================================================
+                        var currentGastroMealFilter = 'ALL';
+
+                        const gastronomy18Database = [
+                            {
+                                id: 'gastro-gangani',
+                                place: 'Gangani Grand Canyon',
+                                district: 'Garhbeta, Paschim Medinipur',
+                                breakfast: 'Shilabati Ridge Crispy Hing Kochuri with spicy Chholar Dal, Nimki & authentic Garhbeta Chenabora sweets',
+                                bPrice: '₹25 - ₹35',
+                                midday: 'Traditional Shilabati River Katla/Rui Fish Thali with Sona Moong Dal, Jhuri Aloo Bhaja, Posto & Tomato Chutney',
+                                mPrice: '₹80 - ₹110',
+                                dinner: 'Garhbeta Stand Highway Dhaba: Wood-fired Tandoori Roti with Special Egg Tadka & Mutton Kosha',
+                                dPrice: '₹95 - ₹150',
+                                iconicFood: '⭐ Garhbeta Chenabora & Shilabati River Catch',
+                                badge: 'Paschim Medinipur Flavor'
+                            },
+                            {
+                                id: 'gastro-darjeeling',
+                                place: 'Darjeeling Hills',
+                                district: 'Himalayan Foothills',
+                                breakfast: 'Kunga & Chowrasta Cabin: Steaming Chicken Momos, Tingmo Bread, Tibetan Butter Tea & Dalle Khursani chili sauce',
+                                bPrice: '₹50 - ₹70',
+                                midday: 'Authentic Nepali Thali: Gundruk Jhol, Kinema curry, Black Lentil Dal, Organic Red Rice & Sel Roti',
+                                mPrice: '₹110 - ₹160',
+                                dinner: 'Glenary's & Chowrasta Night Bakery: Wood-fired Oven Pizza, Smoked Pork/Chicken Thukpa & Makaibari Tea',
+                                dPrice: '₹140 - ₹220',
+                                iconicFood: '⭐ Authentic Dalle Steamed Momos & Darjeeling Tea',
+                                badge: 'Himalayan Gastronomy'
+                            },
+                            {
+                                id: 'gastro-kolkata',
+                                place: 'Victoria Memorial & Central Kolkata',
+                                district: 'Kolkata Central',
+                                breakfast: 'Dacre Lane / College Street: Famous Club Kachori, Radhaballabhi with Chana, Butter Toast & Clay-cup Dudh Cha',
+                                bPrice: '₹35 - ₹55',
+                                midday: 'Iconic Bengali Thali: Ilish Bhape (Steamed Hilsa), Bhetki Paturi, Chingri Malai Curry & Kosha Mangsho with Pulao',
+                                mPrice: '₹140 - ₹240',
+                                dinner: 'Park Street & Nizam's: Original Kolkata Mutton Kathi Rolls, Kolkata Dum Biryani with Aloo & Chicken Chaap',
+                                dPrice: '₹110 - ₹190',
+                                iconicFood: '⭐ Original Kathi Roll & Ilish Bhape',
+                                badge: 'City of Joy Classics'
+                            },
+                            {
+                                id: 'gastro-digha',
+                                place: 'Digha Sea Beach',
+                                district: 'Purba Medinipur',
+                                breakfast: 'Old Digha Seafront: Crispy Radhaballabhi with spiced Aloo Dum, Boiled Eggs & Sweet Green Coconut Water',
+                                bPrice: '₹30 - ₹45',
+                                midday: 'Authentic Digha Seafood Thali: Fresh Crab Masala, Fried Pomfret, Steamed Rice, Sona Moong Dal & Mango Chutney',
+                                mPrice: '₹95 - ₹150',
+                                dinner: 'Udaipur Shoreline Stalls: Live Charcoal-Grilled Tiger Prawns, Bhetki Fry, Tandoori Crab & Crispy Squid',
+                                dPrice: '₹130 - ₹220',
+                                iconicFood: '⭐ Shoreline Pomfret Fry & Live Crab Curry',
+                                badge: 'Coastal Seafood Hub'
+                            },
+                            {
+                                id: 'gastro-shantiniketan',
+                                place: 'Shantiniketan',
+                                district: 'Birbhum',
+                                breakfast: 'Ratan Palli: Hand-pounded Luchi with aromatic Chholar Dal, Hing Aloor Dom & Nolen Gur Sandesh',
+                                bPrice: '₹35 - ₹50',
+                                midday: 'Kasahara Cafe & Baul Kitchen: Clay-pot Organic Khichuri with 5-vegetable Bhaja, Kasundi & Chhanar Payesh',
+                                mPrice: '₹85 - ₹130',
+                                dinner: 'Bolpur Highway Dhaba: Country Chicken (Desi Murgi) Jhol with hot crisp Tawa Roti & Sweet Mishti Doi',
+                                dPrice: '₹110 - ₹160',
+                                iconicFood: '⭐ Baul Clay-Pot Khichuri & Nolen Gur',
+                                badge: 'Tagore Cultural Flavors'
+                            },
+                            {
+                                id: 'gastro-hazarduari',
+                                place: 'Hazarduari Palace',
+                                district: 'Murshidabad',
+                                breakfast: 'Lalbagh Stand: Chhana-er Jilipi, Spiced Nimki & Hot Hing Kochuri with spicy Motor Dal',
+                                bPrice: '₹25 - ₹40',
+                                midday: 'Authentic Nawabi Murshidabad Mutton Biryani served with spiced golden potato, Shahi Tukda & Salad',
+                                mPrice: '₹120 - ₹170',
+                                dinner: 'Bhagirathi Riverbank Eateries: Fresh Bhagirathi Ilish Fish Fry with steaming spiced Rice & Onion Rings',
+                                dPrice: '₹140 - ₹200',
+                                iconicFood: '⭐ Chhana-er Jilipi & Murshidabadi Biryani',
+                                badge: 'Nawabi Heritage Dining'
+                            },
+                            {
+                                id: 'gastro-mandarmani',
+                                place: 'Mandarmani Beach',
+                                district: 'Purba Medinipur',
+                                breakfast: 'Beach Shacks: Masala Cheese Omelette, Pao Butter, Hot Kochuri & Fresh Ginger Lemon Tea',
+                                bPrice: '₹40 - ₹60',
+                                midday: 'Coastal Crab Masala & Prawn Malai Curry Thali with piping hot Basmati rice & Salad',
+                                mPrice: '₹130 - ₹180',
+                                dinner: 'Drive-in Beach Shacks: Barbequed Sea Fish, Tandoori Crab, Fried Fish Fillets & Cold Drinks',
+                                dPrice: '₹160 - ₹240',
+                                iconicFood: '⭐ Barbequed Sea Crab & Prawn Curry',
+                                badge: 'Beach Drive Flavors'
+                            },
+                            {
+                                id: 'gastro-kalimpong',
+                                place: 'Kalimpong',
+                                district: 'Himalayan Foothills',
+                                breakfast: 'Gompu's Cabin: Steaming Pork/Veg Momos, Fresh Kalimpong Cheese & Spicy Tomato Chutney',
+                                bPrice: '₹45 - ₹65',
+                                midday: 'Traditional Shabaley (Tibetan meat pies), Kalimpong Cheddar Macaroni & Fresh Organic Greens',
+                                mPrice: '₹95 - ₹150',
+                                dinner: 'Motor Stand Night Dhabas: Spicy Thukpa, Wonton Soup, Tibetan Pork Ribs & Fresh Tingmo Bread',
+                                dPrice: '₹120 - ₹180',
+                                iconicFood: '⭐ Kalimpong Cheddar Cheese & Shabaley',
+                                badge: 'Himalayan Organic'
+                            },
+                            {
+                                id: 'gastro-bishnupur',
+                                place: 'Bishnupur',
+                                district: 'Bankura',
+                                breakfast: 'Rasmancha Road: Puffed Luchi with Hing-flavored Chholar Dal, Begun Bhaja & famous Mecha Sandesh',
+                                bPrice: '₹30 - ₹45',
+                                midday: 'Iconic Bankura Posto Bora (Poppy-seed cutlets), Sona Moong Dal, Katla Macher Kalia & Aloo Posto Thali',
+                                mPrice: '₹90 - ₹130',
+                                dinner: 'Malla Highway Eateries: Mutton Kosha with Tawa Parotha, Crispy Posto Bora & Bankura Sweet Curd',
+                                dPrice: '₹120 - ₹170',
+                                iconicFood: '⭐ Authentic Bankura Posto Bora & Mecha Sandesh',
+                                badge: 'Malla Terracotta Cuisine'
+                            },
+                            {
+                                id: 'gastro-coochbehar',
+                                place: 'Cooch Behar Palace',
+                                district: 'Cooch Behar',
+                                breakfast: 'Sagardighi Corner: Hot Kochuri, Aloo Chana & traditional royal Kachakolar Payesh sweet',
+                                bPrice: '₹25 - ₹40',
+                                midday: 'Traditional Koch Thali: Pelka (spiced jute-leaf soup), Bora Jhol, Torsa River Fish & Steamed Rice',
+                                mPrice: '₹80 - ₹120',
+                                dinner: 'Palace Gate Highway Dhaba: North Bengal Country Fowl Curry (Desi Murgi) with Tandoori Roti',
+                                dPrice: '₹110 - ₹160',
+                                iconicFood: '⭐ Koch Traditional Pelka & Kachakolar Payesh',
+                                badge: 'Royal Koch Cuisine'
+                            },
+                            {
+                                id: 'gastro-jaldapara',
+                                place: 'Jaldapara National Park',
+                                district: 'Alipurduar',
+                                breakfast: 'Madarihat Forest Gate: Hot Puri Subji, Boiled Farm Eggs & Spiced Assam-Dooars Milk Tea',
+                                bPrice: '₹30 - ₹45',
+                                midday: 'Dooars Forest Bengali Thali: Boroli Fish Curry, Rice, Ghee, Desi Dal & Tomato-Khejur Chutney',
+                                mPrice: '₹85 - ₹125',
+                                dinner: 'Hollong Highway Dhaba: Egg Tadka, Butter Naan, Chicken Kassa & Bonfire Snacks',
+                                dPrice: '₹110 - ₹170',
+                                iconicFood: '⭐ Fresh Dooars Boroli Fish Curry',
+                                badge: 'Jungle Safari Feasts'
+                            },
+                            {
+                                id: 'gastro-belurmath',
+                                place: 'Belur Math',
+                                district: 'Howrah',
+                                breakfast: 'GT Road Belur: Authentic Hing-flavored Radhaballabhi with spiced Aloo Dum & Mishti Doi',
+                                bPrice: '₹25 - ₹40',
+                                midday: 'Pure Vegetarian Mahaprasad Thali: Sacred Khichuri, Labra (mixed veg), Tomato Chutney & Payesh',
+                                mPrice: '₹50 - ₹80',
+                                dinner: 'Howrah Riverfront Dhabas: Crispy Mughlai Paratha, Chicken Chaap & Kolkata Mutton Rolls',
+                                dPrice: '₹100 - ₹150',
+                                iconicFood: '⭐ Belur Math Khichuri Prasad & Radhaballabhi',
+                                badge: 'Sacred Heritage Flavors'
+                            },
+                            {
+                                id: 'gastro-dakshineswar',
+                                place: 'Dakshineswar Kali Temple',
+                                district: 'Kolkata / North 24 Parganas',
+                                breakfast: 'Temple Ghat Stalls: Hot Kachori with spicy Hing Aloo Subji, Jalebi & fresh Mishti Doi in clay pots',
+                                bPrice: '₹25 - ₹35',
+                                midday: 'Temple Road Annapurna Thali: Basanti Pulao, Chanar Dalna, Potol Posto & Special Sweet Chutney',
+                                mPrice: '₹80 - ₹120',
+                                dinner: 'BT Road Highway Dhabas: Butter Chicken, Dal Makhani, Garlic Naan & Special Sweet Lassi',
+                                dPrice: '₹120 - ₹180',
+                                iconicFood: '⭐ Temple Ghat Kachori & Clay Pot Mishti Doi',
+                                badge: 'Spiritual Riverfront Food'
+                            },
+                            {
+                                id: 'gastro-kurseong',
+                                place: 'Kurseong',
+                                district: 'Darjeeling District',
+                                breakfast: 'Dow Hill Road: Freshly baked Tibetan Bread (Tingmo), Masala Omelette & Makaibari First Flush Tea',
+                                bPrice: '₹40 - ₹60',
+                                midday: 'Local Lepcha & Gorkha Kitchen: Churpi (Yak cheese) soup with Rice, Gundruk & Fried Spinach',
+                                mPrice: '₹85 - ₹130',
+                                dinner: 'Kurseong Tourist Lodge Dhaba: Steaming Chicken Thukpa, Wonton Noodle Soup & Fried Momos',
+                                dPrice: '₹110 - ₹160',
+                                iconicFood: '⭐ Makaibari First Flush Tea & Yak Churpi',
+                                badge: 'Orchid Hill Cuisine'
+                            },
+                            {
+                                id: 'gastro-gorumara',
+                                place: 'Gorumara National Park',
+                                district: 'Jalpaiguri',
+                                breakfast: 'Lataguri Market Stalls: Hot Kochuri, Samosa (Singara) & spiced CTC Dooars Tea with biscuits',
+                                bPrice: '₹25 - ₹35',
+                                midday: 'Murti River Eco-Thali: Local Teesta River Fish Fry, Rice, Shak Bhaja, Dal & Lemon',
+                                mPrice: '₹85 - ₹120',
+                                dinner: 'Lataguri Forest Dhaba: Kadhai Chicken, Tandoori Roti, Dal Fry & Masala Papad',
+                                dPrice: '₹110 - ₹170',
+                                iconicFood: '⭐ Teesta Fresh River Catch & Forest Honey',
+                                badge: 'Dooars Riverside Dining'
+                            },
+                            {
+                                id: 'gastro-mukutmanipur',
+                                place: 'Mukutmanipur',
+                                district: 'Bankura',
+                                breakfast: 'Dam View Point: Crispy Luchi, Spiced Aloor Dom & sweet Motichoor Ladoo',
+                                bPrice: '₹25 - ₹40',
+                                midday: 'Kangsabati Reservoir Catch: Giant Katla & Rui Fish Curry Thali with Aloo Posto & Rice',
+                                mPrice: '₹90 - ₹130',
+                                dinner: 'Hilltop Lodge Dhaba: Wood-fired Country Mutton Curry, Tawa Roti, Dal & Sweet Rice',
+                                dPrice: '₹120 - ₹180',
+                                iconicFood: '⭐ Kangsabati Giant Katla Macher Jhol',
+                                badge: 'Lakeside Catch'
+                            },
+                            {
+                                id: 'gastro-mayapur',
+                                place: 'Mayapur ISKCON',
+                                district: 'Nadia',
+                                breakfast: 'Temple Complex: Pure Ghee Upma, Idli Sambhar, Poori Bhaji & Ayurvedic Herbal Tea',
+                                bPrice: '₹40 - ₹55',
+                                midday: 'Govinda's Multi-Course Sattvic Thali: Shahi Paneer, Dal Makhani, Basmati Pulao, Curd & Sweets',
+                                mPrice: '₹95 - ₹140',
+                                dinner: 'Nabadwip Ghat Eateries: Famous Nabadwip Lal Doi (Red Sweet Curd), Khichuri & Sandesh',
+                                dPrice: '₹65 - ₹110',
+                                iconicFood: '⭐ Nabadwip Lal Doi & Govinda's Sattvic Feast',
+                                badge: 'Sattvic Spiritual Dining'
+                            },
+                            {
+                                id: 'gastro-sundarbans',
+                                place: 'Sundarbans Biosphere',
+                                district: 'South 24 Parganas',
+                                breakfast: 'Godkhali Jetty: Hot Luchi-Torkari, Boiled Farm Eggs, Banana & Sweet Spiced Tea',
+                                bPrice: '₹30 - ₹45',
+                                midday: 'Boat Safari Feast: Fresh Bhetki/Parshe Fish Curry, Rice, Moong Dal, Begun Bhaja & Green Salad',
+                                mPrice: '₹100 - ₹145',
+                                dinner: 'Sajnekhali Island Kitchen: Estuarine Mud Crab Masala Curry, Steamed Rice & Nolen Gur Rasgulla',
+                                dPrice: '₹140 - ₹210',
+                                iconicFood: '⭐ Estuarine Mud Crab Masala & Fresh Bhetki',
+                                badge: 'Delta Seafood Safari'
+                            }
+                        ];
+
+                        function filterGastronomy(filterType, btnEl) {
+                            currentGastroMealFilter = filterType;
+                            document.querySelectorAll('.gastro-tab-btn').forEach(b => {
+                                b.classList.remove('active');
+                                b.style.background = 'rgba(255,255,255,0.05)';
+                                b.style.borderColor = 'rgba(255,255,255,0.1)';
+                                b.style.color = '#cbd5e1';
+                            });
+                            if (btnEl) {
+                                btnEl.classList.add('active');
+                                btnEl.style.background = '#d97706';
+                                btnEl.style.borderColor = '#f59e0b';
+                                btnEl.style.color = '#ffffff';
+                            }
+                            searchGastronomy();
+                        }
+
+                        function searchGastronomy() {
+                            const query = (document.getElementById('gastro-search-input')?.value || '').toLowerCase().trim();
+                            const container = document.getElementById('gastronomy-list-container');
+                            if (!container) return;
+
+                            let list = gastronomy18Database;
+
+                            if (query) {
+                                list = list.filter(item => 
+                                    item.place.toLowerCase().includes(query) ||
+                                    item.district.toLowerCase().includes(query) ||
+                                    item.breakfast.toLowerCase().includes(query) ||
+                                    item.midday.toLowerCase().includes(query) ||
+                                    item.dinner.toLowerCase().includes(query) ||
+                                    item.iconicFood.toLowerCase().includes(query)
+                                );
+                            }
+
+                            if (list.length === 0) {
+                                container.innerHTML = `
+                                    <div style="grid-column: 1 / -1; background: rgba(15, 23, 42, 0.85); border: 1px dashed rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 25px 20px; text-align: center;">
+                                        <div style="font-size: 28px; margin-bottom: 6px;">🍲</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; margin-bottom: 4px;">No roadside food spots match "${query}"</div>
+                                        <div style="color: #94a3b8; font-size: 12px;">Try searching for dishes like Posto Bora, Momos, Fish Thali, Chenabora or Biryani.</div>
+                                    </div>
+                                `;
+                                return;
+                            }
+
+                            let html = '';
+                            list.forEach(item => {
+                                let showB = currentGastroMealFilter === 'ALL' || currentGastroMealFilter === 'BREAKFAST';
+                                let showM = currentGastroMealFilter === 'ALL' || currentGastroMealFilter === 'MIDDAY';
+                                let showD = currentGastroMealFilter === 'ALL' || currentGastroMealFilter === 'DINNER';
+
+                                html += `
+                                    <div class="train-card visible" style="margin-bottom: 0; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(245, 158, 11, 0.25); display: flex; flex-direction: column; justify-content: space-between;">
+                                        <div>
+                                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 6px;">
+                                                <div>
+                                                    <div style="color: #ffffff; font-weight: 800; font-size: 16px; margin-bottom: 2px;">${item.place}</div>
+                                                    <div style="color: #38bdf8; font-size: 11.5px; font-weight: 600;">📍 ${item.district}</div>
+                                                </div>
+                                                <span style="font-size: 10px; font-weight: 800; color: #fbbf24; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">${item.badge}</span>
+                                            </div>
+
+                                            <div style="background: rgba(245, 158, 11, 0.08); border-left: 3px solid #f59e0b; padding: 6px 10px; border-radius: 4px; font-size: 11.5px; color: #fde68a; font-weight: 700; margin-bottom: 12px;">
+                                                ${item.iconicFood}
+                                            </div>
+
+                                            <!-- MEALS ACCORDION -->
+                                            <div style="display: flex; flex-direction: column; gap: 8px;">
+                                                ${showB ? `
+                                                    <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 8px 10px;">
+                                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                                                            <span style="color: #fbbf24; font-size: 11px; font-weight: 800; text-transform: uppercase;">🍳 Morning Breakfast (Jolkhabar)</span>
+                                                            <span style="color: #4ade80; font-size: 12px; font-weight: 800;">${item.bPrice}</span>
+                                                        </div>
+                                                        <div style="font-size: 11.5px; color: #cbd5e1; line-height: 1.4;">${item.breakfast}</div>
+                                                    </div>
+                                                ` : ''}
+
+                                                ${showM ? `
+                                                    <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 8px 10px;">
+                                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                                                            <span style="color: #38bdf8; font-size: 11px; font-weight: 800; text-transform: uppercase;">🍛 Midday Meal (Dupur-er Thali)</span>
+                                                            <span style="color: #4ade80; font-size: 12px; font-weight: 800;">${item.mPrice}</span>
+                                                        </div>
+                                                        <div style="font-size: 11.5px; color: #cbd5e1; line-height: 1.4;">${item.midday}</div>
+                                                    </div>
+                                                ` : ''}
+
+                                                ${showD ? `
+                                                    <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 8px 10px;">
+                                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                                                            <span style="color: #f43f5e; font-size: 11px; font-weight: 800; text-transform: uppercase;">🌙 Night Highway Dhaba (Rater Khabar)</span>
+                                                            <span style="color: #4ade80; font-size: 12px; font-weight: 800;">${item.dPrice}</span>
+                                                        </div>
+                                                        <div style="font-size: 11.5px; color: #cbd5e1; line-height: 1.4;">${item.dinner}</div>
+                                                    </div>
+                                                ` : ''}
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+
+                            container.innerHTML = html;
+                        }
+
+                        document.addEventListener('DOMContentLoaded', () => {
+                            searchGastronomy();
+                        });
+                        searchGastronomy();
+                    </script>
+                </div>
+
 <!-- Hall of Fame Awards -->
         <div class="hall-of-fame" id="hall-section">
             <div class="hall-title">🏆 Squad Hall of Fame</div>
