@@ -70,7 +70,8 @@
     <!-- ========== OPEN GRAPH (Facebook, WhatsApp, LinkedIn) ========== -->
     <meta property="og:title" content="Bengal Explorers | West Bengal Explorer & Dashboard">
     <meta property="og:description" content="The ultimate digital dashboard for West Bengal — live weather, state-wide bus routes, live train boards, global news, and emergency contacts. Created by Bibek Mahata.">
-    <meta property="og:image" content="assets/agents/bibek.jpg">
+    <meta property="og:image" content="https://bibekmahata-dev.github.io/assets/agents/bibek.jpg">
+    <meta property="og:image:secure_url" content="https://bibekmahata-dev.github.io/assets/agents/bibek.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Bengal Explorers - West Bengal Dashboard">
@@ -83,7 +84,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Bengal Explorers | West Bengal Explorer & Dashboard">
     <meta name="twitter:description" content="The ultimate digital dashboard for West Bengal — live weather, state-wide bus routes, live train boards, global news, and emergency contacts.">
-    <meta name="twitter:image" content="assets/agents/bibek.jpg">
+    <meta name="twitter:image" content="https://bibekmahata-dev.github.io/assets/agents/bibek.jpg">
     <meta name="twitter:image:alt" content="Bengal Explorers - West Bengal Dashboard">
 
         <!-- ========== STRUCTURED DATA (JSON-LD for Google Rich Results & Sitelinks) ========== -->
@@ -4843,7 +4844,7 @@
         <button class="dock-btn" onclick="document.getElementById('hangout-map').scrollIntoView({behavior: 'smooth'})" title="Interactive Tourism & Route Map">🗺️ Map</button>
         <button class="dock-btn" onclick="document.getElementById('hangout-quiz-section').scrollIntoView({behavior: 'smooth'})" title="Bengal Travel Persona Quiz">🧭 Quiz</button>
         <a href="blog.html" class="dock-btn" style="text-decoration: none; color: #f8fafc;" title="Travel Chronicles Blog">📖 Blog</a>
-        <button class="dock-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied to clipboard!');" title="Share Portal">🔗 Share</button>
+        <button class="dock-btn" onclick="openViralShareModal()" title="Share Portal">🔗 Share</button>
         <button class="dock-btn dock-btn--top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Scroll to Top of Page">⬆️ Top</button>
     </div>
 
@@ -13589,6 +13590,89 @@ document.addEventListener('keydown', (e) => {
             console.warn('Network or API stream notice (handled gracefully):', event.reason);
             event.preventDefault();
         });
+    </script>
+
+
+    <!-- ========================================================
+         🚀 1-CLICK VIRAL SOCIAL SHARE MODAL & QR CODE
+         ======================================================== -->
+    <div id="viral-share-modal" style="display: none; position: fixed; inset: 0; z-index: 999999; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 16px;">
+        <div style="background: linear-gradient(145deg, #0f172a, #1e293b); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 20px; width: 100%; max-width: 480px; padding: 24px; box-shadow: 0 25px 60px rgba(0,0,0,0.8); position: relative;">
+            
+            <!-- Close Button -->
+            <button onclick="closeViralShareModal()" style="position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;">✕</button>
+
+            <!-- Header -->
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div style="font-size: 36px; margin-bottom: 6px;">🚀</div>
+                <h3 style="color: #ffffff; font-size: 20px; font-weight: 800; font-family: var(--font-title); margin: 0;">Share Bengal Explorers</h3>
+                <div style="color: #38bdf8; font-size: 12px; margin-top: 4px;">Spread the ultimate West Bengal travel & transit portal!</div>
+            </div>
+
+            <!-- 1-Click Social Sharing Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px;">
+                <a href="https://api.whatsapp.com/send?text=%F0%9F%9A%86%20*Bengal%20Explorers%20Portal*%20%E2%80%94%20Check%20live%20Garhbeta%2C%20Medinipur%20%26%20Kolkata%20train%20%2B%20SBSTC%20bus%20timetables%2C%20live%20AQI%20weather%20%26%2018%20tourist%20spots%3A%20https%3A%2F%2Fbibekmahata-dev.github.io%2F" target="_blank" style="background: #25D366; color: #ffffff; text-decoration: none; padding: 12px; border-radius: 10px; font-size: 13px; font-weight: 800; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);">
+                    <span>💬</span> WhatsApp
+                </a>
+                <a href="https://t.me/share/url?url=https://bibekmahata-dev.github.io/&text=Bengal%20Explorers%20%E2%80%94%20West%20Bengal%20Transit%2C%20Weather%20%26%20Travel%20Portal" target="_blank" style="background: #0088cc; color: #ffffff; text-decoration: none; padding: 12px; border-radius: 10px; font-size: 13px; font-weight: 800; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(0, 136, 204, 0.35);">
+                    <span>✈️</span> Telegram
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://bibekmahata-dev.github.io/" target="_blank" style="background: #1877F2; color: #ffffff; text-decoration: none; padding: 12px; border-radius: 10px; font-size: 13px; font-weight: 800; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(24, 119, 242, 0.35);">
+                    <span>📘</span> Facebook
+                </a>
+                <button onclick="nativeWebShare()" style="background: linear-gradient(135deg, #0ea5e9, #0284c7); color: #ffffff; border: none; padding: 12px; border-radius: 10px; font-size: 13px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35);">
+                    <span>📲</span> More Apps
+                </button>
+            </div>
+
+            <!-- Copy Link Box -->
+            <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                <input type="text" readonly value="https://bibekmahata-dev.github.io/" id="share-link-input" style="background: transparent; border: none; color: #38bdf8; font-size: 12.5px; width: 100%; outline: none; font-family: 'Space Grotesk', monospace;">
+                <button onclick="copySharePortalLink(this)" style="background: rgba(56, 189, 248, 0.2); border: 1px solid #38bdf8; color: #ffffff; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: 0.2s;">Copy 📋</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function openViralShareModal() {
+            const modal = document.getElementById('viral-share-modal');
+            if (modal) modal.style.display = 'flex';
+        }
+        function closeViralShareModal() {
+            const modal = document.getElementById('viral-share-modal');
+            if (modal) modal.style.display = 'none';
+        }
+        function copySharePortalLink(btn) {
+            const input = document.getElementById('share-link-input');
+            if (input) {
+                navigator.clipboard.writeText(input.value);
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied! ✅';
+                btn.style.background = '#22c55e';
+                btn.style.borderColor = '#22c55e';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = 'rgba(56, 189, 248, 0.2)';
+                    btn.style.borderColor = '#38bdf8';
+                }, 2000);
+            }
+        }
+        async function nativeWebShare() {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Bengal Explorers | West Bengal Travel & Transit Hub',
+                        text: 'Explore West Bengal with live train departure boards, SBSTC bus portal, real-time AQI weather radar & 18 tourist field guides!',
+                        url: 'https://bibekmahata-dev.github.io/'
+                    });
+                } catch (e) {
+                    console.log('Share dismissed');
+                }
+            } else {
+                openViralShareModal();
+            }
+        }
     </script>
 
 </body>
