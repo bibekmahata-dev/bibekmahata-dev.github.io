@@ -5359,7 +5359,7 @@
                                 <label class="route-label" style="color: #38bdf8;">
                                     <span>🟢</span> FROM STATION (ORIGIN)
                                 </label>
-                                <select class="route-select-input" id="route-from-station">
+                                <select class="route-select-input" id="route-from-station" aria-label="Select Origin Station">
                                     <option value="VSU" selected>Bishnupur Junction (VSU)</option>
                                     <option value="GBA">Garhbeta (GBA)</option>
                                     <option value="KGP">Kharagpur Junction (KGP)</option>
@@ -5382,7 +5382,7 @@
                                 <label class="route-label" style="color: #4ade80;">
                                     <span>🔴</span> TO STATION (DESTINATION)
                                 </label>
-                                <select class="route-select-input" id="route-to-station">
+                                <select class="route-select-input" id="route-to-station" aria-label="Select Destination Station">
                                     <option value="GBA" selected>Garhbeta (GBA)</option>
                                     <option value="VSU">Bishnupur Junction (VSU)</option>
                                     <option value="KGP">Kharagpur Junction (KGP)</option>
@@ -5425,7 +5425,7 @@
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <div style="font-size: 28px;">🚉</div>
                             <h3 style="color: var(--text-primary); font-size: 21px; margin: 0; font-family: var(--font-title); font-weight: 700;">Station Departures Board (<span id="station-code-display" style="color: #38bdf8;">Garhbeta (GBA)</span>)
-    <select id="station-toggle" onchange="toggleStation()" style="margin-left: 8px; padding: 7px 14px; background: rgba(15,23,42,0.9); border: 1.5px solid #38bdf8; color: #ffffff; border-radius: 8px; outline: none; cursor: pointer; font-size: 13px; font-weight: 700; box-shadow: 0 2px 8px rgba(56,189,248,0.25);">
+    <select id="station-toggle" aria-label="Select Station for Departures Board" onchange="toggleStation()" style="margin-left: 8px; padding: 7px 14px; background: rgba(15,23,42,0.9); border: 1.5px solid #38bdf8; color: #ffffff; border-radius: 8px; outline: none; cursor: pointer; font-size: 13px; font-weight: 700; box-shadow: 0 2px 8px rgba(56,189,248,0.25);">
         <option value="GBA" selected>Garhbeta (GBA)</option>
         <option value="VSU">Bishnupur (VSU)</option>
         <option value="KGP">Kharagpur (KGP)</option>
@@ -6076,7 +6076,7 @@
                         <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; margin-bottom: 24px;">
                             <div style="flex: 1; min-width: 200px;">
                                 <label style="display: block; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 8px;">From</label>
-                                <select id="bus-source" style="width: 100%; padding: 12px 16px; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 15px; outline: none; cursor: pointer; transition: border-color 0.2s;">
+                                <select id="bus-source" aria-label="Select Origin Bus Terminal" style="width: 100%; padding: 12px 16px; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 15px; outline: none; cursor: pointer; transition: border-color 0.2s;">
                                     <option value="" disabled selected>Select Origin</option>
                                     <option value="Kolkata">Kolkata</option>
                                     <option value="West Bengal">West Bengal</option>
