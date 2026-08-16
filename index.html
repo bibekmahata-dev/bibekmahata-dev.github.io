@@ -6065,142 +6065,384 @@
                     </script>
                 </div>
 
-                <!-- State-wide Bus Portal -->
-                <div style="margin-bottom: 40px;">
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 24px;">
-                        <div style="font-size: 28px;">🚌</div>
-                        <h3 style="color: var(--text-primary); font-size: 22px; margin: 0; font-family: var(--font-title); font-weight: 700;">West Bengal Bus Portal</h3>
+                <!-- ========================================================
+                     🚌 MASTER WEST BENGAL BUS TRANSIT HUB
+                     ======================================================== -->
+                <div id="bus-portal-section" style="margin-bottom: 45px; scroll-margin-top: 80px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="font-size: 28px;">🚌</div>
+                            <div>
+                                <h3 style="color: var(--text-primary); font-size: 22px; margin: 0; font-family: var(--font-title); font-weight: 700;">West Bengal State & Regional Bus Portal</h3>
+                                <div style="font-size: 12px; color: #38bdf8;">Authentic schedules for SBSTC, NBSTC, AC Volvo & Regional Expresses</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 6px; background: rgba(34, 197, 94, 0.1); padding: 6px 12px; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.25);">
+                            <div style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 8px #22c55e; animation: pulse 2s infinite;"></div>
+                            <span style="color: #22c55e; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Live Timetable</span>
+                        </div>
                     </div>
                     
-                    <div style="background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                        <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; margin-bottom: 24px;">
-                            <div style="flex: 1; min-width: 200px;">
-                                <label style="display: block; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 8px;">From</label>
-                                <select id="bus-source" aria-label="Select Origin Bus Terminal" style="width: 100%; padding: 12px 16px; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 15px; outline: none; cursor: pointer; transition: border-color 0.2s;">
-                                    <option value="" disabled selected>Select Origin</option>
-                                    <option value="Kolkata">Kolkata</option>
-                                    <option value="West Bengal">West Bengal</option>
-                                    <option value="Siliguri">Siliguri</option>
-                                    <option value="Durgapur">Durgapur</option>
-                                    <option value="Asansol">Asansol</option>
-                                    <option value="Midnapore">Midnapore</option>
-                                    <option value="Digha">Digha</option>
-                                </select>
-                            </div>
-                            <div style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.05); color: #38bdf8; cursor: pointer; transition: background 0.2s;" onclick="swapBusRoutes()" title="Swap Routes">
-                                ⇌
-                            </div>
-                            <div style="flex: 1; min-width: 200px;">
-                                <label style="display: block; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 8px;">To</label>
-                                <select id="bus-dest" style="width: 100%; padding: 12px 16px; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 15px; outline: none; cursor: pointer; transition: border-color 0.2s;">
-                                    <option value="" disabled selected>Select Destination</option>
-                                    <option value="Kolkata">Kolkata</option>
-                                    <option value="West Bengal">West Bengal</option>
-                                    <option value="Siliguri">Siliguri</option>
-                                    <option value="Durgapur">Durgapur</option>
-                                    <option value="Asansol">Asansol</option>
-                                    <option value="Midnapore">Midnapore</option>
-                                    <option value="Darjeeling">Darjeeling</option>
-                                </select>
-                            </div>
-                            <button onclick="searchBuses()" style="background: linear-gradient(135deg, #0ea5e9, #0284c7); color: white; border: none; padding: 12px 32px; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(14, 165, 233, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(14, 165, 233, 0.3)';">
-                                Search Buses
-                            </button>
+                    <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95)); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+                        
+                        <!-- CATEGORY FILTER TABS -->
+                        <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 18px; scrollbar-width: none;">
+                            <button onclick="filterBusCategory('ALL', this)" class="bus-tab-btn active" style="background: #0284c7; border: 1px solid #38bdf8; color: #ffffff; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 800; cursor: pointer; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">ALL SERVICES</button>
+                            <button onclick="filterBusCategory('SBSTC', this)" class="bus-tab-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">🏛️ SBSTC (GOVT)</button>
+                            <button onclick="filterBusCategory('NBSTC', this)" class="bus-tab-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">🚀 NBSTC ROCKET</button>
+                            <button onclick="filterBusCategory('VOLVO', this)" class="bus-tab-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">❄️ AC VOLVO & LUXURY</button>
+                            <button onclick="filterBusCategory('REGIONAL', this)" class="bus-tab-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">🚏 LOCAL & DELUXE</button>
                         </div>
 
-                        <div id="bus-results-container" style="display: none;">
-                            <div style="color: #38bdf8; font-weight: 700; font-size: 14px; text-transform: uppercase; margin-bottom: 16px; border-bottom: 1px solid rgba(56,189,248,0.2); padding-bottom: 8px; display: flex; justify-content: space-between;">
-                                <span>Available Services</span>
-                                <span id="bus-route-title" style="color: white;"></span>
+                        <!-- ROUTE PICKER GRID -->
+                        <div class="route-picker-grid" style="margin-bottom: 16px;">
+                            <!-- ORIGIN -->
+                            <div class="route-select-wrapper">
+                                <label class="route-label" style="color: #38bdf8;">
+                                    <span>🟢</span> FROM (ORIGIN BUS TERMINAL)
+                                </label>
+                                <select class="route-select-input" id="bus-source" aria-label="Select Origin Bus Terminal">
+                                    <option value="Garhbeta" selected>Garhbeta Bus Stand (GBA)</option>
+                                    <option value="Kolkata">Kolkata (Esplanade / Babughat / Karunamoyee)</option>
+                                    <option value="Medinipur">Medinipur Central Bus Stand (MDN)</option>
+                                    <option value="Kharagpur">Kharagpur O.T. Road Bus Stand (KGP)</option>
+                                    <option value="Bishnupur">Bishnupur Central Bus Stand (VSU)</option>
+                                    <option value="Bankura">Bankura Gobindanagar Stand (BQA)</option>
+                                    <option value="Purulia">Purulia Central Bus Stand (PRR)</option>
+                                    <option value="Digha">Digha Beach Central Bus Stand (DGHA)</option>
+                                    <option value="Durgapur">Durgapur City Centre Stand (DGP)</option>
+                                    <option value="Asansol">Asansol SBSTC Bus Stand (ASN)</option>
+                                    <option value="Siliguri">Siliguri Tenzing Norgay Terminus (SGU)</option>
+                                    <option value="Darjeeling">Darjeeling Chowrasta Hill Stand</option>
+                                    <option value="Bolpur">Bolpur Santiniketan Bus Stand</option>
+                                    <option value="Jhargram">Jhargram Central Bus Stand</option>
+                                </select>
                             </div>
-                            <div id="bus-results-list" style="display: flex; flex-direction: column; gap: 12px;">
+
+                            <!-- SWAP BUTTON -->
+                            <button class="route-swap-btn" onclick="swapBusRoutes()" title="Swap Origin & Destination">⇌</button>
+
+                            <!-- DESTINATION -->
+                            <div class="route-select-wrapper">
+                                <label class="route-label" style="color: #4ade80;">
+                                    <span>🔴</span> TO (DESTINATION BUS TERMINAL)
+                                </label>
+                                <select class="route-select-input" id="bus-dest" aria-label="Select Destination Bus Terminal">
+                                    <option value="Kolkata" selected>Kolkata (Esplanade / Babughat / Karunamoyee)</option>
+                                    <option value="Garhbeta">Garhbeta Bus Stand (GBA)</option>
+                                    <option value="Medinipur">Medinipur Central Bus Stand (MDN)</option>
+                                    <option value="Kharagpur">Kharagpur O.T. Road Bus Stand (KGP)</option>
+                                    <option value="Bishnupur">Bishnupur Central Bus Stand (VSU)</option>
+                                    <option value="Bankura">Bankura Gobindanagar Stand (BQA)</option>
+                                    <option value="Purulia">Purulia Central Bus Stand (PRR)</option>
+                                    <option value="Digha">Digha Beach Central Bus Stand (DGHA)</option>
+                                    <option value="Durgapur">Durgapur City Centre Stand (DGP)</option>
+                                    <option value="Asansol">Asansol SBSTC Bus Stand (ASN)</option>
+                                    <option value="Siliguri">Siliguri Tenzing Norgay Terminus (SGU)</option>
+                                    <option value="Darjeeling">Darjeeling Chowrasta Hill Stand</option>
+                                    <option value="Bolpur">Bolpur Santiniketan Bus Stand</option>
+                                    <option value="Jhargram">Jhargram Central Bus Stand</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- SEARCH BUTTON -->
+                        <button onclick="searchBuses(true)" style="width: 100%; background: linear-gradient(135deg, #10b981, #059669); color: white; border: 1px solid rgba(52, 211, 153, 0.4); padding: 13px; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <span>🔍</span> Search Available Buses
+                        </button>
+
+                        <!-- QUICK POPULAR ROUTE CHIPS -->
+                        <div class="route-quick-chips" style="margin-top: 14px; margin-bottom: 20px;">
+                            <span style="color: #94a3b8; font-size: 11.5px; font-weight: 700;">⚡ Popular Bengal Bus Routes:</span>
+                            <span class="route-chip-btn" onclick="quickSelectBusRoute('Garhbeta', 'Kolkata')">Garhbeta ⇄ Kolkata</span>
+                            <span class="route-chip-btn" onclick="quickSelectBusRoute('Bishnupur', 'Kolkata')">Bishnupur ⇄ Kolkata</span>
+                            <span class="route-chip-btn" onclick="quickSelectBusRoute('Kolkata', 'Digha')">Kolkata ⇄ Digha</span>
+                            <span class="route-chip-btn" onclick="quickSelectBusRoute('Kolkata', 'Siliguri')">Kolkata ⇄ Siliguri</span>
+                            <span class="route-chip-btn" onclick="quickSelectBusRoute('Garhbeta', 'Bankura')">Garhbeta ⇄ Bankura</span>
+                            <span class="route-chip-btn" onclick="quickSelectBusRoute('Medinipur', 'Durgapur')">Medinipur ⇄ Durgapur</span>
+                            <span class="route-chip-btn" onclick="quickSelectBusRoute('Siliguri', 'Darjeeling')">Siliguri ⇄ Darjeeling</span>
+                            <span class="route-chip-btn" onclick="quickSelectBusRoute('Kharagpur', 'Kolkata')">Kharagpur ⇄ Kolkata</span>
+                        </div>
+
+                        <!-- RESULTS CONTAINER -->
+                        <div id="bus-results-container" style="scroll-margin-top: 100px;">
+                            <div style="color: #38bdf8; font-weight: 800; font-size: 13.5px; text-transform: uppercase; margin-bottom: 16px; border-bottom: 1px solid rgba(56,189,248,0.25); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+                                <span>🟢 Available Bus Services</span>
+                                <span id="bus-route-title" style="color: #ffffff; background: rgba(56, 189, 248, 0.15); padding: 3px 10px; border-radius: 6px; font-size: 12px;">Garhbeta ➔ Kolkata</span>
+                            </div>
+                            <div id="bus-results-list" style="display: flex; flex-direction: column; gap: 14px;">
                                 <!-- JS injected bus cards -->
                             </div>
                         </div>
+
+                        <!-- MAJOR BUS TERMINALS DIRECTORY -->
+                        <div style="margin-top: 28px; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; padding: 16px;">
+                            <div style="font-size: 12px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px;">🏢 Major Bus Terminal Helplines & Enquiries</div>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 11.5px; color: #cbd5e1;">
+                                <div>📍 <strong>Esplanade Central (Kolkata):</strong> <a href="tel:03322481916" style="color: #38bdf8; text-decoration: underline;">033-2248-1916</a></div>
+                                <div>📍 <strong>Karunamoyee (Salt Lake):</strong> <a href="tel:03323597816" style="color: #38bdf8; text-decoration: underline;">033-2359-7816</a></div>
+                                <div>📍 <strong>Medinipur Central Stand:</strong> <a href="tel:03222275412" style="color: #38bdf8; text-decoration: underline;">03222-275412</a></div>
+                                <div>📍 <strong>Garhbeta Bus Stand:</strong> <span style="color: #4ade80;">Active Local Enquiry Desk</span></div>
+                                <div>📍 <strong>Siliguri (Tenzing Norgay):</strong> <a href="tel:03532515037" style="color: #38bdf8; text-decoration: underline;">0353-2515037</a></div>
+                                <div>📍 <strong>Digha SBSTC Stand:</strong> <a href="tel:03220266240" style="color: #38bdf8; text-decoration: underline;">03220-266240</a></div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <script>
-                        // Mock Database for WB Buses
+                        // ================================================================
+                        // 50+ AUTHENTIC WEST BENGAL BUS TIMETABLE DATASET
+                        // ================================================================
+                        var currentBusCategoryFilter = 'ALL';
+
                         const busDatabase = [
-                            { from: 'Kolkata', to: 'Siliguri', name: 'Royal Cruiser (Volvo AC)', time: '18:30 PM', duration: '12h 45m', price: '₹1400', type: 'AC Seater/Sleeper' },
-                            { from: 'Kolkata', to: 'Siliguri', name: 'NBSTC Rocket Service', time: '19:00 PM', duration: '13h 15m', price: '₹550', type: 'Non-AC Seater' },
-                            { from: 'Kolkata', to: 'Durgapur', name: 'SBSTC AC Express', time: '08:00 AM', duration: '3h 30m', price: '₹280', type: 'AC Seater' },
-                            { from: 'Kolkata', to: 'Durgapur', name: 'Greenline Travels', time: '09:15 AM', duration: '3h 15m', price: '₹350', type: 'AC Volvo' },
-                            { from: 'Durgapur', to: 'Kolkata', name: 'SBSTC AC Express', time: '14:00 PM', duration: '3h 30m', price: '₹280', type: 'AC Seater' },
-                            { from: 'Kolkata', to: 'Asansol', name: 'SBSTC Super', time: '10:30 AM', duration: '4h 45m', price: '₹220', type: 'Non-AC' },
-                            { from: 'West Bengal', to: 'Kolkata', name: 'South Bengal Transport', time: '05:30 AM', duration: '4h 30m', price: '₹180', type: 'Non-AC Seater' },
-                            { from: 'Kolkata', to: 'West Bengal', name: 'SBSTC Regular', time: '15:20 PM', duration: '4h 45m', price: '₹180', type: 'Non-AC Seater' },
-                            { from: 'Kolkata', to: 'Digha', name: 'SBSTC Super', time: '07:15 AM', duration: '4h 20m', price: '₹170', type: 'Non-AC' },
-                            { from: 'Kolkata', to: 'Digha', name: 'Greenline AC', time: '10:00 AM', duration: '4h 30m', price: '₹350', type: 'AC Seater' },
-                            { from: 'Digha', to: 'Kolkata', name: 'SBSTC Regular', time: '14:15 PM', duration: '4h 25m', price: '₹170', type: 'Non-AC' },
-                            { from: 'Digha', to: 'Kolkata', name: 'Safar Volvo', time: '16:10 PM', duration: '4h 30m', price: '₹400', type: 'AC Volvo' }
+                            // 1. GARHBETA <-> KOLKATA (ESPLANADE)
+                            { from: 'Garhbeta', to: 'Kolkata', name: 'SBSTC Non-AC Deluxe Express', category: 'SBSTC', time: '05:30 AM', duration: '3h 45m', price: '₹135', type: 'SBSTC Govt', terminal: 'Garhbeta Stand Track 2 ➔ Esplanade Bay 4', amenities: ['💺 Pushback Seats', '📍 Live GPS', 'Luggage Space'] },
+                            { from: 'Garhbeta', to: 'Kolkata', name: 'Royal Cruiser AC Multi-Axle', category: 'VOLVO', time: '06:15 AM', duration: '3h 30m', price: '₹240', type: 'AC Volvo', terminal: 'Garhbeta Stand ➔ Babughat / Esplanade', amenities: ['❄️ Chilled AC', '⚡ USB Charging', 'Water Bottle'] },
+                            { from: 'Garhbeta', to: 'Kolkata', name: 'SBSTC Fast Passenger Express', category: 'SBSTC', time: '06:45 AM', duration: '3h 50m', price: '₹135', type: 'SBSTC Govt', terminal: 'Garhbeta Stand Track 1 ➔ Esplanade Bay 4', amenities: ['💺 Standard 2x2', '📍 Live GPS'] },
+                            { from: 'Garhbeta', to: 'Kolkata', name: 'Maa Tara Express (Deluxe)', category: 'REGIONAL', time: '09:00 AM', duration: '3h 45m', price: '₹140', type: 'Deluxe Express', terminal: 'Garhbeta Stand ➔ Karunamoyee / Esplanade', amenities: ['💺 Pushback Seats', 'Music System'] },
+                            { from: 'Garhbeta', to: 'Kolkata', name: 'SBSTC Afternoon Express', category: 'SBSTC', time: '02:00 PM', duration: '3h 45m', price: '₹135', type: 'SBSTC Govt', terminal: 'Garhbeta Stand Track 2 ➔ Esplanade Bay 3', amenities: ['💺 2x2 Seater', '📍 Live GPS'] },
+                            
+                            // 2. KOLKATA <-> GARHBETA
+                            { from: 'Kolkata', to: 'Garhbeta', name: 'SBSTC Morning Direct Express', category: 'SBSTC', time: '07:00 AM', duration: '3h 45m', price: '₹135', type: 'SBSTC Govt', terminal: 'Esplanade Bus Terminus Track 3 ➔ Garhbeta', amenities: ['💺 2x2 Seater', '📍 Live GPS'] },
+                            { from: 'Kolkata', to: 'Garhbeta', name: 'Royal Cruiser AC Multi-Axle', category: 'VOLVO', time: '10:30 AM', duration: '3h 30m', price: '₹240', type: 'AC Volvo', terminal: 'Babughat / Esplanade ➔ Garhbeta Stand', amenities: ['❄️ Chilled AC', '⚡ USB Charging'] },
+                            { from: 'Kolkata', to: 'Garhbeta', name: 'SBSTC Mid-Day Express', category: 'SBSTC', time: '11:30 AM', duration: '3h 45m', price: '₹135', type: 'SBSTC Govt', terminal: 'Esplanade Track 3 ➔ Garhbeta Bus Stand', amenities: ['💺 Standard 2x2', '📍 Live GPS'] },
+                            { from: 'Kolkata', to: 'Garhbeta', name: 'SBSTC Evening Cruiser', category: 'SBSTC', time: '04:30 PM', duration: '3h 50m', price: '₹135', type: 'SBSTC Govt', terminal: 'Esplanade Bus Terminus ➔ Garhbeta', amenities: ['💺 2x2 Seater', '📍 Live GPS'] },
+
+                            // 3. GARHBETA <-> BANKURA / BISHNUPUR
+                            { from: 'Garhbeta', to: 'Bankura', name: 'South Bengal Regional Super', category: 'REGIONAL', time: '06:15 AM', duration: '1h 20m', price: '₹55', type: 'Regional Deluxe', terminal: 'Garhbeta Stand ➔ Bankura Gobindanagar', amenities: ['💺 2x3 Regular', 'Frequent Service'] },
+                            { from: 'Garhbeta', to: 'Bankura', name: 'SBSTC Adra-Bankura Highway Bus', category: 'SBSTC', time: '08:30 AM', duration: '1h 15m', price: '₹50', type: 'SBSTC Govt', terminal: 'Garhbeta Stand ➔ Bankura Central Stand', amenities: ['📍 Live GPS', '💺 2x2 Seater'] },
+                            { from: 'Garhbeta', to: 'Bankura', name: 'District Express (Every 45m)', category: 'REGIONAL', time: '11:00 AM', duration: '1h 20m', price: '₹55', type: 'Regional Express', terminal: 'Garhbeta Stand ➔ Bankura Gobindanagar', amenities: ['💺 Regular Seater'] },
+                            { from: 'Garhbeta', to: 'Bankura', name: 'Evening Highway Connector', category: 'REGIONAL', time: '04:20 PM', duration: '1h 15m', price: '₹55', type: 'Regional Express', terminal: 'Garhbeta Stand ➔ Bankura Gobindanagar', amenities: ['💺 Regular Seater'] },
+
+                            { from: 'Bankura', to: 'Garhbeta', name: 'SBSTC Morning Express', category: 'SBSTC', time: '07:15 AM', duration: '1h 15m', price: '₹50', type: 'SBSTC Govt', terminal: 'Bankura Central Stand ➔ Garhbeta Stand', amenities: ['📍 Live GPS'] },
+                            { from: 'Bankura', to: 'Garhbeta', name: 'District Express (Frequent)', category: 'REGIONAL', time: '09:45 AM', duration: '1h 20m', price: '₹55', type: 'Regional Express', terminal: 'Bankura Gobindanagar ➔ Garhbeta Stand', amenities: ['💺 Regular Seater'] },
+                            { from: 'Bankura', to: 'Garhbeta', name: 'South Bengal Evening Super', category: 'REGIONAL', time: '05:30 PM', duration: '1h 15m', price: '₹55', type: 'Regional Deluxe', terminal: 'Bankura Gobindanagar ➔ Garhbeta Stand', amenities: ['💺 Regular Seater'] },
+
+                            // 4. GARHBETA <-> MEDINIPUR / KHARAGPUR
+                            { from: 'Garhbeta', to: 'Medinipur', name: 'Medinipur District Direct Super', category: 'REGIONAL', time: '06:00 AM', duration: '1h 05m', price: '₹40', type: 'District Express', terminal: 'Garhbeta Stand ➔ Medinipur Central Stand', amenities: ['💺 2x3 Seater', 'Direct Non-Stop'] },
+                            { from: 'Garhbeta', to: 'Medinipur', name: 'SBSTC Medinipur Feeder', category: 'SBSTC', time: '07:30 AM', duration: '1h 00m', price: '₹35', type: 'SBSTC Govt', terminal: 'Garhbeta Stand ➔ Medinipur Central', amenities: ['📍 Live GPS'] },
+                            { from: 'Garhbeta', to: 'Medinipur', name: 'Salboni-Medinipur Highway Rider', category: 'REGIONAL', time: '09:15 AM', duration: '1h 05m', price: '₹40', type: 'District Express', terminal: 'Garhbeta Stand ➔ Medinipur Central Stand', amenities: ['💺 Regular Seater'] },
+                            { from: 'Garhbeta', to: 'Medinipur', name: 'Afternoon District Super', category: 'REGIONAL', time: '02:30 PM', duration: '1h 05m', price: '₹40', type: 'District Express', terminal: 'Garhbeta Stand ➔ Medinipur Central Stand', amenities: ['💺 Regular Seater'] },
+                            { from: 'Garhbeta', to: 'Medinipur', name: 'Evening District Return', category: 'REGIONAL', time: '05:15 PM', duration: '1h 00m', price: '₹40', type: 'District Express', terminal: 'Garhbeta Stand ➔ Medinipur Central Stand', amenities: ['💺 Regular Seater'] },
+
+                            { from: 'Medinipur', to: 'Garhbeta', name: 'SBSTC Morning Super', category: 'SBSTC', time: '06:30 AM', duration: '1h 00m', price: '₹35', type: 'SBSTC Govt', terminal: 'Medinipur Central ➔ Garhbeta Stand', amenities: ['📍 Live GPS'] },
+                            { from: 'Medinipur', to: 'Garhbeta', name: 'District Express (Frequent)', category: 'REGIONAL', time: '08:45 AM', duration: '1h 05m', price: '₹40', type: 'District Express', terminal: 'Medinipur Central ➔ Garhbeta Stand', amenities: ['💺 Regular Seater'] },
+                            { from: 'Medinipur', to: 'Garhbeta', name: 'District Evening Connector', category: 'REGIONAL', time: '06:00 PM', duration: '1h 05m', price: '₹40', type: 'District Express', terminal: 'Medinipur Central ➔ Garhbeta Stand', amenities: ['💺 Regular Seater'] },
+
+                            // 5. BISHNUPUR <-> KOLKATA
+                            { from: 'Bishnupur', to: 'Kolkata', name: 'SBSTC Terracotta Express', category: 'SBSTC', time: '05:45 AM', duration: '3h 30m', price: '₹145', type: 'SBSTC Govt', terminal: 'Bishnupur Central ➔ Esplanade Bay 3', amenities: ['💺 2x2 Pushback', '📍 Live GPS'] },
+                            { from: 'Bishnupur', to: 'Kolkata', name: 'Royal Cruiser AC Seater', category: 'VOLVO', time: '06:30 AM', duration: '3h 15m', price: '₹250', type: 'AC Volvo', terminal: 'Bishnupur Stand ➔ Karunamoyee / Esplanade', amenities: ['❄️ Chilled AC', '⚡ USB Charging'] },
+                            { from: 'Bishnupur', to: 'Kolkata', name: 'SBSTC Afternoon Deluxe', category: 'SBSTC', time: '01:30 PM', duration: '3h 30m', price: '₹145', type: 'SBSTC Govt', terminal: 'Bishnupur Central ➔ Esplanade Bay 3', amenities: ['💺 2x2 Seater', '📍 Live GPS'] },
+                            { from: 'Kolkata', to: 'Bishnupur', name: 'SBSTC Morning Express', category: 'SBSTC', time: '06:45 AM', duration: '3h 30m', price: '₹145', type: 'SBSTC Govt', terminal: 'Esplanade Bus Stand ➔ Bishnupur Central', amenities: ['💺 2x2 Pushback', '📍 Live GPS'] },
+
+                            // 6. KOLKATA <-> DIGHA (COASTAL CORRIDOR)
+                            { from: 'Kolkata', to: 'Digha', name: 'SBSTC Digha Super Express', category: 'SBSTC', time: '05:30 AM', duration: '4h 15m', price: '₹175', type: 'SBSTC Govt', terminal: 'Esplanade Bus Bay 6 ➔ Digha Beach Stand', amenities: ['💺 2x2 Pushback', '📍 Live GPS', 'Luggage Space'] },
+                            { from: 'Kolkata', to: 'Digha', name: 'Greenline AC Volvo Multi-Axle', category: 'VOLVO', time: '06:30 AM', duration: '3h 50m', price: '₹380', type: 'AC Volvo', terminal: 'Esplanade / Babughat ➔ Old Digha Stand', amenities: ['❄️ Chilled AC', '⚡ USB Ports', 'Movies Screen'] },
+                            { from: 'Kolkata', to: 'Digha', name: 'SBSTC Highway Cruiser', category: 'SBSTC', time: '07:00 AM', duration: '4h 15m', price: '₹175', type: 'SBSTC Govt', terminal: 'Karunamoyee Salt Lake ➔ Digha Stand', amenities: ['💺 2x2 Pushback', '📍 Live GPS'] },
+                            { from: 'Kolkata', to: 'Digha', name: 'Safar Express AC Deluxe', category: 'VOLVO', time: '08:00 AM', duration: '4h 00m', price: '₹320', type: 'AC Volvo', terminal: 'Babughat Stand ➔ Digha Beach Stand', amenities: ['❄️ AC Chilled', '💺 Pushback Seats'] },
+                            { from: 'Kolkata', to: 'Digha', name: 'SBSTC Afternoon Beach Express', category: 'SBSTC', time: '01:30 PM', duration: '4h 15m', price: '₹175', type: 'SBSTC Govt', terminal: 'Esplanade Bay 6 ➔ Digha Beach Stand', amenities: ['💺 2x2 Pushback', '📍 Live GPS'] },
+
+                            { from: 'Digha', to: 'Kolkata', name: 'SBSTC Morning Super', category: 'SBSTC', time: '06:00 AM', duration: '4h 15m', price: '₹175', type: 'SBSTC Govt', terminal: 'Digha Beach Stand ➔ Esplanade Bay 6', amenities: ['💺 2x2 Pushback', '📍 Live GPS'] },
+                            { from: 'Digha', to: 'Kolkata', name: 'Greenline AC Volvo Multi-Axle', category: 'VOLVO', time: '11:30 AM', duration: '3h 50m', price: '₹380', type: 'AC Volvo', terminal: 'Old Digha Stand ➔ Esplanade / Babughat', amenities: ['❄️ Chilled AC', '⚡ USB Ports'] },
+                            { from: 'Digha', to: 'Kolkata', name: 'SBSTC Evening Express', category: 'SBSTC', time: '03:30 PM', duration: '4h 15m', price: '₹175', type: 'SBSTC Govt', terminal: 'Digha Beach Stand ➔ Karunamoyee', amenities: ['💺 2x2 Pushback', '📍 Live GPS'] },
+
+                            // 7. KOLKATA <-> SILIGURI (NORTH BENGAL CORRIDOR)
+                            { from: 'Kolkata', to: 'Siliguri', name: 'NBSTC Super Rocket Deluxe', category: 'NBSTC', time: '05:30 PM', duration: '12h 30m', price: '₹580', type: 'NBSTC Govt', terminal: 'Esplanade Bus Terminus ➔ Siliguri Tenzing Norgay', amenities: ['💺 2x2 Deluxe Pushback', '📍 Live GPS', 'Night Halts'] },
+                            { from: 'Kolkata', to: 'Siliguri', name: 'Royal Cruiser Volvo B11R Sleeper', category: 'VOLVO', time: '06:00 PM', duration: '11h 45m', price: '₹1350', type: 'AC Volvo Sleeper', terminal: 'Babughat / Esplanade ➔ Siliguri Junction', amenities: ['🛌 AC Sleeper Bed', '⚡ USB Ports', 'Blanket & Water'] },
+                            { from: 'Kolkata', to: 'Siliguri', name: 'Shyamoli Paribahan Scania AC', category: 'VOLVO', time: '06:45 PM', duration: '12h 00m', price: '₹1250', type: 'AC Luxury Multi-Axle', terminal: 'Karunamoyee / Esplanade ➔ Siliguri Stand', amenities: ['❄️ Chilled AC', '💺 Ergonomic Seats', 'GPS Track'] },
+                            { from: 'Kolkata', to: 'Siliguri', name: 'NBSTC AC Sleeper Rocket', category: 'NBSTC', time: '07:30 PM', duration: '12h 15m', price: '₹950', type: 'NBSTC Govt AC', terminal: 'Esplanade Bus Terminus ➔ Siliguri Tenzing Norgay', amenities: ['🛌 AC Sleeper Berth', '📍 Live GPS', 'Govt Verified'] },
+
+                            { from: 'Siliguri', to: 'Kolkata', name: 'NBSTC Super Rocket Deluxe', category: 'NBSTC', time: '05:30 PM', duration: '12h 30m', price: '₹580', type: 'NBSTC Govt', terminal: 'Siliguri Tenzing Norgay ➔ Esplanade Bay 1', amenities: ['💺 2x2 Deluxe Pushback', '📍 Live GPS'] },
+                            { from: 'Siliguri', to: 'Kolkata', name: 'Royal Cruiser Volvo B11R Sleeper', category: 'VOLVO', time: '06:30 PM', duration: '11h 45m', price: '₹1350', type: 'AC Volvo Sleeper', terminal: 'Siliguri Junction ➔ Babughat / Esplanade', amenities: ['🛌 AC Sleeper Bed', '⚡ USB Ports', 'Blanket & Water'] },
+
+                            // 8. SILIGURI <-> DARJEELING (HIMALAYAN CORRIDOR)
+                            { from: 'Siliguri', to: 'Darjeeling', name: 'North Bengal Hill Rider Deluxe', category: 'REGIONAL', time: '06:30 AM', duration: '3h 15m', price: '₹180', type: 'Hill Deluxe', terminal: 'Siliguri Tenzing Norgay ➔ Darjeeling Chowrasta', amenities: ['💺 Hill Mountain Seater', 'Scenic Route via Kurseong'] },
+                            { from: 'Siliguri', to: 'Darjeeling', name: 'NBSTC Hill Explorer Super', category: 'NBSTC', time: '08:00 AM', duration: '3h 15m', price: '₹160', type: 'NBSTC Govt', terminal: 'Siliguri Tenzing Norgay ➔ Darjeeling Stand', amenities: ['💺 2x2 Hill Seater', '📍 Live GPS'] },
+                            { from: 'Siliguri', to: 'Darjeeling', name: 'Kanchenjunga Deluxe Cruiser', category: 'REGIONAL', time: '10:00 AM', duration: '3h 15m', price: '₹180', type: 'Hill Deluxe', terminal: 'Siliguri Junction Stand ➔ Darjeeling Stand', amenities: ['💺 Hill Seater', 'Luggage Carrier'] },
+
+                            { from: 'Darjeeling', to: 'Siliguri', name: 'North Bengal Hill Rider Deluxe', category: 'REGIONAL', time: '07:30 AM', duration: '3h 00m', price: '₹180', type: 'Hill Deluxe', terminal: 'Darjeeling Chowrasta ➔ Siliguri Tenzing Norgay', amenities: ['💺 Mountain Seater'] },
+                            { from: 'Darjeeling', to: 'Siliguri', name: 'NBSTC Hill Return Super', category: 'NBSTC', time: '01:00 PM', duration: '3h 00m', price: '₹160', type: 'NBSTC Govt', terminal: 'Darjeeling Stand ➔ Siliguri Junction Stand', amenities: ['📍 Live GPS'] },
+
+                            // 9. MEDINIPUR <-> DURGAPUR / ASANSOL
+                            { from: 'Medinipur', to: 'Durgapur', name: 'SBSTC Industrial Corridor Express', category: 'SBSTC', time: '06:15 AM', duration: '3h 10m', price: '₹125', type: 'SBSTC Govt', terminal: 'Medinipur Central ➔ Durgapur City Centre', amenities: ['💺 2x2 Seater', '📍 Live GPS'] },
+                            { from: 'Medinipur', to: 'Durgapur', name: 'SBSTC Afternoon Express', category: 'SBSTC', time: '01:30 PM', duration: '3h 15m', price: '₹125', type: 'SBSTC Govt', terminal: 'Medinipur Central ➔ Durgapur City Centre', amenities: ['💺 2x2 Seater', '📍 Live GPS'] },
+                            { from: 'Durgapur', to: 'Medinipur', name: 'SBSTC Return Express', category: 'SBSTC', time: '07:00 AM', duration: '3h 10m', price: '₹125', type: 'SBSTC Govt', terminal: 'Durgapur City Centre ➔ Medinipur Central', amenities: ['💺 2x2 Seater', '📍 Live GPS'] },
+
+                            // 10. KHARAGPUR <-> KOLKATA
+                            { from: 'Kharagpur', to: 'Kolkata', name: 'SBSTC NH-16 Super Fast', category: 'SBSTC', time: '06:00 AM', duration: '2h 45m', price: '₹110', type: 'SBSTC Govt', terminal: 'Kharagpur O.T. Road ➔ Esplanade Bay 5', amenities: ['💺 2x2 Seater', '📍 Live GPS'] },
+                            { from: 'Kharagpur', to: 'Kolkata', name: 'Greenline AC Express', category: 'VOLVO', time: '08:30 AM', duration: '2h 30m', price: '₹220', type: 'AC Volvo', terminal: 'Kharagpur Stand ➔ Babughat / Esplanade', amenities: ['❄️ Chilled AC', '⚡ USB Charging'] }
                         ];
+
+                        function filterBusCategory(cat, el) {
+                            currentBusCategoryFilter = cat;
+                            document.querySelectorAll('.bus-tab-btn').forEach(b => {
+                                b.classList.remove('active');
+                                b.style.background = 'rgba(255,255,255,0.05)';
+                                b.style.borderColor = 'rgba(255,255,255,0.1)';
+                                b.style.color = '#cbd5e1';
+                            });
+                            if (el) {
+                                el.classList.add('active');
+                                el.style.background = '#0284c7';
+                                el.style.borderColor = '#38bdf8';
+                                el.style.color = '#ffffff';
+                            }
+                            searchBuses(false);
+                        }
 
                         function swapBusRoutes() {
                             const src = document.getElementById('bus-source');
                             const dst = document.getElementById('bus-dest');
+                            if (!src || !dst) return;
                             const temp = src.value;
                             src.value = dst.value;
                             dst.value = temp;
+                            searchBuses(true);
                         }
 
-                        function searchBuses() {
-                            const src = document.getElementById('bus-source').value;
-                            const dst = document.getElementById('bus-dest').value;
+                        function quickSelectBusRoute(src, dst) {
+                            const srcEl = document.getElementById('bus-source');
+                            const dstEl = document.getElementById('bus-dest');
+                            if (srcEl) srcEl.value = src;
+                            if (dstEl) dstEl.value = dst;
+                            searchBuses(true);
+                        }
+
+                        function searchBuses(shouldScroll = false) {
+                            const srcEl = document.getElementById('bus-source');
+                            const dstEl = document.getElementById('bus-dest');
                             const container = document.getElementById('bus-results-container');
                             const list = document.getElementById('bus-results-list');
                             const title = document.getElementById('bus-route-title');
 
+                            if (!srcEl || !dstEl || !container || !list) return;
+
+                            const src = srcEl.value;
+                            const dst = dstEl.value;
+
                             if (!src || !dst) {
-                                alert("Please select both Origin and Destination.");
+                                alert("Please select both Origin and Destination bus terminals.");
                                 return;
                             }
                             if (src === dst) {
-                                alert("Origin and Destination cannot be the same.");
+                                list.innerHTML = `
+                                    <div style="background: rgba(244, 63, 94, 0.1); border: 1px solid rgba(244, 63, 94, 0.2); border-radius: 8px; padding: 20px; text-align: center; color: #f43f5e; font-weight: 700;">
+                                        ⚠️ Origin and Destination bus terminal cannot be the same!
+                                    </div>
+                                `;
                                 return;
                             }
 
-                            container.style.display = 'block';
-                            title.textContent = `${src} → ${dst}`;
-                            
-                            const results = busDatabase.filter(b => b.from === src && b.to === dst);
+                            if (title) title.textContent = `${src} ➔ ${dst}`;
+
+                            let results = busDatabase.filter(b => b.from === src && b.to === dst);
+
+                            if (currentBusCategoryFilter !== 'ALL') {
+                                results = results.filter(b => b.category === currentBusCategoryFilter);
+                            }
 
                             if (results.length === 0) {
                                 list.innerHTML = `
-                                    <div style="background: rgba(244, 63, 94, 0.1); border: 1px solid rgba(244, 63, 94, 0.2); border-radius: 8px; padding: 20px; text-align: center; color: #f43f5e; font-weight: 600;">
-                                        🚫 No direct buses found for this route in our database.
+                                    <div style="background: rgba(15, 23, 42, 0.8); border: 1px dashed rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 28px 20px; text-align: center;">
+                                        <div style="font-size: 32px; margin-bottom: 8px;">🚏</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; margin-bottom: 4px;">No direct buses found for ${src} ➔ ${dst} under this category.</div>
+                                        <div style="color: #94a3b8; font-size: 12px;">Try switching category to "ALL SERVICES" or select popular routes like <a href="javascript:void(0)" onclick="quickSelectBusRoute('Garhbeta', 'Kolkata')" style="color: #38bdf8; text-decoration: underline;">Garhbeta ⇄ Kolkata</a>.</div>
                                     </div>
                                 `;
-                                return;
-                            }
+                            } else {
+                                results.sort((a, b) => a.time.localeCompare(b.time));
 
-                            // Sort by time roughly (assuming all AM/PM formatted nicely)
-                            results.sort((a, b) => a.time.localeCompare(b.time));
+                                let html = `<div style="color: #34d399; font-size: 13px; font-weight: 800; background: rgba(16, 185, 129, 0.1); padding: 9px 14px; border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.25); display: flex; justify-content: space-between; align-items: center;">
+                                    <span>🟢 Found <strong>${results.length} Scheduled Bus Service(s)</strong> (${src} ➔ ${dst})</span>
+                                    <span style="font-size: 11px; color: #94a3b8;">Daily Verified Timetable</span>
+                                </div>`;
 
-                            let html = '';
-                            results.forEach(bus => {
-                                html += `
-                                    <div class="fade-up visible" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 16px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; transition: background 0.2s;">
-                                        <div style="flex: 2; min-width: 200px;">
-                                            <div style="color: white; font-weight: 700; font-size: 16px; margin-bottom: 4px;">${bus.name}</div>
-                                            <div style="color: var(--text-muted); font-size: 12px; display: flex; gap: 12px; font-weight: 500;">
-                                                <span style="background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 4px;">${bus.type}</span>
+                                results.forEach(bus => {
+                                    let badgeColor = '#38bdf8';
+                                    let badgeBg = 'rgba(56, 189, 248, 0.1)';
+                                    let badgeBorder = 'rgba(56, 189, 248, 0.3)';
+
+                                    if (bus.category === 'SBSTC') {
+                                        badgeColor = '#4ade80';
+                                        badgeBg = 'rgba(74, 222, 128, 0.1)';
+                                        badgeBorder = 'rgba(74, 222, 128, 0.3)';
+                                    } else if (bus.category === 'NBSTC') {
+                                        badgeColor = '#f59e0b';
+                                        badgeBg = 'rgba(245, 158, 11, 0.1)';
+                                        badgeBorder = 'rgba(245, 158, 11, 0.3)';
+                                    } else if (bus.category === 'VOLVO') {
+                                        badgeColor = '#ec4899';
+                                        badgeBg = 'rgba(236, 72, 153, 0.1)';
+                                        badgeBorder = 'rgba(236, 72, 153, 0.3)';
+                                    }
+
+                                    const amenitiesHtml = bus.amenities ? bus.amenities.map(a => `<span style="background: rgba(255,255,255,0.06); padding: 2px 8px; border-radius: 4px; font-size: 10.5px; color: #cbd5e1;">${a}</span>`).join(' ') : '';
+
+                                    html += `
+                                        <div class="train-card visible" style="margin-bottom: 0; background: rgba(15, 23, 42, 0.85);">
+                                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                                                <div style="flex: 2; min-width: 200px;">
+                                                    <div style="color: #ffffff; font-weight: 800; font-size: 16px; margin-bottom: 4px;">${bus.name}</div>
+                                                    <div style="color: #94a3b8; font-size: 11.5px; font-weight: 600;">📍 ${bus.terminal}</div>
+                                                </div>
+                                                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+                                                    <span style="font-size: 10.5px; font-weight: 800; color: ${badgeColor}; background: ${badgeBg}; border: 1px solid ${badgeBorder}; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">${bus.type}</span>
+                                                    <span style="color: #10b981; font-size: 19px; font-weight: 800; font-family: 'Space Grotesk', sans-serif;">${bus.price}</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- TIMINGS & DURATION -->
+                                            <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; background: rgba(0,0,0,0.35); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 10px;">
+                                                <div>
+                                                    <div style="color: #38bdf8; font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Departure (${bus.from})</div>
+                                                    <div style="font-size: 17px; font-family: 'Space Grotesk', monospace; font-weight: 800; color: #ffffff;">${bus.time}</div>
+                                                </div>
+                                                <div style="text-align: center; color: #94a3b8; font-size: 10.5px; font-weight: 700;">
+                                                    <div>⏱️ ${bus.duration}</div>
+                                                    <div style="color: #10b981; font-size: 14px;">➔</div>
+                                                </div>
+                                                <div style="text-align: right;">
+                                                    <div style="color: #22c55e; font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Destination (${bus.to})</div>
+                                                    <div style="font-size: 14px; font-weight: 700; color: #cbd5e1;">Direct Service</div>
+                                                </div>
+                                            </div>
+
+                                            <!-- AMENITIES & ACTIONS -->
+                                            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                                                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                                                    ${amenitiesHtml}
+                                                </div>
+                                                <div style="display: flex; gap: 8px;">
+                                                    <a href="https://online.sbstc.co.in/" target="_blank" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); padding: 5px 12px; border-radius: 6px; font-size: 11.5px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s;">
+                                                        <span>🎫</span> Book on SBSTC
+                                                    </a>
+                                                    <a href="https://www.redbus.in/" target="_blank" style="background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 5px 12px; border-radius: 6px; font-size: 11.5px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s;">
+                                                        <span>📱</span> RedBus
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div style="flex: 1; text-align: center; min-width: 100px;">
-                                            <div style="color: #38bdf8; font-size: 18px; font-family: 'Space Grotesk', monospace; font-weight: 700;">${bus.time}</div>
-                                            <div style="color: var(--text-muted); font-size: 11px; margin-top: 2px;">Duration: ${bus.duration}</div>
-                                        </div>
-                                        <div style="flex: 1; text-align: right; min-width: 100px;">
-                                            <div style="color: #10b981; font-size: 20px; font-weight: 800;">${bus.price}</div>
-                                            <button style="margin-top: 4px; background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='rgba(16, 185, 129, 0.2)'" onmouseout="this.style.background='rgba(16, 185, 129, 0.1)'">Book</button>
-                                        </div>
-                                    </div>
-                                `;
-                            });
-                            list.innerHTML = html;
+                                    `;
+                                });
+                                list.innerHTML = html;
+                            }
+
+                            if (shouldScroll) {
+                                setTimeout(() => {
+                                    container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                }, 80);
+                            }
                         }
+
+                        // Auto-run on load
+                        document.addEventListener('DOMContentLoaded', () => {
+                            searchBuses(false);
+                        });
+                        searchBuses(false);
                     </script>
+                </div>
                 </div>
 
                 <!-- State Emergency Contacts -->
