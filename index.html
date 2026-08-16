@@ -5184,10 +5184,19 @@
             return Math.round(R * c);
         }
 
-        // Initialize Map Engine
+        // Initialize Map Engine (With re-initialization guard)
         function initMasterMapEngine() {
             const mapContainer = document.getElementById('map');
             if (!mapContainer) return;
+
+            // Prevent "Map container is already initialized" error
+            if (window.map) {
+                forceMapRedraw();
+                return;
+            }
+            if (mapContainer._leaflet_id) {
+                return;
+            }
 
             const defaultMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 18,
