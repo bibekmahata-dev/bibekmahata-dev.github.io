@@ -13281,7 +13281,7 @@ document.addEventListener('keydown', (e) => {
          🗺️ COMPLETE MASTER GEOSPATIAL & 18-DESTINATION ENGINE
          ======================================================== -->
     <script>
-        const placesData = {
+                const placesData = {
             'gangani': {
                 title: 'Gangani Grand Canyon',
                 category: 'heritage',
@@ -13290,58 +13290,74 @@ document.addEventListener('keydown', (e) => {
                 desc: 'The Grand Canyon of Bengal, carved by the Silabati River in Garhbeta into vibrant red-laterite gorges.',
                 coords: { lat: 22.8617, lng: 87.3512 }
             },
-            'kalimpong': {
-                title: 'Kalimpong Hills',
-                category: 'hill',
-                image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=500&auto=format&fit=crop&q=80',
-                rating: '★ 4.6',
-                desc: 'A serene Himalayan hill station known for historic monasteries, orchid nurseries, and Kanchenjunga panoramas.',
-                coords: { lat: 27.0594, lng: 88.4695 }
-            },
             'darjeeling': {
                 title: 'Darjeeling Himalayan Hills',
                 category: 'hill',
-                image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=500&auto=format&fit=crop&q=80',
+                image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=600&auto=format&fit=crop&q=80',
                 rating: '★ 4.8',
                 desc: 'Queen of the Hills, home to UNESCO Toy Train, sprawling emerald tea estates, and Tiger Hill golden sunrises.',
                 coords: { lat: 27.0360, lng: 88.2627 }
             },
-            'bishnupur': {
-                title: 'Bishnupur Terracotta Temples',
-                category: 'heritage',
-                image: 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=500&auto=format&fit=crop&q=80',
-                rating: '★ 4.7',
-                desc: 'Legendary 17th-century terracotta temples built by the Malla kings, famous for Rasmancha and Baluchari silks.',
-                coords: { lat: 23.0784, lng: 87.3204 }
-            },
-            'sundarbans': {
-                title: 'Sundarbans Biosphere Reserve',
-                category: 'wildlife',
-                image: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=500&auto=format&fit=crop&q=80',
-                rating: '★ 4.8',
-                desc: 'World\'s largest coastal mangrove forest and sanctuary for the swimming Royal Bengal Tigers and estuarine crocodiles.',
-                coords: { lat: 21.9497, lng: 88.9004 }
-            },
             'victoria': {
                 title: 'Victoria Memorial & Kolkata',
                 category: 'heritage',
-                image: 'https://images.unsplash.com/photo-1558431382-27e303142255?w=500&auto=format&fit=crop&q=80',
+                image: 'https://images.unsplash.com/photo-1558431382-27e303142255?w=600&auto=format&fit=crop&q=80',
                 rating: '★ 4.7',
-                desc: 'White Makrana marble monument surrounded by lush 64-acre gardens, celebrating Bengal\'s cultural renaissance.',
+                desc: 'White Makrana marble monument surrounded by lush 64-acre gardens, celebrating Bengal's cultural renaissance.',
                 coords: { lat: 22.5448, lng: 88.3426 }
             },
             'digha': {
                 title: 'Digha Beach & Marine Drive',
                 category: 'beach',
-                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&auto=format&fit=crop&q=80',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80',
                 rating: '★ 4.5',
                 desc: 'Premier seaside destination with flat sandy shores, gentle surf, marine aquariums, and scenic Marine Drive.',
                 coords: { lat: 21.6266, lng: 87.5074 }
             },
+            'shantiniketan': {
+                title: 'Santiniketan Ashram & World Heritage',
+                category: 'heritage',
+                image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop&q=80',
+                rating: '★ 4.8',
+                desc: 'UNESCO World Heritage university town founded by Rabindranath Tagore, celebrating open-air education, Baul music, and Poush Mela.',
+                coords: { lat: 23.6797, lng: 87.6897 }
+            },
+            'hazarduari': {
+                title: 'Hazarduari Palace (Murshidabad)',
+                category: 'heritage',
+                image: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?w=600&auto=format&fit=crop&q=80',
+                rating: '★ 4.7',
+                desc: 'Historic palace with 1,000 doors on the banks of Bhagirathi River, showcasing weapons, armory, and Nizamat royal heritage.',
+                coords: { lat: 24.1856, lng: 88.2686 }
+            },
+            'mandarmani': {
+                title: 'Mandarmani Drivable Beach',
+                category: 'beach',
+                image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&auto=format&fit=crop&q=80',
+                rating: '★ 4.6',
+                desc: 'India's longest drivable sand beach, featuring thrilling watersports, beachfront luxury resorts, and red ghost crabs.',
+                coords: { lat: 21.6667, lng: 87.7000 }
+            },
+            'kalimpong': {
+                title: 'Kalimpong Hills',
+                category: 'hill',
+                image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&auto=format&fit=crop&q=80',
+                rating: '★ 4.6',
+                desc: 'A serene Himalayan hill station known for historic monasteries, orchid nurseries, and Kanchenjunga panoramas.',
+                coords: { lat: 27.0594, lng: 88.4695 }
+            },
+            'bishnupur': {
+                title: 'Bishnupur Terracotta Temples',
+                category: 'heritage',
+                image: 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=600&auto=format&fit=crop&q=80',
+                rating: '★ 4.7',
+                desc: 'Legendary 17th-century terracotta temples built by the Malla kings, famous for Rasmancha and Baluchari silks.',
+                coords: { lat: 23.0784, lng: 87.3204 }
+            },
             'coochbehar': {
                 title: 'Cooch Behar Royal Palace',
                 category: 'heritage',
-                image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&auto=format&fit=crop&q=80',
+                image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=600&auto=format&fit=crop&q=80',
                 rating: '★ 4.7',
                 desc: 'Majestic classical Renaissance palace modelled after Buckingham Palace, built by Maharaja Nripendra Narayan.',
                 coords: { lat: 26.3239, lng: 89.4447 }
@@ -13349,82 +13365,66 @@ document.addEventListener('keydown', (e) => {
             'jaldapara': {
                 title: 'Jaldapara Rhino Sanctuary',
                 category: 'wildlife',
-                image: 'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?w=500&auto=format&fit=crop&q=80',
+                image: 'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?w=600&auto=format&fit=crop&q=80',
                 rating: '★ 4.8',
-                desc: 'Vast riverine grassland sanctuary on the Torsa river holding India\'s second largest population of Great Indian One-horned Rhinos.',
+                desc: 'Vast riverine grassland sanctuary on the Torsa river holding India's second largest population of Great Indian One-horned Rhinos.',
                 coords: { lat: 26.6975, lng: 89.2882 }
             },
-            'shantiniketan': {
-                title: 'Santiniketan Ashram & World Heritage',
-                category: 'heritage',
-                image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=500&auto=format&fit=crop&q=80',
+            'sundarbans': {
+                title: 'Sundarbans Biosphere Reserve',
+                category: 'wildlife',
+                image: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=600&auto=format&fit=crop&q=80',
                 rating: '★ 4.8',
-                desc: 'UNESCO World Heritage university town founded by Rabindranath Tagore, celebrating open-air education, Baul music, and Poush Mela.',
-                coords: { lat: 23.6797, lng: 87.6897 }
-            },
-            'mandarmani': {
-                title: 'Mandarmani Drivable Beach',
-                category: 'beach',
-                image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&auto=format&fit=crop&q=80',
-                rating: '★ 4.6',
-                desc: 'India\'s longest drivable sand beach, featuring thrilling watersports, beachfront luxury resorts, and red ghost crabs.',
-                coords: { lat: 21.6667, lng: 87.7000 }
-            },
-            'hazarduari': {
-                title: 'Hazarduari Palace (Murshidabad)',
-                category: 'heritage',
-                image: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?w=500&auto=format&fit=crop&q=80',
-                rating: '★ 4.7',
-                desc: 'Historic palace with 1,000 doors on the banks of Bhagirathi River, showcasing weapons, armory, and Nizamat royal heritage.',
-                coords: { lat: 24.1856, lng: 88.2686 }
-            },
-            'mukutmanipur': {
-                title: 'Mukutmanipur Dam & Lake',
-                category: 'hill',
-                image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500&auto=format&fit=crop&q=80',
-                rating: '★ 4.6',
-                desc: 'India\'s second largest earthen dam at the confluence of Kangsabati and Kumari rivers, surrounded by verdant hillocks.',
-                coords: { lat: 22.9575, lng: 86.7825 }
+                desc: 'World's largest coastal mangrove forest and sanctuary for the swimming Royal Bengal Tigers and estuarine crocodiles.',
+                coords: { lat: 21.9497, lng: 88.9004 }
             },
             'kurseong': {
                 title: 'Kurseong White Orchid Ridge',
                 category: 'hill',
-                image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500&auto=format&fit=crop&q=80',
+                image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&auto=format&fit=crop&q=80',
                 rating: '★ 4.6',
-                desc: 'The Land of White Orchids nestled between Siliguri and Darjeeling, offering tea garden walks, Eagle\'s Crag viewpoints, and peace.',
+                desc: 'The Land of White Orchids nestled between Siliguri and Darjeeling, offering tea garden walks, Eagle's Crag viewpoints, and peace.',
                 coords: { lat: 26.8814, lng: 88.2778 }
             },
-            'mirik': {
-                title: 'Mirik Sumendu Lake & Pines',
-                category: 'hill',
-                image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500&auto=format&fit=crop&q=80',
-                rating: '★ 4.5',
-                desc: 'A tranquil Himalayan hamlet centered around the 1.25 km long Sumendu Lake with an arched footbridge and dense pine ridges.',
-                coords: { lat: 26.8897, lng: 88.1754 }
-            },
-            'buxa': {
-                title: 'Buxa Tiger Reserve & Fort',
+            'gorumara': {
+                title: 'Gorumara National Park',
                 category: 'wildlife',
-                image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=500&auto=format&fit=crop&q=80',
+                image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&auto=format&fit=crop&q=80',
                 rating: '★ 4.7',
-                desc: 'A dense subtropical forest reserve along the Bhutan border featuring elephants, leopards, and the historic Buxa hill fortress.',
-                coords: { lat: 26.7583, lng: 89.5833 }
+                desc: 'Dense Dooars flood plains on the Murti River known for wild elephant herds, Indian rhinos, and birdwatchers tower.',
+                coords: { lat: 26.7450, lng: 88.7900 }
             },
-            'gadiara': {
-                title: 'Gadiara River Confluence',
-                category: 'beach',
-                image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=500&auto=format&fit=crop&q=80',
-                rating: '★ 4.4',
-                desc: 'Scenic delta point in Howrah where the Hooghly, Damodar, and Rupnarayan rivers merge into a vast expanse of water.',
-                coords: { lat: 22.2167, lng: 88.0333 }
-            },
-            'massanjore': {
-                title: 'Massanjore Mayurakshi Valley',
+            'mukutmanipur': {
+                title: 'Mukutmanipur Dam & Lake',
                 category: 'hill',
-                image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=500&auto=format&fit=crop&q=80',
+                image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80',
                 rating: '★ 4.6',
-                desc: 'A majestic hydro-dam surrounded by lush forested hills on the Mayurakshi river, offering speed boating and panoramic hill walks.',
-                coords: { lat: 24.1167, lng: 87.3167 }
+                desc: 'India's second largest earthen dam at the confluence of Kangsabati and Kumari rivers, surrounded by verdant hillocks.',
+                coords: { lat: 22.9575, lng: 86.7825 }
+            },
+            'mayapur': {
+                title: 'Mayapur ISKCON Chandrodaya',
+                category: 'heritage',
+                image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop&q=80',
+                rating: '★ 4.8',
+                desc: 'World headquarters of ISKCON situated on the holy banks of the Ganges, featuring the monumental Temple of the Vedic Planetarium.',
+                coords: { lat: 23.4244, lng: 88.3908 }
+            },
+            'belurmath': {
+                title: 'Belur Math & Hooghly Ghats',
+                category: 'heritage',
+                image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600&auto=format&fit=crop&q=80',
+                rating: '★ 4.8',
+                desc: 'Universal temple combining Hindu, Islamic, and Christian architectural motifs, founded by Swami Vivekananda on the river Hooghly.',
+                coords: { lat: 22.6322, lng: 88.3564 }
+            },
+            'dakshineswar': {
+                title: 'Dakshineswar Kali Temple',
+                category: 'heritage',
+                image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=600&auto=format&fit=crop&q=80',
+                rating: '★ 4.8',
+                desc: '19th-century Navaratna style Kali temple on the sacred Hooghly riverbank associated with Sri Ramakrishna Paramahamsa.',
+                coords: { lat: 22.6550, lng: 88.3575 }
             }
         };
 
