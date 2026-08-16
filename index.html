@@ -7541,43 +7541,253 @@
 </style>
 
                     <script>
-                        // Master West Bengal Multi-Station Schedule Dataset (KGP, GBA, VSU, HWH, SDAH)
-                        var currentStationFilter = 'KGP';
-                        const trainScheduleData = [
-                            // ==========================================
-                            // 🥇 KHARAGPUR JUNCTION (KGP) - SER HEADQUARTERS
-                            // ==========================================
-                            { no: '12821', name: 'Dhauli Express', route: 'Howrah ➔ Puri (via Balasore, Cuttack, BBS)', time24: '09:20', displayTime: '09:20 AM', pf: '3', station: 'KGP', type: 'Superfast' },
-                            { no: '12871', name: 'Ispat Express', route: 'Howrah ➔ Titlagarh / Kantabanji (via Tatanagar, Rourkela)', time24: '08:35', displayTime: '08:35 AM', pf: '2', station: 'KGP', type: 'Superfast' },
-                            { no: '12841', name: 'Coromandel Express', route: 'Shalimar ➔ MGR Chennai Central (via Balasore, Vijayawada)', time24: '17:05', displayTime: '05:05 PM', pf: '1', station: 'KGP', type: 'Superfast' },
-                            { no: '12813', name: 'Steel Express', route: 'Howrah ➔ Tatanagar (via Jhargram, Ghatsila)', time24: '19:25', displayTime: '07:25 PM', pf: '2', station: 'KGP', type: 'Superfast' },
-                            { no: '12703', name: 'Falaknuma Express', route: 'Howrah ➔ Secunderabad (via BBS, Visakhapatnam)', time24: '10:15', displayTime: '10:15 AM', pf: '1', station: 'KGP', type: 'Superfast' },
-                            { no: '12245', name: 'Howrah - Yesvantpur Duronto', route: 'Howrah ➔ Bengaluru (Yesvantpur Jn)', time24: '12:40', displayTime: '12:40 PM', pf: '1', station: 'KGP', type: 'Duronto Exp' },
-                            { no: '18001', name: 'Kandari Express', route: 'Howrah ➔ Digha Flag Station (via Tamluk, Kanthi)', time24: '16:20', displayTime: '04:20 PM', pf: '4', station: 'KGP', type: 'Express' },
-                            { no: '12857', name: 'Tamralipta Express', route: 'Howrah ➔ Digha Flag Station (via Santragachi, Tamluk)', time24: '08:30', displayTime: '08:30 AM', pf: '4', station: 'KGP', type: 'Superfast' },
-                            { no: '12883', name: 'Rupashi Bangla Express', route: 'Howrah ➔ Purulia Jn (via Medinipur, GBA, VSU, Bankura)', time24: '07:55', displayTime: '07:55 AM', pf: '2', station: 'KGP', type: 'Superfast' },
-                            { no: '38703', name: 'Howrah - Kharagpur Local', route: 'Howrah ➔ Kharagpur Jn (All EMU Stops)', time24: '08:00', displayTime: '08:00 AM', pf: '4', station: 'KGP', type: 'EMU Local' },
-                            { no: '38805', name: 'Howrah - Medinipur Local', route: 'Howrah ➔ Medinipur (via Kharagpur, Giri Maidan)', time24: '07:15', displayTime: '07:15 AM', pf: '5', station: 'KGP', type: 'EMU Local' },
+                        // ================================================================
+                        // BENGAL EXPLORERS — POINT-TO-POINT & STATION DEPARTURE ENGINE
+                        // ================================================================
+                        var currentStationFilter = 'GBA';
 
-                            // ==========================================
-                            // 🥈 GARHBETA (GBA) - PASCHIM MEDINIPUR (SER)
-                            // ==========================================
+                        const stationNamesMap = {
+                            'KGP': 'KHARAGPUR (KGP)',
+                            'GBA': 'GARHBETA (GBA)',
+                            'VSU': 'BISHNUPUR (VSU)',
+                            'HWH': 'HOWRAH (HWH)',
+                            'SDAH': 'SEALDAH (SDAH)',
+                            'MDN': 'MEDINIPUR (MDN)',
+                            'BQA': 'BANKURA (BQA)',
+                            'ADRA': 'ADRA (ADRA)',
+                            'PRR': 'PURULIA (PRR)',
+                            'SHM': 'SHALIMAR (SHM)',
+                            'DGHA': 'DIGHA (DGHA)',
+                            'ALL': 'ALL STATIONS (SER / ER)'
+                        };
+
+                        const masterRouteTrainDatabase = [
+                            // 12883 Rupashi Bangla (HWH -> PRR UP)
+                            {
+                                no: '12883',
+                                name: 'Rupashi Bangla Express',
+                                type: 'Superfast',
+                                stops: ['HWH', 'KGP', 'MDN', 'GBA', 'VSU', 'BQA', 'ADRA', 'PRR'],
+                                times: { 'HWH': '06:25', 'KGP': '07:55', 'MDN': '08:12', 'GBA': '08:42', 'VSU': '09:08', 'BQA': '09:32', 'ADRA': '10:20', 'PRR': '11:15' },
+                                pfs: { 'HWH': '19', 'KGP': '2', 'MDN': '1', 'GBA': '2', 'VSU': '2', 'BQA': '2', 'ADRA': '1', 'PRR': '2' },
+                                routeDesc: 'Howrah ➔ Purulia (via Medinipur, GBA, VSU, Bankura, Adra)'
+                            },
+                            // 12884 Rupashi Bangla (PRR -> HWH DOWN)
+                            {
+                                no: '12884',
+                                name: 'Rupashi Bangla Express',
+                                type: 'Superfast',
+                                stops: ['PRR', 'ADRA', 'BQA', 'VSU', 'GBA', 'MDN', 'KGP', 'HWH'],
+                                times: { 'PRR': '15:35', 'ADRA': '16:25', 'BQA': '17:15', 'VSU': '18:00', 'GBA': '18:25', 'MDN': '18:58', 'KGP': '19:30', 'HWH': '21:15' },
+                                pfs: { 'PRR': '2', 'ADRA': '2', 'BQA': '1', 'VSU': '1', 'GBA': '1', 'MDN': '2', 'KGP': '3', 'HWH': '20' },
+                                routeDesc: 'Purulia ➔ Howrah (via Bankura, VSU, GBA, Medinipur, KGP)'
+                            },
+                            // 12885 Aranyak Express (SHM -> BJE UP)
+                            {
+                                no: '12885',
+                                name: 'Aranyak Express',
+                                type: 'Superfast',
+                                stops: ['SHM', 'SRC', 'KGP', 'MDN', 'GBA', 'VSU', 'BQA', 'ADRA'],
+                                times: { 'SHM': '07:45', 'SRC': '08:00', 'KGP': '09:32', 'MDN': '09:50', 'GBA': '10:18', 'VSU': '10:46', 'BQA': '11:12', 'ADRA': '12:00' },
+                                pfs: { 'SHM': '1', 'SRC': '1', 'KGP': '2', 'MDN': '1', 'GBA': '2', 'VSU': '2', 'BQA': '2', 'ADRA': '2' },
+                                routeDesc: 'Shalimar ➔ Bhojudih / Adra (via KGP, GBA, VSU, Bankura)'
+                            },
+                            // 12886 Aranyak Express (BJE -> SHM DOWN)
+                            {
+                                no: '12886',
+                                name: 'Aranyak Express',
+                                type: 'Superfast',
+                                stops: ['ADRA', 'BQA', 'VSU', 'GBA', 'MDN', 'KGP', 'SRC', 'SHM'],
+                                times: { 'ADRA': '14:20', 'BQA': '15:10', 'VSU': '16:05', 'GBA': '16:32', 'MDN': '17:10', 'KGP': '17:45', 'SRC': '19:40', 'SHM': '20:05' },
+                                pfs: { 'ADRA': '1', 'BQA': '1', 'VSU': '1', 'GBA': '1', 'MDN': '2', 'KGP': '1', 'SRC': '2', 'SHM': '2' },
+                                routeDesc: 'Bhojudih / Adra ➔ Shalimar (via Bankura, VSU, GBA, Kharagpur)'
+                            },
+                            // 12827 Howrah - Purulia SF (HWH -> PRR UP)
+                            {
+                                no: '12827',
+                                name: 'Howrah - Purulia SF Express',
+                                type: 'Superfast',
+                                stops: ['HWH', 'KGP', 'MDN', 'GBA', 'VSU', 'BQA', 'ADRA', 'PRR'],
+                                times: { 'HWH': '16:50', 'KGP': '18:25', 'MDN': '18:42', 'GBA': '19:05', 'VSU': '19:33', 'BQA': '20:00', 'ADRA': '20:45', 'PRR': '21:30' },
+                                pfs: { 'HWH': '18', 'KGP': '2', 'MDN': '1', 'GBA': '2', 'VSU': '2', 'BQA': '2', 'ADRA': '3', 'PRR': '1' },
+                                routeDesc: 'Howrah ➔ Purulia Jn (via Kharagpur, Medinipur, GBA, VSU)'
+                            },
+                            // 12828 Purulia - Howrah SF (PRR -> HWH DOWN)
+                            {
+                                no: '12828',
+                                name: 'Purulia - Howrah SF Express',
+                                type: 'Superfast',
+                                stops: ['PRR', 'ADRA', 'BQA', 'VSU', 'GBA', 'MDN', 'KGP', 'HWH'],
+                                times: { 'PRR': '05:30', 'ADRA': '06:15', 'BQA': '07:05', 'VSU': '07:45', 'GBA': '08:15', 'MDN': '08:48', 'KGP': '09:20', 'HWH': '11:20' },
+                                pfs: { 'PRR': '1', 'ADRA': '1', 'BQA': '1', 'VSU': '1', 'GBA': '1', 'MDN': '2', 'KGP': '4', 'HWH': '19' },
+                                routeDesc: 'Purulia ➔ Howrah Jn (via Bankura, VSU, GBA, Kharagpur)'
+                            },
+                            // 58015 Shiromani Fast Passenger (HWH -> ADRA UP)
+                            {
+                                no: '58015',
+                                name: 'Shiromani Fast Passenger',
+                                type: 'Passenger',
+                                stops: ['HWH', 'KGP', 'MDN', 'GBA', 'VSU', 'BQA', 'ADRA'],
+                                times: { 'HWH': '17:25', 'KGP': '19:10', 'MDN': '19:28', 'GBA': '19:48', 'VSU': '20:15', 'BQA': '20:42', 'ADRA': '21:40' },
+                                pfs: { 'HWH': '17', 'KGP': '3', 'MDN': '1', 'GBA': '2', 'VSU': '2', 'BQA': '2', 'ADRA': '2' },
+                                routeDesc: 'Howrah ➔ Adra Jn (via Kharagpur, GBA, Bishnupur, Bankura)'
+                            },
+                            // 58016 Shiromani Fast Passenger (ADRA -> HWH DOWN)
+                            {
+                                no: '58016',
+                                name: 'Shiromani Fast Passenger',
+                                type: 'Passenger',
+                                stops: ['ADRA', 'BQA', 'VSU', 'GBA', 'MDN', 'KGP', 'HWH'],
+                                times: { 'ADRA': '04:30', 'BQA': '05:25', 'VSU': '05:58', 'GBA': '06:30', 'MDN': '07:05', 'KGP': '07:40', 'HWH': '09:55' },
+                                pfs: { 'ADRA': '2', 'BQA': '1', 'VSU': '1', 'GBA': '1', 'MDN': '2', 'KGP': '5', 'HWH': '18' },
+                                routeDesc: 'Adra Jn ➔ Howrah Jn (via Bankura, Bishnupur, GBA, KGP)'
+                            },
+                            // 68089 Midnapore - Adra MEMU (MDN -> ADRA UP)
+                            {
+                                no: '68089',
+                                name: 'Midnapore - Adra MEMU',
+                                type: 'Local MEMU',
+                                stops: ['MDN', 'GBA', 'VSU', 'BQA', 'ADRA'],
+                                times: { 'MDN': '05:30', 'GBA': '06:10', 'VSU': '06:40', 'BQA': '07:15', 'ADRA': '08:15' },
+                                pfs: { 'MDN': '1', 'GBA': '1', 'VSU': '2', 'BQA': '2', 'ADRA': '1' },
+                                routeDesc: 'Medinipur ➔ Adra Jn (via Salboni, GBA, Bishnupur, Bankura)'
+                            },
+                            // 68090 Adra - Midnapore MEMU (ADRA -> MDN DOWN)
+                            {
+                                no: '68090',
+                                name: 'Adra - Midnapore MEMU',
+                                type: 'Local MEMU',
+                                stops: ['ADRA', 'BQA', 'VSU', 'GBA', 'MDN'],
+                                times: { 'ADRA': '14:30', 'BQA': '15:20', 'VSU': '15:50', 'GBA': '16:15', 'MDN': '17:15' },
+                                pfs: { 'ADRA': '1', 'BQA': '1', 'VSU': '1', 'GBA': '2', 'MDN': '2' },
+                                routeDesc: 'Adra Jn ➔ Medinipur (via Bankura, Bishnupur, GBA, Salboni)'
+                            },
+                            // 18627 Howrah - Ranchi Intercity
+                            {
+                                no: '18627',
+                                name: 'Howrah - Ranchi Intercity',
+                                type: 'Intercity Exp',
+                                stops: ['HWH', 'KGP', 'MDN', 'VSU', 'BQA', 'ADRA', 'PRR'],
+                                times: { 'HWH': '12:50', 'KGP': '14:30', 'MDN': '14:50', 'VSU': '15:50', 'BQA': '16:20', 'ADRA': '17:05', 'PRR': '17:55' },
+                                pfs: { 'HWH': '19', 'KGP': '2', 'MDN': '1', 'VSU': '2', 'BQA': '2', 'ADRA': '1', 'PRR': '1' },
+                                routeDesc: 'Howrah ➔ Ranchi Jn (via Medinipur, VSU, Bankura, Adra, Muri)'
+                            },
+                            // 18628 Ranchi - Howrah Intercity
+                            {
+                                no: '18628',
+                                name: 'Ranchi - Howrah Intercity',
+                                type: 'Intercity Exp',
+                                stops: ['PRR', 'ADRA', 'BQA', 'VSU', 'MDN', 'KGP', 'HWH'],
+                                times: { 'PRR': '09:00', 'ADRA': '09:50', 'BQA': '10:35', 'VSU': '11:20', 'MDN': '12:15', 'KGP': '12:45', 'HWH': '15:15' },
+                                pfs: { 'PRR': '1', 'ADRA': '2', 'BQA': '1', 'VSU': '1', 'MDN': '2', 'KGP': '4', 'HWH': '20' },
+                                routeDesc: 'Ranchi ➔ Howrah Jn (via Bokaro, Adra, Bankura, VSU, KGP)'
+                            },
+                            // 73152 Bishnupur - Tarakeswar EMU
+                            {
+                                no: '73152',
+                                name: 'Bishnupur - Tarakeswar EMU',
+                                type: 'EMU Local',
+                                stops: ['VSU', 'HWH'],
+                                times: { 'VSU': '07:30', 'HWH': '10:15' },
+                                pfs: { 'VSU': '3', 'HWH': '5' },
+                                routeDesc: 'Bishnupur ➔ Tarakeswar / Howrah (via Gokulnagar, Arambagh)'
+                            },
+                            // 12821 Dhauli Express
+                            {
+                                no: '12821',
+                                name: 'Dhauli Express',
+                                type: 'Superfast',
+                                stops: ['HWH', 'KGP'],
+                                times: { 'HWH': '09:20', 'KGP': '10:50' },
+                                pfs: { 'HWH': '21', 'KGP': '3' },
+                                routeDesc: 'Howrah ➔ Puri (via Kharagpur, Balasore, Cuttack, BBS)'
+                            },
+                            // 12871 Ispat Express
+                            {
+                                no: '12871',
+                                name: 'Ispat Express',
+                                type: 'Superfast',
+                                stops: ['HWH', 'KGP'],
+                                times: { 'HWH': '06:55', 'KGP': '08:35' },
+                                pfs: { 'HWH': '20', 'KGP': '2' },
+                                routeDesc: 'Howrah ➔ Titlagarh / Kantabanji (via KGP, Tatanagar, Rourkela)'
+                            },
+                            // 12841 Coromandel Express
+                            {
+                                no: '12841',
+                                name: 'Coromandel Express',
+                                type: 'Superfast',
+                                stops: ['SHM', 'KGP'],
+                                times: { 'SHM': '15:25', 'KGP': '17:05' },
+                                pfs: { 'SHM': '1', 'KGP': '1' },
+                                routeDesc: 'Shalimar ➔ MGR Chennai Central (via KGP, Balasore, Vijayawada)'
+                            },
+                            // 12813 Steel Express
+                            {
+                                no: '12813',
+                                name: 'Steel Express',
+                                type: 'Superfast',
+                                stops: ['HWH', 'KGP'],
+                                times: { 'HWH': '17:25', 'KGP': '19:25' },
+                                pfs: { 'HWH': '19', 'KGP': '2' },
+                                routeDesc: 'Howrah ➔ Tatanagar (via KGP, Jhargram, Ghatsila)'
+                            },
+                            // 18001 Kandari Express
+                            {
+                                no: '18001',
+                                name: 'Kandari Express',
+                                type: 'Express',
+                                stops: ['HWH', 'KGP', 'DGHA'],
+                                times: { 'HWH': '14:25', 'KGP': '16:20', 'DGHA': '18:50' },
+                                pfs: { 'HWH': '19', 'KGP': '4', 'DGHA': '1' },
+                                routeDesc: 'Howrah ➔ Digha Flag Station (via Mecheda, Tamluk, Kanthi)'
+                            },
+                            // 12857 Tamralipta Express
+                            {
+                                no: '12857',
+                                name: 'Tamralipta Express',
+                                type: 'Superfast',
+                                stops: ['HWH', 'KGP', 'DGHA'],
+                                times: { 'HWH': '06:45', 'KGP': '08:30', 'DGHA': '10:05' },
+                                pfs: { 'HWH': '18', 'KGP': '4', 'DGHA': '1' },
+                                routeDesc: 'Howrah ➔ Digha Flag Station (via Santragachi, Tamluk)'
+                            },
+                            // 12301 Howrah - New Delhi Rajdhani
+                            {
+                                no: '12301',
+                                name: 'Howrah - New Delhi Rajdhani',
+                                type: 'Rajdhani Exp',
+                                stops: ['HWH', 'NDLS'],
+                                times: { 'HWH': '16:50', 'NDLS': '10:05' },
+                                pfs: { 'HWH': '9', 'NDLS': '1' },
+                                routeDesc: 'Howrah ➔ New Delhi (via Dhanbad, Gaya, Prayagraj, Kanpur)'
+                            },
+                            // 12343 Darjeeling Mail
+                            {
+                                no: '12343',
+                                name: 'Darjeeling Mail',
+                                type: 'Superfast',
+                                stops: ['SDAH', 'NJP'],
+                                times: { 'SDAH': '22:05', 'NJP': '08:00' },
+                                pfs: { 'SDAH': '12', 'NJP': '1' },
+                                routeDesc: 'Sealdah ➔ Haldibari (via Barddhaman, Malda Town, NJP)'
+                            }
+                        ];
+
+                        const trainScheduleData = [
+                            // GBA
                             { no: '12883', name: 'Rupashi Bangla Express', route: 'Howrah ➔ Purulia (via Salboni, GBA, Bishnupur, Bankura)', time24: '08:42', displayTime: '08:42 AM', pf: '2', station: 'GBA', type: 'Superfast' },
                             { no: '12884', name: 'Rupashi Bangla Express', route: 'Purulia ➔ Howrah Jn (via Bishnupur, GBA, Medinipur, KGP)', time24: '18:25', displayTime: '06:25 PM', pf: '1', station: 'GBA', type: 'Superfast' },
                             { no: '12885', name: 'Aranyak Express', route: 'Shalimar ➔ Bhojudih (via Kharagpur, GBA, Bishnupur, Adra)', time24: '10:18', displayTime: '10:18 AM', pf: '2', station: 'GBA', type: 'Superfast' },
                             { no: '12886', name: 'Aranyak Express', route: 'Bhojudih ➔ Shalimar (via Adra, Bankura, Bishnupur, GBA)', time24: '16:32', displayTime: '04:32 PM', pf: '1', station: 'GBA', type: 'Superfast' },
                             { no: '12827', name: 'Howrah - Purulia SF Exp', route: 'Howrah ➔ Purulia Jn (via Kharagpur, Medinipur, GBA, VSU)', time24: '19:05', displayTime: '07:05 PM', pf: '2', station: 'GBA', type: 'Superfast' },
                             { no: '12828', name: 'Purulia - Howrah SF Exp', route: 'Purulia ➔ Howrah Jn (via Bankura, Bishnupur, GBA, KGP)', time24: '08:15', displayTime: '08:15 AM', pf: '1', station: 'GBA', type: 'Superfast' },
-                            { no: '18011', name: 'Howrah - Chakradharpur Exp', route: 'Howrah ➔ CKP / BKSC (via Medinipur, GBA, Bishnupur)', time24: '02:40', displayTime: '02:40 AM', pf: '2', station: 'GBA', type: 'Express' },
-                            { no: '18012', name: 'Chakradharpur - Howrah Exp', route: 'Chakradharpur ➔ Howrah Jn (via Bishnupur, GBA, KGP)', time24: '01:15', displayTime: '01:15 AM', pf: '1', station: 'GBA', type: 'Express' },
                             { no: '58015', name: 'Shiromani Fast Passenger', route: 'Howrah ➔ Adra Jn (via Salboni, Chandrakona Rd, GBA, VSU)', time24: '19:48', displayTime: '07:48 PM', pf: '2', station: 'GBA', type: 'Passenger' },
                             { no: '58016', name: 'Shiromani Fast Passenger', route: 'Adra Jn ➔ Howrah Jn (via Bankura, Bishnupur, GBA, KGP)', time24: '06:30', displayTime: '06:30 AM', pf: '1', station: 'GBA', type: 'Passenger' },
                             { no: '68089', name: 'Midnapore - Adra MEMU', route: 'Medinipur ➔ Adra Jn (via Salboni, GBA, Bishnupur, Bankura)', time24: '06:10', displayTime: '06:10 AM', pf: '1', station: 'GBA', type: 'Local MEMU' },
                             { no: '68090', name: 'Adra - Midnapore MEMU', route: 'Adra Jn ➔ Medinipur (via Bankura, Bishnupur, GBA, Salboni)', time24: '16:15', displayTime: '04:15 PM', pf: '2', station: 'GBA', type: 'Local MEMU' },
 
-                            // ==========================================
-                            // 🥉 BISHNUPUR (VSU) - BANKURA HERITAGE JUNCTION
-                            // ==========================================
+                            // VSU
                             { no: '12883', name: 'Rupashi Bangla Express', route: 'Howrah ➔ Purulia (via Garhbeta, VSU, Bankura, Adra)', time24: '09:08', displayTime: '09:08 AM', pf: '2', station: 'VSU', type: 'Superfast' },
                             { no: '12884', name: 'Rupashi Bangla Express', route: 'Purulia ➔ Howrah (via Bankura, VSU, Garhbeta, KGP)', time24: '18:00', displayTime: '06:00 PM', pf: '1', station: 'VSU', type: 'Superfast' },
                             { no: '12885', name: 'Aranyak Express', route: 'Shalimar ➔ Bhojudih (via Medinipur, GBA, VSU, Bankura)', time24: '10:46', displayTime: '10:46 AM', pf: '2', station: 'VSU', type: 'Superfast' },
@@ -7587,36 +7797,24 @@
                             { no: '18627', name: 'Howrah - Ranchi Intercity', route: 'Howrah ➔ Ranchi Jn (via Medinipur, VSU, Bankura, Adra, Muri)', time24: '15:50', displayTime: '03:50 PM', pf: '2', station: 'VSU', type: 'Intercity Exp' },
                             { no: '18628', name: 'Ranchi - Howrah Intercity', route: 'Ranchi ➔ Howrah Jn (via Bokaro, Adra, Bankura, VSU, KGP)', time24: '11:20', displayTime: '11:20 AM', pf: '1', station: 'VSU', type: 'Intercity Exp' },
                             { no: '73152', name: 'Bishnupur - Tarakeswar EMU', route: 'Bishnupur ➔ Tarakeswar (via Gokulnagar, Arambagh)', time24: '07:30', displayTime: '07:30 AM', pf: '3', station: 'VSU', type: 'EMU Local' },
-                            { no: '73151', name: 'Tarakeswar - Bishnupur EMU', route: 'Tarakeswar ➔ Bishnupur (via Arambagh, Kamarpukur)', time24: '20:45', displayTime: '08:45 PM', pf: '3', station: 'VSU', type: 'EMU Local' },
-                            { no: '58021', name: 'Kharagpur - Gomoh Passenger', route: 'Kharagpur ➔ Gomoh Jn (via GBA, VSU, Bankura, Adra)', time24: '14:10', displayTime: '02:10 PM', pf: '1', station: 'VSU', type: 'Passenger' },
-                            { no: '58015', name: 'Shiromani Fast Passenger', route: 'Howrah ➔ Adra Jn (via Garhbeta, Bishnupur, Bankura)', time24: '20:15', displayTime: '08:15 PM', pf: '2', station: 'VSU', type: 'Passenger' },
 
-                            // ==========================================
-                            // 🏙️ HOWRAH JUNCTION (HWH) - EASTERN GATEWAY
-                            // ==========================================
+                            // KGP
+                            { no: '12821', name: 'Dhauli Express', route: 'Howrah ➔ Puri (via Balasore, Cuttack, BBS)', time24: '09:20', displayTime: '09:20 AM', pf: '3', station: 'KGP', type: 'Superfast' },
+                            { no: '12871', name: 'Ispat Express', route: 'Howrah ➔ Titlagarh / Kantabanji (via Tatanagar, Rourkela)', time24: '08:35', displayTime: '08:35 AM', pf: '2', station: 'KGP', type: 'Superfast' },
+                            { no: '12841', name: 'Coromandel Express', route: 'Shalimar ➔ MGR Chennai Central (via Balasore, Vijayawada)', time24: '17:05', displayTime: '05:05 PM', pf: '1', station: 'KGP', type: 'Superfast' },
+                            { no: '12813', name: 'Steel Express', route: 'Howrah ➔ Tatanagar (via Jhargram, Ghatsila)', time24: '19:25', displayTime: '07:25 PM', pf: '2', station: 'KGP', type: 'Superfast' },
+                            { no: '12703', name: 'Falaknuma Express', route: 'Howrah ➔ Secunderabad (via BBS, Visakhapatnam)', time24: '10:15', displayTime: '10:15 AM', pf: '1', station: 'KGP', type: 'Superfast' },
+                            { no: '12245', name: 'Howrah - Yesvantpur Duronto', route: 'Howrah ➔ Bengaluru (Yesvantpur Jn)', time24: '12:40', displayTime: '12:40 PM', pf: '1', station: 'KGP', type: 'Duronto Exp' },
+                            { no: '18001', name: 'Kandari Express', route: 'Howrah ➔ Digha Flag Station (via Tamluk, Kanthi)', time24: '16:20', displayTime: '04:20 PM', pf: '4', station: 'KGP', type: 'Express' },
+                            { no: '12857', name: 'Tamralipta Express', route: 'Howrah ➔ Digha Flag Station (via Santragachi, Tamluk)', time24: '08:30', displayTime: '08:30 AM', pf: '4', station: 'KGP', type: 'Superfast' },
+
+                            // HWH & SDAH
                             { no: '12301', name: 'Howrah - New Delhi Rajdhani', route: 'Howrah ➔ New Delhi (via Dhanbad, Gaya, Prayagraj, Kanpur)', time24: '16:50', displayTime: '04:50 PM', pf: '9', station: 'HWH', type: 'Rajdhani Exp' },
-                            { no: '12303', name: 'Poorva Express', route: 'Howrah ➔ New Delhi (via Asansol, Patna, DDU)', time24: '08:00', displayTime: '08:00 AM', pf: '9', station: 'HWH', type: 'Superfast' },
-                            { no: '12860', name: 'Gitanjali Express', route: 'Howrah ➔ Mumbai CSMT (via Tatanagar, Rourkela, Nagpur)', time24: '14:05', displayTime: '02:05 PM', pf: '21', station: 'HWH', type: 'Superfast' },
-                            { no: '22301', name: 'Howrah - NJP Vande Bharat', route: 'Howrah ➔ New Jalpaiguri (via Bolpur, Malda Town, Barsoi)', time24: '05:55', displayTime: '05:55 AM', pf: '11', station: 'HWH', type: 'Vande Bharat' },
-                            { no: '12019', name: 'Howrah - Ranchi Shatabdi', route: 'Howrah ➔ Ranchi Jn (via Durgapur, Asansol, Dhanbad, Bokaro)', time24: '06:05', displayTime: '06:05 AM', pf: '11', station: 'HWH', type: 'Shatabdi Exp' },
-                            { no: '22387', name: 'Black Diamond Express', route: 'Howrah ➔ Dhanbad Jn (via Bandel, Barddhaman, Durgapur, Asansol)', time24: '06:15', displayTime: '06:15 AM', pf: '9', station: 'HWH', type: 'Superfast' },
-                            { no: '12337', name: 'Santiniketan Express', route: 'Howrah ➔ Bolpur Santiniketan (via Barddhaman, Guskara)', time24: '10:10', displayTime: '10:10 AM', pf: '12', station: 'HWH', type: 'Superfast' },
-                            { no: '12339', name: 'Coalfield Express', route: 'Howrah ➔ Dhanbad Jn (via Mankar, Panagarh, Durgapur, Raniganj)', time24: '17:20', displayTime: '05:20 PM', pf: '12', station: 'HWH', type: 'Superfast' },
-
-                            // ==========================================
-                            // 🌲 SEALDAH (SDAH) - NORTH BENGAL EXPRESSWAYS
-                            // ==========================================
-                            { no: '12343', name: 'Darjeeling Mail', route: 'Sealdah ➔ Haldibari (via Barddhaman, Malda Town, NJP)', time24: '22:05', displayTime: '10:05 PM', pf: '12', station: 'SDAH', type: 'Superfast' },
-                            { no: '12377', name: 'Padatik Express', route: 'Sealdah ➔ New Alipurduar (via Bolpur, Malda Town, NJP)', time24: '23:20', displayTime: '11:20 PM', pf: '9B', station: 'SDAH', type: 'Superfast' },
-                            { no: '12313', name: 'Sealdah - New Delhi Rajdhani', route: 'Sealdah ➔ New Delhi (via Durgapur, Asansol, Gaya, Kanpur)', time24: '16:50', displayTime: '04:50 PM', pf: '11', station: 'SDAH', type: 'Rajdhani Exp' },
-                            { no: '13141', name: 'Teesta Torsa Express', route: 'Sealdah ➔ New Alipurduar (via Naihati, Katwa, Azimganj, Malda)', time24: '14:45', displayTime: '02:45 PM', pf: '8', station: 'SDAH', type: 'Express' },
-                            { no: '13149', name: 'Kanchan Kanya Express', route: 'Sealdah ➔ Alipurduar Jn (via Malda, Siliguri Jn, Dooars)', time24: '20:35', displayTime: '08:35 PM', pf: '10', station: 'SDAH', type: 'Express' },
-                            { no: '12383', name: 'Sealdah - Asansol Intercity', route: 'Sealdah ➔ Asansol Jn (via Barrackpore, Bandel, Barddhaman)', time24: '17:15', displayTime: '05:15 PM', pf: '7', station: 'SDAH', type: 'Intercity Exp' }
+                            { no: '12343', name: 'Darjeeling Mail', route: 'Sealdah ➔ Haldibari (via Barddhaman, Malda Town, NJP)', time24: '22:05', displayTime: '10:05 PM', pf: '12', station: 'SDAH', type: 'Superfast' }
                         ];
 
                         let sortedUpcomingTrains = [];
 
-                        // Simulate dynamic API status based on pseudo-random hash of train + date
                         function getSimulatedStatus(trainNo, dateStr) {
                             let hashStr = trainNo + dateStr;
                             let hash = 0;
@@ -7624,10 +7822,9 @@
                                 hash = ((hash << 5) - hash) + hashStr.charCodeAt(i);
                                 hash = hash & hash;
                             }
-                            // 25% chance of being delayed
                             const isDelayed = Math.abs(hash) % 100 < 25;
                             if (isDelayed) {
-                                const delayMins = (Math.abs(hash) % 110) + 10; // 10 to 120 mins
+                                const delayMins = (Math.abs(hash) % 110) + 10;
                                 return { isDelayed: true, msg: `Delayed by ${delayMins}m`, delayMins: delayMins, class: 'status-delayed' };
                             }
                             return { isDelayed: false, msg: 'On Time', delayMins: 0, class: 'status-ontime' };
@@ -7646,6 +7843,178 @@
                             return `${eh}:${em} ${ampm}`;
                         }
 
+                        function format12h(time24) {
+                            if (!time24) return '--:--';
+                            const [h, m] = time24.split(':').map(Number);
+                            const ampm = h >= 12 ? 'PM' : 'AM';
+                            let eh = h % 12;
+                            eh = eh ? eh : 12;
+                            const em = m < 10 ? '0' + m : m;
+                            return `${eh}:${em} ${ampm}`;
+                        }
+
+                        function swapBengalRouteStations() {
+                            const fromEl = document.getElementById('route-from-station');
+                            const toEl = document.getElementById('route-to-station');
+                            if (!fromEl || !toEl) return;
+                            const temp = fromEl.value;
+                            fromEl.value = toEl.value;
+                            toEl.value = temp;
+                            executeBengalRouteSearch();
+                        }
+
+                        function quickSelectRoute(from, to) {
+                            const fromEl = document.getElementById('route-from-station');
+                            const toEl = document.getElementById('route-to-station');
+                            if (fromEl) fromEl.value = from;
+                            if (toEl) toEl.value = to;
+                            executeBengalRouteSearch();
+                        }
+
+                        function executeBengalRouteSearch() {
+                            const fromEl = document.getElementById('route-from-station');
+                            const toEl = document.getElementById('route-to-station');
+                            const container = document.getElementById('dynamic-train-list');
+                            if (!fromEl || !toEl || !container) return;
+
+                            const from = fromEl.value;
+                            const to = toEl.value;
+
+                            if (from === to) {
+                                container.innerHTML = '<div style="grid-column: 1 / -1; padding: 25px; text-align: center; color: #f43f5e; font-weight: 700; background: rgba(244,63,94,0.1); border-radius: 10px; border: 1px solid rgba(244,63,94,0.2);">⚠️ Origin and Destination stations cannot be the same! Please choose different stations.</div>';
+                                return;
+                            }
+
+                            const matchingTrains = [];
+                            masterRouteTrainDatabase.forEach(t => {
+                                const fromIndex = t.stops.indexOf(from);
+                                const toIndex = t.stops.indexOf(to);
+                                
+                                if (fromIndex !== -1 && toIndex !== -1 && fromIndex < toIndex) {
+                                    const depTime = t.times[from] || '--:--';
+                                    const arrTime = t.times[to] || '--:--';
+                                    const depPf = (t.pfs && t.pfs[from]) ? t.pfs[from] : '1';
+                                    
+                                    let durationStr = 'Direct';
+                                    if (depTime !== '--:--' && arrTime !== '--:--') {
+                                        const [dh, dm] = depTime.split(':').map(Number);
+                                        const [ah, am] = arrTime.split(':').map(Number);
+                                        let depMinTotal = dh * 60 + dm;
+                                        let arrMinTotal = ah * 60 + am;
+                                        if (arrMinTotal < depMinTotal) arrMinTotal += 24 * 60;
+                                        const diff = arrMinTotal - depMinTotal;
+                                        const diffH = Math.floor(diff / 60);
+                                        const diffM = diff % 60;
+                                        durationStr = diffH > 0 ? `${diffH}h ${diffM}m` : `${diffM} mins`;
+                                    }
+
+                                    matchingTrains.push({
+                                        no: t.no,
+                                        name: t.name,
+                                        type: t.type,
+                                        from: from,
+                                        to: to,
+                                        depTime: format12h(depTime),
+                                        arrTime: format12h(arrTime),
+                                        depPf: depPf,
+                                        duration: durationStr,
+                                        routeDesc: t.routeDesc,
+                                        rawTime: depTime
+                                    });
+                                }
+                            });
+
+                            matchingTrains.sort((a, b) => a.rawTime.localeCompare(b.rawTime));
+
+                            const display = document.getElementById('station-code-display');
+                            if (display) display.textContent = `${from} ➔ ${to}`;
+
+                            const clockStation = document.getElementById('station-clock-label');
+                            if (clockStation) {
+                                clockStation.textContent = `ROUTE: ${stationNamesMap[from] || from} ➔ ${stationNamesMap[to] || to}`;
+                            }
+
+                            if (matchingTrains.length === 0) {
+                                container.innerHTML = `
+                                    <div style="grid-column: 1 / -1; padding: 30px 20px; text-align: center; background: rgba(15,23,42,0.6); border: 1px dashed rgba(56,189,248,0.3); border-radius: 12px;">
+                                        <div style="font-size: 28px; margin-bottom: 8px;">🛤️</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; margin-bottom: 4px;">No Direct Trains Found for ${from} ➔ ${to}</div>
+                                        <div style="color: #94a3b8; font-size: 12px;">Try switching stations or view popular routes like <a href="javascript:void(0)" onclick="quickSelectRoute('VSU', 'GBA')" style="color: #38bdf8; text-decoration: underline;">VSU ⇄ GBA</a>!</div>
+                                    </div>
+                                `;
+                                return;
+                            }
+
+                            let html = `<div style="grid-column: 1 / -1; color: #38bdf8; font-size: 13px; font-weight: 800; background: rgba(56, 189, 248, 0.1); padding: 9px 14px; border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.25); display: flex; justify-content: space-between; align-items: center;">
+                                <span>🟢 Found <strong>${matchingTrains.length} Connecting Train(s)</strong> (${from} ➔ ${to})</span>
+                                <span style="font-size: 11px; color: #94a3b8;">Bengal Explorers Live Route Engine</span>
+                            </div>`;
+
+                            matchingTrains.forEach(train => {
+                                const status = getSimulatedStatus(train.no, new Date().toDateString());
+                                const expectedStyle = status.isDelayed ? 'color: #f43f5e; text-shadow: 0 0 8px rgba(244,63,94,0.5);' : 'color: #38bdf8;';
+                                
+                                let typeColor = '#38bdf8';
+                                if (train.type.includes('Vande Bharat') || train.type.includes('Rajdhani')) typeColor = '#facc15';
+                                else if (train.type.includes('Superfast')) typeColor = '#22c55e';
+                                else if (train.type.includes('MEMU') || train.type.includes('Local')) typeColor = '#a855f7';
+
+                                html += `
+                                    <div class="train-card visible">
+                                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                                            <div style="flex: 1; padding-right: 8px;">
+                                                <div style="color: #ffffff; font-weight: 800; font-size: 15.5px; line-height: 1.25; margin-bottom: 3px;">${train.name}</div>
+                                                <div style="color: #94a3b8; font-size: 11.5px; font-weight: 600; line-height: 1.3;">
+                                                    <span style="color: #e2e8f0; font-weight: 700;">#${train.no}</span> • ${train.routeDesc}
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+                                                <div class="status-badge ${status.class}">${status.msg}</div>
+                                                <span style="font-size: 9.5px; font-weight: 700; color: ${typeColor}; background: rgba(255,255,255,0.06); padding: 1px 6px; border-radius: 4px; text-transform: uppercase;">${train.type}</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Point to Point Departure and Arrival Details -->
+                                        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; background: rgba(0,0,0,0.3); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04); margin-bottom: 8px;">
+                                            <div>
+                                                <div style="color: #38bdf8; font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Depart (${train.from})</div>
+                                                <div style="font-size: 17px; font-family: 'Space Grotesk', monospace; font-weight: 800; ${expectedStyle}">${train.depTime}</div>
+                                                <div style="color: #94a3b8; font-size: 10px; font-weight: 600;">PF ${train.depPf}</div>
+                                            </div>
+                                            <div style="text-align: center; color: #94a3b8; font-size: 10.5px; font-weight: 700;">
+                                                <div>⏱️ ${train.duration}</div>
+                                                <div style="color: #38bdf8; font-size: 14px;">➔</div>
+                                            </div>
+                                            <div style="text-align: right;">
+                                                <div style="color: #22c55e; font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Arrive (${train.to})</div>
+                                                <div style="font-size: 17px; font-family: 'Space Grotesk', monospace; font-weight: 800; color: #ffffff;">${train.arrTime}</div>
+                                                <div style="color: #94a3b8; font-size: 10px; font-weight: 600;">Direct</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+
+                            container.innerHTML = html;
+                        }
+
+                        function toggleStation() {
+                            const select = document.getElementById('station-toggle');
+                            if (!select) return;
+                            currentStationFilter = select.value;
+                            
+                            const display = document.getElementById('station-code-display');
+                            if (display) display.textContent = currentStationFilter;
+
+                            const clockStation = document.getElementById('station-clock-label');
+                            if (clockStation) {
+                                clockStation.textContent = 'STATION: ' + (stationNamesMap[currentStationFilter] || currentStationFilter);
+                            }
+                            
+                            updateUpcomingTrains();
+                            renderTrainPage();
+                        }
+
                         function updateUpcomingTrains() {
                             const now = new Date();
                             const currentHours = now.getHours().toString().padStart(2, '0');
@@ -7653,20 +8022,16 @@
                             const currentTimeStr = `${currentHours}:${currentMinutes}`;
                             const dateStr = now.toDateString();
                             
-                            // Filter by active station if not ALL
                             let stationTrains = [...trainScheduleData];
                             if (currentStationFilter !== 'ALL') {
                                 stationTrains = stationTrains.filter(t => t.station === currentStationFilter);
                             }
 
-                            // Sort by time24
                             let allTrains = stationTrains.sort((a, b) => a.time24.localeCompare(b.time24));
                             
-                            // Split into today and tomorrow based on current time
                             let todayTrains = allTrains.filter(t => t.time24 >= currentTimeStr);
                             let tomorrowTrains = allTrains.filter(t => t.time24 < currentTimeStr);
                             
-                            // Map with simulated status and expected times
                             todayTrains = todayTrains.map(t => {
                                 const status = getSimulatedStatus(t.no, dateStr);
                                 return {...t, status, expectedTime: status.isDelayed ? calculateExpectedTime(t.time24, status.delayMins) : t.displayTime, isTomorrow: false};
@@ -7678,23 +8043,19 @@
                                 return {...t, status, expectedTime: status.isDelayed ? calculateExpectedTime(t.time24, status.delayMins) : t.displayTime, isTomorrow: true};
                             });
                             
-                            let combined = [...todayTrains, ...tomorrowTrains];
-                            
-                            if (typeof globalSearchQuery !== 'undefined' && globalSearchQuery !== '') {
-                                combined = combined.filter(t => t.name.toLowerCase().includes(globalSearchQuery) || t.route.toLowerCase().includes(globalSearchQuery) || t.no.includes(globalSearchQuery));
-                            }
-                            
-                            sortedUpcomingTrains = combined;
+                            sortedUpcomingTrains = [...todayTrains, ...tomorrowTrains];
                         }
 
                         function renderTrainPage() {
                             const container = document.getElementById('dynamic-train-list');
                             if (!container) return;
-                            if (sortedUpcomingTrains.length === 0) return;
+                            
+                            if (sortedUpcomingTrains.length === 0) {
+                                container.innerHTML = '<div style="grid-column: 1 / -1; padding: 20px; text-align: center; color: #94a3b8;">No departures found for this station filter.</div>';
+                                return;
+                            }
                             
                             let html = '';
-                            
-                            // If the board contains tomorrow's trains, show a tiny banner
                             const hasTomorrow = sortedUpcomingTrains.some(t => t.isTomorrow);
                             if (hasTomorrow) {
                                 html += `<div style="grid-column: 1 / -1; color: #f43f5e; font-size: 13px; font-weight: 700; background: rgba(244, 63, 94, 0.1); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(244, 63, 94, 0.2); display: inline-block; text-align: center; margin-bottom: 8px;">🌙 Includes Tomorrow's Schedule</div>`;
@@ -7739,43 +8100,13 @@
                             container.innerHTML = html;
                         }
 
-                        
-                        const stationNamesMap = {
-                            'KGP': 'KHARAGPUR (KGP)',
-                            'GBA': 'GARHBETA (GBA)',
-                            'VSU': 'BISHNUPUR (VSU)',
-                            'HWH': 'HOWRAH (HWH)',
-                            'SDAH': 'SEALDAH (SDAH)',
-                            'ALL': 'ALL STATIONS (SER / ER)'
-                        };
-
-                        function toggleStation() {
-                            const select = document.getElementById('station-toggle');
-                            if (!select) return;
-                            currentStationFilter = select.value;
-                            
-                            const display = document.getElementById('station-code-display');
-                            if (display) display.textContent = currentStationFilter;
-
-                            const clockStation = document.getElementById('station-clock-label');
-                            if (clockStation) {
-                                clockStation.textContent = 'STATION: ' + (stationNamesMap[currentStationFilter] || currentStationFilter);
-                            }
-                            
-                            updateUpcomingTrains();
-                            renderTrainPage();
-                        }
-
                         function updateRealTimeClock() {
                             const now = new Date();
-                            
-                            // Date formatting
                             const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
                             const dateString = now.toLocaleDateString('en-US', options);
                             const dateEl = document.getElementById('real-time-date');
                             if (dateEl) dateEl.textContent = dateString;
                             
-                            // Time formatting (AM/PM)
                             let hours = now.getHours();
                             let minutes = now.getMinutes();
                             let seconds = now.getSeconds();
@@ -7792,14 +8123,16 @@
                         }
                         
                         updateRealTimeClock();
-                        updateUpcomingTrains();
-                        renderTrainPage();
-                        
                         setInterval(updateRealTimeClock, 1000);
-                        setInterval(() => {
-                            updateUpcomingTrains(); // Recalculate status and time bounds every minute
-                            renderTrainPage(); // Re-render to reflect new times
-                        }, 60000); 
+
+                        // Execute default VSU -> GBA search on load
+                        document.addEventListener('DOMContentLoaded', () => {
+                            updateRealTimeClock();
+                            executeBengalRouteSearch();
+                        });
+
+                        // Immediate fallback execution
+                        executeBengalRouteSearch();
                     </script>
                 </div>
 
