@@ -3929,6 +3929,27 @@
             }
         }
 
+
+        /* 100% Guaranteed Train Card Visibility (Instant Render on Station Toggle) */
+        .train-card {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            display: block !important;
+            background: rgba(15, 23, 42, 0.85) !important;
+            border: 1px solid rgba(56, 189, 248, 0.2) !important;
+            border-radius: 12px !important;
+            padding: 14px !important;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+        }
+
+        .train-card:hover {
+            border-color: rgba(56, 189, 248, 0.5) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.15) !important;
+        }
+
 </style>
 </head>
 <body>
@@ -6062,6 +6083,27 @@
             }
         }
 
+
+        /* 100% Guaranteed Train Card Visibility (Instant Render on Station Toggle) */
+        .train-card {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            display: block !important;
+            background: rgba(15, 23, 42, 0.85) !important;
+            border: 1px solid rgba(56, 189, 248, 0.2) !important;
+            border-radius: 12px !important;
+            padding: 14px !important;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+        }
+
+        .train-card:hover {
+            border-color: rgba(56, 189, 248, 0.5) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.15) !important;
+        }
+
 </style>
 
                     <script>
@@ -6233,7 +6275,7 @@
                                 else if (train.type.includes('MEMU') || train.type.includes('Local')) typeColor = '#a855f7';
 
                                 html += `
-                                    <div class="train-card fade-up">
+                                    <div class="train-card visible">
                                         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
                                             <div style="flex: 1; padding-right: 8px;">
                                                 <div style="color: #ffffff; font-weight: 800; font-size: 15.5px; line-height: 1.25; margin-bottom: 3px;">${train.name}</div>
@@ -6281,7 +6323,7 @@
                             const display = document.getElementById('station-code-display');
                             if (display) display.textContent = currentStationFilter;
 
-                            const clockStation = document.querySelector('#transit-section [style*="monospace"]');
+                            const clockStation = document.getElementById('station-clock-label');
                             if (clockStation) {
                                 clockStation.textContent = 'STATION: ' + (stationNamesMap[currentStationFilter] || currentStationFilter);
                             }
@@ -9974,6 +10016,27 @@ document.addEventListener('keydown', (e) => {
                 grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
                 gap: 18px !important;
             }
+        }
+
+
+        /* 100% Guaranteed Train Card Visibility (Instant Render on Station Toggle) */
+        .train-card {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            display: block !important;
+            background: rgba(15, 23, 42, 0.85) !important;
+            border: 1px solid rgba(56, 189, 248, 0.2) !important;
+            border-radius: 12px !important;
+            padding: 14px !important;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+        }
+
+        .train-card:hover {
+            border-color: rgba(56, 189, 248, 0.5) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.15) !important;
         }
 
 </style>
