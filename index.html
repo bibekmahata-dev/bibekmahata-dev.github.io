@@ -5261,7 +5261,7 @@
         }
 
         function forceMapRedraw() {
-            if (window.map && typeof window.bengalMap.invalidateSize === 'function') {
+            if (window.bengalMap && typeof window.bengalMap.invalidateSize === 'function') {
                 window.bengalMap.invalidateSize();
             }
         }
@@ -5418,9 +5418,9 @@
             for (const [id, marker] of Object.entries(markers)) {
                 const place = placesData[id];
                 if (category === 'all' || place.category === category) {
-                    if (window.map && !window.bengalMap.hasLayer(marker)) window.bengalMap.addLayer(marker);
+                    if (window.bengalMap && !window.bengalMap.hasLayer(marker)) window.bengalMap.addLayer(marker);
                 } else {
-                    if (window.map && window.bengalMap.hasLayer(marker)) window.bengalMap.removeLayer(marker);
+                    if (window.bengalMap && window.bengalMap.hasLayer(marker)) window.bengalMap.removeLayer(marker);
                 }
             }
         }
@@ -5486,7 +5486,7 @@
                 // Multi-stage progressive invalidation to guarantee full tile rendering on mobile & desktop
                 [100, 300, 600, 1200, 2500].forEach(delay => {
                     setTimeout(() => {
-                        if (window.map && typeof window.bengalMap.invalidateSize === 'function') {
+                        if (window.bengalMap && typeof window.bengalMap.invalidateSize === 'function') {
                             window.bengalMap.invalidateSize();
                         }
                     }, delay);
@@ -5504,7 +5504,7 @@
         }
         window.addEventListener('load', launchMasterMapAndPlaces);
         window.addEventListener('resize', () => {
-            if (window.map && typeof window.bengalMap.invalidateSize === 'function') {
+            if (window.bengalMap && typeof window.bengalMap.invalidateSize === 'function') {
                 window.bengalMap.invalidateSize();
             }
         });
