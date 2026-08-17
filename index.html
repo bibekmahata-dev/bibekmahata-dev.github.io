@@ -5186,7 +5186,7 @@
             return Math.round(R * c);
         }
 
-        // Initialize Map Engine (With L-library readiness check, re-init guard & Failsafe Tiles)
+        // Initialize Map Engine (With L-library readiness check & Distinct Global Instance)
         function initMasterMapEngine() {
             // 1. Ensure Leaflet Library is loaded
             if (typeof L === 'undefined' || typeof L.map !== 'function') {
@@ -5197,8 +5197,8 @@
             const mapContainer = document.getElementById('map');
             if (!mapContainer) return;
 
-            // Prevent "Map container is already initialized" error
-            if (window.map) {
+            // Prevent re-initialization on already instantiated Leaflet map
+            if (window.bengalMap && typeof window.bengalMap.invalidateSize === 'function') {
                 forceMapRedraw();
                 return;
             }
@@ -5217,15 +5217,15 @@
                 attribution: 'Google Satellite'
             });
 
-            window.map = L.map('map', {
+            window.bengalMap = L.map('map', {
                 zoomControl: false,
                 layers: [defaultMap],
                 tap: false,
                 scrollWheelZoom: false
             }).setView([23.8000, 87.8550], 7);
 
-            L.control.zoom({ position: 'bottomright' }).addTo(window.map);
-            L.control.layers({ "Standard Map": defaultMap, "Satellite Radar": satelliteMap }, null, { position: 'topright' }).addTo(window.map);
+            L.control.zoom({ position: 'bottomright' }).addTo(window.bengalMap);
+            L.control.layers({ "Standard Map": defaultMap, "Satellite Radar": satelliteMap }, null, { position: 'topright' }).addTo(window.bengalMap);
 
             // Add Custom Static Neon Markers
             for (const [id, place] of Object.entries(placesData)) {
@@ -5239,7 +5239,7 @@
                     popupAnchor: [0, -18]
                 });
 
-                const marker = L.marker([place.coords.lat, place.coords.lng], { icon: customIcon }).addTo(window.map);
+                const marker = L.marker([place.coords.lat, place.coords.lng], { icon: customIcon }).addTo(window.bengalMap);
                 
                 marker.bindPopup(`
                     <div style="width: 220px; font-family: 'Plus Jakarta Sans', sans-serif;">
@@ -5261,8 +5261,8 @@
         }
 
         function forceMapRedraw() {
-            if (window.map && typeof window.map.invalidateSize === 'function') {
-                window.map.invalidateSize();
+            if (window.map && typeof window.bengalMap.invalidateSize === 'function') {
+                window.bengalMap.invalidateSize();
             }
         }
 
@@ -5287,8 +5287,8 @@
 
             // 2. Center map cleanly after scroll settles (zero animation fighting)
             setTimeout(() => {
-                if (window.map) {
-                    window.map.panTo([place.coords.lat, place.coords.lng], { animate: true, duration: 0.5 });
+                if (window.bengalMap) {
+                    window.bengalMap.panTo([place.coords.lat, place.coords.lng], { animate: true, duration: 0.5 });
                 }
                 const marker = markers[id];
                 if (marker) {
@@ -5382,8 +5382,8 @@
                             iconSize: [16, 16],
                             iconAnchor: [8, 8]
                         });
-                        if (window.map) {
-                            L.marker([userLocation.lat, userLocation.lng], { icon: userIcon }).addTo(window.map).bindPopup("📍 You Are Here").openPopup();
+                        if (window.bengalMap) {
+                            L.marker([userLocation.lat, userLocation.lng], { icon: userIcon }).addTo(window.bengalMap).bindPopup("📍 You Are Here").openPopup();
                         }
                         
                         renderExplorerCards(true);
@@ -5418,9 +5418,9 @@
             for (const [id, marker] of Object.entries(markers)) {
                 const place = placesData[id];
                 if (category === 'all' || place.category === category) {
-                    if (window.map && !window.map.hasLayer(marker)) window.map.addLayer(marker);
+                    if (window.map && !window.bengalMap.hasLayer(marker)) window.bengalMap.addLayer(marker);
                 } else {
-                    if (window.map && window.map.hasLayer(marker)) window.map.removeLayer(marker);
+                    if (window.map && window.bengalMap.hasLayer(marker)) window.bengalMap.removeLayer(marker);
                 }
             }
         }
@@ -5438,9 +5438,9 @@
             if (query === "") {
                 if (expTitle) expTitle.textContent = "Famous Tourist Places in West Bengal";
                 cards.forEach(c => c.style.display = 'flex');
-                if (typeof markers !== 'undefined' && window.map) {
+                if (typeof markers !== 'undefined' && window.bengalMap) {
                     for (const [id, marker] of Object.entries(markers)) {
-                        if (!window.map.hasLayer(marker)) window.map.addLayer(marker);
+                        if (!window.bengalMap.hasLayer(marker)) window.bengalMap.addLayer(marker);
                     }
                 }
                 return;
@@ -5453,13 +5453,13 @@
                     c.style.display = 'flex';
                     foundCount++;
                     if (!firstMatchedId) firstMatchedId = id;
-                    if (markers[id] && window.map && !window.map.hasLayer(markers[id])) {
-                        window.map.addLayer(markers[id]);
+                    if (markers[id] && window.bengalMap && !window.bengalMap.hasLayer(markers[id])) {
+                        window.bengalMap.addLayer(markers[id]);
                     }
                 } else {
                     c.style.display = 'none';
-                    if (markers[id] && window.map && window.map.hasLayer(markers[id])) {
-                        window.map.removeLayer(markers[id]);
+                    if (markers[id] && window.bengalMap && window.bengalMap.hasLayer(markers[id])) {
+                        window.bengalMap.removeLayer(markers[id]);
                     }
                 }
             });
@@ -5468,8 +5468,8 @@
                 expTitle.textContent = `Search Results: ${foundCount} Place${foundCount === 1 ? '' : 's'} Found`;
             }
 
-            if (firstMatchedId && placesData[firstMatchedId] && window.map) {
-                window.map.flyTo([placesData[firstMatchedId].coords.lat, placesData[firstMatchedId].coords.lng], 10, { duration: 1 });
+            if (firstMatchedId && placesData[firstMatchedId] && window.bengalMap) {
+                window.bengalMap.flyTo([placesData[firstMatchedId].coords.lat, placesData[firstMatchedId].coords.lng], 10, { duration: 1 });
             }
         }
 
@@ -5486,8 +5486,8 @@
                 // Multi-stage progressive invalidation to guarantee full tile rendering on mobile & desktop
                 [100, 300, 600, 1200, 2500].forEach(delay => {
                     setTimeout(() => {
-                        if (window.map && typeof window.map.invalidateSize === 'function') {
-                            window.map.invalidateSize();
+                        if (window.map && typeof window.bengalMap.invalidateSize === 'function') {
+                            window.bengalMap.invalidateSize();
                         }
                     }, delay);
                 });
@@ -5504,8 +5504,8 @@
         }
         window.addEventListener('load', launchMasterMapAndPlaces);
         window.addEventListener('resize', () => {
-            if (window.map && typeof window.map.invalidateSize === 'function') {
-                window.map.invalidateSize();
+            if (window.map && typeof window.bengalMap.invalidateSize === 'function') {
+                window.bengalMap.invalidateSize();
             }
         });
 
@@ -5513,8 +5513,8 @@
         if ('IntersectionObserver' in window) {
             const mapScrollObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting && window.map && typeof window.map.invalidateSize === 'function') {
-                        window.map.invalidateSize();
+                    if (entry.isIntersecting && window.bengalMap && typeof window.bengalMap.invalidateSize === 'function') {
+                        window.bengalMap.invalidateSize();
                     }
                 });
             }, { threshold: 0.05 });
