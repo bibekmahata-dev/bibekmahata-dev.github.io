@@ -5186,8 +5186,14 @@
             return Math.round(R * c);
         }
 
-        // Initialize Map Engine (With re-initialization guard & Failsafe Tiles)
+        // Initialize Map Engine (With L-library readiness check, re-init guard & Failsafe Tiles)
         function initMasterMapEngine() {
+            // 1. Ensure Leaflet Library is loaded
+            if (typeof L === 'undefined' || typeof L.map !== 'function') {
+                setTimeout(initMasterMapEngine, 100);
+                return;
+            }
+
             const mapContainer = document.getElementById('map');
             if (!mapContainer) return;
 
@@ -13767,24 +13773,7 @@ document.addEventListener('keydown', (e) => {
     </script>
 
 
-        <script>
-            // Ensure Leaflet Map fits container cleanly on load and resize
-            window.addEventListener('load', () => {
-                if (typeof map !== 'undefined' && map) {
-                    setTimeout(() => {
-                        if (window.map && typeof window.map.invalidateSize === 'function') window.map.invalidateSize();
-                        if (typeof placesData !== 'undefined' && placesData['digha']) {
-                            map.setView([24.1000, 87.8550], 7);
-                        }
-                    }, 400);
-                }
-            });
-            window.addEventListener('resize', () => {
-                if (typeof map !== 'undefined' && map) {
-                    if (window.map && typeof window.map.invalidateSize === 'function') window.map.invalidateSize();
-                }
-            });
-        </script>
+        <!-- Cleaned legacy map.setView script -->
 
 
     <!-- Master Map Engine Relocated to Direct Container -->
