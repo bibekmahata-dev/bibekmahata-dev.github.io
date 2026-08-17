@@ -1,29 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- HOMEPAGE & ALL SQUAD MEMBER IMAGES -->
   <url>
     <loc>https://bibekmahata-dev.github.io/</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    
+    <!-- Founder Bibek Mahata Image -->
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/bibek_mahata.jpg</image:loc>
+      <image:title>Bibek Mahata — Founder and Lead Developer of Bengal Explorers</image:title>
+      <image:caption>Bibek Mahata official portrait and creator of Bengal Explorers portal</image:caption>
+    </image:image>
+
+    <!-- Squad Members Images -->
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/aritra.jpg</image:loc>
+      <image:title>Aritra Dey — Bengal Explorers Squad Member</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/surya.jpg</image:loc>
+      <image:title>Surya Sankha Ghosh — Bengal Explorers Visuals and Design</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/arka.jpg</image:loc>
+      <image:title>Arka Sarkar — Bengal Explorers Route Explorer</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/gobinda.jpg</image:loc>
+      <image:title>Gobinda Nag — Bengal Explorers Squad Member</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/rudranil_pal.jpg</image:loc>
+      <image:title>Rudranil Pal — Bengal Explorers Squad Member</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/subhajeet.jpg</image:loc>
+      <image:title>Subhajeet Ghosh — Bengal Explorers Transit Researcher</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/anik_sar.jpg</image:loc>
+      <image:title>Anik Sarkar — Bengal Explorers Squad Member</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/suraj.jpg</image:loc>
+      <image:title>Suraj Mahata — Bengal Explorers Field Navigator</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/khoushik.jpg</image:loc>
+      <image:title>Khoushik Roy — Bengal Explorers Squad Member</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/rudranil_dey.jpg</image:loc>
+      <image:title>Rudranil Dey — Bengal Explorers Squad Member</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/subarna.jpg</image:loc>
+      <image:title>Subarna Mondal — Bengal Explorers Squad Member</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/sibam.jpg</image:loc>
+      <image:title>Sibam Mahata — Bengal Explorers Squad Member</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/anik.jpg</image:loc>
+      <image:title>Anik Khan — Bengal Explorers Squad Member</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/shouvik.jpg</image:loc>
+      <image:title>Shouvik Dutta — Bengal Explorers Squad Member</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/abhishek.jpg</image:loc>
+      <image:title>Abhishek Mallik — Bengal Explorers Squad Member</image:title>
+    </image:image>
+    
+    <!-- Scenic Tourism Images -->
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/gangani/gangani-1.png</image:loc>
+      <image:title>Gangani Grand Canyon of Bengal — Garhbeta</image:title>
+    </image:image>
   </url>
+
+  <!-- ABOUT PAGE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/about.html</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/bibek_mahata.jpg</image:loc>
+      <image:title>Bibek Mahata — Founder &amp; Software Developer</image:title>
+    </image:image>
   </url>
+
+  <!-- BLOG & GUIDES -->
   <url>
     <loc>https://bibekmahata-dev.github.io/blog.html</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
+
   <url>
     <loc>https://bibekmahata-dev.github.io/privacy.html</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://bibekmahata-dev.github.io/contact.html</loc>
     <lastmod>2026-08-17</lastmod>
