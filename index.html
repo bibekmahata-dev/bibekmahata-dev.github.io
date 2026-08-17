@@ -180,9 +180,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Great+Vibes&family=Hind+Siliguri:wght@400;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <!-- Leaflet JS Map Library -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Leaflet JS Map Library (Rock-Solid Cloudflare CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
     <style>
         /* ======================================
            DESIGN SYSTEM & RESET (PREMIUM DARK SLATE THEME)
@@ -3754,6 +3754,8 @@
         }
         
         
+        @keyframes pulseNeonRing {
+            0% { transform: scale(1); opacity: 0.8; }
             50% { transform: scale(1.6); opacity: 0.4; }
             100% { transform: scale(2.3); opacity: 0; }
         }
@@ -5184,7 +5186,7 @@
             return Math.round(R * c);
         }
 
-        // Initialize Map Engine (With re-initialization guard)
+        // Initialize Map Engine (With re-initialization guard & Failsafe Tiles)
         function initMasterMapEngine() {
             const mapContainer = document.getElementById('map');
             if (!mapContainer) return;
@@ -5198,12 +5200,13 @@
                 return;
             }
 
-            const defaultMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 18,
-                attribution: 'OSM'
+            // High-Performance Tile Layer with global subdomains
+            const defaultMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap contributors'
             });
 
-            const satelliteMap = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            const satelliteMap = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
                 maxZoom: 20,
                 attribution: 'Google Satellite'
             });
@@ -5213,7 +5216,7 @@
                 layers: [defaultMap],
                 tap: false,
                 scrollWheelZoom: false
-            }).setView([24.1000, 87.8550], 7);
+            }).setView([23.8000, 87.8550], 7);
 
             L.control.zoom({ position: 'bottomright' }).addTo(window.map);
             L.control.layers({ "Standard Map": defaultMap, "Satellite Radar": satelliteMap }, null, { position: 'topright' }).addTo(window.map);
@@ -5474,22 +5477,20 @@
                 if (typeof renderExplorerCards === 'function') {
                     renderExplorerCards();
                 }
-                setTimeout(() => {
-                    if (window.map && typeof window.map.invalidateSize === 'function') {
-                        window.map.invalidateSize();
-                    }
-                }, 300);
-                setTimeout(() => {
-                    if (window.map && typeof window.map.invalidateSize === 'function') {
-                        window.map.invalidateSize();
-                    }
-                }, 1000);
+                // Multi-stage progressive invalidation to guarantee full tile rendering on mobile & desktop
+                [100, 300, 600, 1200, 2500].forEach(delay => {
+                    setTimeout(() => {
+                        if (window.map && typeof window.map.invalidateSize === 'function') {
+                            window.map.invalidateSize();
+                        }
+                    }, delay);
+                });
             } catch (err) {
                 console.error("Map initialization notice:", err);
             }
         }
 
-        // Execute immediately (handles when DOM is already interactive/complete)
+        // Execute immediately
         launchMasterMapAndPlaces();
 
         if (document.readyState === 'loading') {
@@ -5501,6 +5502,19 @@
                 window.map.invalidateSize();
             }
         });
+
+        // IntersectionObserver: Redraw tiles immediately when map scrolls into view
+        if ('IntersectionObserver' in window) {
+            const mapScrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && window.map && typeof window.map.invalidateSize === 'function') {
+                        window.map.invalidateSize();
+                    }
+                });
+            }, { threshold: 0.05 });
+            const mapContainerEl = document.getElementById('map');
+            if (mapContainerEl) mapScrollObserver.observe(mapContainerEl);
+        }
 
     </script>
 
@@ -12554,6 +12568,8 @@ document.addEventListener('keydown', (e) => {
         }
         
         
+        @keyframes pulseNeonRing {
+            0% { transform: scale(1); opacity: 0.8; }
             50% { transform: scale(1.6); opacity: 0.4; }
             100% { transform: scale(2.3); opacity: 0; }
         }
