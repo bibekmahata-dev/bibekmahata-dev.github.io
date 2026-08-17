@@ -4785,19 +4785,6 @@
             }
         }
 </style>
-
-<script>
-function safeGetCurrentPosition(success, error, options) {
-    if (navigator.permissions) {
-        navigator.permissions.query({name: 'geolocation'}).then(res => {
-            if (res.state === 'denied') { if (error) error({code: 1, message: "Denied"}); return; }
-            navigator.geolocation.getCurrentPosition(success, error, options);
-        }).catch(() => navigator.geolocation.getCurrentPosition(success, error, options));
-    } else {
-        navigator.geolocation.getCurrentPosition(success, error, options);
-    }
-}
-</script>
 </head>
 <body>
     <div class="announcement-banner">
@@ -5385,7 +5372,7 @@ function safeGetCurrentPosition(success, error, options) {
 
         function activateProximityRadar(btnElement) {
             if ("geolocation" in navigator) {
-                safeGetCurrentPosition(
+                navigator.geolocation.getCurrentPosition(
                     (pos) => {
                         userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
                         
@@ -5726,7 +5713,7 @@ function safeGetCurrentPosition(success, error, options) {
 
                             function detectLocation() {
                                 if (navigator.geolocation) {
-                                    safeGetCurrentPosition(
+                                    navigator.geolocation.getCurrentPosition(
                                         (pos) => {
                                             fetchWeatherForLocation(pos.coords.latitude, pos.coords.longitude, 'Your GPS Location');
                                         },
@@ -9586,7 +9573,7 @@ function safeGetCurrentPosition(success, error, options) {
 
             function sendLiveGpsSos() {
                 if (navigator.geolocation) {
-                    safeGetCurrentPosition(
+                    navigator.geolocation.getCurrentPosition(
                         (position) => {
                             const lat = position.coords.latitude.toFixed(6);
                             const lng = position.coords.longitude.toFixed(6);
