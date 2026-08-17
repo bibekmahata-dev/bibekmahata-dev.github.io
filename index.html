@@ -4785,6 +4785,17 @@
             }
         }
 </style>
+
+function safeGetCurrentPosition(success, error, options) {
+    if (navigator.permissions) {
+        navigator.permissions.query({name: 'geolocation'}).then(res => {
+            if (res.state === 'denied') { if (error) error({code: 1, message: "Denied"}); return; }
+            safeGetCurrentPosition(success, error, options);
+        }).catch(() => safeGetCurrentPosition(success, error, options));
+    } else {
+        safeGetCurrentPosition(success, error, options);
+    }
+}
 </head>
 <body>
     <div class="announcement-banner">
@@ -5372,7 +5383,7 @@
 
         function activateProximityRadar(btnElement) {
             if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(
+                safeGetCurrentPosition(
                     (pos) => {
                         userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
                         
@@ -5713,7 +5724,7 @@
 
                             function detectLocation() {
                                 if (navigator.geolocation) {
-                                    navigator.geolocation.getCurrentPosition(
+                                    safeGetCurrentPosition(
                                         (pos) => {
                                             fetchWeatherForLocation(pos.coords.latitude, pos.coords.longitude, 'Your GPS Location');
                                         },
@@ -9573,7 +9584,7 @@
 
             function sendLiveGpsSos() {
                 if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
+                    safeGetCurrentPosition(
                         (position) => {
                             const lat = position.coords.latitude.toFixed(6);
                             const lng = position.coords.longitude.toFixed(6);
@@ -10556,12 +10567,26 @@ function triggerConfetti() {
 // INTERACTIVE WEB AUDIO API SYNTHESIZER (SOUND FX)
 // ======================================
 let soundEnabled = true;
+let sharedAudioCtx = null;
+
+function getAudioCtx() {
+    try {
+        if (!sharedAudioCtx) {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (AudioCtx) sharedAudioCtx = new AudioCtx();
+        }
+        if (sharedAudioCtx && sharedAudioCtx.state === 'suspended') {
+            sharedAudioCtx.resume();
+        }
+        return sharedAudioCtx;
+    } catch(e) { return null; }
+}
+
 function playClickSound() {
     if (!soundEnabled) return;
     try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return;
-        const ctx = new AudioCtx();
+        const ctx = getAudioCtx();
+        if (!ctx || ctx.state === 'suspended') return;
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = 'sine';
@@ -10579,9 +10604,8 @@ function playClickSound() {
 function playFanfareSound() {
     if (!soundEnabled) return;
     try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return;
-        const ctx = new AudioCtx();
+        const ctx = getAudioCtx();
+        if (!ctx || ctx.state === 'suspended') return;
         [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
