@@ -10558,14 +10558,33 @@ function triggerConfetti() {
 let soundEnabled = true;
 let sharedAudioCtx = null;
 
+// Silently unlock Web Audio API on the first user tap/click/keydown
+function initAudioOnFirstGesture() {
+    const unlock = () => {
+        try {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (AudioCtx && !sharedAudioCtx) {
+                sharedAudioCtx = new AudioCtx();
+            }
+            if (sharedAudioCtx && sharedAudioCtx.state === 'suspended') {
+                sharedAudioCtx.resume().catch(() => {});
+            }
+        } catch(e) {}
+        ['click', 'touchstart', 'keydown'].forEach(evt => document.removeEventListener(evt, unlock));
+    };
+    ['click', 'touchstart', 'keydown'].forEach(evt => document.addEventListener(evt, unlock, { once: true, passive: true }));
+}
+initAudioOnFirstGesture();
+
 function getAudioCtx() {
     try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return null;
         if (!sharedAudioCtx) {
-            const AudioCtx = window.AudioContext || window.webkitAudioContext;
-            if (AudioCtx) sharedAudioCtx = new AudioCtx();
+            sharedAudioCtx = new AudioCtx();
         }
         if (sharedAudioCtx && sharedAudioCtx.state === 'suspended') {
-            sharedAudioCtx.resume();
+            sharedAudioCtx.resume().catch(() => {});
         }
         return sharedAudioCtx;
     } catch(e) { return null; }
@@ -10575,7 +10594,7 @@ function playClickSound() {
     if (!soundEnabled) return;
     try {
         const ctx = getAudioCtx();
-        if (!ctx || ctx.state === 'suspended') return;
+        if (!ctx) return;
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = 'sine';
@@ -10594,7 +10613,7 @@ function playFanfareSound() {
     if (!soundEnabled) return;
     try {
         const ctx = getAudioCtx();
-        if (!ctx || ctx.state === 'suspended') return;
+        if (!ctx) return;
         [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
