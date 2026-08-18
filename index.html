@@ -5729,7 +5729,8 @@
                                 }
                             }
 
-                            detectLocation();
+                            // Load default statewide weather initially; only query GPS when user clicks "Auto GPS"
+                            fetchWeatherForLocation(weatherLat, weatherLon, defaultLocation);
                         </script>
                     </div>
 
@@ -10855,10 +10856,10 @@ function getAudioCtx() {
         if (!sharedAudioCtx) {
             sharedAudioCtx = new AudioCtx();
         }
-        if (sharedAudioCtx && sharedAudioCtx.state === 'suspended') {
+        if (sharedAudioCtx && sharedAudioCtx.state === 'suspended' && userHasInteracted) {
             sharedAudioCtx.resume().catch(() => {});
         }
-        return sharedAudioCtx;
+        return sharedAudioCtx.state === 'running' ? sharedAudioCtx : null;
     } catch(e) { return null; }
 }
 
