@@ -12149,26 +12149,35 @@ document.addEventListener('keydown', (e) => {
     </div>
 
     <!-- ========================================================
-         🧲 VISITOR RETENTION ENGINE 3: SMART EXIT-INTENT MODAL
+         🧲 VISITOR RETENTION ENGINE 3: SMART RESPONSIVE MODAL
          ======================================================== -->
     <div id="exit-intent-modal" style="display: none; position: fixed; inset: 0; z-index: 999999; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 16px;">
         <div style="background: linear-gradient(145deg, #0f172a, #1e293b); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 20px; width: 100%; max-width: 460px; padding: 26px; box-shadow: 0 25px 60px rgba(0,0,0,0.85); position: relative; text-align: center; box-sizing: border-box;">
             
-            <button onclick="closeExitIntentModal()" style="position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;">✕</button>
+            <button onclick="closeExitIntentModal()" aria-label="Close" style="position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;">✕</button>
 
             <div style="font-size: 40px; margin-bottom: 8px;">⏳</div>
-            <h3 style="color: #ffffff; font-size: 21px; font-weight: 800; font-family: var(--font-title); margin: 0 0 6px 0;">Wait! Don't Lose Your Live Timetable</h3>
+            <h3 style="color: #ffffff; font-size: 20px; font-weight: 800; font-family: var(--font-title); margin: 0 0 6px 0;">Wait! Don't Lose Your Live Timetable</h3>
             <p style="color: #94a3b8; font-size: 13px; line-height: 1.5; margin-bottom: 20px;">
-                Bookmark Bengal Explorers on your browser or save your route so you can check live train delays, bus departures, and weather on the go!
+                Bookmark Bengal Explorers or save it to your home screen so you can check live train delays, bus departures, and weather on the go!
             </p>
 
             <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
-                <button onclick="bookmarkPortalAction()" style="background: linear-gradient(135deg, #0ea5e9, #0284c7); color: #ffffff; border: none; padding: 12px; border-radius: 10px; font-size: 13.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35);">
-                    <span>⭐</span> Bookmark Portal (Ctrl + D)
+                <!-- Smart Adaptive Bookmark / Install Button -->
+                <button id="exit-bookmark-btn" onclick="bookmarkPortalAction()" style="background: linear-gradient(135deg, #0ea5e9, #0284c7); color: #ffffff; border: none; padding: 12px 16px; border-radius: 10px; font-size: 13.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35); transition: 0.2s;">
+                    <span id="exit-bookmark-icon">⭐</span> <span id="exit-bookmark-text">Save / Add to Home Screen</span>
                 </button>
-                <button onclick="openViralShareModal(); closeExitIntentModal();" style="background: #25D366; color: #ffffff; border: none; padding: 12px; border-radius: 10px; font-size: 13.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);">
+                <!-- Direct WhatsApp Link Button -->
+                <button onclick="sendPortalToWhatsApp()" style="background: #25D366; color: #ffffff; border: none; padding: 12px 16px; border-radius: 10px; font-size: 13.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35); transition: 0.2s;">
                     <span>💬</span> Send Link to My WhatsApp
                 </button>
+            </div>
+
+            <!-- Mobile Tip Guide (Shown when requested) -->
+            <div id="mobile-bookmark-guide" style="display: none; background: rgba(56, 189, 248, 0.1); border: 1px dashed rgba(56, 189, 248, 0.4); border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; text-align: left; font-size: 12px; color: #cbd5e1; line-height: 1.5;">
+                <div style="font-weight: 700; color: #38bdf8; margin-bottom: 4px;">📌 How to Save on Mobile:</div>
+                <div>• <strong>Android Chrome:</strong> Tap <span style="color: #fff; font-weight: 700;">⋮ (3 dots)</span> at top right ➔ Tap <strong style="color: #38bdf8;">'Add to Home screen'</strong> or <strong style="color: #38bdf8;">⭐ (Star)</strong></div>
+                <div style="margin-top: 3px;">• <strong>iPhone Safari:</strong> Tap <span style="color: #fff; font-weight: 700;">Share icon ⬆️</span> ➔ Tap <strong style="color: #38bdf8;">'Add to Home Screen'</strong></div>
             </div>
 
             <div style="font-size: 11px; color: #64748b;">
@@ -12301,25 +12310,115 @@ document.addEventListener('keydown', (e) => {
         }
 
         // --------------------------------------------------------
-        // 3. SMART EXIT-INTENT MODAL TRIGGER
+        // 3. SMART RESPONSIVE EXIT-INTENT & MOBILE SAVE ENGINE
         // --------------------------------------------------------
         let exitModalTriggered = false;
-        document.addEventListener('mouseleave', (e) => {
-            if (e.clientY <= 15 && !exitModalTriggered && !sessionStorage.getItem('bengal_exit_seen')) {
-                exitModalTriggered = true;
-                sessionStorage.setItem('bengal_exit_seen', 'true');
-                const modal = document.getElementById('exit-intent-modal');
-                if (modal) modal.style.display = 'flex';
+        let deferredPrompt = null;
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+        // Capture PWA Add-to-Home-Screen prompt if available
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const btn = document.getElementById('exit-bookmark-btn');
+            const txt = document.getElementById('exit-bookmark-text');
+            const icon = document.getElementById('exit-bookmark-icon');
+            if (txt && icon) {
+                txt.textContent = 'Install Bengal Explorers App 📲';
+                icon.textContent = '📲';
             }
         });
+
+        // Initialize button label based on device
+        function initModalDeviceLabels() {
+            const txt = document.getElementById('exit-bookmark-text');
+            const icon = document.getElementById('exit-bookmark-icon');
+            if (!txt || !icon) return;
+            if (isMobile) {
+                txt.textContent = 'Add to Home Screen / Save ⭐';
+                icon.textContent = '📱';
+            } else {
+                txt.textContent = 'Bookmark Portal (Ctrl + D) ⭐';
+                icon.textContent = '⭐';
+            }
+        }
+
+        // Desktop Trigger: Mouse leaves to top
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 15 && !exitModalTriggered && !sessionStorage.getItem('bengal_exit_seen')) {
+                triggerExitModal();
+            }
+        });
+
+        // Mobile Trigger: Fast scroll up near top after spending 20+ seconds on site
+        let lastScrollY = window.scrollY;
+        let pageStartTime = Date.now();
+        window.addEventListener('scroll', () => {
+            if (isMobile && !exitModalTriggered && !sessionStorage.getItem('bengal_exit_seen')) {
+                const currentScrollY = window.scrollY;
+                const timeSpent = (Date.now() - pageStartTime) / 1000;
+                // If user scrolled down and then scrolled back up to top after reading 20s
+                if (currentScrollY < 150 && lastScrollY > 600 && timeSpent > 20) {
+                    triggerExitModal();
+                }
+                lastScrollY = currentScrollY;
+            }
+        }, { passive: true });
+
+        function triggerExitModal() {
+            exitModalTriggered = true;
+            sessionStorage.setItem('bengal_exit_seen', 'true');
+            initModalDeviceLabels();
+            const modal = document.getElementById('exit-intent-modal');
+            if (modal) modal.style.display = 'flex';
+        }
 
         function closeExitIntentModal() {
             const modal = document.getElementById('exit-intent-modal');
             if (modal) modal.style.display = 'none';
         }
 
-        function bookmarkPortalAction() {
-            alert('Press Ctrl + D (or Cmd + D on Mac) on your keyboard to bookmark Bengal Explorers! ⭐');
+        async function bookmarkPortalAction() {
+            // If PWA Install is available
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                deferredPrompt = null;
+                closeExitIntentModal();
+                return;
+            }
+
+            // If Mobile Web Share is supported
+            if (isMobile && navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Bengal Explorers — Live Transit & Tourism Hub',
+                        text: 'Live train timetables, bus schedules, and tourist field guides across West Bengal.',
+                        url: window.location.href
+                    });
+                    closeExitIntentModal();
+                    return;
+                } catch (err) {
+                    // User dismissed share sheet, show guide below
+                }
+            }
+
+            // If on Mobile without Web Share, toggle the visual step-by-step guide
+            if (isMobile) {
+                const guide = document.getElementById('mobile-bookmark-guide');
+                if (guide) {
+                    guide.style.display = guide.style.display === 'none' ? 'block' : 'none';
+                }
+            } else {
+                // Desktop: Show friendly browser bookmark reminder
+                showQuickToast('Press Ctrl + D to bookmark this portal! ⭐');
+                closeExitIntentModal();
+            }
+        }
+
+        function sendPortalToWhatsApp() {
+            const shareText = encodeURIComponent('Save Bengal Explorers for live West Bengal train timetables, bus schedules, and travel weather: ' + window.location.href);
+            window.open('https://api.whatsapp.com/send?text=' + shareText, '_blank');
             closeExitIntentModal();
         }
 
