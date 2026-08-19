@@ -4785,6 +4785,41 @@
             }
         }
 </style>
+
+    <!-- Automated Accessibility & SEO Image Alt-Tag Guard -->
+    <script>
+    (function() {
+        function ensureImageAlts() {
+            var imgs = document.querySelectorAll('img');
+            imgs.forEach(function(img) {
+                if (!img.getAttribute('alt') || img.getAttribute('alt').trim() === '') {
+                    if (img.classList.contains('leaflet-tile')) {
+                        img.setAttribute('alt', 'West Bengal Interactive GIS Map Layer');
+                    } else if (img.classList.contains('leaflet-marker-icon')) {
+                        img.setAttribute('alt', 'Destination Map Location Marker');
+                    } else if (img.classList.contains('leaflet-marker-shadow')) {
+                        img.setAttribute('alt', 'Map Marker Shadow');
+                    } else {
+                        img.setAttribute('alt', 'Bengal Explorers Visual Asset');
+                    }
+                }
+            });
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', ensureImageAlts);
+        } else {
+            ensureImageAlts();
+        }
+        // Observe dynamic elements added by Leaflet or widgets
+        if (window.MutationObserver) {
+            var observer = new MutationObserver(function(mutations) {
+                ensureImageAlts();
+            });
+            observer.observe(document.documentElement, { childList: true, subtree: true });
+        }
+    })();
+    </script>
+
 </head>
 <body>
     <div class="announcement-banner">
@@ -9988,7 +10023,7 @@
     <!-- ========== SHARE CARD TEMPLATE (HIDDEN) ========== -->
     <div id="share-card" class="share-card-container">
         <div class="share-card-logo">🏛️ Bengal Explorers</div>
-        <img onerror="this.onerror=null; this.src='assets/gangani/gangani-1.png';" id="share-card-photo" class="share-card-photo" src="" alt="Photo" loading="lazy" decoding="async">
+        <img onerror="this.onerror=null; this.src='assets/gangani/gangani-1.png';" id="share-card-photo" class="share-card-photo" src="" alt="Bengal Explorers Squad Member Showcase Photo" loading="lazy" decoding="async">
         <div id="share-card-name" class="share-card-name"></div>
         <div id="share-card-tag" class="share-card-tag"></div>
         <div id="share-card-quote" class="share-card-quote"></div>
@@ -10010,7 +10045,7 @@
     <!-- ========== LIGHTBOX ========== -->
     <div class="lightbox-overlay" id="lightbox-overlay">
         <button class="modal__close" id="lightbox-close">✕</button>
-        <img onerror="this.onerror=null; this.src='assets/gangani/gangani-1.png';" class="lightbox__img" id="lightbox-img" src="" alt="Full view" loading="lazy" decoding="async">
+        <img onerror="this.onerror=null; this.src='assets/gangani/gangani-1.png';" class="lightbox__img" id="lightbox-img" src="" alt="Bengal Explorers HD Destination and Heritage Full View" loading="lazy" decoding="async">
         <div class="lightbox__caption" id="lightbox-caption"></div>
     </div>
 
