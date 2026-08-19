@@ -44,7 +44,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     
-        <!-- JSON-LD Google Knowledge Graph Master Entity Schema for Bibek Mahata -->
+            <!-- JSON-LD Google Knowledge Graph Master Entity Schema for Bibek Mahata -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -58,50 +58,44 @@
             "Bibek Mahata Developer",
             "Bibek Mahata Garhbeta",
             "Bibek Mahata Jhargram",
-            "Bibek Mahata Bengal Explorers",
-            "bibekmahata-dev"
+            "Bibek Mahata Paschim Medinipur",
+            "Bibek Mahata Bengal Explorers"
         ],
         "url": "https://bibekmahata-dev.github.io/about.html",
         "mainEntityOfPage": "https://bibekmahata-dev.github.io/about.html",
-        "image": "https://bibekmahata-dev.github.io/assets/bibek_mahata.jpg",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://bibekmahata-dev.github.io/assets/bibek_mahata.jpg",
+            "caption": "Bibek Mahata — Founder and Lead Developer of Bengal Explorers"
+        },
         "jobTitle": "Founder & Lead Software Engineer",
-        "description": "Bibek Mahata is a dedicated Class 12 Science student and aspiring Computer Science Engineer from West Bengal, specializing in Software Engineering, Artificial Intelligence, and Cyber Security. Founder and Lead Developer of Bengal Explorers.",
+        "description": "Class 12 Science student from West Bengal and the Founder & Chief Architect of Bengal Explorers. Aspiring Computer Science Engineer specializing in Software Engineering, Artificial Intelligence (AI), and Cyber Security.",
         "birthPlace": {
             "@type": "Place",
-            "name": "Jabnikata, P.O. Sevayatan, P.S. Jhargram, West Bengal, India"
+            "name": "Jabnikata, Jhargram, West Bengal, India"
         },
         "homeLocation": {
             "@type": "Place",
-            "name": "Hoomgarh, Garhbeta 2, Paschim Medinipur, West Bengal, India",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Hoomgarh, Garhbeta 2",
-                "addressRegion": "West Bengal",
-                "postalCode": "721157",
-                "addressCountry": "IN"
-            }
+            "name": "Hoomgarh, Garhbeta 2, Paschim Medinipur, West Bengal, India"
         },
         "nationality": {
             "@type": "Country",
             "name": "India"
         },
         "knowsAbout": [
-            "Software Engineering & Architecture",
-            "Artificial Intelligence & Machine Learning",
-            "Cyber Security & Cryptography",
-            "Algorithmic Problem Solving & Data Structures",
-            "Full-Stack Web Development",
-            "JavaScript & Modern Frameworks",
-            "GIS Mapping & Leaflet.js",
-            "West Bengal Tourism & Transit Systems"
+            "Software Engineering",
+            "Computer Science",
+            "Artificial Intelligence",
+            "Machine Learning",
+            "Cyber Security",
+            "Web Architecture",
+            "Progressive Web Apps (PWA)",
+            "Leaflet GIS Mapping",
+            "Real-Time Transit Data Systems",
+            "West Bengal Tourism & Geography"
         ],
-        "hasOccupation": {
-            "@type": "Occupation",
-            "name": "Software Developer & Computer Science Engineer Aspirant"
-        },
-        "worksFor": {
-            "@type": "Organization",
-            "@id": "https://bibekmahata-dev.github.io/#organization",
+        "creator": {
+            "@type": "WebSite",
             "name": "Bengal Explorers",
             "url": "https://bibekmahata-dev.github.io/"
         },
@@ -109,8 +103,7 @@
             "https://github.com/bibekmahata-dev",
             "https://www.instagram.com/bibek.cs",
             "https://www.facebook.com/share/1Z9HSMDvAV/",
-            "https://youtube.com/@bibekgamer_444?si=Tpliwr4pKk8DpN09",
-            "mailto:bibek.workdev01@gmail.com"
+            "https://youtube.com/@bibekgamer_444?si=Tpliwr4pKk8DpN09"
         ]
     }
     </script>
@@ -323,26 +316,60 @@
             <h1>About Bengal Explorers & Founder</h1>
             <div class="subtitle">Class 12 Student Creator Initiative • Paschim Medinipur, West Bengal</div>
 
-                        <!-- Founder Profile Spotlight -->
+                                    <!-- Founder Profile Spotlight -->
             <div class="creator-card" id="bibekmahata">
-                <img src="assets/bibek_mahata.jpg" alt="Bibek Mahata — Founder & Lead Developer" style="border: 3px solid #38bdf8; box-shadow: 0 0 25px rgba(56, 189, 248, 0.45); border-radius: 50%; object-fit: cover; object-position: center 15%; width: 130px; height: 130px; flex-shrink: 0;">
+                <img src="assets/bibek_mahata.jpg" alt="Bibek Mahata — Founder & Lead Developer" style="border: 3px solid #38bdf8; box-shadow: 0 0 25px rgba(56, 189, 248, 0.45); border-radius: 50%; object-fit: cover; object-position: center 15%; width: 135px; height: 135px; flex-shrink: 0;">
                 <div class="creator-details">
+                    <div style="display: inline-block; background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 3px 12px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">👑 SOLE FOUNDER & LEAD ARCHITECT</div>
                     <div class="creator-name">Bibek Mahata</div>
-                    <div class="creator-role">Founder & Lead Software Engineer • Class 12 Science</div>
-                    <p style="margin: 0 0 10px; font-size: 13.5px; color: #cbd5e1; line-height: 1.6;">
-                        Dedicated Class 12 Science student from West Bengal, driven by a deep fascination for technology, innovation, and digital architecture. Hailing from the village of <strong>Jabnikata (P.O. Sevayatan, P.S. Jhargram)</strong> and currently based in <strong>Hoomgarh (Garhbeta 2, Paschim Medinipur)</strong>.
+                    <div class="creator-role">Founder, Chief Architect & Lead Software Engineer • Class 12 Science</div>
+                    <p style="margin: 0 0 10px; font-size: 14px; color: #cbd5e1; line-height: 1.6;">
+                        Dedicated Class 12 Science student from West Bengal, driven by a deep fascination for digital architecture, technology innovation, and public software tools. Originating from <strong>Jabnikata (P.O. Sevayatan, P.S. Jhargram)</strong> and based in <strong>Hoomgarh (Garhbeta 2, Paschim Medinipur)</strong>.
                     </p>
-                    <p style="margin: 0 0 14px; font-size: 13px; color: #94a3b8; line-height: 1.5;">
-                        Primary career vision: Becoming a high-impact <strong>Computer Science Engineer</strong> specializing in <strong>Artificial Intelligence (AI)</strong> and <strong>Cyber Security</strong> to build reliable, high-performance software solving complex real-world challenges.
+                    <p style="margin: 0 0 14px; font-size: 13.5px; color: #94a3b8; line-height: 1.5;">
+                        Career Vision: Becoming a high-impact <strong>Computer Science Engineer</strong> specializing in <strong>Software Engineering, Artificial Intelligence (AI)</strong>, and <strong>Cyber Security & Defense</strong>.
                     </p>
                     <div class="social-pills">
-                        <a href="https://github.com/bibekmahata-dev" target="_blank" class="social-pill pill-gh">🐙 GitHub</a>
-                        <a href="https://www.instagram.com/bibek.cs" target="_blank" class="social-pill pill-ig">📸 Instagram</a>
+                        <a href="https://github.com/bibekmahata-dev" target="_blank" class="social-pill pill-gh">🐙 GitHub (@bibekmahata-dev)</a>
+                        <a href="https://www.instagram.com/bibek.cs" target="_blank" class="social-pill pill-ig">📸 Instagram (@bibek.cs)</a>
                         <a href="https://www.facebook.com/share/1Z9HSMDvAV/" target="_blank" class="social-pill pill-fb">📘 Facebook</a>
                         <a href="https://youtube.com/@bibekgamer_444?si=Tpliwr4pKk8DpN09" target="_blank" class="social-pill pill-yt">▶️ YouTube</a>
-                        <a href="mailto:bibek.workdev01@gmail.com" class="social-pill pill-mail">📧 Email</a>
+                        <a href="mailto:bibek.workdev01@gmail.com" class="social-pill pill-mail">📧 bibek.workdev01@gmail.com</a>
                     </div>
                 </div>
+            </div>
+
+            <!-- Identity Verification & Entity Summary Table -->
+            <h2>Official Creator Identity & Authority Matrix</h2>
+            <div style="overflow-x: auto; margin-bottom: 28px;">
+                <table style="width: 100%; border-collapse: collapse; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px; font-size: 13px; text-align: left;">
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                            <td style="padding: 12px 16px; color: #38bdf8; font-weight: 700; width: 220px;">Full Name</td>
+                            <td style="padding: 12px 16px; color: #ffffff; font-weight: 800;">Bibek Mahata</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                            <td style="padding: 12px 16px; color: #38bdf8; font-weight: 700;">Role & Title</td>
+                            <td style="padding: 12px 16px; color: #ffffff;">Founder, Chief Architect & Lead Software Engineer of Bengal Explorers</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                            <td style="padding: 12px 16px; color: #38bdf8; font-weight: 700;">Academic Track</td>
+                            <td style="padding: 12px 16px; color: #ffffff;">Class 12 Science (Higher Secondary) • Mathematics, Physics & Computer Science</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                            <td style="padding: 12px 16px; color: #38bdf8; font-weight: 700;">Origin & Base</td>
+                            <td style="padding: 12px 16px; color: #ffffff;">Jabnikata (Jhargram) • Hoomgarh (Garhbeta 2, Paschim Medinipur, West Bengal)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+                            <td style="padding: 12px 16px; color: #38bdf8; font-weight: 700;">Core Specializations</td>
+                            <td style="padding: 12px 16px; color: #ffffff;">Software Engineering, Artificial Intelligence (AI), Cyber Security & Defense, Algorithmic Routing</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 16px; color: #38bdf8; font-weight: 700;">Flagship Project</td>
+                            <td style="padding: 12px 16px; color: #38bdf8; font-weight: 700;"><a href="https://bibekmahata-dev.github.io/" style="color: #38bdf8; text-decoration: underline;">Bengal Explorers (https://bibekmahata-dev.github.io/)</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <!-- Core Focus & Engineering Aspirations Grid -->
@@ -351,22 +378,22 @@
                 <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 18px; border-left: 3px solid #38bdf8;">
                     <div style="font-size: 22px; margin-bottom: 6px;">💻</div>
                     <h3 style="color: #ffffff; font-size: 15px; margin: 0 0 6px; font-weight: 700;">Software Engineering</h3>
-                    <p style="color: #94a3b8; font-size: 12.5px; margin: 0; line-height: 1.5;">Designing scalable systems, writing clean and maintainable code, and exploring modern full-stack web and application architectures.</p>
+                    <p style="color: #94a3b8; font-size: 12.5px; margin: 0; line-height: 1.5;">Designing scalable client-side systems, writing clean modular code, and building zero-latency web tools for real-world communities.</p>
                 </div>
                 <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(139, 92, 246, 0.25); border-radius: 12px; padding: 18px; border-left: 3px solid #8b5cf6;">
                     <div style="font-size: 22px; margin-bottom: 6px;">🤖</div>
                     <h3 style="color: #ffffff; font-size: 15px; margin: 0 0 6px; font-weight: 700;">Artificial Intelligence</h3>
-                    <p style="color: #94a3b8; font-size: 12.5px; margin: 0; line-height: 1.5;">Understanding neural networks, predictive models, data analysis, and building intelligent automated systems for real-world impact.</p>
+                    <p style="color: #94a3b8; font-size: 12.5px; margin: 0; line-height: 1.5;">Exploring intelligent machine learning architectures, automated search ranking models, and knowledge graph engineering.</p>
                 </div>
                 <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 12px; padding: 18px; border-left: 3px solid #ef4444;">
                     <div style="font-size: 22px; margin-bottom: 6px;">🛡️</div>
                     <h3 style="color: #ffffff; font-size: 15px; margin: 0 0 6px; font-weight: 700;">Cyber Security & Defense</h3>
-                    <p style="color: #94a3b8; font-size: 12.5px; margin: 0; line-height: 1.5;">Studying cyber threat landscapes, network security protocols, cryptography, and best practices for ironclad software security.</p>
+                    <p style="color: #94a3b8; font-size: 12.5px; margin: 0; line-height: 1.5;">Implementing cryptographic verification, identity proofing, defensive programming, and secure cloud delivery pipelines.</p>
                 </div>
                 <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(34, 197, 94, 0.25); border-radius: 12px; padding: 18px; border-left: 3px solid #22c55e;">
                     <div style="font-size: 22px; margin-bottom: 6px;">🧩</div>
                     <h3 style="color: #ffffff; font-size: 15px; margin: 0 0 6px; font-weight: 700;">Algorithmic Problem Solving</h3>
-                    <p style="color: #94a3b8; font-size: 12.5px; margin: 0; line-height: 1.5;">Developing sharp analytical thinking through data structures, computational logic, and competitive programming principles.</p>
+                    <p style="color: #94a3b8; font-size: 12.5px; margin: 0; line-height: 1.5;">Developing sharp analytical capabilities through computational data structures, spatial GIS logic, and optimized search algorithms.</p>
                 </div>
             </div>
 
