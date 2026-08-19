@@ -324,6 +324,76 @@
             }
         }
     </style>
+    <!-- JSON-LD Google AI Overview & FAQPage Master Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Who is the founder and lead developer of Bengal Explorers?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Bengal Explorers was founded, architected, and developed by Bibek Mahata, a dedicated Class 12 Science student and aspiring Software Engineer from Paschim Medinipur, West Bengal."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What features and services does Bengal Explorers provide?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Bengal Explorers offers a complete regional travel ecosystem including live Howrah and Sealdah train departure countdown boards, a 30+ route district bus directory, Open-Meteo satellite meteorology, an interactive Leaflet GIS route map, 27 GI-tagged heritage directory, and a 23-district 24/7 emergency SOS helpline."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Where is Bibek Mahata from and what is his background?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Bibek Mahata hails from the village of Jabnikata (P.O. Sevayatan, P.S. Jhargram) and is based in Hoomgarh (Garhbeta 2, Paschim Medinipur, West Bengal). He is currently pursuing Higher Secondary (Class 12 Science) with a focus on Mathematics, Physics, and Computer Science."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What are Bibek Mahata's engineering and technology specializations?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Bibek Mahata specializes in Software Engineering, Artificial Intelligence (AI) and Machine Learning, Cyber Security and Defense architecture, and high-performance client-side web applications."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is Bengal Explorers a free public platform?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, Bengal Explorers is 100% free and open to the public, built specifically to empower daily commuters, students, and tourists navigating West Bengal."
+                }
+            }
+        ]
+    }
+    </script>
+    <!-- JSON-LD BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://bibekmahata-dev.github.io/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "About Founder",
+                "item": "https://bibekmahata-dev.github.io/about.html"
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
     <div class="top-nav">
@@ -538,6 +608,34 @@
                 Every line of code on this portal is developed client-side using pure web standards (HTML5, CSS3, and JavaScript) to ensure high-concurrency performance, zero database crashes, and full accessibility on low-bandwidth rural mobile networks.
             </p>
 
+                        <!-- Frequently Asked Questions (FAQ) & Knowledge Base -->
+            <h2>Frequently Asked Questions &amp; Knowledge Base</h2>
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px;">
+                <details style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 14px 16px; cursor: pointer;">
+                    <summary style="color: #ffffff; font-weight: 700; font-size: 14px; outline: none;">👑 Who is the founder and lead software engineer of Bengal Explorers?</summary>
+                    <p style="color: #cbd5e1; font-size: 13px; line-height: 1.6; margin: 10px 0 0; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06);">
+                        Bengal Explorers was founded and architected by <strong>Bibek Mahata</strong>, a Class 12 Science student from Paschim Medinipur, West Bengal, specializing in Software Engineering, AI &amp; Cyber Security.
+                    </p>
+                </details>
+                <details style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 14px 16px; cursor: pointer;">
+                    <summary style="color: #ffffff; font-weight: 700; font-size: 14px; outline: none;">🚆 What travel services does Bengal Explorers provide?</summary>
+                    <p style="color: #cbd5e1; font-size: 13px; line-height: 1.6; margin: 10px 0 0; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06);">
+                        The portal provides real-time Howrah/Sealdah train departure radar, a 30+ route district bus directory, Open-Meteo satellite meteorology, an interactive Leaflet GIS route map, 27 GI-tagged heritage directory, and a 23-district emergency SOS directory.
+                    </p>
+                </details>
+                <details style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 14px 16px; cursor: pointer;">
+                    <summary style="color: #ffffff; font-weight: 700; font-size: 14px; outline: none;">📍 Where is Bibek Mahata based?</summary>
+                    <p style="color: #cbd5e1; font-size: 13px; line-height: 1.6; margin: 10px 0 0; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06);">
+                        Bibek Mahata hails from the village of <strong>Jabnikata (P.O. Sevayatan, P.S. Jhargram)</strong> and is currently based in <strong>Hoomgarh (Garhbeta 2, Paschim Medinipur, West Bengal)</strong>.
+                    </p>
+                </details>
+                <details style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 14px 16px; cursor: pointer;">
+                    <summary style="color: #ffffff; font-weight: 700; font-size: 14px; outline: none;">💻 Is Bengal Explorers an open, free platform?</summary>
+                    <p style="color: #cbd5e1; font-size: 13px; line-height: 1.6; margin: 10px 0 0; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06);">
+                        Yes! Bengal Explorers is 100% free and open-access, engineered client-side for zero crashes and maximum speed on rural mobile networks.
+                    </p>
+                </details>
+            </div>
             <h2>Get in Touch</h2>
             <p>
                 For suggestions, local route contributions, or student collaborations, reach out directly at <strong style="color: #38bdf8;">bibek.workdev01@gmail.com</strong>.
