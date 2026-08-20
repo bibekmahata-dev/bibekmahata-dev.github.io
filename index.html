@@ -5025,6 +5025,48 @@
             
             <div class="standalone-map-frame">
                 <div id="map"></div>
+                                <!-- Live Vehicle Telemetry HUD Overlay -->
+                <div id="vehicle-radar-hud" style="display: none; position: absolute; bottom: 18px; left: 14px; right: 14px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 14px; padding: 14px 18px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.75);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span id="hud-vehicle-icon" style="font-size: 20px;">🚌</span>
+                            <div>
+                                <div id="hud-vehicle-title" style="color: #ffffff; font-weight: 800; font-size: 14px; font-family: var(--font-title, sans-serif);">Live Transit Radar</div>
+                                <div id="hud-vehicle-route" style="color: #38bdf8; font-size: 11px; font-weight: 600;">Origin ➔ Destination</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <button id="hud-pause-btn" onclick="toggleRadarPlayback()" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer;">⏸️ Pause</button>
+                            <button id="hud-speed-btn" onclick="cycleRadarSpeed()" style="background: rgba(251, 191, 36, 0.15); border: 1px solid rgba(251, 191, 36, 0.35); color: #fbbf24; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer;">⚡ 1x Speed</button>
+                            <button onclick="stopRadarSimulation()" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #f87171; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer;">✕ Stop</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Progress Bar -->
+                    <div style="background: rgba(0,0,0,0.5); border-radius: 6px; height: 6px; overflow: hidden; margin-bottom: 10px;">
+                        <div id="hud-progress-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #10b981); transition: width 0.1s linear;"></div>
+                    </div>
+
+                    <!-- Telemetry Stats Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)); gap: 6px; text-align: center;">
+                        <div style="background: rgba(0,0,0,0.35); padding: 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                            <div style="color: #94a3b8; font-size: 9px; text-transform: uppercase;">Simulated Speed</div>
+                            <div id="hud-speed-val" style="color: #4ade80; font-weight: 800; font-size: 13px; font-family: 'Space Grotesk', monospace;">65 km/h</div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.35); padding: 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                            <div style="color: #94a3b8; font-size: 9px; text-transform: uppercase;">Progress</div>
+                            <div id="hud-distance-val" style="color: #38bdf8; font-weight: 800; font-size: 13px; font-family: 'Space Grotesk', monospace;">0 / 145 km</div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.35); padding: 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                            <div style="color: #94a3b8; font-size: 9px; text-transform: uppercase;">Estimated ETA</div>
+                            <div id="hud-eta-val" style="color: #fbbf24; font-weight: 800; font-size: 13px; font-family: 'Space Grotesk', monospace;">--</div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.35); padding: 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                            <div style="color: #94a3b8; font-size: 9px; text-transform: uppercase;">Radar Status</div>
+                            <div id="hud-status-val" style="color: #a78bfa; font-weight: 800; font-size: 13px;">Cruising 🟢</div>
+                        </div>
+                    </div>
+                </div>
                 <div id="integrated-map-status" style="position: absolute; top: 14px; left: 14px; right: 14px; text-align: center; background: rgba(15,23,42,0.95); backdrop-filter: blur(10px); color: #38bdf8; border: 1px solid rgba(56,189,248,0.4); padding: 10px 14px; border-radius: 8px; font-weight: 700; font-size: 13px; z-index: 1000; display: none; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
                     📍 Live Route Focused!
                 </div>
@@ -7289,9 +7331,14 @@
                                                 <div style="font-size: 18px; font-family: 'Space Grotesk', monospace; font-weight: 700; ${train.status.isCancelled ? 'color: #f43f5e; text-decoration: line-through;' : expectedStyle}">${train.expectedTime}</div>
                                                 ${train.status.isDelayed ? '<div style="color: #94a3b8; font-size: 10px; text-decoration: line-through; margin-top: 2px;">Sch: ' + train.displayTime + '</div>' : ''}
                                             </div>
-                                            <div style="text-align: right;">
-                                                <div style="color: #94a3b8; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;">Platform</div>
-                                                <div style="color: #ffffff; font-size: 16px; font-weight: 800;">PF ${train.pf}</div>
+                                            <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+                                                <div>
+                                                    <div style="color: #94a3b8; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;">Platform</div>
+                                                    <div style="color: #ffffff; font-size: 16px; font-weight: 800;">PF ${train.pf}</div>
+                                                </div>
+                                                <button onclick="trackVehicle('Howrah', '${train.route.includes('➔') ? train.route.split('➔')[1].trim() : (train.route.includes('to') ? train.route.split('to')[1].trim() : 'Kharagpur')}', 'train', '${train.name.replace(/'/g, "\\'")}')" style="background: rgba(244, 63, 94, 0.15); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.4); padding: 2px 8px; border-radius: 5px; font-size: 10.5px; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 3px; margin-top: 2px;">
+                                                    🛰️ GIS Radar
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -7809,7 +7856,12 @@
                                             <span>⏱️ <strong>Frequency:</strong> <span style="color: #facc15;">${item.frequency}</span></span>
                                             <span>🌅 <strong>First/Last Bus:</strong> <span style="color: #38bdf8;">${item.timing}</span></span>
                                         </div>
-                                        <span style="font-size: 11px; color: #a7f3d0; background: rgba(16, 185, 129, 0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(16, 185, 129, 0.2);">✨ ${item.features}</span>
+                                        <div style="display: flex; gap: 8px; align-items: center;">
+                                            <button onclick="trackVehicle('${item.name.split('⇄')[0].trim()}', '${(item.name.split('⇄')[1] || item.via.split(',')[0]).trim()}', 'bus', '${item.routeNo} ${item.name.replace(/'/g, "\\'")}')" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;">
+                                                🛰️ GIS Radar
+                                            </button>
+                                            <span style="font-size: 11px; color: #a7f3d0; background: rgba(16, 185, 129, 0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(16, 185, 129, 0.2);">✨ ${item.features}</span>
+                                        </div>
                                     </div>
                                 </div>
                             `).join('');
@@ -8119,7 +8171,10 @@
                                                         <a href="https://online.sbstc.co.in/" target="_blank" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); padding: 5px 12px; border-radius: 6px; font-size: 11.5px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s;">
                                                             <span>🎫</span> Book on SBSTC
                                                         </a>
-                                                        <a href="https://www.redbus.in/" target="_blank" style="background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 5px 12px; border-radius: 6px; font-size: 11.5px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s;">
+                                                        <button onclick="trackVehicle('${bus.from}', '${bus.to}', 'bus', '${bus.name.replace(/'/g, "\\'")}')" style="background: rgba(56, 189, 248, 0.18); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.45); padding: 5px 12px; border-radius: 6px; font-size: 11.5px; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);">
+                                                        <span>🛰️</span> Live GIS Radar
+                                                    </button>
+                                                    <a href="https://www.redbus.in/" target="_blank" style="background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 5px 12px; border-radius: 6px; font-size: 11.5px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s;">
                                                             <span>📱</span> RedBus
                                                         </a>
                                                     `}
@@ -11894,142 +11949,320 @@ document.addEventListener('keydown', (e) => {
             });
         };
 
-        // Live Vehicle Tracking Engine
-        async function trackVehicle(originStr, destStr, type) {
-            // Auto-scroll to map instantly
-            document.getElementById('map-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // ==============================================================================
+        // 🛰️ MASTER LIVE GIS RADAR & ANIMATED VEHICLE SIMULATION ENGINE (v2.0)
+        // Architect: Bibek Mahata (bibek.cs)
+        // ==============================================================================
+        let radarSimulationState = {
+            active: false,
+            paused: false,
+            speedMultiplier: 1,
+            coords: [],
+            totalDistanceKm: 0,
+            currentIndex: 0,
+            progress: 0,
+            vehicleType: 'bus',
+            vehicleTitle: '',
+            origin: '',
+            dest: '',
+            baseSpeedKmh: 65,
+            marker: null,
+            routeLayer: null,
+            animId: null
+        };
+
+        // Comprehensive Coordinate Matrix for West Bengal Hubs & Corridors
+        const WB_TRANSIT_COORDINATES = {
+            'howrah': { lat: 22.5833, lon: 88.3431, name: 'Howrah Station' },
+            'hwh': { lat: 22.5833, lon: 88.3431, name: 'Howrah Station' },
+            'sealdah': { lat: 22.5670, lon: 88.3716, name: 'Sealdah Station' },
+            'sdah': { lat: 22.5670, lon: 88.3716, name: 'Sealdah Station' },
+            'kolkata': { lat: 22.5726, lon: 88.3639, name: 'Kolkata Esplanade' },
+            'esplanade': { lat: 22.5630, lon: 88.3510, name: 'Esplanade Bus Terminus' },
+            'karunamoyee': { lat: 22.5868, lon: 88.4190, name: 'Salt Lake Karunamoyee' },
+            'babughat': { lat: 22.5682, lon: 88.3370, name: 'Babughat Bus Stand' },
+            'garhbeta': { lat: 22.8634, lon: 87.3524, name: 'Garhbeta Terminal' },
+            'gangani': { lat: 22.8590, lon: 87.3370, name: 'Gangani Grand Canyon' },
+            'hoomgarh': { lat: 22.7930, lon: 87.2180, name: 'Hoomgarh Bus Stand' },
+            'salboni': { lat: 22.6560, lon: 87.1890, name: 'Salboni Hub' },
+            'midnapore': { lat: 22.4257, lon: 87.3199, name: 'Medinipur Central Stand' },
+            'medinipur': { lat: 22.4257, lon: 87.3199, name: 'Medinipur Central Stand' },
+            'kharagpur': { lat: 22.3302, lon: 87.3237, name: 'Kharagpur Junction' },
+            'kgp': { lat: 22.3302, lon: 87.3237, name: 'Kharagpur Junction' },
+            'jhargram': { lat: 22.4550, lon: 86.9920, name: 'Jhargram Town Stand' },
+            'digha': { lat: 21.6266, lon: 87.5074, name: 'Digha Sea Beach Terminus' },
+            'mandarmani': { lat: 21.6660, lon: 87.7120, name: 'Mandarmani Beach' },
+            'bakkhali': { lat: 21.5640, lon: 88.2570, name: 'Bakkhali Bus Stand' },
+            'purulia': { lat: 23.3320, lon: 86.3650, name: 'Purulia Central Stand' },
+            'bankura': { lat: 23.2320, lon: 87.0710, name: 'Bankura Govindapur Stand' },
+            'bishnupur': { lat: 23.0680, lon: 87.3180, name: 'Bishnupur Terracotta Hub' },
+            'durgapur': { lat: 23.5204, lon: 87.3119, name: 'Durgapur City Centre' },
+            'asansol': { lat: 23.6739, lon: 86.9524, name: 'Asansol Junction' },
+            'burdwan': { lat: 23.2420, lon: 87.8630, name: 'Bardhaman Bus Terminus' },
+            'bardhaman': { lat: 23.2420, lon: 87.8630, name: 'Bardhaman Bus Terminus' },
+            'bolpur': { lat: 23.6706, lon: 87.7126, name: 'Bolpur Shantiniketan' },
+            'shantiniketan': { lat: 23.6800, lon: 87.6870, name: 'Shantiniketan' },
+            'suri': { lat: 23.9069, lon: 87.5284, name: 'Suri Birbhum Stand' },
+            'sainthia': { lat: 23.9463, lon: 87.6782, name: 'Sainthia Junction' },
+            'rampurhat': { lat: 24.1700, lon: 87.7800, name: 'Rampurhat Tarapith Hub' },
+            'malda': { lat: 25.0000, lon: 88.1400, name: 'Malda English Bazar' },
+            'balurghat': { lat: 25.2200, lon: 88.7600, name: 'Balurghat Town' },
+            'raiganj': { lat: 25.6200, lon: 88.1200, name: 'Raiganj Central Stand' },
+            'siliguri': { lat: 26.7271, lon: 88.3953, name: 'Siliguri Tenzing Norgay' },
+            'new jalpaiguri': { lat: 26.6974, lon: 88.4357, name: 'NJP Railway Station' },
+            'njp': { lat: 26.6974, lon: 88.4357, name: 'NJP Railway Station' },
+            'darjeeling': { lat: 27.0360, lon: 88.2627, name: 'Darjeeling Mall / Chowrasta' },
+            'kalimpong': { lat: 27.0600, lon: 88.4700, name: 'Kalimpong Motor Stand' },
+            'kurseong': { lat: 26.8800, lon: 88.2800, name: 'Kurseong Station' },
+            'jalpaiguri': { lat: 26.5400, lon: 88.7100, name: 'Jalpaiguri Town Stand' },
+            'alipurduar': { lat: 26.4900, lon: 89.5200, name: 'Alipurduar Dooars Hub' },
+            'cooch behar': { lat: 26.3200, lon: 89.4500, name: 'Cooch Behar Palace Stand' },
+            'canning': { lat: 22.3100, lon: 88.6600, name: 'Canning Sundarban Gate' },
+            'diamond harbour': { lat: 22.1900, lon: 88.2000, name: 'Diamond Harbour Stand' },
+            'tarakeswar': { lat: 22.8900, lon: 88.0200, name: 'Tarakeswar Temple Stand' },
+            'arambagh': { lat: 22.8800, lon: 87.7800, name: 'Arambagh Bus Stand' },
+            'chhatna': { lat: 23.3000, lon: 86.9800, name: 'Chhatna Bankura' },
+            'raniganj': { lat: 23.6200, lon: 87.1300, name: 'Raniganj Stand' }
+        };
+
+        // Haversine Distance Calculator
+        function calculateHaversineKm(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Earth radius km
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon/2) * Math.sin(dLon/2);
+            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        }
+
+        // Bearing Calculator for Vehicle Rotation
+        function calculateBearingDegrees(lat1, lon1, lat2, lon2) {
+            const y = Math.sin((lon2 - lon1) * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180);
+            const x = Math.cos(lat1 * Math.PI / 180) * Math.sin(lat2 * Math.PI / 180) -
+                      Math.sin(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.cos((lon2 - lon1) * Math.PI / 180);
+            return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+        }
+
+        async function resolveTransitCoords(query) {
+            if (!query) return WB_TRANSIT_COORDINATES['kolkata'];
+            const clean = query.toLowerCase().trim().replace(/station|junction|bus stand|terminus|town|central|stand/gi, '').trim();
             
-            mapStatus.textContent = `📡 Locating ${type}...`;
-            mapStatus.style.background = 'rgba(56, 189, 248, 0.9)';
-            mapStatus.style.display = 'block';
+            for (const key in WB_TRANSIT_COORDINATES) {
+                if (clean.includes(key) || key.includes(clean)) {
+                    return WB_TRANSIT_COORDINATES[key];
+                }
+            }
 
             try {
-                // Fetch coords for Origin and Dest using Nominatim
-                const fetchCoords = async (query) => {
-                    // Pre-defined fallback for common stations to avoid API rate limits/errors
-                    const hardcoded = {
-                        'howrah': {lat: 22.5833, lon: 88.3431},
-                        'hwh': {lat: 22.5833, lon: 88.3431},
-                        'sealdah': {lat: 22.5670, lon: 88.3716},
-                        'sdah': {lat: 22.5670, lon: 88.3716},
-                        'njp': {lat: 26.6974, lon: 88.4357},
-                        'new jalpaiguri': {lat: 26.6974, lon: 88.4357},
-                        'kolkata': {lat: 22.5726, lon: 88.3639},
-                        'digha': {lat: 21.6266, lon: 87.5074},
-                        'siliguri': {lat: 26.7271, lon: 88.3953},
-                        'durgapur': {lat: 23.5204, lon: 87.3119},
-                        'asansol': {lat: 23.6739, lon: 86.9524},
-                        'midnapore': {lat: 22.4257, lon: 87.3199},
-                        'darjeeling': {lat: 27.0360, lon: 88.2627},
-                        'dhanbad': {lat: 23.7957, lon: 86.4304},
-                        'bolpur': {lat: 23.6706, lon: 87.7126},
-                        'suri': {lat: 23.9069, lon: 87.5284},
-                        'sainthia': {lat: 23.9463, lon: 87.6782}
-                    };
-                    const key = query.toLowerCase();
-                    if(hardcoded[key]) return hardcoded[key];
-
-                    // Fallback to API
-                    const res = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query + ', West Bengal')}&format=json&limit=1`);
-                    const data = await res.json();
-                    if (data && data.length > 0) return { lat: data[0].lat, lon: data[0].lon };
-                    throw new Error("Not found");
-                };
-
-                const originCoords = await fetchCoords(originStr);
-                const destCoords = await fetchCoords(destStr);
-
-                // Use OSRM driving for bus, and a direct line for trains (or driving if we want it to look cool, OSRM train routing is hard)
-                // Let's use driving for both to get a nice curved path!
-                const res = await fetch(`https://router.project-osrm.org/route/v1/driving/${originCoords.lon},${originCoords.lat};${destCoords.lon},${destCoords.lat}?overview=full&geometries=geojson`);
+                const res = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query + ', West Bengal, India')}&format=json&limit=1`);
                 const data = await res.json();
-                
-                if(data.routes && data.routes.length > 0) {
-                    const route = data.routes[0];
-                    if(routeLayer) map.removeLayer(routeLayer);
-                    if(animatedVehicleMarker) map.removeLayer(animatedVehicleMarker);
-                    if(animationFrameId) cancelAnimationFrame(animationFrameId);
-
-                    const routeColor = type === 'train' ? '#f43f5e' : '#38bdf8';
-
-                    routeLayer = L.geoJSON(route.geometry, {
-                        style: { color: routeColor, weight: 6, opacity: 0.7, dashArray: type==='train' ? '10, 10' : '' }
-                    }).addTo(map);
-
-                    map.fitBounds(routeLayer.getBounds(), { padding: [50, 50], animate: true });
-
-                    // Create vehicle marker
-                    const emoji = type === 'train' ? '🚂' : '🚌';
-                    const iconHtml = `<div style="font-size: 24px; filter: drop-shadow(0 0 8px ${routeColor}); transform: translate(-50%, -50%);">${emoji}</div>`;
-                    const customIcon = L.divIcon({ className: 'custom-vehicle-icon', html: iconHtml });
-                    
-                    // Flatten coordinates
-                    let coords = [];
-                    if(route.geometry.type === 'LineString') {
-                        coords = route.geometry.coordinates;
-                    } else if(route.geometry.type === 'MultiLineString') {
-                        coords = route.geometry.coordinates.flat();
-                    }
-
-                    if(coords.length > 0) {
-                        animatedVehicleMarker = L.marker([coords[0][1], coords[0][0]], {icon: customIcon}).addTo(map);
-                        
-                        // Simple Animation Loop
-                        let index = 0;
-                        let progress = 0;
-                        const speed = 0.05; // speed of interpolation
-                        
-                        function animate() {
-                            if (index < coords.length - 1) {
-                                const p1 = coords[index];
-                                const p2 = coords[index+1];
-                                
-                                const lat = p1[1] + (p2[1] - p1[1]) * progress;
-                                const lng = p1[0] + (p2[0] - p1[0]) * progress;
-                                
-                                animatedVehicleMarker.setLatLng([lat, lng]);
-                                
-                                progress += speed;
-                                if (progress >= 1) {
-                                    progress = 0;
-                                    index++;
-                                }
-                                animationFrameId = requestAnimationFrame(animate);
-                            } else {
-                                // Arrived!
-                                mapStatus.textContent = `📍 ${type.toUpperCase()} Arrived!`;
-                                mapStatus.style.background = 'rgba(16, 185, 129, 0.9)';
-                                setTimeout(() => mapStatus.style.display = 'none', 3000);
-                            }
-                        }
-                        
-                        animate();
-                        mapStatus.textContent = `📡 Live Tracking: ${originStr} ➔ ${destStr}`;
-                    }
-
+                if (data && data.length > 0) {
+                    return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon), name: query };
                 }
-            } catch(e) {
-                console.error(e);
-                mapStatus.textContent = '⛔ Tracking error';
-                mapStatus.style.background = 'rgba(239, 68, 68, 0.9)';
-                setTimeout(() => mapStatus.style.display = 'none', 3000);
+            } catch(err) {
+                console.warn('Geocoding fallback activated for:', query);
+            }
+            return WB_TRANSIT_COORDINATES['kolkata'];
+        }
+
+        // Master Entry Point
+        async function trackVehicle(originStr, destStr, type = 'bus', customTitle = '') {
+            const mapEl = document.getElementById('hangout-map') || document.getElementById('map');
+            if (mapEl) {
+                mapEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            stopRadarSimulation();
+
+            const hud = document.getElementById('vehicle-radar-hud');
+            const hudIcon = document.getElementById('hud-vehicle-icon');
+            const hudTitle = document.getElementById('hud-vehicle-title');
+            const hudRoute = document.getElementById('hud-vehicle-route');
+            const hudStatus = document.getElementById('hud-status-val');
+
+            if (hud) hud.style.display = 'block';
+            if (hudIcon) hudIcon.textContent = type === 'train' ? '🚆' : '🚌';
+            if (hudTitle) hudTitle.textContent = customTitle || (type === 'train' ? 'Live Express Train Radar' : 'Live State Bus Radar');
+            if (hudRoute) hudRoute.textContent = `${originStr} ➔ ${destStr}`;
+            if (hudStatus) hudStatus.textContent = 'Acquiring GPS... 📡';
+
+            try {
+                const origin = await resolveTransitCoords(originStr);
+                const dest = await resolveTransitCoords(destStr);
+
+                // Fetch OSRM High-Precision Road Geometry
+                const res = await fetch(`https://router.project-osrm.org/route/v1/driving/${origin.lon},${origin.lat};${dest.lon},${dest.lat}?overview=full&geometries=geojson`);
+                const data = await res.json();
+
+                let coords = [];
+                if (data.routes && data.routes.length > 0) {
+                    const geometry = data.routes[0].geometry;
+                    coords = geometry.type === 'LineString' ? geometry.coordinates : geometry.coordinates.flat();
+                }
+
+                if (!coords || coords.length === 0) {
+                    // Fallback straight vector
+                    coords = [[origin.lon, origin.lat], [dest.lon, dest.lat]];
+                }
+
+                // Calculate Total Route Distance
+                let totalDist = 0;
+                for (let i = 0; i < coords.length - 1; i++) {
+                    totalDist += calculateHaversineKm(coords[i][1], coords[i][0], coords[i+1][1], coords[i+1][0]);
+                }
+                totalDist = Math.max(totalDist, 5);
+
+                // Setup Route Polyline
+                const routeColor = type === 'train' ? '#f43f5e' : '#38bdf8';
+                if (window.map) {
+                    if (radarSimulationState.routeLayer) window.map.removeLayer(radarSimulationState.routeLayer);
+                    
+                    const latLngs = coords.map(c => [c[1], c[0]]);
+                    radarSimulationState.routeLayer = L.polyline(latLngs, {
+                        color: routeColor,
+                        weight: 6,
+                        opacity: 0.85,
+                        dashArray: type === 'train' ? '8, 12' : null,
+                        lineCap: 'round',
+                        lineJoin: 'round'
+                    }).addTo(window.map);
+
+                    window.map.fitBounds(radarSimulationState.routeLayer.getBounds(), { padding: [60, 60], animate: true });
+
+                    // Create Rotating Glowing Vehicle Marker
+                    const emoji = type === 'train' ? '🚂' : '🚌';
+                    const iconHtml = `
+                        <div id="radar-moving-vehicle" style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; background: rgba(15, 23, 42, 0.95); border: 2px solid ${routeColor}; border-radius: 50%; box-shadow: 0 0 20px ${routeColor}, inset 0 0 10px ${routeColor}; transition: transform 0.1s linear;">
+                            <span style="font-size: 20px;">${emoji}</span>
+                        </div>
+                    `;
+                    const customIcon = L.divIcon({ className: 'custom-radar-marker', html: iconHtml, iconSize: [42, 42], iconAnchor: [21, 21] });
+                    radarSimulationState.marker = L.marker([coords[0][1], coords[0][0]], { icon: customIcon }).addTo(window.map);
+                }
+
+                // Configure State
+                radarSimulationState.active = true;
+                radarSimulationState.paused = false;
+                radarSimulationState.coords = coords;
+                radarSimulationState.totalDistanceKm = totalDist;
+                radarSimulationState.currentIndex = 0;
+                radarSimulationState.progress = 0;
+                radarSimulationState.vehicleType = type;
+                radarSimulationState.baseSpeedKmh = type === 'train' ? (customTitle.includes('Vande Bharat') ? 110 : 75) : 62;
+
+                runRadarLoop();
+
+            } catch (err) {
+                console.error('Radar simulation error:', err);
+                if (hudStatus) hudStatus.textContent = 'Navigation Offline ⚠️';
             }
         }
-    </script>
-    <!-- ========== COOKIE & PRIVACY CONSENT BANNER (ADSENSE & GDPR COMPLIANT) ========== -->
-    <div id="cookie-consent-banner" style="display: none; position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); width: 92%; max-width: 720px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 16px; padding: 14px 20px; z-index: 9999; box-shadow: 0 20px 50px rgba(0,0,0,0.7); align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
-        <div style="display: flex; align-items: center; gap: 12px; flex: 1; min-width: 260px;">
-            <div style="font-size: 26px;">🍪</div>
-            <div style="font-size: 12.5px; color: #cbd5e1; line-height: 1.5;">
-                We use cookies and local storage to optimize your transit data, analyze regional traffic, and serve personalized travel ads via <strong>Google AdSense</strong>. Learn more in our <a href="privacy.html" style="color: #38bdf8; text-decoration: underline; font-weight: 700;">Privacy Policy</a>.
-            </div>
-        </div>
-        <div style="display: flex; gap: 8px; align-items: center;">
-            <button onclick="acceptCookieConsent()" style="background: linear-gradient(135deg, #0284c7, #38bdf8); color: #090d16; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 800; font-size: 12.5px; cursor: pointer; transition: all 0.2s; white-space: nowrap;">Accept & Continue</button>
-        </div>
-    </div>
-    <script>
-    function checkCookieConsent() {
+
+        function runRadarLoop() {
+            if (!radarSimulationState.active) return;
+            if (radarSimulationState.paused) {
+                radarSimulationState.animId = requestAnimationFrame(runRadarLoop);
+                return;
+            }
+
+            const state = radarSimulationState;
+            const coords = state.coords;
+
+            if (state.currentIndex < coords.length - 1) {
+                const p1 = coords[state.currentIndex];
+                const p2 = coords[state.currentIndex + 1];
+
+                const lat = p1[1] + (p2[1] - p1[1]) * state.progress;
+                const lon = p1[0] + (p2[0] - p1[0]) * state.progress;
+
+                if (state.marker) {
+                    state.marker.setLatLng([lat, lon]);
+                    
+                    // Rotate marker in bearing direction
+                    const bearing = calculateBearingDegrees(p1[1], p1[0], p2[1], p2[0]);
+                    const el = document.getElementById('radar-moving-vehicle');
+                    if (el) el.style.transform = `rotate(${bearing}deg)`;
+                }
+
+                // Speed step interpolation
+                const step = 0.04 * state.speedMultiplier;
+                state.progress += step;
+
+                if (state.progress >= 1) {
+                    state.progress = 0;
+                    state.currentIndex++;
+                }
+
+                // Update Telemetry HUD metrics
+                const pct = Math.min(100, Math.round((state.currentIndex / (coords.length - 1)) * 100));
+                const coveredKm = Math.round((pct / 100) * state.totalDistanceKm);
+                const speedKmh = Math.round(state.baseSpeedKmh + Math.sin(Date.now() / 1500) * 8);
+                const remainingMinutes = Math.max(1, Math.round(((state.totalDistanceKm - coveredKm) / speedKmh) * 60));
+                const hours = Math.floor(remainingMinutes / 60);
+                const mins = remainingMinutes % 60;
+                const etaText = hours > 0 ? `${hours}h ${mins}m` : `${mins} min`;
+
+                const pBar = document.getElementById('hud-progress-bar');
+                const sVal = document.getElementById('hud-speed-val');
+                const dVal = document.getElementById('hud-distance-val');
+                const eVal = document.getElementById('hud-eta-val');
+                const stVal = document.getElementById('hud-status-val');
+
+                if (pBar) pBar.style.width = `${pct}%`;
+                if (sVal) sVal.textContent = `${speedKmh} km/h`;
+                if (dVal) dVal.textContent = `${coveredKm} / ${Math.round(state.totalDistanceKm)} km (${pct}%)`;
+                if (eVal) eVal.textContent = etaText;
+                if (stVal) stVal.textContent = pct < 95 ? 'In Transit 🟢' : 'Approaching 🏁';
+
+                state.animId = requestAnimationFrame(runRadarLoop);
+            } else {
+                // Arrived at destination
+                const pBar = document.getElementById('hud-progress-bar');
+                const stVal = document.getElementById('hud-status-val');
+                const sVal = document.getElementById('hud-speed-val');
+                const eVal = document.getElementById('hud-eta-val');
+
+                if (pBar) pBar.style.width = '100%';
+                if (stVal) stVal.textContent = 'Arrived at Terminal! 🏁';
+                if (sVal) sVal.textContent = '0 km/h';
+                if (eVal) eVal.textContent = 'Arrived';
+            }
+        }
+
+        function toggleRadarPlayback() {
+            radarSimulationState.paused = !radarSimulationState.paused;
+            const btn = document.getElementById('hud-pause-btn');
+            if (btn) btn.textContent = radarSimulationState.paused ? '▶️ Resume' : '⏸️ Pause';
+        }
+
+        function cycleRadarSpeed() {
+            const speeds = [1, 2, 4];
+            let idx = speeds.indexOf(radarSimulationState.speedMultiplier);
+            idx = (idx + 1) % speeds.length;
+            radarSimulationState.speedMultiplier = speeds[idx];
+            const btn = document.getElementById('hud-speed-btn');
+            if (btn) btn.textContent = `⚡ ${radarSimulationState.speedMultiplier}x Speed`;
+        }
+
+        function stopRadarSimulation() {
+            radarSimulationState.active = false;
+            if (radarSimulationState.animId) cancelAnimationFrame(radarSimulationState.animId);
+            if (window.map) {
+                if (radarSimulationState.marker) {
+                    window.map.removeLayer(radarSimulationState.marker);
+                    radarSimulationState.marker = null;
+                }
+                if (radarSimulationState.routeLayer) {
+                    window.map.removeLayer(radarSimulationState.routeLayer);
+                    radarSimulationState.routeLayer = null;
+                }
+            }
+            const hud = document.getElementById('vehicle-radar-hud');
+            if (hud) hud.style.display = 'none';
+        }
+
+        function checkCookieConsent() {
         if (!localStorage.getItem('bengal_cookie_consent')) {
             const b = document.getElementById('cookie-consent-banner');
             if (b) b.style.display = 'flex';
