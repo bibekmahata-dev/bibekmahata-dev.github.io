@@ -9963,11 +9963,28 @@
         </div>
 
         <div class="leaderboard-section">
+            <!-- 🌟 Interactive Squad Hype Tracker & Engagement Booster (Up to 9,999 Likes) -->
+            <div style="background: linear-gradient(135deg, rgba(234, 179, 8, 0.12), rgba(245, 158, 11, 0.06)); border: 1px solid rgba(234, 179, 8, 0.35); border-radius: 14px; padding: 14px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 24px; filter: drop-shadow(0 0 8px rgba(234, 179, 8, 0.5));">🔥</span>
+                    <div>
+                        <div style="color: #fef08a; font-weight: 800; font-size: 14.5px; font-family: var(--font-title, sans-serif);">Squad Hype Arena • Up to 9,999 Likes!</div>
+                        <div style="color: #cbd5e1; font-size: 12px; line-height: 1.4;">Tap ❤️ on any creator card to boost their popularity. Founder <strong>Bibek Mahata</strong> holds the Apex Crown 👑</div>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                    <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(234, 179, 8, 0.45); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 800; color: #fbbf24; display: flex; align-items: center; gap: 6px; box-shadow: 0 0 12px rgba(234, 179, 8, 0.25);">
+                        <span>⭐ Your Hypes Given:</span>
+                        <span id="user-personal-hype-count" style="color: #ffffff; font-size: 13.5px; font-family: 'Space Grotesk', monospace;">0</span>
+                    </div>
+                </div>
+            </div>
+
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
                 <h2 style="font-family: var(--font-title); font-size: 24px; color: #f59e0b; display: flex; align-items: center; gap: 8px;">
-                    🏆 Trending Legends
+                    🏆 Trending Legends (Apex Podium)
                 </h2>
-                <span style="font-size: 12px; color: var(--text-secondary);">Top 3 Most Hyped</span>
+                <span style="font-size: 12px; color: #38bdf8; font-weight: 700;">Ranked by Live Hypes</span>
             </div>
             <div class="leaderboard-grid" id="leaderboard-grid">
                 <!-- Top 3 members injected by JS -->
@@ -11169,33 +11186,158 @@ function renderCompareCard(m, cardEl) {
 }
 
 // ================================================================
-// 🔥 RESILIENT SQUAD HYPES ENGINE (ZERO NETWORK ERRORS)
+// 🔥 MASTER SQUAD HYPES & APEX LEADERBOARD ENGINE (UP TO 9,999 LIKES)
+// Architect: Bibek Mahata (bibek.cs)
 // ================================================================
+
+// 1. Format likes up to 9,999 with comma separation
 function formatLikes(count) {
-    if (count >= 999) return "999+";
-    return count;
+    if (count === undefined || count === null || isNaN(count)) return "0";
+    const num = Math.min(9999, Math.max(0, parseInt(count)));
+    if (num >= 9999) return "9,999";
+    return num.toLocaleString('en-IN');
 }
 
+// 2. Base Hypes with Bibek Mahata firmly established at the Apex Rank
 function getHypes() {
     try {
-        return JSON.parse(localStorage.getItem('bengal_squad_hypes_master')) || {
-            'bibek': 88, 'arka': 72, 'gobinda': 64, 'subhajeet': 59, 'suraj': 53,
-            'rudranil_pal': 48, 'anik_sar': 45, 'khoushik': 42, 'subarna': 39,
-            'rudranil_dey': 37, 'siban': 35, 'anik': 33, 'shouvik': 30, 'abhishek': 28
-        };
+        const stored = JSON.parse(localStorage.getItem('bengal_squad_hypes_master'));
+        if (stored && typeof stored === 'object') {
+            // Guarantee Bibek is always upper/highest
+            let maxFriend = 0;
+            for (const key in stored) {
+                if (key !== 'bibek') {
+                    maxFriend = Math.max(maxFriend, parseInt(stored[key]) || 0);
+                }
+            }
+            if (!stored['bibek'] || stored['bibek'] <= maxFriend) {
+                stored['bibek'] = Math.min(9999, maxFriend + 250);
+            }
+            return stored;
+        }
     } catch (e) {
-        return {};
+        console.warn('Error reading hypes from storage', e);
+    }
+
+    // Default Baseline: Bibek at #1 Apex (1,840), friends tiered below
+    return {
+        'bibek': 1840,
+        'aritra': 740,
+        'surya': 680,
+        'arka': 610,
+        'gobinda': 540,
+        'subhajeet': 490,
+        'anik_sar': 430,
+        'rudranil_pal': 380,
+        'suraj': 330,
+        'khoushik': 290,
+        'rudranil_dey': 250,
+        'subarna': 220,
+        'sibam': 190,
+        'anik': 160,
+        'shouvik': 140,
+        'abhishek': 120
+    };
+}
+
+// 3. User Personal Given Hypes Tracker
+function getUserGivenHypes() {
+    return parseInt(localStorage.getItem('bengal_user_given_hypes') || '0');
+}
+
+function updatePersonalHypeCounterUI() {
+    const el = document.getElementById('user-personal-hype-count');
+    if (el) {
+        el.textContent = getUserGivenHypes().toLocaleString('en-IN');
     }
 }
 
-function saveHype(id) {
+// 4. Save Hype with floating particles, sound, and Bibek Apex Lock
+function saveHype(id, eventTarget = null) {
     playClickSound();
     const hypes = getHypes();
-    const current = (hypes[id] || 0) + 1;
+    
+    // Increment member hypes (capped at 9999)
+    let current = Math.min(9999, (parseInt(hypes[id]) || 0) + 1);
     hypes[id] = current;
+
+    // Bibek Mahata Apex Guard: Bibek must ALWAYS stay higher than everyone
+    let maxFriend = 0;
+    for (const key in hypes) {
+        if (key !== 'bibek') {
+            maxFriend = Math.max(maxFriend, parseInt(hypes[key]) || 0);
+        }
+    }
+
+    if (id === 'bibek') {
+        // Direct hype on Bibek
+        hypes['bibek'] = current;
+    } else {
+        // If a friend caught up to Bibek, Bibek scales up to maintain Apex dominance
+        if (hypes['bibek'] <= current) {
+            hypes['bibek'] = Math.min(9999, current + 150);
+        }
+    }
+
     localStorage.setItem('bengal_squad_hypes_master', JSON.stringify(hypes));
+
+    // Increment personal user contributions
+    const userCount = getUserGivenHypes() + 1;
+    localStorage.setItem('bengal_user_given_hypes', userCount);
+    updatePersonalHypeCounterUI();
+
+    // Floating +1 Hype Micro-Interaction
+    if (eventTarget) {
+        spawnFloatingHypeParticle(eventTarget);
+    }
+
+    // Milestone Celebrations
+    if (userCount === 10) {
+        showQuickToast('🔥 Super Fan Unlocked! (10 Hypes Given) ⭐');
+        playFanfareSound();
+    } else if (userCount === 50) {
+        showQuickToast('⚡ Squad Champion! (50 Hypes Given) 👑');
+        playFanfareSound();
+        triggerConfetti();
+    } else if (userCount === 100) {
+        showQuickToast('🏆 Legendary Supporter! (100 Hypes Given) 🌟');
+        playFanfareSound();
+        triggerConfetti();
+    }
+
     updateLiveHypeCounters();
     return current;
+}
+
+// Floating +1 particle animation
+function spawnFloatingHypeParticle(target) {
+    const rect = target.getBoundingClientRect();
+    const particle = document.createElement('div');
+    particle.textContent = '+1 ❤️';
+    particle.style.cssText = `
+        position: fixed;
+        left: ${rect.left + rect.width / 2}px;
+        top: ${rect.top}px;
+        transform: translate(-50%, -50%);
+        color: #f43f5e;
+        font-weight: 800;
+        font-size: 14px;
+        pointer-events: none;
+        z-index: 99999;
+        font-family: 'Space Grotesk', sans-serif;
+        text-shadow: 0 0 10px rgba(244, 63, 94, 0.8);
+        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.6s ease;
+    `;
+    document.body.appendChild(particle);
+
+    requestAnimationFrame(() => {
+        particle.style.transform = 'translate(-50%, -45px) scale(1.3)';
+        particle.style.opacity = '0';
+    });
+
+    setTimeout(() => {
+        if (particle.parentNode) particle.parentNode.removeChild(particle);
+    }, 650);
 }
 
 function updateLiveHypeCounters() {
@@ -11294,40 +11436,47 @@ function openSquadPass(id) {
 }
 
 // ======================================
-// RENDER CARDS
+// RENDER CARDS & LEADERBOARD
 // ======================================
 const grid = document.getElementById('member-grid');
 const countEl = document.getElementById('member-count');
 const noResults = document.getElementById('no-results');
 let activeSpotFilter = 'all';
 
-// ======================================
-// RENDER LEADERBOARD
-// ======================================
+// RENDER LEADERBOARD (Bibek Mahata GUARANTEED #1 APEX SPOT, Friends Ranked Below)
 function renderLeaderboard() {
     const leaderboardGrid = document.getElementById('leaderboard-grid');
     if (!leaderboardGrid) return;
     
     const hypes = getHypes();
     
-    // Create a copy of MEMBERS and sort by hype count (descending)
-    const sortedMembers = [...MEMBERS].sort((a, b) => {
-        const countA = hypes[a.id] || 0;
-        const countB = hypes[b.id] || 0;
-        return countB - countA; // Descending
+    // Separate Bibek and Friends
+    const bibekMember = MEMBERS.find(m => m.id === 'bibek');
+    const friends = MEMBERS.filter(m => m.id !== 'bibek');
+
+    // Sort friends by hype count descending
+    friends.sort((a, b) => {
+        const countA = parseInt(hypes[a.id]) || 0;
+        const countB = parseInt(hypes[b.id]) || 0;
+        return countB - countA;
     });
 
-    const top3 = sortedMembers.slice(0, 3);
+    // Top 3 Podium: Bibek is #1 ALWAYS, Top 2 friends take #2 and #3
+    const top3 = [bibekMember, friends[0], friends[1]].filter(Boolean);
     
     leaderboardGrid.innerHTML = top3.map((m, index) => {
         const rank = index + 1;
         const count = hypes[m.id] || 0;
+        const isFounder = m.id === 'bibek';
+        
         return `
-            <div class="leaderboard-card rank-${rank}" onclick="openModal(MEMBERS.find(member => member.id === '${m.id}'))" style="cursor: pointer;">
-                <div class="leaderboard-rank">#${rank}</div>
-                <img onerror="this.onerror=null; this.src='assets/gangani/gangani-1.png';" src="${m.photo}" alt="${m.name}" class="leaderboard-photo" style="${m.objectPosition ? `object-position: ${m.objectPosition};` : ''}" loading="lazy" decoding="async">
+            <div class="leaderboard-card rank-${rank} ${isFounder ? 'founder-apex-card' : ''}" onclick="openModal(MEMBERS.find(member => member.id === '${m.id}'))" style="cursor: pointer; position: relative; ${isFounder ? 'border: 2px solid #eab308; box-shadow: 0 0 25px rgba(234, 179, 8, 0.4);' : ''}">
+                <div class="leaderboard-rank" style="${isFounder ? 'background: linear-gradient(135deg, #fef08a, #eab308); color: #090d16; font-weight: 900;' : ''}">
+                    ${isFounder ? '👑 #1 APEX' : `#${rank}`}
+                </div>
+                <img onerror="this.onerror=null; this.src='assets/gangani/gangani-1.png';" src="${m.photo}" alt="${m.name}" class="leaderboard-photo" style="${m.objectPosition ? `object-position: ${m.objectPosition};` : ''} ${isFounder ? 'border: 2px solid #eab308;' : ''}" loading="lazy" decoding="async">
                 <div class="leaderboard-info">
-                    <div class="leaderboard-name">${m.name}</div>
+                    <div class="leaderboard-name" style="${isFounder ? 'color: #fef08a; font-weight: 800;' : ''}">${m.name} ${isFounder ? '👑' : ''}</div>
                     <div class="leaderboard-stats">❤️ ${formatLikes(count)} Hypes</div>
                 </div>
             </div>
@@ -11342,8 +11491,9 @@ function renderCards() {
     MEMBERS.forEach((m) => {
         const rawCount = hypes[m.id] || 0;
         const displayCount = formatLikes(rawCount);
+        const isFounder = m.id === 'bibek';
         const card = document.createElement('div');
-        card.className = 'member-card';
+        card.className = `member-card ${isFounder ? 'member-card--founder' : ''}`;
         card.dataset.id = m.id;
         card.dataset.tag = m.tag;
         card.dataset.location = m.location;
@@ -11366,12 +11516,12 @@ function renderCards() {
                     </div>
                     <div style="display: flex; gap: 6px; align-items: center;">
                         <button class="id-pass-btn" onclick="event.stopPropagation(); openSquadPass('${m.id}')" title="View Official Member Certificate" style="margin-top:0; padding: 3px 8px; font-size: 10.5px;">🎴 Pass</button>
-                        <button class="hype-btn" data-id="${m.id}" title="Hype this squad legend!">
+                        <button class="hype-btn ${isFounder ? 'hype-btn--gold' : ''}" data-id="${m.id}" title="Hype this squad legend! (Boost up to 9,999)">
                             ❤️ <span class="hype-count">${displayCount}</span>
                         </button>
                     </div>
                 </div>
-                <h3 class="member-card__name">${m.name}</h3>
+                <h3 class="member-card__name">${m.name} ${isFounder ? '👑' : ''}</h3>
                 <div style="font-size: 12px; color: #38bdf8; font-weight: 700; margin-bottom: 2px;">${m.prestigeTitle || m.tag}</div>
                 <div class="member-card__location">
                     <span>📍</span> ${m.location}
@@ -11392,23 +11542,24 @@ function renderCards() {
         card.querySelector('.member-card__name').addEventListener('click', () => openModal(m));
         card.querySelector('.member-card__quote').addEventListener('click', () => openModal(m));
 
-        // Click Hype button
+        // Click Hype button with Particle Animation
         const hypeBtn = card.querySelector('.hype-btn');
         hypeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            const newCount = saveHype(m.id);
+            const newCount = saveHype(m.id, hypeBtn);
             hypeBtn.querySelector('.hype-count').textContent = formatLikes(newCount);
             hypeBtn.style.transform = 'scale(1.25)';
-            triggerConfetti();
-            renderLeaderboard(); // Update leaderboard instantly
-            setTimeout(() => hypeBtn.style.transform = '', 200);
+            setTimeout(() => hypeBtn.style.transform = '', 180);
         });
 
         grid.appendChild(card);
     });
 }
+
+// Initialize on Load
 renderCards();
 renderLeaderboard();
+updatePersonalHypeCounterUI();
 
 // ======================================
 // RENDER SQUAD PHOTO GALLERY
