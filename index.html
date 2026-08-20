@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Search Official Site Name JSON-LD Schema -->
+    <!-- Google Search Official Site Name & Primary Entity JSON-LD Schema -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Bengal Explorers",
-        "alternateName": ["Bibek Mahata", "Bengal Explorers by Bibek Mahata", "Bibek Mahata Portal", "BengalExplorers"],
+        "alternateName": [
+            "Bibek Mahata",
+            "Bibek Mahata dev",
+            "Bibek Mahata CS",
+            "Bengal Explorers by Bibek Mahata",
+            "Bibek Mahata Portal",
+            "BengalExplorers"
+        ],
         "url": "https://bibekmahata-dev.github.io/",
         "author": {
             "@type": "Person",
             "name": "Bibek Mahata",
-            "url": "https://bibekmahata-dev.github.io/about.html"
+            "url": "https://bibekmahata-dev.github.io/"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Bibek Mahata",
+            "url": "https://bibekmahata-dev.github.io/"
+        },
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Bibek Mahata",
+            "alternateName": ["bibek.cs", "Bibek Mahata dev", "Bibek Mahata CS"],
+            "url": "https://bibekmahata-dev.github.io/"
         },
         "potentialAction": {
             "@type": "SearchAction",
@@ -94,13 +112,14 @@
         "@graph": [
             {
                 "@type": "Person",
-                "@id": "https://bibekmahata-dev.github.io/about.html#bibekmahata",
+                "@id": "https://bibekmahata-dev.github.io/#bibekmahata",
                 "name": "Bibek Mahata",
-                "alternateName": ["Bibek", "bibek.cs", "Bibek Gamer 444", "Bibek Mahata Developer", "Bibek Mahata Garhbeta"],
-                "url": "https://bibekmahata-dev.github.io/about.html",
-                "image": "https://bibekmahata-dev.github.io/assets/gangani/gangani-1.png",
+                "alternateName": ["Bibek", "bibek.cs", "Bibek Gamer 444", "Bibek Mahata Developer", "Bibek Mahata CS", "Bibek Mahata dev", "Bibek Mahata Garhbeta", "Bibek Mahata Jhargram"],
+                "url": "https://bibekmahata-dev.github.io/",
+                "mainEntityOfPage": "https://bibekmahata-dev.github.io/",
+                "image": "https://bibekmahata-dev.github.io/assets/bibek_mahata.jpg",
                 "jobTitle": "Founder & Lead Software Developer",
-                "description": "Bibek Mahata is an Indian web developer, student creator, and founder of Bengal Explorers — a digital travel, transit, and meteorology portal for West Bengal.",
+                "description": "Bibek Mahata (bibek.cs) is a student software developer, CS engineer, and the founder of Bengal Explorers.",
                 "worksFor": {
                     "@type": "Organization",
                     "name": "Bengal Explorers",
@@ -111,6 +130,7 @@
                     "name": "Garhbeta, Paschim Medinipur, West Bengal, India"
                 },
                 "sameAs": [
+                    "https://bibekmahata-dev.github.io/about.html",
                     "https://github.com/bibekmahata-dev",
                     "https://www.instagram.com/bibek.cs",
                     "https://www.facebook.com/share/1Z9HSMDvAV/",
@@ -121,20 +141,16 @@
             {
                 "@type": "WebSite",
                 "@id": "https://bibekmahata-dev.github.io/#website",
-                "name": "Bengal Explorers",
-                "alternateName": ["Bengal Explorers Portal", "West Bengal Travel & Transit Hub"],
+                "name": "Bengal Explorers — Bibek Mahata Official Portal",
+                "alternateName": ["Bengal Explorers", "Bibek Mahata", "Bibek Mahata dev", "Bibek Mahata CS", "Bengal Explorers Portal"],
                 "url": "https://bibekmahata-dev.github.io/",
-                "description": "The ultimate digital portal for West Bengal — live Open-Meteo weather station, state-wide bus routes, live train departure boards, and cultural tourism guides.",
+                "mainEntity": {
+                    "@id": "https://bibekmahata-dev.github.io/#bibekmahata"
+                },
+                "description": "The ultimate digital portal for West Bengal — created and architected by Bibek Mahata (bibek.cs). Features live transit radar, meteorology station, bus directory & emergency contacts.",
                 "inLanguage": "en",
                 "publisher": {
-                    "@type": "Organization",
-                    "@id": "https://bibekmahata-dev.github.io/#organization",
-                    "name": "Bengal Explorers Student Creator Initiative",
-                    "url": "https://bibekmahata-dev.github.io/",
-                    "logo": {
-                        "@type": "ImageObject",
-                        "url": "https://bibekmahata-dev.github.io/assets/gangani/gangani-1.png"
-                    }
+                    "@id": "https://bibekmahata-dev.github.io/#bibekmahata"
                 },
                 "potentialAction": {
                     "@type": "SearchAction",
@@ -12473,5 +12489,19 @@ document.addEventListener('keydown', (e) => {
         updateSavedFavoritesBadge();
     </script>
 
+    <!-- PWA Offline Commuter Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js', { scope: './' })
+                    .then((reg) => {
+                        console.log('✅ [Bengal PWA] Offline Commuter Engine Active! Scope:', reg.scope);
+                    })
+                    .catch((err) => {
+                        console.warn('⚠️ [Bengal PWA] Service Worker registration failed:', err);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>

@@ -192,5 +192,19 @@
             <p>For any privacy inquiries, legal notices, or data requests, contact our Lead Administrator at: <strong style="color: #38bdf8;">bibek.workdev01@gmail.com</strong>.</p>
         </div>
     </div>
+    <!-- PWA Offline Commuter Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js', { scope: './' })
+                    .then((reg) => {
+                        console.log('✅ [Bengal PWA] Offline Commuter Engine Active! Scope:', reg.scope);
+                    })
+                    .catch((err) => {
+                        console.warn('⚠️ [Bengal PWA] Service Worker registration failed:', err);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>

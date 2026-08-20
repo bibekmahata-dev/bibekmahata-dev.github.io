@@ -51,21 +51,23 @@
     {
         "@context": "https://schema.org",
         "@type": "Person",
-        "@id": "https://bibekmahata-dev.github.io/about.html#bibekmahata",
+        "@id": "https://bibekmahata-dev.github.io/#bibekmahata",
         "name": "Bibek Mahata",
         "alternateName": [
             "Bibek",
             "bibek.cs",
             "Bibek Gamer 444",
             "Bibek Mahata Developer",
+            "Bibek Mahata dev",
+            "Bibek Mahata CS",
             "Bibek Mahata Garhbeta",
             "Bibek Mahata Jhargram",
             "Bibek Mahata Paschim Medinipur",
             "Bibek Mahata Bengal Explorers",
             "Founder of Bengal Explorers"
         ],
-        "url": "https://bibekmahata-dev.github.io/about.html",
-        "mainEntityOfPage": "https://bibekmahata-dev.github.io/about.html",
+        "url": "https://bibekmahata-dev.github.io/",
+        "mainEntityOfPage": "https://bibekmahata-dev.github.io/",
         "image": {
             "@type": "ImageObject",
             "url": "https://bibekmahata-dev.github.io/assets/bibek_mahata.jpg",
@@ -122,11 +124,31 @@
             "url": "https://bibekmahata-dev.github.io/"
         },
         "sameAs": [
+            "https://bibekmahata-dev.github.io/about.html",
             "https://github.com/bibekmahata-dev",
             "https://www.instagram.com/bibek.cs",
             "https://www.facebook.com/share/1Z9HSMDvAV/",
             "https://youtube.com/@bibekgamer_444?si=Tpliwr4pKk8DpN09"
         ]
+    }
+    </script>
+    <!-- Subordinate ProfilePage Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "@id": "https://bibekmahata-dev.github.io/about.html#profile",
+        "url": "https://bibekmahata-dev.github.io/about.html",
+        "name": "Bibek Mahata (bibek.cs) — Founder Profile",
+        "isPartOf": {
+            "@type": "WebSite",
+            "@id": "https://bibekmahata-dev.github.io/#website",
+            "name": "Bengal Explorers",
+            "url": "https://bibekmahata-dev.github.io/"
+        },
+        "mainEntity": {
+            "@id": "https://bibekmahata-dev.github.io/#bibekmahata"
+        }
     }
     </script>
 
@@ -399,8 +421,8 @@
 </head>
 <body>
     <div class="top-nav">
-        <a href="index.html" class="nav-logo">Bengal Explorers</a>
-        <a href="index.html" class="back-btn">← Back to Portal</a>
+        <a href="index.html" class="nav-logo">Bengal Explorers — Bibek Mahata</a>
+        <a href="index.html" class="back-btn">← Bengal Explorers Flagship Portal</a>
     </div>
 
     <div class="main-wrapper">
@@ -408,7 +430,18 @@
             <h1>About Bengal Explorers & Founder</h1>
             <div class="subtitle">Class 12 Student Creator Initiative • Paschim Medinipur, West Bengal</div>
 
-                                    <!-- Founder Profile Spotlight -->
+            <!-- Authoritative Internal Link Funnel to Flagship Homepage -->
+            <div style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(139, 92, 246, 0.15)); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 14px 18px; margin: 18px 0 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 20px;">🚀</span>
+                    <span style="font-size: 13.5px; color: #f8fafc; font-weight: 600;">Main Flagship Portal &amp; Live GIS Transit Radar:</span>
+                </div>
+                <a href="index.html" style="background: #38bdf8; color: #090d16; font-weight: 800; font-size: 12.5px; padding: 8px 18px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); transition: transform 0.2s;">
+                    Bengal Explorers Homepage →
+                </a>
+            </div>
+
+            <!-- Founder Profile Spotlight -->
             <div class="creator-card" id="bibekmahata">
                 <img src="assets/bibek_mahata.jpg" alt="Bibek Mahata — Founder & Lead Developer" style="border: 3px solid #38bdf8; box-shadow: 0 0 25px rgba(56, 189, 248, 0.45); border-radius: 50%; object-fit: cover; object-position: center 15%; width: 135px; height: 135px; flex-shrink: 0;">
                 <div class="creator-details">
@@ -644,5 +677,19 @@
             </p>
         </div>
     </div>
+    <!-- PWA Offline Commuter Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js', { scope: './' })
+                    .then((reg) => {
+                        console.log('✅ [Bengal PWA] Offline Commuter Engine Active! Scope:', reg.scope);
+                    })
+                    .catch((err) => {
+                        console.warn('⚠️ [Bengal PWA] Service Worker registration failed:', err);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>

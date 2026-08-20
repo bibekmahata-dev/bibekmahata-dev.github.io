@@ -915,5 +915,19 @@
         </div>
     </footer>
 
+    <!-- PWA Offline Commuter Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js', { scope: './' })
+                    .then((reg) => {
+                        console.log('✅ [Bengal PWA] Offline Commuter Engine Active! Scope:', reg.scope);
+                    })
+                    .catch((err) => {
+                        console.warn('⚠️ [Bengal PWA] Service Worker registration failed:', err);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>

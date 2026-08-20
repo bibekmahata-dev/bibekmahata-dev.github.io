@@ -1,26 +1,62 @@
 {
-    "name": "Bengal Explorers",
+    "name": "Bengal Explorers — West Bengal Portal",
     "short_name": "BengalExplorers",
-    "description": "Student-Led West Bengal Travel, Transit & Cultural Tourism Portal by Bibek Mahata",
+    "description": "Student-Led West Bengal Travel, Transit & Cultural Tourism Portal by Bibek Mahata (bibek.cs). Live train radar, bus schedules & weather.",
+    "id": "/",
     "start_url": "/",
+    "scope": "/",
     "display": "standalone",
+    "orientation": "any",
     "background_color": "#090d16",
     "theme_color": "#090d16",
+    "categories": [
+        "travel",
+        "navigation",
+        "weather",
+        "utilities"
+    ],
+    "prefer_related_applications": false,
     "icons": [
         {
             "src": "favicon.png",
             "sizes": "96x96",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
             "src": "icon-192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         },
         {
             "src": "icon-512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Live Station Radar",
+            "short_name": "Transit Radar",
+            "description": "Real-time Howrah and Sealdah railway departures",
+            "url": "/#train-board",
+            "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "Travel Guides & Blogs",
+            "short_name": "Guides",
+            "description": "In-depth West Bengal travel field guides",
+            "url": "/blog.html",
+            "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "About Founder (bibek.cs)",
+            "short_name": "Founder",
+            "description": "Portfolio of Bibek Mahata",
+            "url": "/about.html",
+            "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
         }
     ]
 }
