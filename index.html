@@ -5521,6 +5521,232 @@
     ]
 }
     </script>
+    <!-- 🎧 GLOBAL PROCEDURAL WEB AUDIO & SPEECH SYNTHESIS ENGINE (EARLY INIT) -->
+    <script>
+        window.audioCtx = null;
+        window.currentUtterance = null;
+        window.isAudioPaused = false;
+        window.availableVoices = [];
+
+        function loadSpeechVoices() {
+            if ('speechSynthesis' in window) {
+                window.availableVoices = window.speechSynthesis.getVoices();
+            }
+        }
+        if ('speechSynthesis' in window) {
+            loadSpeechVoices();
+            window.speechSynthesis.onvoiceschanged = loadSpeechVoices;
+        }
+
+        window.playStationChime = function() {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) {
+                    if (typeof showQuickToast === 'function') showQuickToast('⚠️ Web Audio not supported on this browser');
+                    return;
+                }
+                if (!window.audioCtx) window.audioCtx = new AudioContext();
+                if (window.audioCtx.state === 'suspended') {
+                    window.audioCtx.resume();
+                }
+
+                const now = window.audioCtx.currentTime;
+
+                // Tone 1: 587.33 Hz (D5)
+                const osc1 = window.audioCtx.createOscillator();
+                const gain1 = window.audioCtx.createGain();
+                osc1.type = 'sine';
+                osc1.frequency.setValueAtTime(587.33, now);
+                gain1.gain.setValueAtTime(0, now);
+                gain1.gain.linearRampToValueAtTime(0.5, now + 0.04);
+                gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.55);
+                osc1.connect(gain1);
+                gain1.connect(window.audioCtx.destination);
+                osc1.start(now);
+                osc1.stop(now + 0.6);
+
+                // Tone 2: 783.99 Hz (G5)
+                const osc2 = window.audioCtx.createOscillator();
+                const gain2 = window.audioCtx.createGain();
+                osc2.type = 'sine';
+                osc2.frequency.setValueAtTime(783.99, now + 0.45);
+                gain2.gain.setValueAtTime(0, now + 0.45);
+                gain2.gain.linearRampToValueAtTime(0.5, now + 0.50);
+                gain2.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+                osc2.connect(gain2);
+                gain2.connect(window.audioCtx.destination);
+                osc2.start(now + 0.45);
+                osc2.stop(now + 1.25);
+
+                if (typeof showQuickToast === 'function') showQuickToast('🔔 Railway Station Chime (Ding-Dong)');
+            } catch (err) {
+                console.warn('[Audio Engine Warning]:', err);
+            }
+        };
+
+        window.speakTextWithHUD = function(title, typeText, text) {
+            if (!('speechSynthesis' in window)) {
+                if (typeof showQuickToast === 'function') showQuickToast('Speech synthesis not supported on this device.');
+                return;
+            }
+
+            try {
+                if (window.audioCtx && window.audioCtx.state === 'suspended') window.audioCtx.resume();
+            } catch(e) {}
+
+            window.speechSynthesis.cancel();
+            window.playStationChime();
+
+            const hud = document.getElementById('bengal-audio-hud');
+            const hudTitle = document.getElementById('audio-hud-title');
+            const hudType = document.getElementById('audio-hud-type');
+            const pauseBtn = document.getElementById('audio-hud-pause-btn');
+
+            if (hud && hudTitle && hudType) {
+                hudTitle.textContent = title;
+                hudType.textContent = typeText;
+                hud.style.display = 'flex';
+                if (pauseBtn) pauseBtn.textContent = '⏸️';
+            }
+
+            setTimeout(() => {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.95;
+                utterance.pitch = 1.05;
+
+                if (window.availableVoices.length === 0) loadSpeechVoices();
+                const preferredVoice = window.availableVoices.find(v => v.lang.includes('en-IN') || v.name.includes('India') || v.lang.includes('en-GB') || v.lang.includes('en-US'));
+                if (preferredVoice) utterance.voice = preferredVoice;
+
+                utterance.onend = () => { window.stopAudioGuide(); };
+                utterance.onerror = () => { window.stopAudioGuide(); };
+
+                window.currentUtterance = utterance;
+                window.isAudioPaused = false;
+                window.speechSynthesis.speak(utterance);
+            }, 850);
+        };
+
+        window.togglePauseAudio = function() {
+            if (!('speechSynthesis' in window)) return;
+            const pauseBtn = document.getElementById('audio-hud-pause-btn');
+            if (window.isAudioPaused) {
+                window.speechSynthesis.resume();
+                window.isAudioPaused = false;
+                if (pauseBtn) pauseBtn.textContent = '⏸️';
+            } else {
+                window.speechSynthesis.pause();
+                window.isAudioPaused = true;
+                if (pauseBtn) pauseBtn.textContent = '▶️';
+            }
+        };
+
+        window.stopAudioGuide = function() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            const hud = document.getElementById('bengal-audio-hud');
+            if (hud) hud.style.display = 'none';
+            window.isAudioPaused = false;
+        };
+
+        const AUDIO_NARRATIVES = {
+            'gangani': {
+                title: 'Gangani Grand Canyon of Bengal',
+                type: '🏞️ DESTINATION AUDIO GUIDE',
+                text: 'Welcome to Gangani, famously known as the Grand Canyon of Bengal. Situated along the banks of the ancient Shilabati River in Garhbeta, Paschim Medinipur, Gangani features breathtaking 70-foot crimson laterite gorges carved over millions of years by wind and water erosion. According to local lore and the Mahabharata, this was the forest battlefield where Bhima defeated the demon Bakasura.'
+            },
+            'darjeeling': {
+                title: 'Darjeeling Himalayan Hills',
+                type: '⛰️ HILL STATION AUDIO GUIDE',
+                text: 'Darjeeling, known as the Queen of the Hills, rests in the Eastern Himalayas at an elevation of 6,700 feet. World famous for its UNESCO World Heritage Himalayan Toy Train, emerald green tea estates, and majestic sunrise vistas over Mount Kanchenjunga, Darjeeling blends British colonial architecture with rich Tibetan and Gorkha culture.'
+            },
+            'bishnupur': {
+                title: 'Bishnupur Terracotta Temples',
+                type: '🏛️ HERITAGE AUDIO GUIDE',
+                text: 'Bishnupur in Bankura is the historic terracotta capital of the Malla kings. Built during the 17th and 18th centuries using fired clay bricks and intricate carvings depicting the epics of Ramayana and Mahabharata, Bishnupur is renowned for the iconic Rasmancha, Shyamrai temple, Baluchari silk weaving, and the legendary Mecha Sandesh sweet.'
+            },
+            'victoria': {
+                title: 'Victoria Memorial Kolkata',
+                type: '🏛️ MONUMENT AUDIO GUIDE',
+                text: 'The Victoria Memorial is a grand white Makrana marble monument situated on the Maidan in Kolkata. Built between 1906 and 1921 to celebrate Bengal cultural renaissance and history, it is surrounded by 64 acres of lush gardens and houses an extensive gallery of rare historical paintings, manuscripts, and statues.'
+            },
+            'chilkigarh': {
+                title: 'Chilkigarh Sacred Grove & Kanak Durga',
+                type: '🌳 SECRET FOREST AUDIO GUIDE',
+                text: 'Chilkigarh in Jhargram district is home to an ancient sacred Sal forest grove along the Dulung river. The historic Kanak Durga temple, founded four centuries ago by the local royal dynasty, is surrounded by over 300 species of rare medicinal plants, offering pure wilderness, history, and spiritual tranquility.'
+            },
+            'ghagra': {
+                title: 'Ghagra Waterfalls & Khandarani Lake',
+                type: '🌊 CANYON WATERFALL AUDIO GUIDE',
+                text: 'Located in Belpahari, Ghagra is a mesmerizing natural canyon waterfall where mountain streams carve deep undulating channels through dark laterite and schist rocks. Combined with the scenic Khandarani irrigation dam, it serves as a premier eco-tourism and migratory bird watching haven.'
+            },
+            'mecha_sandesh': {
+                title: 'Bishnupur Mecha Sandesh',
+                type: '🍯 CULINARY TALE',
+                text: 'Mecha Sandesh is a 300-year-old GI-tagged dessert from Bishnupur. Prepared by frying fine gram flour balls in pure desi ghee, bathing them in cardamom-infused warm sugar syrup, and rolling them in aromatic sugar powder, it offers an unforgettable melt-in-the-mouth crunchy texture.'
+            },
+            'mihidana': {
+                title: 'Bardhaman Mihidana & Sitabhog',
+                type: '🍯 ROYAL CULINARY TALE',
+                text: 'Mihidana and Sitabhog are Bengal royal GI-tagged delicacies created in 1904 by master confectioner Bhairab Chandra Nag to welcome British Viceroy Lord Curzon in Bardhaman. Made from fragrant Kaminibhog rice flour, saffron, and fresh cottage cheese vermicelli, they represent Bengal peak culinary artistry.'
+            },
+            'joynagar_moa': {
+                title: 'Joynagarer Moa Winter Legend',
+                type: '🍯 WINTER CULINARY TALE',
+                text: 'Joynagarer Moa is an authentic winter sweet from South 24 Parganas made exclusively from winter-harvested Kanakchur puffed rice, pure date palm Nolen Gur, kheer, cashew nuts, and cardamom. Its delicate softness makes it a winter festival favorite across Bengal.'
+            },
+            'babarsa': {
+                title: 'Medinipur Babarsa Heritage Sweet',
+                type: '🍯 HERITAGE CULINARY TALE',
+                text: 'Babarsa is an artisanal sweet from Khirpai in Paschim Medinipur. Handcrafted into an intricate honeycomb lattice using refined flour, fried in pure ghee, and soaked in warm cardamom syrup, Babarsa has delighted travelers and royal guests across the Medinipur region for centuries.'
+            },
+            'durga_puja': {
+                title: 'Durga Puja Heritage Circuits',
+                type: '🎭 CULTURAL FESTIVAL GUIDE',
+                text: 'Recognized by UNESCO as an Intangible Cultural Heritage of Humanity, Bengal Durga Puja is the world greatest open-air art and cultural carnival. From historic 300-year-old Bonedi Bari family rituals to breathtaking contemporary pandal architecture and rhythmic Dhak drumming, it unites all of Bengal in joy.'
+            },
+            'poush_mela': {
+                title: 'Shantiniketan Poush Mela',
+                type: '🎭 FOLK FESTIVAL GUIDE',
+                text: 'Poush Mela is an iconic cultural festival celebrated in Shantiniketan, Birbhum, founded by Nobel Laureate Rabindranath Tagore family. The mela resonates with soulful Baul and Bhatiyali mystic folk music, Santhali tribal dances, and world-famous handmade Dokra brass metal craft.'
+            }
+        };
+
+        window.playDestinationAudioGuide = function(key) {
+            const data = AUDIO_NARRATIVES[key];
+            if (data) {
+                window.speakTextWithHUD(data.title, data.type, data.text);
+            }
+        };
+
+        window.playCulinaryAudio = function(key) {
+            const data = AUDIO_NARRATIVES[key];
+            if (data) {
+                window.speakTextWithHUD(data.title, data.type, data.text);
+            }
+        };
+
+        window.playStationPAVoice = function(trainNumber, trainName, platform, destination) {
+            const text = `May I have your attention please. Train number ${trainNumber}, ${trainName}, scheduled for ${destination}, is arriving shortly on platform number ${platform}. Passengers please take your positions. Have a safe journey with Bengal Explorers.`;
+            window.speakTextWithHUD(`📢 Station PA: ${trainName}`, `TRAIN ARRIVAL PLATFORM ${platform}`, text);
+        };
+
+        window.filterCulinary = function(cat, btn) {
+            document.querySelectorAll('#bengal-culinary-section .filter-chip').forEach(c => c.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            const cards = document.querySelectorAll('.culinary-card');
+            cards.forEach(card => {
+                if (cat === 'all' || card.dataset.cat === cat) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        };
+    </script>
+
 </head>
 <body>
     <div class="announcement-banner">
@@ -14358,254 +14584,7 @@ document.addEventListener('keydown', (e) => {
     </div>
 
 
-    <!-- ================================================================
-         🎧 PROCEDURAL WEB AUDIO & SPEECH SYNTHESIS ENGINE (v3.0)
-         Architect: Bibek Mahata (bibek.cs)
-         ================================================================ -->
-    <script>
-        let audioCtx = null;
-        let currentUtterance = null;
-        let isAudioPaused = false;
-        let availableVoices = [];
-
-        // Preload voices
-        function loadSpeechVoices() {
-            if ('speechSynthesis' in window) {
-                availableVoices = window.speechSynthesis.getVoices();
-            }
-        }
-        if ('speechSynthesis' in window) {
-            loadSpeechVoices();
-            window.speechSynthesis.onvoiceschanged = loadSpeechVoices;
-        }
-
-        // 1. Procedural Station Dual-Tone Chime (Web Audio API)
-        function playStationChime() {
-            try {
-                const AudioContext = window.AudioContext || window.webkitAudioContext;
-                if (!AudioContext) {
-                    showQuickToast('⚠️ Web Audio not supported on this browser');
-                    return;
-                }
-                if (!audioCtx) audioCtx = new AudioContext();
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
-
-                const now = audioCtx.currentTime;
-
-                // Tone 1: 587.33 Hz (D5) - Crisp Bell
-                const osc1 = audioCtx.createOscillator();
-                const gain1 = audioCtx.createGain();
-                osc1.type = 'sine';
-                osc1.frequency.setValueAtTime(587.33, now);
-                gain1.gain.setValueAtTime(0, now);
-                gain1.gain.linearRampToValueAtTime(0.5, now + 0.04);
-                gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.55);
-                osc1.connect(gain1);
-                gain1.connect(audioCtx.destination);
-                osc1.start(now);
-                osc1.stop(now + 0.6);
-
-                // Tone 2: 783.99 Hz (G5) - High Harmonic
-                const osc2 = audioCtx.createOscillator();
-                const gain2 = audioCtx.createGain();
-                osc2.type = 'sine';
-                osc2.frequency.setValueAtTime(783.99, now + 0.45);
-                gain2.gain.setValueAtTime(0, now + 0.45);
-                gain2.gain.linearRampToValueAtTime(0.5, now + 0.50);
-                gain2.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
-                osc2.connect(gain2);
-                gain2.connect(audioCtx.destination);
-                osc2.start(now + 0.45);
-                osc2.stop(now + 1.25);
-
-                showQuickToast('🔔 Indian Railways Station Chime (Ding-Dong)');
-            } catch (err) {
-                console.warn('[Audio Engine Warning]:', err);
-                showQuickToast('🔔 Railway Chime Triggered');
-            }
-        }
-
-        // 2. Speak Text with HUD overlay
-        function speakTextWithHUD(title, typeText, text) {
-            if (!('speechSynthesis' in window)) {
-                showQuickToast('Speech synthesis not supported on this device.');
-                return;
-            }
-
-            // Resume audio context if needed
-            try {
-                if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-            } catch(e) {}
-
-            // Stop previous audio
-            window.speechSynthesis.cancel();
-
-            // Play Railway Chime first
-            playStationChime();
-
-            const hud = document.getElementById('bengal-audio-hud');
-            const hudTitle = document.getElementById('audio-hud-title');
-            const hudType = document.getElementById('audio-hud-type');
-            const pauseBtn = document.getElementById('audio-hud-pause-btn');
-
-            if (hud && hudTitle && hudType) {
-                hudTitle.textContent = title;
-                hudType.textContent = typeText;
-                hud.style.display = 'flex';
-                if (pauseBtn) pauseBtn.textContent = '⏸️';
-            }
-
-            // Delay speech slightly to let chime ring
-            setTimeout(() => {
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.rate = 0.95;
-                utterance.pitch = 1.05;
-
-                if (availableVoices.length === 0) loadSpeechVoices();
-                const preferredVoice = availableVoices.find(v => v.lang.includes('en-IN') || v.name.includes('India') || v.lang.includes('en-GB') || v.lang.includes('en-US'));
-                if (preferredVoice) utterance.voice = preferredVoice;
-
-                utterance.onend = () => {
-                    stopAudioGuide();
-                };
-
-                utterance.onerror = (e) => {
-                    console.warn('Speech error:', e);
-                    stopAudioGuide();
-                };
-
-                currentUtterance = utterance;
-                isAudioPaused = false;
-                window.speechSynthesis.speak(utterance);
-            }, 850);
-        }
-
-        function togglePauseAudio() {
-            if (!('speechSynthesis' in window)) return;
-            const pauseBtn = document.getElementById('audio-hud-pause-btn');
-            if (isAudioPaused) {
-                window.speechSynthesis.resume();
-                isAudioPaused = false;
-                if (pauseBtn) pauseBtn.textContent = '⏸️';
-                showQuickToast('▶️ Resumed Audio');
-            } else {
-                window.speechSynthesis.pause();
-                isAudioPaused = true;
-                if (pauseBtn) pauseBtn.textContent = '▶️';
-                showQuickToast('⏸️ Paused Audio');
-            }
-        }
-
-        function stopAudioGuide() {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-            }
-            const hud = document.getElementById('bengal-audio-hud');
-            if (hud) hud.style.display = 'none';
-            isAudioPaused = false;
-        }
-
-        // 3. Audio Guide Narrative Bank
-        const AUDIO_NARRATIVES = {
-            'gangani': {
-                title: 'Gangani Grand Canyon of Bengal',
-                type: '🏞️ DESTINATION AUDIO GUIDE',
-                text: 'Welcome to Gangani, famously known as the Grand Canyon of Bengal. Situated along the banks of the ancient Shilabati River in Garhbeta, Paschim Medinipur, Gangani features breathtaking 70-foot crimson laterite gorges carved over millions of years by wind and water erosion. According to local lore and the Mahabharata, this was the forest battlefield where Bhima defeated the demon Bakasura.'
-            },
-            'darjeeling': {
-                title: 'Darjeeling Himalayan Hills',
-                type: '⛰️ HILL STATION AUDIO GUIDE',
-                text: 'Darjeeling, known as the Queen of the Hills, rests in the Eastern Himalayas at an elevation of 6,700 feet. World famous for its UNESCO World Heritage Himalayan Toy Train, emerald green tea estates, and majestic sunrise vistas over Mount Kanchenjunga, Darjeeling blends British colonial architecture with rich Tibetan and Gorkha culture.'
-            },
-            'bishnupur': {
-                title: 'Bishnupur Terracotta Temples',
-                type: '🏛️ HERITAGE AUDIO GUIDE',
-                text: 'Bishnupur in Bankura is the historic terracotta capital of the Malla kings. Built during the 17th and 18th centuries using fired clay bricks and intricate carvings depicting the epics of Ramayana and Mahabharata, Bishnupur is renowned for the iconic Rasmancha, Shyamrai temple, Baluchari silk weaving, and the legendary Mecha Sandesh sweet.'
-            },
-            'victoria': {
-                title: 'Victoria Memorial Kolkata',
-                type: '🏛️ MONUMENT AUDIO GUIDE',
-                text: 'The Victoria Memorial is a grand white Makrana marble monument situated on the Maidan in Kolkata. Built between 1906 and 1921 to celebrate Bengal cultural renaissance and history, it is surrounded by 64 acres of lush gardens and houses an extensive gallery of rare historical paintings, manuscripts, and statues.'
-            },
-            'chilkigarh': {
-                title: 'Chilkigarh Sacred Grove & Kanak Durga',
-                type: '🌳 SECRET FOREST AUDIO GUIDE',
-                text: 'Chilkigarh in Jhargram district is home to an ancient sacred Sal forest grove along the Dulung river. The historic Kanak Durga temple, founded four centuries ago by the local royal dynasty, is surrounded by over 300 species of rare medicinal plants, offering pure wilderness, history, and spiritual tranquility.'
-            },
-            'ghagra': {
-                title: 'Ghagra Waterfalls & Khandarani Lake',
-                type: '🌊 CANYON WATERFALL AUDIO GUIDE',
-                text: 'Located in Belpahari, Ghagra is a mesmerizing natural canyon waterfall where mountain streams carve deep undulating channels through dark laterite and schist rocks. Combined with the scenic Khandarani irrigation dam, it serves as a premier eco-tourism and migratory bird watching haven.'
-            },
-            'mecha_sandesh': {
-                title: 'Bishnupur Mecha Sandesh',
-                type: '🍯 CULINARY TALE',
-                text: 'Mecha Sandesh is a 300-year-old GI-tagged dessert from Bishnupur. Prepared by frying fine gram flour balls in pure desi ghee, bathing them in cardamom-infused warm sugar syrup, and rolling them in aromatic sugar powder, it offers an unforgettable melt-in-the-mouth crunchy texture.'
-            },
-            'mihidana': {
-                title: 'Bardhaman Mihidana & Sitabhog',
-                type: '🍯 ROYAL CULINARY TALE',
-                text: 'Mihidana and Sitabhog are Bengal royal GI-tagged delicacies created in 1904 by master confectioner Bhairab Chandra Nag to welcome British Viceroy Lord Curzon in Bardhaman. Made from fragrant Kaminibhog rice flour, saffron, and fresh cottage cheese vermicelli, they represent Bengal peak culinary artistry.'
-            },
-            'joynagar_moa': {
-                title: 'Joynagarer Moa Winter Legend',
-                type: '🍯 WINTER CULINARY TALE',
-                text: 'Joynagarer Moa is an authentic winter sweet from South 24 Parganas made exclusively from winter-harvested Kanakchur puffed rice, pure date palm Nolen Gur, kheer, cashew nuts, and cardamom. Its delicate softness makes it a winter festival favorite across Bengal.'
-            },
-            'babarsa': {
-                title: 'Medinipur Babarsa Heritage Sweet',
-                type: '🍯 HERITAGE CULINARY TALE',
-                text: 'Babarsa is an artisanal sweet from Khirpai in Paschim Medinipur. Handcrafted into an intricate honeycomb lattice using refined flour, fried in pure ghee, and soaked in warm cardamom syrup, Babarsa has delighted travelers and royal guests across the Medinipur region for centuries.'
-            },
-            'durga_puja': {
-                title: 'Durga Puja Heritage Circuits',
-                type: '🎭 CULTURAL FESTIVAL GUIDE',
-                text: 'Recognized by UNESCO as an Intangible Cultural Heritage of Humanity, Bengal Durga Puja is the world greatest open-air art and cultural carnival. From historic 300-year-old Bonedi Bari family rituals to breathtaking contemporary pandal architecture and rhythmic Dhak drumming, it unites all of Bengal in joy.'
-            },
-            'poush_mela': {
-                title: 'Shantiniketan Poush Mela',
-                type: '🎭 FOLK FESTIVAL GUIDE',
-                text: 'Poush Mela is an iconic cultural festival celebrated in Shantiniketan, Birbhum, founded by Nobel Laureate Rabindranath Tagore family. The mela resonates with soulful Baul and Bhatiyali mystic folk music, Santhali tribal dances, and world-famous handmade Dokra brass metal craft.'
-            }
-        };
-
-        function playDestinationAudioGuide(key) {
-            const data = AUDIO_NARRATIVES[key];
-            if (data) {
-                speakTextWithHUD(data.title, data.type, data.text);
-            }
-        }
-
-        function playCulinaryAudio(key) {
-            const data = AUDIO_NARRATIVES[key];
-            if (data) {
-                speakTextWithHUD(data.title, data.type, data.text);
-            }
-        }
-
-        // 4. Railway Station PA Voice Simulator
-        function playStationPAVoice(trainNumber, trainName, platform, destination) {
-            const text = `May I have your attention please. Train number ${trainNumber}, ${trainName}, scheduled for ${destination}, is arriving shortly on platform number ${platform}. Passengers please take your positions. Have a safe journey with Bengal Explorers.`;
-            speakTextWithHUD(`📢 Station PA: ${trainName}`, `TRAIN ARRIVAL PLATFORM ${platform}`, text);
-        }
-
-        // 5. Culinary Category Filter
-        function filterCulinary(cat, btn) {
-            document.querySelectorAll('#bengal-culinary-section .filter-chip').forEach(c => c.classList.remove('active'));
-            if (btn) btn.classList.add('active');
-
-            const cards = document.querySelectorAll('.culinary-card');
-            cards.forEach(card => {
-                if (cat === 'all' || card.dataset.cat === cat) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-    </script>
+    
 
 </body>
 </html>
