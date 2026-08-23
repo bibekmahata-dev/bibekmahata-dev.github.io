@@ -4866,6 +4866,28 @@
     box-shadow: 0 6px 25px rgba(56, 189, 248, 0.5);
 }
 
+
+/* Responsive Studio Pads for Mobile & Small Screens */
+@media (max-width: 640px) {
+    #railway-soundboard-studio {
+        padding: 16px 14px !important;
+        border-radius: 16px !important;
+    }
+    .studio-pad-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        font-size: 12.5px !important;
+        padding: 9px 12px !important;
+    }
+    #bengal-audio-hud {
+        bottom: 75px !important;
+        right: 12px !important;
+        left: 12px !important;
+        width: auto !important;
+        max-width: none !important;
+    }
+}
+
 </style>
 
     <style id="master-full-bleed-mobile-expansion">
@@ -5191,6 +5213,28 @@
     box-shadow: 0 6px 25px rgba(56, 189, 248, 0.5);
 }
 
+
+/* Responsive Studio Pads for Mobile & Small Screens */
+@media (max-width: 640px) {
+    #railway-soundboard-studio {
+        padding: 16px 14px !important;
+        border-radius: 16px !important;
+    }
+    .studio-pad-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        font-size: 12.5px !important;
+        padding: 9px 12px !important;
+    }
+    #bengal-audio-hud {
+        bottom: 75px !important;
+        right: 12px !important;
+        left: 12px !important;
+        width: auto !important;
+        max-width: none !important;
+    }
+}
+
 </style>
 
 <style id="map-critical-height-fix">
@@ -5495,6 +5539,28 @@
     background: rgba(56, 189, 248, 0.4);
     color: #ffffff;
     box-shadow: 0 6px 25px rgba(56, 189, 248, 0.5);
+}
+
+
+/* Responsive Studio Pads for Mobile & Small Screens */
+@media (max-width: 640px) {
+    #railway-soundboard-studio {
+        padding: 16px 14px !important;
+        border-radius: 16px !important;
+    }
+    .studio-pad-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        font-size: 12.5px !important;
+        padding: 9px 12px !important;
+    }
+    #bengal-audio-hud {
+        bottom: 75px !important;
+        right: 12px !important;
+        left: 12px !important;
+        width: auto !important;
+        max-width: none !important;
+    }
 }
 
 </style>
@@ -12726,15 +12792,17 @@ function triggerConfetti() {
     document.body.appendChild(canvas);
     
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    ctx.scale(dpr, dpr);
 
     const particles = [];
     const colors = ['#f43f5e', '#38bdf8', '#a855f7', '#fbbf24', '#34d399', '#ec4899'];
     for (let i = 0; i < 70; i++) {
         particles.push({
-            x: canvas.width / 2,
-            y: canvas.height / 2 - 50,
+            x: window.innerWidth / 2,
+            y: window.innerHeight / 2 - 50,
             vx: (Math.random() - 0.5) * 16,
             vy: (Math.random() - 0.7) * 16,
             size: Math.random() * 8 + 4,
@@ -12746,7 +12814,7 @@ function triggerConfetti() {
 
     let frame = 0;
     function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
         particles.forEach(p => {
             p.x += p.vx;
             p.y += p.vy;
