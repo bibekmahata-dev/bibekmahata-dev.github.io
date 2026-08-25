@@ -5,7 +5,7 @@
   <!-- PRIMARY ROOT HOMEPAGE &amp; IDENTITY HUB (MAX PRIORITY 1.0) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     
@@ -103,7 +103,7 @@
   <!-- SUBORDINATE ABOUT &amp; FOUNDER PROFILE PAGE (PRIORITY 0.8) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/about.html</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -115,7 +115,7 @@
   <!-- BLOG &amp; GUIDES (PRIORITY 0.8) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/blog.html</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -123,14 +123,14 @@
   <!-- LEGAL &amp; CONTACT (PRIORITY 0.6) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/privacy.html</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://bibekmahata-dev.github.io/contact.html</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
