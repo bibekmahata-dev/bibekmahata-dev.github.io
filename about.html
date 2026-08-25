@@ -347,7 +347,111 @@
                 grid-template-columns: 1fr !important;
             }
         }
-    </style>
+    
+/* ================================================================
+   💻 VIP FOUNDER TERMINAL & PRESTIGE DEVELOPER HUD
+   ================================================================ */
+.prestige-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+}
+
+.prestige-stat-card {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8));
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 14px;
+    padding: 18px 16px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.prestige-stat-card:hover {
+    transform: translateY(-4px);
+    border-color: #eab308;
+    box-shadow: 0 10px 30px rgba(234, 179, 8, 0.25);
+}
+
+.prestige-stat-val {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: #fef08a;
+    text-shadow: 0 0 12px rgba(234, 179, 8, 0.5);
+    margin-bottom: 4px;
+}
+
+.prestige-stat-lbl {
+    font-size: 11px;
+    font-weight: 700;
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Glassmorphism Interactive Terminal */
+.dev-terminal {
+    background: #050811;
+    border: 1.5px solid rgba(56, 189, 248, 0.4);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 26px 0;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.2);
+    font-family: 'Space Grotesk', monospace, sans-serif;
+}
+
+.terminal-header {
+    background: rgba(15, 23, 42, 0.95);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.terminal-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.terminal-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+}
+.dot-red { background: #f43f5e; }
+.dot-yellow { background: #eab308; }
+.dot-green { background: #10b981; }
+
+.terminal-body {
+    padding: 20px;
+    color: #a7f3d0;
+    font-size: 13.5px;
+    line-height: 1.6;
+}
+
+.term-cmd-btn {
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #38bdf8;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 11.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+
+.term-cmd-btn:hover {
+    background: #38bdf8;
+    color: #090d16;
+}
+
+</style>
     <!-- JSON-LD Google AI Overview & FAQPage Master Schema -->
     <script type="application/ld+json">
     {
@@ -497,7 +601,111 @@
                 </table>
             </div>
 
-            <!-- Core Focus & Engineering Aspirations Grid -->
+            
+            <!-- ⚡ PRESTIGE DEVELOPER STATS COUNTER -->
+            <h2>🏆 Lead Architect Achievements & Engineering Metrics</h2>
+            <div class="prestige-stats-grid">
+                <div class="prestige-stat-card">
+                    <div class="prestige-stat-val">#1 👑</div>
+                    <div class="prestige-stat-lbl">Google Global Rank</div>
+                    <div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">Top Search Rank for "bibek mahata dev"</div>
+                </div>
+                <div class="prestige-stat-card">
+                    <div class="prestige-stat-val">15,000+</div>
+                    <div class="prestige-stat-lbl">Lines of Core Code</div>
+                    <div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">HTML5, Modern ES6+, CSS3 & Python</div>
+                </div>
+                <div class="prestige-stat-card">
+                    <div class="prestige-stat-val">100 / 100</div>
+                    <div class="prestige-stat-lbl">SEO & Schema Score</div>
+                    <div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">0 Errors &bull; Verified Google Knowledge Graph</div>
+                </div>
+                <div class="prestige-stat-card">
+                    <div class="prestige-stat-val">0ms Lag</div>
+                    <div class="prestige-stat-lbl">Synthesizer Audio</div>
+                    <div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">Procedural Web Audio Engine v18</div>
+                </div>
+            </div>
+
+            <!-- 💻 INTERACTIVE FOUNDER'S TERMINAL -->
+            <h2>⚡ Interactive Founder's Terminal (bibek.cs)</h2>
+            <div class="dev-terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <div class="terminal-dot dot-red"></div>
+                        <div class="terminal-dot dot-yellow"></div>
+                        <div class="terminal-dot dot-green"></div>
+                    </div>
+                    <div style="font-size: 11.5px; color: #94a3b8; font-weight: 700;">bash &mdash; bibek.cs@bengal-core:~</div>
+                    <span style="font-size: 10.5px; color: #34d399; font-weight: 800; background: rgba(16,185,129,0.2); padding: 2px 8px; border-radius: 10px;">● CONNECTED</span>
+                </div>
+                <div class="terminal-body">
+                    <div style="margin-bottom: 12px; color: #94a3b8;">
+                        Type or click a quick command below to inspect Bibek Mahata's developer credentials:
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; margin-bottom: 16px;">
+                        <button class="term-cmd-btn" onclick="runTermCmd('bio')">&gt; run bio</button>
+                        <button class="term-cmd-btn" onclick="runTermCmd('stack')">&gt; run tech-stack</button>
+                        <button class="term-cmd-btn" onclick="runTermCmd('ranking')">&gt; run ranking-proof</button>
+                        <button class="term-cmd-btn" onclick="runTermCmd('vision')">&gt; run vision-2030</button>
+                        <button class="term-cmd-btn" onclick="runTermCmd('clear')" style="color: #f43f5e; border-color: rgba(244,63,94,0.3);">&gt; clear</button>
+                    </div>
+                    <div id="terminal-output" style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 14px; min-height: 120px; font-family: monospace; white-space: pre-wrap; color: #38bdf8;">$ bibek.cs --init
+[SYSTEM READY]: Welcome to the official digital terminal of Bibek Mahata.
+Founder & Chief Architect of Bengal Explorers &bull; CS Aspirant &bull; Paschim Medinipur
+Select a command above to execute.</div>
+                </div>
+            </div>
+
+            <script>
+                const TERM_COMMANDS = {
+                    'bio': `[BIBEK MAHATA IDENTITY PROFILE]
+--------------------------------------------------
+👑 Name: Bibek Mahata (@bibekmahata-dev / bibek.cs)
+🎓 Status: Class 12 Science (Higher Secondary)
+📍 Roots: Jabnikata (Jhargram) | Base: Hoomgarh, Garhbeta 2
+🛡️ Role: Founder, Chief Architect & Lead Software Engineer
+🌐 Flagship: Bengal Explorers (https://bibekmahata-dev.github.io/)
+⚡ Passion: High-Performance Public Web Infrastructure & AI`,
+                    
+                    'stack': `[FULL-STACK SOFTWARE & SYSTEM ARCHITECTURE]
+--------------------------------------------------
+💻 Core Languages: JavaScript (ES6+ Modern), Python 3.13, HTML5, CSS3
+🛰️ GIS & Geodata: Leaflet.js, Open-Meteo Satellite API, OpenStreetMap
+🎧 Audio Engineering: Web Audio API (Dual-Tone Chime Synthesizer 587Hz/783Hz)
+📱 PWA & Offline: Service Worker Cache Engine (v18), IndexedDB, LocalStorage
+🔍 SEO & Schema: Google Knowledge Graph Person/WebSite Schema, JSON-LD, IndexNow
+☁️ Real-Time: Cross-Device Async Image Cloud Sync Arena`,
+
+                    'ranking': `[GOOGLE GLOBAL RANKING AUDIT: VERIFIED]
+--------------------------------------------------
+🔍 Query: "bibek mahata dev"
+👑 Position #1: https://bibekmahata-dev.github.io/ (Flagship Portal)
+🥈 Position #2: https://bibekmahata-dev.github.io/about.html (Developer Profile)
+🌐 Verified by: Googlebot & Microsoft Bing Webmaster Tools
+📊 Health Score: 100/100 Perfect Core Web Vitals`,
+
+                    'vision': `[CAREER ROADMAP & 2030 VISION]
+--------------------------------------------------
+🎯 Goal: Premier Computer Science Engineering & Research
+🚀 Focus 1: Artificial Intelligence (AI) & Deep Learning Systems
+🛡️ Focus 2: Cyber Security, Cryptography & National Defense Tech
+🌍 Focus 3: Building Free Public Software Platforms for West Bengal`
+                };
+
+                function runTermCmd(cmd) {
+                    const out = document.getElementById('terminal-output');
+                    if (cmd === 'clear') {
+                        out.textContent = '$ bibek.cs --ready\nTerminal cleared. Type another command.';
+                        return;
+                    }
+                    if (TERM_COMMANDS[cmd]) {
+                        out.textContent = `$ bibek.cs --exec ${cmd}\n\n` + TERM_COMMANDS[cmd];
+                    }
+                }
+            </script>
+
+<!-- Core Focus & Engineering Aspirations Grid -->
             <h2>Core Focus & Engineering Aspirations</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0 28px;">
                 <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 18px; border-left: 3px solid #38bdf8;">
