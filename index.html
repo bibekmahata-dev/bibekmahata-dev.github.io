@@ -4967,6 +4967,267 @@
     }
 }
 
+
+/* ================================================================
+   ✨ 1. ATMOSPHERE LIGHTING MODES (DAY / SUNSET / MIDNIGHT)
+   ================================================================ */
+:root {
+    --atmo-bg: #090d16;
+    --atmo-card-bg: rgba(15, 23, 42, 0.95);
+    --atmo-card-border: rgba(56, 189, 248, 0.25);
+    --atmo-glow: rgba(234, 179, 8, 0.25);
+    --atmo-accent: #eab308;
+    --atmo-text: #f8fafc;
+}
+
+body.atmo-day {
+    --atmo-bg: #0f172a;
+    --atmo-card-bg: rgba(30, 41, 59, 0.96);
+    --atmo-card-border: rgba(234, 179, 8, 0.4);
+    --atmo-glow: rgba(234, 179, 8, 0.35);
+    --atmo-accent: #fbbf24;
+}
+
+body.atmo-sunset {
+    --atmo-bg: #1a0b1e;
+    --atmo-card-bg: rgba(45, 20, 44, 0.95);
+    --atmo-card-border: rgba(244, 63, 94, 0.4);
+    --atmo-glow: rgba(244, 63, 94, 0.35);
+    --atmo-accent: #f43f5e;
+}
+
+body.atmo-midnight {
+    --atmo-bg: #050811;
+    --atmo-card-bg: rgba(10, 15, 29, 0.98);
+    --atmo-card-border: rgba(56, 189, 248, 0.3);
+    --atmo-glow: rgba(56, 189, 248, 0.3);
+    --atmo-accent: #38bdf8;
+}
+
+/* Atmosphere Switcher Floating Bar */
+.atmo-switcher {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    padding: 3px 6px;
+    gap: 4px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.atmo-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.atmo-btn.active {
+    background: var(--atmo-accent);
+    color: #090d16;
+    font-weight: 900;
+    box-shadow: 0 0 12px var(--atmo-glow);
+}
+
+/* 3D Tilt-Shift on Cards */
+.tilt-card {
+    transition: transform 0.15s ease-out, box-shadow 0.25s ease;
+    will-change: transform;
+    transform-style: preserve-3d;
+}
+
+/* ================================================================
+   🧭 2. BENGAL EXPLORER PASSPORT & DIGITAL STAMP SYSTEM
+   ================================================================ */
+#passport-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 8, 17, 0.88);
+    backdrop-filter: blur(14px);
+    z-index: 100000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.passport-book {
+    width: 100%;
+    max-width: 440px;
+    background: linear-gradient(145deg, #091124, #050b18);
+    border: 2.5px solid #eab308;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(234, 179, 8, 0.35);
+    position: relative;
+    box-sizing: border-box;
+    max-height: 92vh;
+    overflow-y: auto;
+}
+
+.passport-header {
+    text-align: center;
+    border-bottom: 2px dashed rgba(234, 179, 8, 0.3);
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+}
+
+.passport-emblem {
+    font-size: 38px;
+    filter: drop-shadow(0 0 15px rgba(234, 179, 8, 0.6));
+    margin-bottom: 6px;
+}
+
+.passport-title {
+    font-family: var(--font-title, 'Cinzel', serif);
+    font-size: 20px;
+    font-weight: 900;
+    color: #fef08a;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.passport-subtitle {
+    font-size: 11.5px;
+    color: #94a3b8;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.passport-user-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+}
+
+.passport-stamp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.passport-stamp {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1.5px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    padding: 12px 10px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    cursor: pointer;
+}
+
+.passport-stamp.unlocked {
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.15), rgba(16, 185, 129, 0.1));
+    border: 1.5px solid #eab308;
+    box-shadow: 0 4px 20px rgba(234, 179, 8, 0.25);
+    transform: translateY(-2px);
+}
+
+.passport-stamp.unlocked::after {
+    content: '✓ VERIFIED';
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 8.5px;
+    font-weight: 900;
+    color: #34d399;
+    letter-spacing: 0.5px;
+}
+
+.passport-stamp .stamp-icon {
+    font-size: 26px;
+    margin-bottom: 4px;
+    display: block;
+    filter: grayscale(100%) opacity(0.35);
+    transition: all 0.3s ease;
+}
+
+.passport-stamp.unlocked .stamp-icon {
+    filter: grayscale(0%) opacity(1) drop-shadow(0 0 8px rgba(234, 179, 8, 0.6));
+    transform: scale(1.1);
+}
+
+.passport-stamp .stamp-name {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #cbd5e1;
+    font-family: var(--font-title, sans-serif);
+}
+
+.passport-stamp.unlocked .stamp-name {
+    color: #fef08a;
+}
+
+.passport-stamp .stamp-loc {
+    font-size: 10px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.passport-stamp.unlocked .stamp-loc {
+    color: #38bdf8;
+}
+
+/* ================================================================
+   🍯 3. CULINARY RADAR TASTE METERS & BADGES
+   ================================================================ */
+.taste-radar-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+
+.taste-dots {
+    display: inline-flex;
+    gap: 3px;
+}
+
+.taste-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.taste-dot.active-gold {
+    background: #eab308;
+    box-shadow: 0 0 6px #eab308;
+}
+
+.taste-dot.active-red {
+    background: #f43f5e;
+    box-shadow: 0 0 6px #f43f5e;
+}
+
+.taste-dot.active-green {
+    background: #10b981;
+    box-shadow: 0 0 6px #10b981;
+}
+
 </style>
 
     <style id="master-full-bleed-mobile-expansion">
@@ -5393,6 +5654,267 @@
     }
 }
 
+
+/* ================================================================
+   ✨ 1. ATMOSPHERE LIGHTING MODES (DAY / SUNSET / MIDNIGHT)
+   ================================================================ */
+:root {
+    --atmo-bg: #090d16;
+    --atmo-card-bg: rgba(15, 23, 42, 0.95);
+    --atmo-card-border: rgba(56, 189, 248, 0.25);
+    --atmo-glow: rgba(234, 179, 8, 0.25);
+    --atmo-accent: #eab308;
+    --atmo-text: #f8fafc;
+}
+
+body.atmo-day {
+    --atmo-bg: #0f172a;
+    --atmo-card-bg: rgba(30, 41, 59, 0.96);
+    --atmo-card-border: rgba(234, 179, 8, 0.4);
+    --atmo-glow: rgba(234, 179, 8, 0.35);
+    --atmo-accent: #fbbf24;
+}
+
+body.atmo-sunset {
+    --atmo-bg: #1a0b1e;
+    --atmo-card-bg: rgba(45, 20, 44, 0.95);
+    --atmo-card-border: rgba(244, 63, 94, 0.4);
+    --atmo-glow: rgba(244, 63, 94, 0.35);
+    --atmo-accent: #f43f5e;
+}
+
+body.atmo-midnight {
+    --atmo-bg: #050811;
+    --atmo-card-bg: rgba(10, 15, 29, 0.98);
+    --atmo-card-border: rgba(56, 189, 248, 0.3);
+    --atmo-glow: rgba(56, 189, 248, 0.3);
+    --atmo-accent: #38bdf8;
+}
+
+/* Atmosphere Switcher Floating Bar */
+.atmo-switcher {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    padding: 3px 6px;
+    gap: 4px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.atmo-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.atmo-btn.active {
+    background: var(--atmo-accent);
+    color: #090d16;
+    font-weight: 900;
+    box-shadow: 0 0 12px var(--atmo-glow);
+}
+
+/* 3D Tilt-Shift on Cards */
+.tilt-card {
+    transition: transform 0.15s ease-out, box-shadow 0.25s ease;
+    will-change: transform;
+    transform-style: preserve-3d;
+}
+
+/* ================================================================
+   🧭 2. BENGAL EXPLORER PASSPORT & DIGITAL STAMP SYSTEM
+   ================================================================ */
+#passport-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 8, 17, 0.88);
+    backdrop-filter: blur(14px);
+    z-index: 100000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.passport-book {
+    width: 100%;
+    max-width: 440px;
+    background: linear-gradient(145deg, #091124, #050b18);
+    border: 2.5px solid #eab308;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(234, 179, 8, 0.35);
+    position: relative;
+    box-sizing: border-box;
+    max-height: 92vh;
+    overflow-y: auto;
+}
+
+.passport-header {
+    text-align: center;
+    border-bottom: 2px dashed rgba(234, 179, 8, 0.3);
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+}
+
+.passport-emblem {
+    font-size: 38px;
+    filter: drop-shadow(0 0 15px rgba(234, 179, 8, 0.6));
+    margin-bottom: 6px;
+}
+
+.passport-title {
+    font-family: var(--font-title, 'Cinzel', serif);
+    font-size: 20px;
+    font-weight: 900;
+    color: #fef08a;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.passport-subtitle {
+    font-size: 11.5px;
+    color: #94a3b8;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.passport-user-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+}
+
+.passport-stamp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.passport-stamp {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1.5px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    padding: 12px 10px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    cursor: pointer;
+}
+
+.passport-stamp.unlocked {
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.15), rgba(16, 185, 129, 0.1));
+    border: 1.5px solid #eab308;
+    box-shadow: 0 4px 20px rgba(234, 179, 8, 0.25);
+    transform: translateY(-2px);
+}
+
+.passport-stamp.unlocked::after {
+    content: '✓ VERIFIED';
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 8.5px;
+    font-weight: 900;
+    color: #34d399;
+    letter-spacing: 0.5px;
+}
+
+.passport-stamp .stamp-icon {
+    font-size: 26px;
+    margin-bottom: 4px;
+    display: block;
+    filter: grayscale(100%) opacity(0.35);
+    transition: all 0.3s ease;
+}
+
+.passport-stamp.unlocked .stamp-icon {
+    filter: grayscale(0%) opacity(1) drop-shadow(0 0 8px rgba(234, 179, 8, 0.6));
+    transform: scale(1.1);
+}
+
+.passport-stamp .stamp-name {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #cbd5e1;
+    font-family: var(--font-title, sans-serif);
+}
+
+.passport-stamp.unlocked .stamp-name {
+    color: #fef08a;
+}
+
+.passport-stamp .stamp-loc {
+    font-size: 10px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.passport-stamp.unlocked .stamp-loc {
+    color: #38bdf8;
+}
+
+/* ================================================================
+   🍯 3. CULINARY RADAR TASTE METERS & BADGES
+   ================================================================ */
+.taste-radar-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+
+.taste-dots {
+    display: inline-flex;
+    gap: 3px;
+}
+
+.taste-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.taste-dot.active-gold {
+    background: #eab308;
+    box-shadow: 0 0 6px #eab308;
+}
+
+.taste-dot.active-red {
+    background: #f43f5e;
+    box-shadow: 0 0 6px #f43f5e;
+}
+
+.taste-dot.active-green {
+    background: #10b981;
+    box-shadow: 0 0 6px #10b981;
+}
+
 </style>
 
 <style id="map-critical-height-fix">
@@ -5798,6 +6320,267 @@
     h2, h3 {
         font-size: 18px !important;
     }
+}
+
+
+/* ================================================================
+   ✨ 1. ATMOSPHERE LIGHTING MODES (DAY / SUNSET / MIDNIGHT)
+   ================================================================ */
+:root {
+    --atmo-bg: #090d16;
+    --atmo-card-bg: rgba(15, 23, 42, 0.95);
+    --atmo-card-border: rgba(56, 189, 248, 0.25);
+    --atmo-glow: rgba(234, 179, 8, 0.25);
+    --atmo-accent: #eab308;
+    --atmo-text: #f8fafc;
+}
+
+body.atmo-day {
+    --atmo-bg: #0f172a;
+    --atmo-card-bg: rgba(30, 41, 59, 0.96);
+    --atmo-card-border: rgba(234, 179, 8, 0.4);
+    --atmo-glow: rgba(234, 179, 8, 0.35);
+    --atmo-accent: #fbbf24;
+}
+
+body.atmo-sunset {
+    --atmo-bg: #1a0b1e;
+    --atmo-card-bg: rgba(45, 20, 44, 0.95);
+    --atmo-card-border: rgba(244, 63, 94, 0.4);
+    --atmo-glow: rgba(244, 63, 94, 0.35);
+    --atmo-accent: #f43f5e;
+}
+
+body.atmo-midnight {
+    --atmo-bg: #050811;
+    --atmo-card-bg: rgba(10, 15, 29, 0.98);
+    --atmo-card-border: rgba(56, 189, 248, 0.3);
+    --atmo-glow: rgba(56, 189, 248, 0.3);
+    --atmo-accent: #38bdf8;
+}
+
+/* Atmosphere Switcher Floating Bar */
+.atmo-switcher {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    padding: 3px 6px;
+    gap: 4px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.atmo-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.atmo-btn.active {
+    background: var(--atmo-accent);
+    color: #090d16;
+    font-weight: 900;
+    box-shadow: 0 0 12px var(--atmo-glow);
+}
+
+/* 3D Tilt-Shift on Cards */
+.tilt-card {
+    transition: transform 0.15s ease-out, box-shadow 0.25s ease;
+    will-change: transform;
+    transform-style: preserve-3d;
+}
+
+/* ================================================================
+   🧭 2. BENGAL EXPLORER PASSPORT & DIGITAL STAMP SYSTEM
+   ================================================================ */
+#passport-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 8, 17, 0.88);
+    backdrop-filter: blur(14px);
+    z-index: 100000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.passport-book {
+    width: 100%;
+    max-width: 440px;
+    background: linear-gradient(145deg, #091124, #050b18);
+    border: 2.5px solid #eab308;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(234, 179, 8, 0.35);
+    position: relative;
+    box-sizing: border-box;
+    max-height: 92vh;
+    overflow-y: auto;
+}
+
+.passport-header {
+    text-align: center;
+    border-bottom: 2px dashed rgba(234, 179, 8, 0.3);
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+}
+
+.passport-emblem {
+    font-size: 38px;
+    filter: drop-shadow(0 0 15px rgba(234, 179, 8, 0.6));
+    margin-bottom: 6px;
+}
+
+.passport-title {
+    font-family: var(--font-title, 'Cinzel', serif);
+    font-size: 20px;
+    font-weight: 900;
+    color: #fef08a;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.passport-subtitle {
+    font-size: 11.5px;
+    color: #94a3b8;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.passport-user-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+}
+
+.passport-stamp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.passport-stamp {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1.5px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    padding: 12px 10px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    cursor: pointer;
+}
+
+.passport-stamp.unlocked {
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.15), rgba(16, 185, 129, 0.1));
+    border: 1.5px solid #eab308;
+    box-shadow: 0 4px 20px rgba(234, 179, 8, 0.25);
+    transform: translateY(-2px);
+}
+
+.passport-stamp.unlocked::after {
+    content: '✓ VERIFIED';
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 8.5px;
+    font-weight: 900;
+    color: #34d399;
+    letter-spacing: 0.5px;
+}
+
+.passport-stamp .stamp-icon {
+    font-size: 26px;
+    margin-bottom: 4px;
+    display: block;
+    filter: grayscale(100%) opacity(0.35);
+    transition: all 0.3s ease;
+}
+
+.passport-stamp.unlocked .stamp-icon {
+    filter: grayscale(0%) opacity(1) drop-shadow(0 0 8px rgba(234, 179, 8, 0.6));
+    transform: scale(1.1);
+}
+
+.passport-stamp .stamp-name {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #cbd5e1;
+    font-family: var(--font-title, sans-serif);
+}
+
+.passport-stamp.unlocked .stamp-name {
+    color: #fef08a;
+}
+
+.passport-stamp .stamp-loc {
+    font-size: 10px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.passport-stamp.unlocked .stamp-loc {
+    color: #38bdf8;
+}
+
+/* ================================================================
+   🍯 3. CULINARY RADAR TASTE METERS & BADGES
+   ================================================================ */
+.taste-radar-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+
+.taste-dots {
+    display: inline-flex;
+    gap: 3px;
+}
+
+.taste-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.taste-dot.active-gold {
+    background: #eab308;
+    box-shadow: 0 0 6px #eab308;
+}
+
+.taste-dot.active-red {
+    background: #f43f5e;
+    box-shadow: 0 0 6px #f43f5e;
+}
+
+.taste-dot.active-green {
+    background: #10b981;
+    box-shadow: 0 0 6px #10b981;
 }
 
 </style>
@@ -7979,7 +8762,17 @@
                 </div>
 
 <!-- Dynamic Train Board Section -->
-                <div id="transit-section" style="scroll-margin-top: 80px;" style="margin-bottom: 40px; padding-bottom: 75px; scroll-margin-top: 80px;">
+                
+                    <!-- ✨ LIVE ATMOSPHERE LIGHTING SWITCHER -->
+                    <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
+                        <div class="atmo-switcher">
+                            <button id="atmo-btn-day" class="atmo-btn" onclick="window.setAtmosphere('day')" title="Daylight Gold Lighting">☀️ Day</button>
+                            <button id="atmo-btn-sunset" class="atmo-btn" onclick="window.setAtmosphere('sunset')" title="Monsoon Sunset Crimson Lighting">🌅 Sunset</button>
+                            <button id="atmo-btn-midnight" class="atmo-btn active" onclick="window.setAtmosphere('midnight')" title="Midnight Cyber-Explorer Lighting">🌌 Midnight</button>
+                        </div>
+                    </div>
+
+<div id="transit-section" style="scroll-margin-top: 80px;" style="margin-bottom: 40px; padding-bottom: 75px; scroll-margin-top: 80px;">
 
                     <!-- 📢 BENGAL RAILWAY VOICE & AUDIO GUIDE SOUNDBOARD -->
                     <div id="railway-soundboard-studio" style="background: linear-gradient(135deg, rgba(234, 179, 8, 0.22), rgba(15, 23, 42, 0.98), rgba(56, 189, 248, 0.18)); border: 2.5px solid #eab308; border-radius: 20px; padding: 24px 28px; margin-bottom: 30px; animation: studioBorderPulse 4s ease-in-out infinite; position: relative; overflow: hidden;">
@@ -15163,6 +15956,251 @@ document.addEventListener('keydown', (e) => {
 
 
     
+
+
+    <!-- ================================================================
+         🧭 BENGAL EXPLORER PASSPORT MODAL (INSTAGRAM STORY EXPORT ENGINE)
+         ================================================================ -->
+    <div id="passport-modal">
+        <div class="passport-book" id="passport-printable-card">
+            <!-- Close Button -->
+            <button onclick="closePassportModal()" style="position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #cbd5e1; border-radius: 50%; width: 32px; height: 32px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10;">✕</button>
+
+            <!-- Passport Header -->
+            <div class="passport-header">
+                <div class="passport-emblem">🧭</div>
+                <div class="passport-title">BENGAL EXPLORERS</div>
+                <div class="passport-subtitle">OFFICIAL EXPEDITION PASSPORT</div>
+                <div style="font-size: 10px; color: #34d399; font-weight: 800; margin-top: 4px; letter-spacing: 1px;">GOVT OF WEST BENGAL TRAVEL PROTOCOL &bull; ISSUED 2026</div>
+            </div>
+
+            <!-- Explorer User Profile Row -->
+            <div class="passport-user-row">
+                <div>
+                    <div style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">EXPLORER NAME</div>
+                    <div id="passport-user-name" style="font-size: 15px; font-weight: 900; color: #fef08a; font-family: var(--font-title, sans-serif);">Explorer of Bengal</div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">STAMPS UNLOCKED</div>
+                    <div id="passport-stamp-counter" style="font-size: 15px; font-weight: 900; color: #38bdf8;">0 / 8 STAMPS</div>
+                </div>
+            </div>
+
+            <!-- 8 Collectible Digital Holographic Stamps -->
+            <div class="passport-stamp-grid">
+                <!-- Stamp 1 -->
+                <div class="passport-stamp" id="stamp-gangani" onclick="unlockPassportStamp('gangani', true)">
+                    <span class="stamp-icon">🏞️</span>
+                    <div class="stamp-name">Canyon Conqueror</div>
+                    <div class="stamp-loc">Gangani &bull; Garhbeta</div>
+                </div>
+                <!-- Stamp 2 -->
+                <div class="passport-stamp" id="stamp-bishnupur" onclick="unlockPassportStamp('bishnupur', true)">
+                    <span class="stamp-icon">🏛️</span>
+                    <div class="stamp-name">Heritage Historian</div>
+                    <div class="stamp-loc">Terracotta &bull; Bishnupur</div>
+                </div>
+                <!-- Stamp 3 -->
+                <div class="passport-stamp" id="stamp-darjeeling" onclick="unlockPassportStamp('darjeeling', true)">
+                    <span class="stamp-icon">🍵</span>
+                    <div class="stamp-name">Tea Connoisseur</div>
+                    <div class="stamp-loc">Himalayas &bull; Darjeeling</div>
+                </div>
+                <!-- Stamp 4 -->
+                <div class="passport-stamp" id="stamp-digha" onclick="unlockPassportStamp('digha', true)">
+                    <span class="stamp-icon">🌊</span>
+                    <div class="stamp-name">Coastal Navigator</div>
+                    <div class="stamp-loc">Bay of Bengal &bull; Digha</div>
+                </div>
+                <!-- Stamp 5 -->
+                <div class="passport-stamp" id="stamp-chilkigarh" onclick="unlockPassportStamp('chilkigarh', true)">
+                    <span class="stamp-icon">🌳</span>
+                    <div class="stamp-name">Sacred Grove Scout</div>
+                    <div class="stamp-loc">Forest &bull; Jhargram</div>
+                </div>
+                <!-- Stamp 6 -->
+                <div class="passport-stamp" id="stamp-bardhaman" onclick="unlockPassportStamp('bardhaman', true)">
+                    <span class="stamp-icon">🍯</span>
+                    <div class="stamp-name">Royal Confectioner</div>
+                    <div class="stamp-loc">Mihidana &bull; Bardhaman</div>
+                </div>
+                <!-- Stamp 7 -->
+                <div class="passport-stamp" id="stamp-shantiniketan" onclick="unlockPassportStamp('shantiniketan', true)">
+                    <span class="stamp-icon">🎭</span>
+                    <div class="stamp-name">Baul &amp; Folk Mystic</div>
+                    <div class="stamp-loc">Poush Mela &bull; Birbhum</div>
+                </div>
+                <!-- Stamp 8 -->
+                <div class="passport-stamp" id="stamp-rail" onclick="unlockPassportStamp('rail', true)">
+                    <span class="stamp-icon">🚆</span>
+                    <div class="stamp-name">SER Rail Master</div>
+                    <div class="stamp-loc">Howrah &bull; Kharagpur</div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div style="display: flex; gap: 10px; flex-direction: column;">
+                <button onclick="downloadPassportInstagramStory()" style="background: linear-gradient(135deg, #f43f5e, #eab308); color: #090d16; border: none; border-radius: 12px; padding: 12px; font-weight: 900; font-size: 13.5px; font-family: var(--font-title, sans-serif); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 20px rgba(244, 63, 94, 0.4);">
+                    <span>📸 Download Instagram Story Card (9:16 HD)</span>
+                </button>
+                <div style="display: flex; gap: 8px;">
+                    <button onclick="unlockAllStamps()" style="flex: 1; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; border-radius: 10px; padding: 8px; font-size: 11.5px; font-weight: 800; cursor: pointer;">
+                        ✨ Unlock All Stamps
+                    </button>
+                    <button onclick="resetPassportStamps()" style="flex: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); color: #94a3b8; border-radius: 10px; padding: 8px; font-size: 11.5px; font-weight: 700; cursor: pointer;">
+                        🔄 Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================================================================
+         🌟 MEGA CREATIVE ENGINES: PASSPORT, ATMOSPHERE & 3D TILT
+         ================================================================ -->
+    <script>
+        // 1. ATMOSPHERE LIGHTING CONTROLLER
+        window.setAtmosphere = function(mode) {
+            document.body.classList.remove('atmo-day', 'atmo-sunset', 'atmo-midnight');
+            document.querySelectorAll('.atmo-btn').forEach(btn => btn.classList.remove('active'));
+
+            if (mode === 'day') {
+                document.body.classList.add('atmo-day');
+                const btn = document.getElementById('atmo-btn-day');
+                if (btn) btn.classList.add('active');
+                showQuickToast('☀️ Daylight Bengal Lighting Activated');
+            } else if (mode === 'sunset') {
+                document.body.classList.add('atmo-sunset');
+                const btn = document.getElementById('atmo-btn-sunset');
+                if (btn) btn.classList.add('active');
+                showQuickToast('🌅 Monsoon Sunset Crimson Lighting Activated');
+            } else {
+                document.body.classList.add('atmo-midnight');
+                const btn = document.getElementById('atmo-btn-midnight');
+                if (btn) btn.classList.add('active');
+                showQuickToast('🌌 Midnight Explorer Cyber Glow Activated');
+            }
+            try { localStorage.setItem('bengal_atmosphere', mode); } catch(e){}
+        };
+
+        // 2. PASSPORT STAMP CONTROLLER
+        const STAMP_KEYS = ['gangani', 'bishnupur', 'darjeeling', 'digha', 'chilkigarh', 'bardhaman', 'shantiniketan', 'rail'];
+        
+        window.getUnlockedStamps = function() {
+            try {
+                const data = localStorage.getItem('bengal_passport_stamps');
+                return data ? JSON.parse(data) : ['gangani', 'bishnupur'];
+            } catch(e) {
+                return ['gangani', 'bishnupur'];
+            }
+        };
+
+        window.openPassportModal = function() {
+            const modal = document.getElementById('passport-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+                renderPassportState();
+            }
+        };
+
+        window.closePassportModal = function() {
+            const modal = document.getElementById('passport-modal');
+            if (modal) modal.style.display = 'none';
+        };
+
+        window.unlockPassportStamp = function(key, manual) {
+            let stamps = window.getUnlockedStamps();
+            if (!stamps.includes(key)) {
+                stamps.push(key);
+                try { localStorage.setItem('bengal_passport_stamps', JSON.stringify(stamps)); } catch(e){}
+                if (typeof triggerConfetti === 'function') triggerConfetti();
+                showQuickToast(`🎖️ Digital Stamp Unlocked: ${key.toUpperCase()}!`);
+            }
+            renderPassportState();
+        };
+
+        window.unlockAllStamps = function() {
+            try { localStorage.setItem('bengal_passport_stamps', JSON.stringify(STAMP_KEYS)); } catch(e){}
+            if (typeof triggerConfetti === 'function') triggerConfetti();
+            showQuickToast('🌟 Master Explorer: All 8 Digital Stamps Unlocked!');
+            renderPassportState();
+        };
+
+        window.resetPassportStamps = function() {
+            try { localStorage.setItem('bengal_passport_stamps', JSON.stringify([])); } catch(e){}
+            showQuickToast('🔄 Passport stamps reset');
+            renderPassportState();
+        };
+
+        function renderPassportState() {
+            const unlocked = window.getUnlockedStamps();
+            const counter = document.getElementById('passport-stamp-counter');
+            if (counter) counter.textContent = `${unlocked.length} / ${STAMP_KEYS.length} STAMPS`;
+
+            STAMP_KEYS.forEach(key => {
+                const el = document.getElementById(`stamp-${key}`);
+                if (el) {
+                    if (unlocked.includes(key)) {
+                        el.classList.add('unlocked');
+                    } else {
+                        el.classList.remove('unlocked');
+                    }
+                }
+            });
+        }
+
+        // 3. INSTAGRAM STORY PASSPORT EXPORTER
+        window.downloadPassportInstagramStory = function() {
+            if (typeof html2canvas === 'undefined') {
+                showQuickToast('⚠️ Loading graphics engine...');
+                return;
+            }
+            showQuickToast('📸 Rendering 9:16 HD Instagram Story Card...');
+            const card = document.getElementById('passport-printable-card');
+            
+            html2canvas(card, {
+                scale: 3,
+                backgroundColor: '#090d16',
+                useCORS: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `bengal-explorer-passport.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                if (typeof triggerConfetti === 'function') triggerConfetti();
+                showQuickToast('✨ Passport saved! Share it on your Instagram Story!');
+            });
+        };
+
+        // 4. 3D CARD TILT-SHIFT INTERACTION
+        document.addEventListener('DOMContentLoaded', () => {
+            const tiltElements = document.querySelectorAll('.portal-card, .bengal-route-card, .squad-card, .culinary-card');
+            tiltElements.forEach(el => {
+                el.classList.add('tilt-card');
+                el.addEventListener('mousemove', (e) => {
+                    if (window.innerWidth < 768) return; // Disable on touch mobile for performance
+                    const rect = el.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotX = ((y - centerY) / centerY) * -5;
+                    const rotY = ((x - centerX) / centerX) * 5;
+                    el.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
+                });
+                el.addEventListener('mouseleave', () => {
+                    el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+                });
+            });
+
+            // Initialize saved atmosphere
+            try {
+                const savedAtmo = localStorage.getItem('bengal_atmosphere') || 'midnight';
+                window.setAtmosphere(savedAtmo);
+            } catch(e){}
+        });
+    </script>
 
 </body>
 </html>
