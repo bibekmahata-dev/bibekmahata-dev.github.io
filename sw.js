@@ -4,8 +4,8 @@
    Version: 1.0.0
    ============================================================================== */
 
-const CACHE_NAME = 'bengal-explorers-v15';
-const DATA_CACHE_NAME = 'bengal-data-cache-v15';
+const CACHE_NAME = 'bengal-explorers-v16';
+const DATA_CACHE_NAME = 'bengal-data-cache-v16';
 
 // Critical Core Assets for Offline App Shell
 const APP_SHELL = [
@@ -18,9 +18,6 @@ const APP_SHELL = [
     '/manifest.json',
     '/favicon.ico',
     '/favicon.png',
-    '/icon-192.png',
-    '/icon-512.png',
-    '/apple-touch-icon.png',
     '/assets/bibek_mahata.jpg',
     '/assets/gangani/gangani-1.png',
     'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css',

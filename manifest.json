@@ -24,13 +24,13 @@
             "purpose": "any"
         },
         {
-            "src": "icon-192.png",
+            "src": "favicon.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "icon-512.png",
+            "src": "favicon.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
@@ -42,21 +42,21 @@
             "short_name": "Transit Radar",
             "description": "Real-time Howrah and Sealdah railway departures",
             "url": "/#train-board",
-            "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+            "icons": [{ "src": "favicon.png", "sizes": "96x96" }]
         },
         {
             "name": "Travel Guides & Blogs",
             "short_name": "Guides",
             "description": "In-depth West Bengal travel field guides",
             "url": "/blog.html",
-            "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+            "icons": [{ "src": "favicon.png", "sizes": "96x96" }]
         },
         {
             "name": "About Founder (bibek.cs)",
             "short_name": "Founder",
             "description": "Portfolio of Bibek Mahata",
             "url": "/about.html",
-            "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+            "icons": [{ "src": "favicon.png", "sizes": "96x96" }]
         }
     ]
 }
