@@ -5448,6 +5448,43 @@
     box-shadow: 0 0 6px #10b981;
 }
 
+
+/* ================================================================
+   🎨 MASTER RESPONSIVE CANVAS & MAP ENGINE (LAPTOPS & MOBILE)
+   ================================================================ */
+.map-explorer__map, #map {
+    width: 100% !important;
+    height: 520px !important;
+    border-radius: 16px;
+    transition: height 0.3s ease;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+    .map-explorer__map, #map {
+        height: 440px !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .map-explorer__map, #map {
+        height: 380px !important;
+        border-radius: 12px !important;
+    }
+    .passport-book {
+        max-width: 95vw !important;
+        padding: 16px 12px !important;
+        border-radius: 16px !important;
+    }
+    .passport-stamp-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+    .passport-stamp {
+        padding: 10px 6px !important;
+    }
+}
+
 </style>
 
     <!-- Automated Accessibility & SEO Image Alt-Tag Guard -->
@@ -15006,6 +15043,22 @@ document.addEventListener('keydown', (e) => {
                 showQuickToast('✨ Passport saved! Share it on your Instagram Story!');
             });
         };
+
+        
+        // 5. MASTER DYNAMIC CANVAS & MAP RESIZE HANDLER (MOBILE & LAPTOP)
+        window.handleGlobalCanvasResize = function() {
+            if (window.map && typeof window.map.invalidateSize === 'function') {
+                window.map.invalidateSize();
+            }
+        };
+
+        window.addEventListener('resize', () => {
+            clearTimeout(window._resizeTimer);
+            window._resizeTimer = setTimeout(window.handleGlobalCanvasResize, 150);
+        });
+        window.addEventListener('orientationchange', () => {
+            setTimeout(window.handleGlobalCanvasResize, 250);
+        });
 
         // 4. 3D CARD TILT-SHIFT INTERACTION
         document.addEventListener('DOMContentLoaded', () => {
