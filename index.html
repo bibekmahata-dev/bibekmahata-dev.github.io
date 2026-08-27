@@ -12977,22 +12977,22 @@ function renderCompareCard(m, cardEl) {
 // ================================================================
 
 const BASE_SQUAD_HYPES = {
-    'bibek': 1840,
-    'aritra': 740,
-    'surya': 680,
-    'arka': 610,
-    'gobinda': 540,
-    'subhajeet': 490,
-    'anik_sar': 430,
-    'rudranil_pal': 380,
-    'suraj': 330,
-    'khoushik': 290,
-    'rudranil_dey': 250,
-    'subarna': 220,
-    'sibam': 190,
-    'anik': 160,
-    'shouvik': 140,
-    'abhishek': 120
+    'bibek': 112,
+    'aritra': 0,
+    'surya': 0,
+    'arka': 0,
+    'gobinda': 0,
+    'subhajeet': 0,
+    'anik_sar': 0,
+    'rudranil_pal': 0,
+    'suraj': 0,
+    'khoushik': 0,
+    'rudranil_dey': 0,
+    'subarna': 0,
+    'sibam': 0,
+    'anik': 0,
+    'shouvik': 0,
+    'abhishek': 0
 };
 
 // Global in-memory cache
@@ -13009,7 +13009,7 @@ function formatLikes(count) {
 // 2. Base Hypes with Bibek Mahata firmly established at the Apex Rank
 function getHypes() {
     try {
-        const stored = JSON.parse(localStorage.getItem('bengal_squad_hypes_master'));
+        const stored = JSON.parse(localStorage.getItem('bengal_squad_hypes_v2'));
         if (stored && typeof stored === 'object') {
             for (const k in stored) {
                 if (stored[k] > (globalCloudHypes[k] || 0)) {
@@ -13026,9 +13026,7 @@ function getHypes() {
             maxFriend = Math.max(maxFriend, parseInt(globalCloudHypes[key]) || 0);
         }
     }
-    if (!globalCloudHypes['bibek'] || globalCloudHypes['bibek'] <= maxFriend) {
-        globalCloudHypes['bibek'] = Math.min(9999, maxFriend + 250);
-    }
+    if (!globalCloudHypes['bibek'] || globalCloudHypes['bibek'] <= maxFriend) { globalCloudHypes['bibek'] = Math.max(112, maxFriend + 10); }
 
     return globalCloudHypes;
 }
@@ -13064,7 +13062,7 @@ async function syncAllMembersFromCloud() {
     try {
         const promises = MEMBERS.map(async (m) => {
             const hits = await fetchCloudMemberHits(m.id);
-            const base = BASE_SQUAD_HYPES[m.id] || 100;
+            const base = BASE_SQUAD_HYPES[m.id] || 0;
             const total = Math.min(9999, base + hits);
             globalCloudHypes[m.id] = Math.max(globalCloudHypes[m.id] || 0, total);
         });
@@ -13078,11 +13076,9 @@ async function syncAllMembersFromCloud() {
                 maxFriend = Math.max(maxFriend, parseInt(globalCloudHypes[key]) || 0);
             }
         }
-        if (!globalCloudHypes['bibek'] || globalCloudHypes['bibek'] <= maxFriend) {
-            globalCloudHypes['bibek'] = Math.min(9999, maxFriend + 250);
-        }
+        if (!globalCloudHypes['bibek'] || globalCloudHypes['bibek'] <= maxFriend) { globalCloudHypes['bibek'] = Math.max(112, maxFriend + 10); }
 
-        localStorage.setItem('bengal_squad_hypes_master', JSON.stringify(globalCloudHypes));
+        localStorage.setItem('bengal_squad_hypes_v2', JSON.stringify(globalCloudHypes));
         updateLiveHypeCounters();
 
         if (cloudStatusBadge) {
@@ -13187,13 +13183,10 @@ function saveHype(id, eventTarget = null) {
                 maxFriend = Math.max(maxFriend, parseInt(hypes[key]) || 0);
             }
         }
-        if (hypes['bibek'] <= current) {
-            hypes['bibek'] = Math.min(9999, current + 150);
-            globalCloudHypes['bibek'] = hypes['bibek'];
-        }
+        if (hypes['bibek'] <= current) { hypes['bibek'] = Math.max(112, current + 5); globalCloudHypes['bibek'] = hypes['bibek']; }
     }
 
-    localStorage.setItem('bengal_squad_hypes_master', JSON.stringify(hypes));
+    localStorage.setItem('bengal_squad_hypes_v2', JSON.stringify(hypes));
 
     // 3. Increment personal user contributions
     const userCount = getUserGivenHypes() + 1;
