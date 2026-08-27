@@ -2916,20 +2916,7 @@
                 pointer-events: none !important;
             }
 
-            /* 5. Theme & Translate Buttons */
-            #theme-btn {
-                padding: 3px 8px !important;
-                font-size: 11px !important;
-                height: 28px !important;
-                border-radius: 6px !important;
-                border: 1px solid rgba(212, 175, 55, 0.4) !important;
-                background: rgba(212, 175, 55, 0.15) !important;
-                color: #facc15 !important;
-                cursor: pointer !important;
-                display: inline-flex !important;
-                align-items: center !important;
-                gap: 3px !important;
-            }
+            /* 5. Translate Button */
             #google_translate_element {
                 display: inline-flex !important;
                 align-items: center !important;
@@ -6053,8 +6040,7 @@
                         <span style="font-size: 14px;">🌐</span>
                         <div id="google_translate_element"></div>
                     </div>
-                    <!-- Theme Toggle -->
-                    <button class="vibe-btn" id="theme-btn" onclick="toggleTheme()" style="padding: 4px 10px; font-size: 11px; height: 32px; border-radius: 20px; font-weight: 700;">👑 Gold</button>
+                    
                 </div>
             </div>
 
@@ -12869,50 +12855,6 @@ function toggleAudio() {
     if (audioBtn) audioBtn.textContent = soundEnabled ? '🔊 Sound' : '🔇 Muted';
     if (soundEnabled) playClickSound();
 }
-
-// ======================================
-const THEMES = [
-    { class: '', label: '👑 Gold', icon: '👑' },
-    { class: 'theme-neon', label: '⚡ Neon', icon: '⚡' },
-    { class: 'theme-rose', label: '🌹 Rose', icon: '🌹' },
-    { class: 'theme-emerald', label: '💚 Emerald', icon: '💚' },
-    { class: 'theme-purple', label: '💜 Purple', icon: '💜' },
-    { class: 'theme-arctic', label: '🧊 Arctic', icon: '🧊' }
-];
-let currentThemeIndex = 0;
-
-function toggleTheme() {
-    // Remove current theme class
-    THEMES.forEach(t => { if (t.class) document.body.classList.remove(t.class); });
-    
-    // Move to next theme
-    currentThemeIndex = (currentThemeIndex + 1) % THEMES.length;
-    const theme = THEMES[currentThemeIndex];
-    
-    // Apply new theme
-    if (theme.class) document.body.classList.add(theme.class);
-    
-    const themeBtn = document.getElementById('theme-btn');
-    if (themeBtn) themeBtn.textContent = theme.label;
-    
-    // [CLEANED] theme storage removed
-    playClickSound();
-}
-
-// Restore saved theme on load
-(function restoreTheme() {
-    // [CLEANED] theme storage removed
-    if (saved !== null) {
-        const idx = parseInt(saved);
-        if (idx >= 0 && idx < THEMES.length) {
-            currentThemeIndex = idx;
-            THEMES.forEach(t => { if (t.class) document.body.classList.remove(t.class); });
-            if (THEMES[idx].class) document.body.classList.add(THEMES[idx].class);
-            const themeBtn = document.getElementById('theme-btn');
-            if (themeBtn) themeBtn.textContent = THEMES[idx].label;
-        }
-    }
-})();
 
 // ======================================
 // SQUAD LEGENDS COMPARISON TOOL LOGIC
