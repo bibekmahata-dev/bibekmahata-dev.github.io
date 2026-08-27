@@ -5498,6 +5498,17 @@
     40%, 80% { transform: translateX(4px); }
 }
 
+
+/* Point-to-Point Form Stability (Zero unwanted tilt/wobble) */
+.bengal-route-card, .station-radar-board {
+    transform: none !important;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.bengal-route-card:hover {
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
 </style>
 
     <!-- Automated Accessibility & SEO Image Alt-Tag Guard -->
@@ -15136,7 +15147,7 @@ document.addEventListener('keydown', (e) => {
 
         // 4. 3D CARD TILT-SHIFT INTERACTION
         document.addEventListener('DOMContentLoaded', () => {
-            const tiltElements = document.querySelectorAll('.portal-card, .bengal-route-card, .squad-card, .culinary-card');
+            const tiltElements = document.querySelectorAll('.squad-card, .culinary-card');
             tiltElements.forEach(el => {
                 el.classList.add('tilt-card');
                 el.addEventListener('mousemove', (e) => {
