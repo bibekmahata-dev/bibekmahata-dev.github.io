@@ -5485,6 +5485,19 @@
     }
 }
 
+
+/* Daily Like Cooldown & Liked Badge */
+.hype-btn.liked-today {
+    background: rgba(244, 63, 94, 0.25) !important;
+    border-color: rgba(244, 63, 94, 0.7) !important;
+    color: #f43f5e !important;
+}
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-4px); }
+    40%, 80% { transform: translateX(4px); }
+}
+
 </style>
 
     <!-- Automated Accessibility & SEO Image Alt-Tag Guard -->
@@ -13086,11 +13099,70 @@ function updatePersonalHypeCounterUI() {
     }
 }
 
-// 6. Save Hype: Optimistic Local UI + Background Cloud Increment
+// ================================================================
+// 🛡️ STRICT 1-LIKE-PER-PERSON-PER-DAY RATE-LIMIT ENGINE
+// ================================================================
+function getTodayDateString() {
+    const today = new Date();
+    const y = today.getFullYear();
+    const m = String(today.getMonth() + 1).padStart(2, '0');
+    const d = String(today.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+}
+
+function getDailyLikesTracker() {
+    const todayStr = getTodayDateString();
+    let data = null;
+    try {
+        data = JSON.parse(localStorage.getItem('bengal_daily_likes_v1') || '{}');
+    } catch(e) {
+        data = {};
+    }
+    
+    // If it's a new calendar day (midnight pass), reset today's record
+    if (!data || data.date !== todayStr) {
+        data = {
+            date: todayStr,
+            liked_members: []
+        };
+        localStorage.setItem('bengal_daily_likes_v1', JSON.stringify(data));
+    }
+    return data;
+}
+
+function hasUserLikedToday(id) {
+    const tracker = getDailyLikesTracker();
+    return Array.isArray(tracker.liked_members) && tracker.liked_members.includes(id);
+}
+
+function recordUserDailyLike(id) {
+    const tracker = getDailyLikesTracker();
+    if (!tracker.liked_members.includes(id)) {
+        tracker.liked_members.push(id);
+        localStorage.setItem('bengal_daily_likes_v1', JSON.stringify(tracker));
+    }
+}
+
+// 6. Save Hype: Strictly 1 Like Per Day Per Person
 function saveHype(id, eventTarget = null) {
+    // Check if user already gave their 1 daily like today
+    if (hasUserLikedToday(id)) {
+        if (typeof showQuickToast === 'function') {
+            showQuickToast('⏳ You already gave your daily 1 Like to this explorer today! Resets at midnight 🌙');
+        }
+        if (eventTarget) {
+            eventTarget.style.animation = 'shake 0.4s ease';
+            setTimeout(() => { if (eventTarget) eventTarget.style.animation = ''; }, 450);
+        }
+        return getHypes()[id] || 0;
+    }
+
     playClickSound();
     
-    // 1. Optimistic Local Instant Increment (0ms response)
+    // 1. Record today's like to prevent spamming
+    recordUserDailyLike(id);
+
+    // 2. Optimistic Local Instant Increment
     const hypes = getHypes();
     let current = Math.min(9999, (parseInt(hypes[id]) || 0) + 1);
     hypes[id] = current;
@@ -13112,33 +13184,25 @@ function saveHype(id, eventTarget = null) {
 
     localStorage.setItem('bengal_squad_hypes_master', JSON.stringify(hypes));
 
-    // 2. Increment personal user contributions
+    // 3. Increment personal user contributions
     const userCount = getUserGivenHypes() + 1;
     localStorage.setItem('bengal_user_given_hypes', userCount);
     updatePersonalHypeCounterUI();
 
-    // 3. Floating +1 Hype Micro-Interaction
+    // 4. Floating +1 Hype Micro-Interaction
     if (eventTarget) {
         spawnFloatingHypeParticle(eventTarget);
+        eventTarget.classList.add('liked-today');
     }
 
-    // 4. Milestone Celebrations
-    if (userCount === 10) {
-        showQuickToast('🔥 Super Fan Unlocked! (10 Hypes Given) ⭐');
-        playFanfareSound();
-    } else if (userCount === 50) {
-        showQuickToast('⚡ Squad Champion! (50 Hypes Given) 👑');
-        playFanfareSound();
-        triggerConfetti();
-    } else if (userCount === 100) {
-        showQuickToast('🏆 Legendary Supporter! (100 Hypes Given) 🌟');
-        playFanfareSound();
-        triggerConfetti();
+    // 5. Toast Notification
+    if (typeof showQuickToast === 'function') {
+        showQuickToast('❤️ Daily 1 Like registered! Come back tomorrow for your next like ✨');
     }
 
     updateLiveHypeCounters();
 
-    // 5. Asynchronous Cloud Database Increment (Image-based ping — zero CORS errors)
+    // 6. Asynchronous Cloud Database Increment
     const cloudImg = new Image();
     cloudImg.src = `https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fbibekmahata-dev.github.io%2Fmember_${encodeURIComponent(id)}`;
 
@@ -13178,12 +13242,27 @@ function spawnFloatingHypeParticle(target) {
 
 function updateLiveHypeCounters() {
     const hypes = getHypes();
+    const todayLikes = getDailyLikesTracker();
     document.querySelectorAll('.hype-btn').forEach(btn => {
         const id = btn.dataset.id;
         if (id && hypes[id] !== undefined) {
             const span = btn.querySelector('.hype-count');
             if (span) span.textContent = formatLikes(hypes[id]);
+            
+            // Check if already liked today
+            if (todayLikes.liked_members && todayLikes.liked_members.includes(id)) {
+                btn.classList.add('liked-today');
+                btn.title = 'You gave your 1 daily like to this explorer today';
+            } else {
+                btn.classList.remove('liked-today');
+                btn.title = 'Give 1 Daily Like';
+            }
         }
+    });
+    if (typeof renderLeaderboard === 'function') {
+        renderLeaderboard();
+    }
+}
     });
     if (typeof renderLeaderboard === 'function') {
         renderLeaderboard();
