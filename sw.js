@@ -4,8 +4,8 @@
    Version: 1.0.0
    ============================================================================== */
 
-const CACHE_NAME = 'bengal-explorers-v20';
-const DATA_CACHE_NAME = 'bengal-data-cache-v20';
+const CACHE_NAME = 'bengal-explorers-v21';
+const DATA_CACHE_NAME = 'bengal-data-cache-v21';
 
 // Critical Core Assets for Offline App Shell
 const APP_SHELL = [
@@ -15,6 +15,13 @@ const APP_SHELL = [
     '/blog.html',
     '/contact.html',
     '/privacy.html',
+    '/guide-gangani.html',
+    '/guide-bishnupur.html',
+    '/guide-darjeeling.html',
+    '/guide-digha.html',
+    '/guide-jhargram.html',
+    '/guide-bengal-sweets.html',
+    '/guide-kolkata-heritage.html',
     '/manifest.json',
     '/favicon.ico',
     '/favicon.png',
