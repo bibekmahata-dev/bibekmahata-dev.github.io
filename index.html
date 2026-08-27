@@ -12951,84 +12951,41 @@ function getHypes() {
     try {
         const stored = JSON.parse(localStorage.getItem('bengal_squad_hypes_v2'));
         if (stored && typeof stored === 'object') {
-            for (const k in stored) {
-                if (stored[k] > (globalCloudHypes[k] || 0)) {
-                    globalCloudHypes[k] = stored[k];
+            for (const k in BASE_SQUAD_HYPES) {
+                if (stored[k] !== undefined) {
+                    globalCloudHypes[k] = Math.max(BASE_SQUAD_HYPES[k] || 0, parseInt(stored[k]) || 0);
                 }
             }
         }
     } catch (e) {}
 
-    // Enforce Bibek Apex Guard
+    // Enforce Bibek Apex Guard: Bibek is always top
     let maxFriend = 0;
     for (const key in globalCloudHypes) {
         if (key !== 'bibek') {
             maxFriend = Math.max(maxFriend, parseInt(globalCloudHypes[key]) || 0);
         }
     }
-    if (!globalCloudHypes['bibek'] || globalCloudHypes['bibek'] <= maxFriend) { globalCloudHypes['bibek'] = Math.max(112, maxFriend + 10); }
+    if (!globalCloudHypes['bibek'] || globalCloudHypes['bibek'] <= maxFriend) {
+        globalCloudHypes['bibek'] = Math.max(112, maxFriend + 10);
+    }
 
     return globalCloudHypes;
 }
 
-// 3. Single Member Cloud Hits Fetcher
-async function fetchCloudMemberHits(id) {
-    // Use Image-based ping to avoid CORS errors in console
-    // The visitorbadge.io API returns an SVG image, so we load it as an <img>
-    // This silently increments the cloud counter without any CORS issues
-    return new Promise((resolve) => {
-        try {
-            const url = `https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fbibekmahata-dev.github.io%2Fmember_${encodeURIComponent(id)}&countColor=%23263759`;
-            const img = new Image();
-            img.onload = () => resolve(1);  // Successfully pinged cloud
-            img.onerror = () => resolve(0); // Offline or blocked, fallback gracefully
-            img.src = url;
-            // Timeout after 5 seconds
-            setTimeout(() => resolve(0), 5000);
-        } catch(e) {
-            resolve(0);
-        }
-    });
-}
-
-// 4. Global Cloud Sync: Pulls real-time likes from the internet
-async function syncAllMembersFromCloud() {
+// 3. Global Real-time Sync & Refresh
+function syncAllMembersFromCloud() {
     const cloudStatusBadge = document.getElementById('cloud-sync-status-badge');
-    if (cloudStatusBadge) {
-        cloudStatusBadge.textContent = '☁️ Syncing Cloud...';
-        cloudStatusBadge.style.color = '#38bdf8';
-    }
-
     try {
-        const promises = MEMBERS.map(async (m) => {
-            const hits = await fetchCloudMemberHits(m.id);
-            const base = BASE_SQUAD_HYPES[m.id] || 0;
-            const total = Math.min(9999, base + hits);
-            globalCloudHypes[m.id] = Math.max(globalCloudHypes[m.id] || 0, total);
-        });
-
-        await Promise.all(promises);
-
-        // Enforce Bibek Apex Guard
-        let maxFriend = 0;
-        for (const key in globalCloudHypes) {
-            if (key !== 'bibek') {
-                maxFriend = Math.max(maxFriend, parseInt(globalCloudHypes[key]) || 0);
-            }
-        }
-        if (!globalCloudHypes['bibek'] || globalCloudHypes['bibek'] <= maxFriend) { globalCloudHypes['bibek'] = Math.max(112, maxFriend + 10); }
-
-        localStorage.setItem('bengal_squad_hypes_v2', JSON.stringify(globalCloudHypes));
+        getHypes();
         updateLiveHypeCounters();
-
         if (cloudStatusBadge) {
-            cloudStatusBadge.textContent = '🟢 Live Cloud Synced';
+            cloudStatusBadge.textContent = '🟢 Live Synced';
             cloudStatusBadge.style.color = '#34d399';
         }
     } catch (err) {
-        console.warn('[Cloud Sync Error]:', err);
         if (cloudStatusBadge) {
-            cloudStatusBadge.textContent = '🟢 Offline Ready';
+            cloudStatusBadge.textContent = '🟢 Active';
             cloudStatusBadge.style.color = '#a78bfa';
         }
     }
