@@ -12871,8 +12871,6 @@ function toggleAudio() {
 }
 
 // ======================================
-// MULTI-THEME CYCLER (6 THEMES)
-// ======================================
 const THEMES = [
     { class: '', label: '👑 Gold', icon: '👑' },
     { class: 'theme-neon', label: '⚡ Neon', icon: '⚡' },
@@ -12897,13 +12895,13 @@ function toggleTheme() {
     const themeBtn = document.getElementById('theme-btn');
     if (themeBtn) themeBtn.textContent = theme.label;
     
-    localStorage.setItem('bengal_theme', currentThemeIndex.toString());
+    // [CLEANED] theme storage removed
     playClickSound();
 }
 
 // Restore saved theme on load
 (function restoreTheme() {
-    const saved = localStorage.getItem('bengal_theme');
+    // [CLEANED] theme storage removed
     if (saved !== null) {
         const idx = parseInt(saved);
         if (idx >= 0 && idx < THEMES.length) {
@@ -14449,6 +14447,20 @@ document.addEventListener('keydown', (e) => {
         if (b) b.style.display = 'none';
     }
     window.addEventListener('DOMContentLoaded', checkCookieConsent);
+
+        // 🧹 Clean obsolete localStorage keys from previous versions
+        (function cleanOldStorage() {
+            const deadKeys = [
+                'bengal_squad_hypes_master',  // Old fake hypes key (replaced by v2)
+                'bengal_theme',               // Old theme switcher (removed)
+                'bengal_global_visits_cache',  // Old visit counter
+                'bengal_real_visits_v1'        // Old visit counter
+            ];
+            deadKeys.forEach(k => {
+                try { localStorage.removeItem(k); } catch(e) {}
+            });
+        })();
+
     </script>
 
 
@@ -15162,6 +15174,16 @@ document.addEventListener('keydown', (e) => {
             
         });
     </script>
+
+
+    <!-- 🍪 GDPR/AdSense Cookie Consent Banner -->
+    <div id="cookie-consent-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99999; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(16px); border-top: 1px solid rgba(56, 189, 248, 0.3); padding: 14px 20px; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; box-shadow: 0 -4px 20px rgba(0,0,0,0.5);">
+        <div style="flex: 1; min-width: 250px;">
+            <div style="font-size: 13.5px; color: #f8fafc; font-weight: 700; margin-bottom: 4px;">🍪 Cookie & Privacy Notice</div>
+            <div style="font-size: 12px; color: #94a3b8; line-height: 1.5;">This site uses cookies for analytics and Google AdSense advertising. By continuing to use this site, you agree to our <a href="privacy.html" style="color: #38bdf8; text-decoration: underline;">Privacy Policy</a>.</div>
+        </div>
+        <button onclick="acceptCookieConsent()" style="background: linear-gradient(135deg, #38bdf8, #0ea5e9); color: #ffffff; border: none; padding: 8px 20px; border-radius: 8px; font-size: 12.5px; font-weight: 800; cursor: pointer; white-space: nowrap; transition: transform 0.2s;">Accept & Continue</button>
+    </div>
 
 </body>
 </html>
