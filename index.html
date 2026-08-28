@@ -6054,6 +6054,7 @@
             <nav class="header__nav">
                 <a href="#squad-section" class="header__nav-link">🏠 Squad</a>
                 <a href="#transit-section" class="header__nav-link" style="color: #38bdf8; font-weight: 700;">🚆 Transit</a>
+                <a href="#trip-budget-calculator-section" class="header__nav-link" style="color: #4ade80; font-weight: 700;">💰 Budget</a>
                 <a href="#West Bengal-guide-section" class="header__nav-link" style="color: #22c55e; font-weight: 700;">🛰️ Weather</a>
                 <a href="#hangout-map" class="header__nav-link">🗺️ Map</a>
                 <a href="#hangout-quiz-section" class="header__nav-link">🧭 Quiz</a>
@@ -6073,6 +6074,7 @@
     <div class="floating-dock">
         <button class="dock-btn" onclick="document.getElementById('railway-soundboard-studio').scrollIntoView({behavior: 'smooth'})" style="color: #fef08a; font-weight: 800; border: 1px solid rgba(234, 179, 8, 0.4);" title="Railway PA Soundboard & Audio Guide">📢 Audio</button>
         <button class="dock-btn" onclick="document.getElementById('transit-section').scrollIntoView({behavior: 'smooth'})" title="Live Train & Bus Transit Radar">🚆 Transit</button>
+        <button class="dock-btn" onclick="document.getElementById(\'trip-budget-calculator-section\').scrollIntoView({behavior: \'smooth\'})" style="color: #4ade80; font-weight: 700;" title="Trip Budget & Fare Calculator">💰 Budget</button>
         <button class="dock-btn" onclick="document.getElementById('West Bengal-guide-section').scrollIntoView({behavior: 'smooth'})" title="Live Multi-District Meteorology Hub">🛰️ Weather</button>
         <button class="dock-btn" onclick="document.getElementById('hangout-map').scrollIntoView({behavior: 'smooth'})" title="Interactive Tourism & Route Map">🗺️ Map</button>
         <button class="dock-btn" onclick="document.getElementById('bengal-gastronomy-section').scrollIntoView({behavior: 'smooth'})" title="Bengal Food & Gastronomy Trail" style="color: #fbbf24;">🍲 Food</button>
@@ -10402,6 +10404,411 @@
 
 
                 
+        
+        <!-- ========================================================
+             💰 INTERACTIVE BENGAL TRIP BUDGET & FARE CALCULATOR
+             Designed & Developed by Bibek Mahata (bibek.cs)
+             ======================================================== -->
+        <section class="section" id="trip-budget-calculator-section" style="margin-top: 50px; scroll-margin-top: 80px;">
+            <div style="background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(16, 30, 54, 0.98)); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 20px; padding: 26px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); position: relative; overflow: hidden;">
+                
+                <!-- Background Ambient Glow -->
+                <div style="position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(56, 189, 248, 0.15), transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+                <div style="position: absolute; bottom: -60px; left: -60px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+
+                <!-- Section Header -->
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; flex-wrap: wrap; gap: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 16px;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(16, 185, 129, 0.2)); border: 1px solid rgba(56, 189, 248, 0.4); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            💰
+                        </div>
+                        <div>
+                            <h2 style="color: #ffffff; font-size: 21px; font-weight: 800; font-family: var(--font-title); margin: 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                Bengal Trip Budget & Fare Calculator
+                                <span style="background: rgba(16, 185, 129, 0.18); color: #34d399; font-size: 11px; font-weight: 800; padding: 2px 10px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.4); text-transform: uppercase;">Instant Estimator</span>
+                            </h2>
+                            <div style="font-size: 12.5px; color: #94a3b8; margin-top: 3px;">Plan your journey with realistic train fares, homestay rates, meals & local transit across West Bengal.</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <span style="font-size: 11.5px; color: #38bdf8; background: rgba(56, 189, 248, 0.12); padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.25); font-weight: 700;">
+                            🚆 Live IRCTC & SBSTC Slabs
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Calculator Body: 2 Columns on Desktop, 1 Column on Mobile -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 24px; align-items: start;">
+                    
+                    <!-- LEFT COLUMN: CONTROLS -->
+                    <div style="display: flex; flex-direction: column; gap: 18px;">
+                        
+                        <!-- 1. Destination Picker -->
+                        <div>
+                            <label style="display: block; color: #e2e8f0; font-size: 13px; font-weight: 700; margin-bottom: 7px;">
+                                📍 1. Select Destination in West Bengal:
+                            </label>
+                            <select id="calc-destination" onchange="calculateTripBudget()" style="width: 100%; background: #0f172a; border: 1px solid rgba(56, 189, 248, 0.4); color: #ffffff; padding: 10px 14px; border-radius: 10px; font-size: 13.5px; font-weight: 600; outline: none; cursor: pointer; box-sizing: border-box;">
+                                <option value="gangani">🏜️ Gangani Grand Canyon (Garhbeta / Paschim Medinipur)</option>
+                                <option value="bishnupur">🏛️ Bishnupur Terracotta Temples & Silk (Bankura)</option>
+                                <option value="darjeeling">🚂 Darjeeling Himalayan Toy Train & Tiger Hill</option>
+                                <option value="digha">🌊 Digha & Mandarmani Coastal Sea Beach</option>
+                                <option value="jhargram">🌲 Jhargram Sal Forest & Royal Palace (Junglemahal)</option>
+                                <option value="kolkata">🏛️ Kolkata Heritage & City of Joy</option>
+                                <option value="sundarbans">🌿 Sundarbans Mangrove Safari & Delta</option>
+                                <option value="kalimpong_dooars">🏔️ Kalimpong, Dooars & Tea Valleys</option>
+                            </select>
+                        </div>
+
+                        <!-- 2. Travel Style (Pill Buttons) -->
+                        <div>
+                            <label style="display: block; color: #e2e8f0; font-size: 13px; font-weight: 700; margin-bottom: 7px;">
+                                🎒 2. Travel Style & Comfort Level:
+                            </label>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                                <button type="button" class="calc-tier-btn active" data-tier="student" onclick="setCalcTier('student')" style="background: rgba(56, 189, 248, 0.2); border: 1px solid #38bdf8; color: #38bdf8; padding: 10px 6px; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center; transition: all 0.2s;">
+                                    🎒 Student<br><span style="font-size: 10px; font-weight: 500; opacity: 0.85;">Budget / 2S</span>
+                                </button>
+                                <button type="button" class="calc-tier-btn" data-tier="comfort" onclick="setCalcTier('comfort')" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; padding: 10px 6px; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center; transition: all 0.2s;">
+                                    💼 Comfort<br><span style="font-size: 10px; font-weight: 500; opacity: 0.85;">AC / Lodge</span>
+                                </button>
+                                <button type="button" class="calc-tier-btn" data-tier="luxury" onclick="setCalcTier('luxury')" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; padding: 10px 6px; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center; transition: all 0.2s;">
+                                    👑 Luxury<br><span style="font-size: 10px; font-weight: 500; opacity: 0.85;">Resort / Cab</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 3. Duration Slider -->
+                        <div style="background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 14px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <label style="color: #e2e8f0; font-size: 13px; font-weight: 700;">
+                                    📅 3. Trip Duration:
+                                </label>
+                                <span id="calc-days-val" style="color: #38bdf8; font-weight: 800; font-size: 14px; font-family: 'Space Grotesk', monospace;">1 Day (Day Trip)</span>
+                            </div>
+                            <input type="range" id="calc-days-slider" min="1" max="7" value="1" step="1" oninput="updateDaysInput(this.value)" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
+                            <div style="display: flex; justify-content: space-between; font-size: 10.5px; color: #64748b; margin-top: 4px;">
+                                <span>1 Day</span>
+                                <span>2 Days</span>
+                                <span>3 Days</span>
+                                <span>5 Days</span>
+                                <span>7 Days</span>
+                            </div>
+                        </div>
+
+                        <!-- 4. Group Size (Persons) -->
+                        <div style="background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 14px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <label style="color: #e2e8f0; font-size: 13px; font-weight: 700;">
+                                    👥 4. Group Size (Travelers):
+                                </label>
+                                <span id="calc-people-val" style="color: #34d399; font-weight: 800; font-size: 14px; font-family: 'Space Grotesk', monospace;">2 Persons</span>
+                            </div>
+                            <input type="range" id="calc-people-slider" min="1" max="10" value="2" step="1" oninput="updatePeopleInput(this.value)" style="width: 100%; accent-color: #34d399; cursor: pointer;">
+                            <div style="display: flex; justify-content: space-between; font-size: 10.5px; color: #64748b; margin-top: 4px;">
+                                <span>Solo (1)</span>
+                                <span>Duo (2)</span>
+                                <span>Group (4)</span>
+                                <span>Family (6)</span>
+                                <span>Squad (10)</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT COLUMN: ESTIMATE CARD & DETAILED BREAKDOWN -->
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        
+                        <!-- Main Big Total Cost Card -->
+                        <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95)); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 16px; padding: 20px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.35); position: relative;">
+                            <div style="font-size: 12px; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Total Estimated Journey Cost</div>
+                            <div id="calc-total-cost" style="font-size: 38px; font-weight: 800; color: #38bdf8; font-family: 'Space Grotesk', sans-serif; margin: 6px 0; text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);">
+                                ₹ 1,480
+                            </div>
+                            <div style="display: flex; justify-content: center; gap: 12px; font-size: 12.5px; flex-wrap: wrap;">
+                                <span id="calc-per-person" style="color: #34d399; font-weight: 700; background: rgba(16, 185, 129, 0.15); padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.3);">
+                                    ₹ 740 / person
+                                </span>
+                                <span id="calc-duration-summary" style="color: #cbd5e1; font-weight: 600; background: rgba(255,255,255,0.06); padding: 3px 10px; border-radius: 20px;">
+                                    1 Day • 2 Travelers
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Itemized Breakdown Cards -->
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                            
+                            <!-- Transit -->
+                            <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px; padding: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                    <span style="font-size: 11.5px; color: #94a3b8; font-weight: 600;">🚆 Transit & Fares:</span>
+                                    <span id="calc-transit-cost" style="font-size: 13.5px; color: #ffffff; font-weight: 800; font-family: 'Space Grotesk', monospace;">₹ 360</span>
+                                </div>
+                                <div style="font-size: 10.5px; color: #64748b;" id="calc-transit-sub">Train/Bus return fare</div>
+                            </div>
+
+                            <!-- Lodging -->
+                            <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 12px; padding: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                    <span style="font-size: 11.5px; color: #94a3b8; font-weight: 600;">🏨 Lodging / Stays:</span>
+                                    <span id="calc-lodging-cost" style="font-size: 13.5px; color: #ffffff; font-weight: 800; font-family: 'Space Grotesk', monospace;">₹ 0</span>
+                                </div>
+                                <div style="font-size: 10.5px; color: #64748b;" id="calc-lodging-sub">Day trip (No room)</div>
+                            </div>
+
+                            <!-- Food -->
+                            <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(251, 191, 36, 0.2); border-radius: 12px; padding: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                    <span style="font-size: 11.5px; color: #94a3b8; font-weight: 600;">🍲 Meals & Sweets:</span>
+                                    <span id="calc-food-cost" style="font-size: 13.5px; color: #ffffff; font-weight: 800; font-family: 'Space Grotesk', monospace;">₹ 600</span>
+                                </div>
+                                <div style="font-size: 10.5px; color: #64748b;" id="calc-food-sub">Breakfast + Lunch + Snacks</div>
+                            </div>
+
+                            <!-- Local Sightseeing -->
+                            <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px; padding: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                    <span style="font-size: 11.5px; color: #94a3b8; font-weight: 600;">🛺 Toto & Entry Fees:</span>
+                                    <span id="calc-sightseeing-cost" style="font-size: 13.5px; color: #ffffff; font-weight: 800; font-family: 'Space Grotesk', monospace;">₹ 520</span>
+                                </div>
+                                <div style="font-size: 10.5px; color: #64748b;" id="calc-sightseeing-sub">Local Toto & spot tickets</div>
+                            </div>
+
+                        </div>
+
+                        <!-- Smart Explorer Recommendation Box -->
+                        <div id="calc-explorer-tip-box" style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-left: 4px solid #38bdf8; border-radius: 0 12px 12px 0; padding: 12px 16px; font-size: 12px; color: #cbd5e1; line-height: 1.55;">
+                            <strong style="color: #38bdf8;">💡 Local Tip:</strong> Take the <strong>12883 Rupashi Bangla Express</strong> (06:25 AM from Howrah to Garhbeta). Toto from Garhbeta Station to Gangani Canyon is ₹30–₹40 per head.
+                        </div>
+
+                        <!-- Quick Action Buttons -->
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <button type="button" onclick="copyTripBudgetSummary()" style="flex: 1; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; padding: 9px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; transition: background 0.2s;">
+                                📋 Copy Breakdown
+                            </button>
+                            <button type="button" onclick="shareTripBudgetWhatsApp()" style="flex: 1; background: rgba(37, 211, 102, 0.15); border: 1px solid rgba(37, 211, 102, 0.35); color: #25d366; padding: 9px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; transition: background 0.2s;">
+                                💬 Share on WhatsApp
+                            </button>
+                            <button type="button" onclick="document.getElementById('transit-section').scrollIntoView({behavior: 'smooth'})" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #f8fafc; padding: 9px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px;">
+                                🚆 View Trains
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- JAVASCRIPT COMPUTATION ENGINE FOR TRIP BUDGET CALCULATOR -->
+            <script>
+                // 1. Destination Pricing Models (per person slab rates)
+                const BENGAL_TRIP_DATA = {
+                    gangani: {
+                        name: "Gangani Grand Canyon (Garhbeta)",
+                        transit: { student: 90, comfort: 280, luxury: 1150 }, // Train return
+                        lodgingNight: { student: 500, comfort: 1200, luxury: 2800 },
+                        foodDay: { student: 250, comfort: 500, luxury: 1100 },
+                        sightseeingDay: { student: 150, comfort: 350, luxury: 800 },
+                        tip: "Take the 12883 Rupashi Bangla Express (06:25 AM from Howrah to Garhbeta). Toto from Garhbeta Station to Gangani Canyon is ₹30–₹40 per head.",
+                        sweets: "Mecha Sandesh at Beliator & Garhbeta Post-Office More."
+                    },
+                    bishnupur: {
+                        name: "Bishnupur Terracotta Temples & Silk",
+                        transit: { student: 110, comfort: 320, luxury: 1250 },
+                        lodgingNight: { student: 600, comfort: 1500, luxury: 3200 },
+                        foodDay: { student: 250, comfort: 550, luxury: 1200 },
+                        sightseeingDay: { student: 180, comfort: 400, luxury: 900 },
+                        tip: "Board the 12885 Aranyak Express or 12883 Rupashi Bangla. Rent a dedicated Toto for ₹450-₹600 for a 4-hour full temple circuit.",
+                        sweets: "Authentic Mecha Sandesh & Posto Bora."
+                    },
+                    darjeeling: {
+                        name: "Darjeeling Himalayan Toy Train & Tiger Hill",
+                        transit: { student: 450, comfort: 1650, luxury: 3800 }, // NJP train + shared/private cab
+                        lodgingNight: { student: 900, comfort: 2400, luxury: 5800 },
+                        foodDay: { student: 400, comfort: 900, luxury: 2000 },
+                        sightseeingDay: { student: 350, comfort: 850, luxury: 2000 },
+                        tip: "Take Vande Bharat (22301) or Padatik Express to NJP. Shared Sumo from NJP to Darjeeling is ₹250–₹300/seat. Book Toy Train joyride 30 days ahead.",
+                        sweets: "Steaming Darjeeling Momos, Thukpa & Glenary's Bakery."
+                    },
+                    digha: {
+                        name: "Digha & Mandarmani Coastal Sea Beach",
+                        transit: { student: 105, comfort: 350, luxury: 1350 }, // Tamralipta Express or AC bus
+                        lodgingNight: { student: 700, comfort: 1800, luxury: 4200 },
+                        foodDay: { student: 350, comfort: 750, luxury: 1600 },
+                        sightseeingDay: { student: 150, comfort: 400, luxury: 900 },
+                        tip: "Board the 12857 Tamralipta Express from Howrah (06:45 AM). Stay in New Digha for cleaner beaches; rent an electric scooter or Toto for Mandarmani.",
+                        sweets: "Fresh Coastal Fried Pomfret/Hilsa and Kaju Sweets."
+                    },
+                    jhargram: {
+                        name: "Jhargram Sal Forests & Royal Palace",
+                        transit: { student: 95, comfort: 290, luxury: 1200 }, // Steel Express
+                        lodgingNight: { student: 600, comfort: 1400, luxury: 3500 },
+                        foodDay: { student: 250, comfort: 500, luxury: 1100 },
+                        sightseeingDay: { student: 200, comfort: 450, luxury: 1000 },
+                        tip: "Take the 12813 Steel Express from Howrah (05:25 PM) or Ispat Express. Explore Jhargram Rajbari, Chilkigarh Kanak Durga, and Kendua bird sanctuary.",
+                        sweets: "Kendu Pitha and fresh Sal-leaf Mahua honey."
+                    },
+                    kolkata: {
+                        name: "Kolkata Heritage & City of Joy",
+                        transit: { student: 60, comfort: 200, luxury: 800 }, // Metro + AC Bus
+                        lodgingNight: { student: 800, comfort: 2200, luxury: 5500 },
+                        foodDay: { student: 300, comfort: 700, luxury: 1800 },
+                        sightseeingDay: { student: 150, comfort: 350, luxury: 900 },
+                        tip: "Ride the iconic Tram Route 24/29, take the Howrah-Fairlie Ghat Ferry (₹6), and visit Victoria Memorial & Indian Museum using Kolkata Metro Blue Line.",
+                        sweets: "K.C. Das Rossogolla, Sandesh & Flurys Tea."
+                    },
+                    sundarbans: {
+                        name: "Sundarbans Mangrove Safari & Delta",
+                        transit: { student: 150, comfort: 550, luxury: 1800 }, // Local train to Canning + Ferry
+                        lodgingNight: { student: 800, comfort: 2000, luxury: 4800 }, // Eco village camp
+                        foodDay: { student: 350, comfort: 700, luxury: 1500 },
+                        sightseeingDay: { student: 400, comfort: 900, luxury: 2200 }, // Boat safari permit
+                        tip: "Take Canning local from Sealdah (1 hr 15 mins), then auto to Godkhali ghat. Always hire a Govt-certified tourist boat with lifejackets.",
+                        sweets: "Pure Sundarbans Wild Mangrove Honey & Nolen Gur."
+                    },
+                    kalimpong_dooars: {
+                        name: "Kalimpong, Dooars & Tea Valleys",
+                        transit: { student: 420, comfort: 1550, luxury: 3600 },
+                        lodgingNight: { student: 850, comfort: 2200, luxury: 5200 },
+                        foodDay: { student: 350, comfort: 800, luxury: 1800 },
+                        sightseeingDay: { student: 300, comfort: 750, luxury: 1800 },
+                        tip: "Get down at New Mal Jn or Siliguri. Visit Gorumara National Park for one-horned rhinos, and Delo Park in Kalimpong for 360° Kanchenjunga views.",
+                        sweets: "Kalimpong Gouda Cheese, Lollipop candy & Churpi."
+                    }
+                };
+
+                let currentCalcTier = 'student';
+
+                function setCalcTier(tier) {
+                    currentCalcTier = tier;
+                    document.querySelectorAll('.calc-tier-btn').forEach(btn => {
+                        if (btn.dataset.tier === tier) {
+                            btn.style.background = 'rgba(56, 189, 248, 0.2)';
+                            btn.style.borderColor = '#38bdf8';
+                            btn.style.color = '#38bdf8';
+                        } else {
+                            btn.style.background = 'rgba(255,255,255,0.05)';
+                            btn.style.borderColor = 'rgba(255,255,255,0.12)';
+                            btn.style.color = '#cbd5e1';
+                        }
+                    });
+                    calculateTripBudget();
+                }
+
+                function updateDaysInput(val) {
+                    const days = parseInt(val);
+                    const label = days === 1 ? '1 Day (Day Trip)' : `${days} Days / ${days - 1} Nights`;
+                    document.getElementById('calc-days-val').textContent = label;
+                    calculateTripBudget();
+                }
+
+                function updatePeopleInput(val) {
+                    const ppl = parseInt(val);
+                    const label = ppl === 1 ? '1 Person (Solo)' : `${ppl} Persons`;
+                    document.getElementById('calc-people-val').textContent = label;
+                    calculateTripBudget();
+                }
+
+                function calculateTripBudget() {
+                    const destKey = document.getElementById('calc-destination').value;
+                    const days = parseInt(document.getElementById('calc-days-slider').value) || 1;
+                    const people = parseInt(document.getElementById('calc-people-slider').value) || 2;
+                    const dest = BENGAL_TRIP_DATA[destKey] || BENGAL_TRIP_DATA.gangani;
+
+                    // 1. Transit Cost (Train/Bus Return)
+                    const transitPerPerson = dest.transit[currentCalcTier] || 100;
+                    const totalTransit = transitPerPerson * people;
+
+                    // 2. Lodging Cost (Nights = Days - 1, Day Trip = 0)
+                    const nights = Math.max(0, days - 1);
+                    // Rooms needed (approx 2 people per room)
+                    const rooms = Math.ceil(people / 2);
+                    const roomRate = dest.lodgingNight[currentCalcTier] || 600;
+                    const totalLodging = nights * rooms * roomRate;
+
+                    // 3. Food Cost
+                    const foodPerPersonPerDay = dest.foodDay[currentCalcTier] || 300;
+                    const totalFood = foodPerPersonPerDay * people * days;
+
+                    // 4. Sightseeing & Local Toto/Cab
+                    const sightseeingPerPersonPerDay = dest.sightseeingDay[currentCalcTier] || 200;
+                    const totalSightseeing = sightseeingPerPersonPerDay * people * days;
+
+                    // Grand Total
+                    const grandTotal = totalTransit + totalLodging + totalFood + totalSightseeing;
+                    const perPerson = Math.round(grandTotal / people);
+
+                    // Update UI Numbers
+                    document.getElementById('calc-total-cost').textContent = `₹ ${grandTotal.toLocaleString('en-IN')}`;
+                    document.getElementById('calc-per-person').textContent = `₹ ${perPerson.toLocaleString('en-IN')} / person`;
+                    document.getElementById('calc-duration-summary').textContent = `${days} Day${days > 1 ? 's' : ''} • ${people} Traveler${people > 1 ? 's' : ''}`;
+
+                    document.getElementById('calc-transit-cost').textContent = `₹ ${totalTransit.toLocaleString('en-IN')}`;
+                    document.getElementById('calc-transit-sub').textContent = `Return tickets for ${people} travelers`;
+
+                    document.getElementById('calc-lodging-cost').textContent = `₹ ${totalLodging.toLocaleString('en-IN')}`;
+                    document.getElementById('calc-lodging-sub').textContent = nights === 0 ? 'Day trip (No overnight room)' : `${nights} night${nights > 1 ? 's' : ''} (${rooms} room${rooms > 1 ? 's' : ''})`;
+
+                    document.getElementById('calc-food-cost').textContent = `₹ ${totalFood.toLocaleString('en-IN')}`;
+                    document.getElementById('calc-food-sub').textContent = `Meals & local sweets budget`;
+
+                    document.getElementById('calc-sightseeing-cost').textContent = `₹ ${totalSightseeing.toLocaleString('en-IN')}`;
+                    document.getElementById('calc-sightseeing-sub').textContent = `Local Toto, cab & spot tickets`;
+
+                    // Update Smart Tip
+                    const tipBox = document.getElementById('calc-explorer-tip-box');
+                    if (tipBox) {
+                        tipBox.innerHTML = `
+                            <strong style="color: #38bdf8;">💡 Local Route Insight:</strong> ${dest.tip}
+                            <br><span style="color: #fbbf24; font-weight: 700; margin-top: 4px; display: inline-block;">🍬 Culinary Highlight:</span> ${dest.sweets}
+                        `;
+                    }
+                }
+
+                function copyTripBudgetSummary() {
+                    const destKey = document.getElementById('calc-destination').value;
+                    const dest = BENGAL_TRIP_DATA[destKey] || BENGAL_TRIP_DATA.gangani;
+                    const days = document.getElementById('calc-days-slider').value;
+                    const people = document.getElementById('calc-people-slider').value;
+                    const total = document.getElementById('calc-total-cost').textContent;
+                    const perPerson = document.getElementById('calc-per-person').textContent;
+
+                    const summary = `🗺️ Bengal Explorers Trip Budget Estimate\n📍 Destination: ${dest.name}\n⏱️ Duration: ${days} Day(s) | 👥 Travelers: ${people}\n⭐ Mode: ${currentCalcTier.toUpperCase()}\n\n💰 Total Cost: ${total}\n👤 Per Person: ${perPerson}\n\n💡 Tip: ${dest.tip}\n\n🚀 Calculated on Bengal Explorers: https://bibekmahata-dev.github.io/`;
+
+                    navigator.clipboard.writeText(summary).then(() => {
+                        if (typeof showQuickToast === 'function') {
+                            showQuickToast('📋 Trip budget breakdown copied to clipboard!');
+                        } else {
+                            alert('Trip budget summary copied!');
+                        }
+                    });
+                }
+
+                function shareTripBudgetWhatsApp() {
+                    const destKey = document.getElementById('calc-destination').value;
+                    const dest = BENGAL_TRIP_DATA[destKey] || BENGAL_TRIP_DATA.gangani;
+                    const days = document.getElementById('calc-days-slider').value;
+                    const people = document.getElementById('calc-people-slider').value;
+                    const total = document.getElementById('calc-total-cost').textContent;
+                    const perPerson = document.getElementById('calc-per-person').textContent;
+
+                    const msg = `🗺️ *Bengal Explorers Trip Budget Estimate*\n📍 *Destination:* ${dest.name}\n⏱️ *Duration:* ${days} Day(s) | 👥 *Travelers:* ${people}\n⭐ *Mode:* ${currentCalcTier.toUpperCase()}\n\n💰 *Total Cost:* ${total}\n👤 *Per Person:* ${perPerson}\n\n💡 *Tip:* ${dest.tip}\n\n🚀 Plan your Bengal journey: https://bibekmahata-dev.github.io/`;
+
+                    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+                    window.open(url, '_blank');
+                }
+
+                // Initialize on load
+                document.addEventListener('DOMContentLoaded', () => {
+                    if (typeof calculateTripBudget === 'function') {
+                        calculateTripBudget();
+                    }
+                });
+            </script>
+        </section>
+
+
         <!-- ========================================================
              🏛️ OFFICIAL WEST BENGAL 27 GI-TAGGED HERITAGE & CRAFT DIRECTORY
              ======================================================== -->
