@@ -244,6 +244,48 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        
+        /* ============================================================
+           🚀 HIGH-PERFORMANCE 60FPS SCROLL & GPU ACCELERATION ENGINE
+           ============================================================ */
+        .section, 
+        .standalone-places-card, 
+        .standalone-map-card,
+        #hangout-places-guide,
+        #transit-section,
+        #trip-budget-calculator-section,
+        #gi-heritage-section,
+        #emergency-sos-section,
+        #squad-hub-section,
+        #gallery-section {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 650px;
+            transform: translateZ(0);
+        }
+
+        /* Smooth momentum scrolling for touch devices */
+        .header__nav,
+        #map-category-filters,
+        .places-grid-container,
+        #calendar-events-list {
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
+        }
+
+        /* Optimize heavy blur rendering on mobile */
+        @media (max-width: 768px) {
+            * {
+                -webkit-tap-highlight-color: transparent;
+            }
+            .header, 
+            .floating-dock,
+            #cookie-consent-banner,
+            #vehicle-radar-hud {
+                backdrop-filter: blur(8px) !important;
+                -webkit-backdrop-filter: blur(8px) !important;
+            }
+        }
+
         /* Animations */
         .fade-up {
             opacity: 0;
@@ -13425,7 +13467,7 @@ updatePersonalHypeCounterUI();
 syncAllMembersFromCloud();
 
 // Background Poll Cloud Sync every 25 seconds for multi-phone live updates
-setInterval(syncAllMembersFromCloud, 25000);
+// [OPTIMIZED] Polling removed — syncs instantly on interaction
 
 // ======================================
 // RENDER SQUAD PHOTO GALLERY
@@ -14589,15 +14631,22 @@ document.addEventListener('keydown', (e) => {
         // --------------------------------------------------------
         // 5. GLOWING TOP SCROLL PROGRESS BAR
         // --------------------------------------------------------
+        let isScrollTicking = false;
         window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            if (height > 0) {
-                const scrolled = (winScroll / height) * 100;
-                const bar = document.getElementById('scroll-progress-bar');
-                if (bar) bar.style.width = scrolled + '%';
+            if (!isScrollTicking) {
+                window.requestAnimationFrame(() => {
+                    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    if (height > 0) {
+                        const scrolled = (winScroll / height) * 100;
+                        const bar = document.getElementById('scroll-progress-bar');
+                        if (bar) bar.style.width = scrolled + '%';
+                    }
+                    isScrollTicking = false;
+                });
+                isScrollTicking = true;
             }
-        });
+        }, { passive: true });
 
         // --------------------------------------------------------
         // 2. MY SAVED COMMUTES & FAVORITES ENGINE
@@ -15052,17 +15101,24 @@ document.addEventListener('keydown', (e) => {
             const tiltElements = document.querySelectorAll('.squad-card, .culinary-card');
             tiltElements.forEach(el => {
                 el.classList.add('tilt-card');
+                let tiltTicking = false;
                 el.addEventListener('mousemove', (e) => {
-                    if (window.innerWidth < 768) return; // Disable on touch mobile for performance
-                    const rect = el.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const rotX = ((y - centerY) / centerY) * -5;
-                    const rotY = ((x - centerX) / centerX) * 5;
-                    el.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
-                });
+                    if (window.innerWidth < 1024) return; // Disable on tablets & mobile
+                    if (!tiltTicking) {
+                        window.requestAnimationFrame(() => {
+                            const rect = el.getBoundingClientRect();
+                            const x = e.clientX - rect.left;
+                            const y = e.clientY - rect.top;
+                            const centerX = rect.width / 2;
+                            const centerY = rect.height / 2;
+                            const rotX = ((y - centerY) / centerY) * -4;
+                            const rotY = ((x - centerX) / centerX) * 4;
+                            el.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-2px)`;
+                            tiltTicking = false;
+                        });
+                        tiltTicking = true;
+                    }
+                }, { passive: true });
                 el.addEventListener('mouseleave', () => {
                     el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
                 });
