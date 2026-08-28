@@ -10602,78 +10602,79 @@
 
             <!-- JAVASCRIPT COMPUTATION ENGINE FOR TRIP BUDGET CALCULATOR -->
             <script>
-                // 1. Destination Pricing Models (per person slab rates)
+                // 1. Destination Pricing Models (Authentic West Bengal Ground Prices)
+                // Calibrated with real IRCTC unreserved/express fares, shared Toto rates, local thali meals & homestays
                 const BENGAL_TRIP_DATA = {
                     gangani: {
                         name: "Gangani Grand Canyon (Garhbeta)",
-                        transit: { student: 90, comfort: 280, luxury: 1150 }, // Train return
-                        lodgingNight: { student: 500, comfort: 1200, luxury: 2800 },
-                        foodDay: { student: 250, comfort: 500, luxury: 1100 },
-                        sightseeingDay: { student: 150, comfort: 350, luxury: 800 },
-                        tip: "Take the 12883 Rupashi Bangla Express (06:25 AM from Howrah to Garhbeta). Toto from Garhbeta Station to Gangani Canyon is ₹30–₹40 per head.",
-                        sweets: "Mecha Sandesh at Beliator & Garhbeta Post-Office More."
+                        transit: { student: 90, comfort: 240, luxury: 750 }, // Return train fare (Howrah-Garhbeta 2S is ₹45 one-way)
+                        lodgingNight: { student: 400, comfort: 900, luxury: 2200 }, // Per room (2 persons)
+                        foodDay: { student: 120, comfort: 280, luxury: 650 }, // Breakfast + Rice Thali + Mecha Sandesh
+                        sightseeingDay: { student: 50, comfort: 150, luxury: 400 }, // Shared Toto station to canyon return (₹20 each way), Entry ₹0
+                        tip: "Take 12883 Rupashi Bangla Express (06:25 AM from Howrah to Garhbeta). Shared Toto from Garhbeta Station to Gangani is only ₹20 per head. Entry to the canyon is 100% FREE!",
+                        sweets: "Mecha Sandesh at Garhbeta Post-Office More (₹10–₹15/pc)."
                     },
                     bishnupur: {
                         name: "Bishnupur Terracotta Temples & Silk",
-                        transit: { student: 110, comfort: 320, luxury: 1250 },
-                        lodgingNight: { student: 600, comfort: 1500, luxury: 3200 },
-                        foodDay: { student: 250, comfort: 550, luxury: 1200 },
-                        sightseeingDay: { student: 180, comfort: 400, luxury: 900 },
-                        tip: "Board the 12885 Aranyak Express or 12883 Rupashi Bangla. Rent a dedicated Toto for ₹450-₹600 for a 4-hour full temple circuit.",
-                        sweets: "Authentic Mecha Sandesh & Posto Bora."
+                        transit: { student: 110, comfort: 260, luxury: 850 }, // Return 2S train fare (₹55–₹60 one-way)
+                        lodgingNight: { student: 450, comfort: 1100, luxury: 2600 },
+                        foodDay: { student: 140, comfort: 320, luxury: 700 }, // Posto Bora thali + sweets
+                        sightseeingDay: { student: 85, comfort: 225, luxury: 550 }, // Shared Toto + ₹25 ASI temple ticket
+                        tip: "Board 12885 Aranyak Express or 12883 Rupashi Bangla. Shared Toto between temples is ₹15-₹20. ASI combo ticket for Rasmancha & Jor Bangla is only ₹25 for Indians.",
+                        sweets: "Authentic Mecha Sandesh & Posto Bora at local eateries."
                     },
                     darjeeling: {
                         name: "Darjeeling Himalayan Toy Train & Tiger Hill",
-                        transit: { student: 450, comfort: 1650, luxury: 3800 }, // NJP train + shared/private cab
-                        lodgingNight: { student: 900, comfort: 2400, luxury: 5800 },
-                        foodDay: { student: 400, comfort: 900, luxury: 2000 },
-                        sightseeingDay: { student: 350, comfort: 850, luxury: 2000 },
-                        tip: "Take Vande Bharat (22301) or Padatik Express to NJP. Shared Sumo from NJP to Darjeeling is ₹250–₹300/seat. Book Toy Train joyride 30 days ahead.",
-                        sweets: "Steaming Darjeeling Momos, Thukpa & Glenary's Bakery."
+                        transit: { student: 1050, comfort: 2200, luxury: 5700 }, // Sleeper train ₹500 return + Shared Sumo NJP-Darjeeling ₹550 return
+                        lodgingNight: { student: 700, comfort: 1800, luxury: 5500 }, // Backpacker homestay on Gandhi Rd
+                        foodDay: { student: 200, comfort: 550, luxury: 1200 }, // Momos (₹60), Thukpa (₹70), Tea
+                        sightseeingDay: { student: 180, comfort: 450, luxury: 1200 }, // Tiger Hill shared jeep (₹250), Zoo entry ₹110
+                        tip: "Take Padatik or Kanchan Kanya Express (Sleeper is ₹265). Shared Sumo from NJP to Darjeeling is only ₹250–₹300/seat. Book Toy Train joyride online in advance.",
+                        sweets: "Steaming Darjeeling Momos, Thukpa & Glenary's Fresh Bakery."
                     },
                     digha: {
                         name: "Digha & Mandarmani Coastal Sea Beach",
-                        transit: { student: 105, comfort: 350, luxury: 1350 }, // Tamralipta Express or AC bus
-                        lodgingNight: { student: 700, comfort: 1800, luxury: 4200 },
-                        foodDay: { student: 350, comfort: 750, luxury: 1600 },
-                        sightseeingDay: { student: 150, comfort: 400, luxury: 900 },
-                        tip: "Board the 12857 Tamralipta Express from Howrah (06:45 AM). Stay in New Digha for cleaner beaches; rent an electric scooter or Toto for Mandarmani.",
-                        sweets: "Fresh Coastal Fried Pomfret/Hilsa and Kaju Sweets."
+                        transit: { student: 140, comfort: 320, luxury: 900 }, // Tamralipta Express 2S return (₹70 one-way) / SBSTC Bus
+                        lodgingNight: { student: 500, comfort: 1400, luxury: 3200 }, // Budget beach lodge
+                        foodDay: { student: 180, comfort: 400, luxury: 900 }, // Beach fried fish (₹50) + Rice-fish thali (₹90) + Daab (₹40)
+                        sightseeingDay: { student: 60, comfort: 180, luxury: 500 }, // Shared Toto Old-New Digha (₹15), Marine Aquarium is free
+                        tip: "Board 12857 Tamralipta Express from Howrah (06:45 AM). Stay in New Digha for cleaner beaches; shared Toto between Old & New Digha is only ₹15–₹20.",
+                        sweets: "Fresh Coastal Fried Pomfret/Prawn & Kaju Barfi."
                     },
                     jhargram: {
                         name: "Jhargram Sal Forests & Royal Palace",
-                        transit: { student: 95, comfort: 290, luxury: 1200 }, // Steel Express
-                        lodgingNight: { student: 600, comfort: 1400, luxury: 3500 },
-                        foodDay: { student: 250, comfort: 500, luxury: 1100 },
-                        sightseeingDay: { student: 200, comfort: 450, luxury: 1000 },
-                        tip: "Take the 12813 Steel Express from Howrah (05:25 PM) or Ispat Express. Explore Jhargram Rajbari, Chilkigarh Kanak Durga, and Kendua bird sanctuary.",
-                        sweets: "Kendu Pitha and fresh Sal-leaf Mahua honey."
+                        transit: { student: 130, comfort: 280, luxury: 800 }, // Steel Express 2S return (₹65 one-way)
+                        lodgingNight: { student: 450, comfort: 1100, luxury: 2800 }, // Govt Youth Hostel / Homestay
+                        foodDay: { student: 130, comfort: 300, luxury: 650 }, // Rice-dal-sabji thali + tea
+                        sightseeingDay: { student: 90, comfort: 200, luxury: 500 }, // Shared Toto to Palace, Chilkigarh Kanak Durga
+                        tip: "Take 12813 Steel Express from Howrah (05:25 PM) or Ispat Express. Shared Toto from town to Chilkigarh is ₹30–₹40. Entry to Jhargram Palace courtyard is free.",
+                        sweets: "Kendu Pitha and pure Junglemahal Wild Sal Honey."
                     },
                     kolkata: {
                         name: "Kolkata Heritage & City of Joy",
-                        transit: { student: 60, comfort: 200, luxury: 800 }, // Metro + AC Bus
-                        lodgingNight: { student: 800, comfort: 2200, luxury: 5500 },
-                        foodDay: { student: 300, comfort: 700, luxury: 1800 },
-                        sightseeingDay: { student: 150, comfort: 350, luxury: 900 },
-                        tip: "Ride the iconic Tram Route 24/29, take the Howrah-Fairlie Ghat Ferry (₹6), and visit Victoria Memorial & Indian Museum using Kolkata Metro Blue Line.",
-                        sweets: "K.C. Das Rossogolla, Sandesh & Flurys Tea."
+                        transit: { student: 50, comfort: 120, luxury: 450 }, // Metro (₹5–₹20) + Tram (₹7) + Ghat Ferry (₹6)
+                        lodgingNight: { student: 500, comfort: 1500, luxury: 4000 }, // Budget guest house near Sealdah/College St
+                        foodDay: { student: 150, comfort: 380, luxury: 950 }, // Egg roll (₹40), Puchka (₹20), Rice thali (₹70), Rossogolla (₹10)
+                        sightseeingDay: { student: 80, comfort: 180, luxury: 500 }, // Victoria Memorial garden (₹20), Indian Museum (₹50), Zoo (₹50)
+                        tip: "Ride Tram Route 24/29, take the Howrah-Fairlie Ghat Ferry (only ₹6!), and travel across the city using Kolkata Metro Blue & Green lines.",
+                        sweets: "K.C. Das Rossogolla, Sandesh & Flurys Heritage Bakery."
                     },
                     sundarbans: {
                         name: "Sundarbans Mangrove Safari & Delta",
-                        transit: { student: 150, comfort: 550, luxury: 1800 }, // Local train to Canning + Ferry
-                        lodgingNight: { student: 800, comfort: 2000, luxury: 4800 }, // Eco village camp
-                        foodDay: { student: 350, comfort: 700, luxury: 1500 },
-                        sightseeingDay: { student: 400, comfort: 900, luxury: 2200 }, // Boat safari permit
-                        tip: "Take Canning local from Sealdah (1 hr 15 mins), then auto to Godkhali ghat. Always hire a Govt-certified tourist boat with lifejackets.",
-                        sweets: "Pure Sundarbans Wild Mangrove Honey & Nolen Gur."
+                        transit: { student: 100, comfort: 350, luxury: 1200 }, // Sealdah-Canning local train (₹15) + Auto to Godkhali (₹35) return
+                        lodgingNight: { student: 600, comfort: 1600, luxury: 4500 }, // Eco village cottage
+                        foodDay: { student: 180, comfort: 400, luxury: 850 }, // Fresh village catch & country meals
+                        sightseeingDay: { student: 250, comfort: 550, luxury: 1500 }, // Shared tourist boat safari & forest permit contribution
+                        tip: "Take Canning Local from Sealdah (1 hr 15 mins, ticket only ₹15!), then shared auto/van to Godkhali Ghat. Join a shared boat tour with lifejackets.",
+                        sweets: "Pure Sundarbans Wild Mangrove Honey & Nolen Gur Sandesh."
                     },
                     kalimpong_dooars: {
                         name: "Kalimpong, Dooars & Tea Valleys",
-                        transit: { student: 420, comfort: 1550, luxury: 3600 },
-                        lodgingNight: { student: 850, comfort: 2200, luxury: 5200 },
-                        foodDay: { student: 350, comfort: 800, luxury: 1800 },
-                        sightseeingDay: { student: 300, comfort: 750, luxury: 1800 },
-                        tip: "Get down at New Mal Jn or Siliguri. Visit Gorumara National Park for one-horned rhinos, and Delo Park in Kalimpong for 360° Kanchenjunga views.",
+                        transit: { student: 950, comfort: 2100, luxury: 5200 }, // Train to New Mal/Siliguri + Shared bus/jeep
+                        lodgingNight: { student: 650, comfort: 1600, luxury: 4800 }, // Village tea estate homestay
+                        foodDay: { student: 180, comfort: 450, luxury: 950 }, // Fresh homestay cooked meals & tea
+                        sightseeingDay: { student: 160, comfort: 400, luxury: 1100 }, // Delo park (₹20), Lava monastery, shared jeep
+                        tip: "Get down at New Mal Jn or Siliguri. Stay in a tea garden eco-homestay for ₹600–₹800/night which often includes dinner. Enjoy 360° Kanchenjunga views from Delo Park.",
                         sweets: "Kalimpong Gouda Cheese, Lollipop candy & Churpi."
                     }
                 };
@@ -10698,7 +10699,7 @@
 
                 function updateDaysInput(val) {
                     const days = parseInt(val);
-                    const label = days === 1 ? '1 Day (Day Trip)' : `${days} Days / ${days - 1} Nights`;
+                    const label = days === 1 ? '1 Day (Day Trip)' : `${days} Days / ${days - 1} Night${days > 2 ? 's' : ''}`;
                     document.getElementById('calc-days-val').textContent = label;
                     calculateTripBudget();
                 }
@@ -10716,26 +10717,26 @@
                     const people = parseInt(document.getElementById('calc-people-slider').value) || 2;
                     const dest = BENGAL_TRIP_DATA[destKey] || BENGAL_TRIP_DATA.gangani;
 
-                    // 1. Transit Cost (Train/Bus Return)
-                    const transitPerPerson = dest.transit[currentCalcTier] || 100;
+                    // 1. Transit Cost (Return train/bus fare for the whole group)
+                    const transitPerPerson = dest.transit[currentCalcTier] || 90;
                     const totalTransit = transitPerPerson * people;
 
-                    // 2. Lodging Cost (Nights = Days - 1, Day Trip = 0)
+                    // 2. Lodging Cost (Nights = Days - 1; 1-Day Trip = ₹0 lodging)
                     const nights = Math.max(0, days - 1);
-                    // Rooms needed (approx 2 people per room)
+                    // Rooms needed (2 people share 1 room; 3 people = 2 rooms, etc.)
                     const rooms = Math.ceil(people / 2);
-                    const roomRate = dest.lodgingNight[currentCalcTier] || 600;
+                    const roomRate = dest.lodgingNight[currentCalcTier] || 400;
                     const totalLodging = nights * rooms * roomRate;
 
-                    // 3. Food Cost
-                    const foodPerPersonPerDay = dest.foodDay[currentCalcTier] || 300;
+                    // 3. Food Cost (Meals + Sweets per person per day)
+                    const foodPerPersonPerDay = dest.foodDay[currentCalcTier] || 120;
                     const totalFood = foodPerPersonPerDay * people * days;
 
-                    // 4. Sightseeing & Local Toto/Cab
-                    const sightseeingPerPersonPerDay = dest.sightseeingDay[currentCalcTier] || 200;
+                    // 4. Local Sightseeing & Toto/Auto (per person per day)
+                    const sightseeingPerPersonPerDay = dest.sightseeingDay[currentCalcTier] || 50;
                     const totalSightseeing = sightseeingPerPersonPerDay * people * days;
 
-                    // Grand Total
+                    // Grand Total & Per Person
                     const grandTotal = totalTransit + totalLodging + totalFood + totalSightseeing;
                     const perPerson = Math.round(grandTotal / people);
 
@@ -10745,23 +10746,23 @@
                     document.getElementById('calc-duration-summary').textContent = `${days} Day${days > 1 ? 's' : ''} • ${people} Traveler${people > 1 ? 's' : ''}`;
 
                     document.getElementById('calc-transit-cost').textContent = `₹ ${totalTransit.toLocaleString('en-IN')}`;
-                    document.getElementById('calc-transit-sub').textContent = `Return tickets for ${people} travelers`;
+                    document.getElementById('calc-transit-sub').textContent = `Return tickets (₹${transitPerPerson}/person)`;
 
                     document.getElementById('calc-lodging-cost').textContent = `₹ ${totalLodging.toLocaleString('en-IN')}`;
-                    document.getElementById('calc-lodging-sub').textContent = nights === 0 ? 'Day trip (No overnight room)' : `${nights} night${nights > 1 ? 's' : ''} (${rooms} room${rooms > 1 ? 's' : ''})`;
+                    document.getElementById('calc-lodging-sub').textContent = nights === 0 ? 'Day trip (₹0 room cost)' : `${nights} night${nights > 1 ? 's' : ''} (${rooms} room${rooms > 1 ? 's' : ''})`;
 
                     document.getElementById('calc-food-cost').textContent = `₹ ${totalFood.toLocaleString('en-IN')}`;
-                    document.getElementById('calc-food-sub').textContent = `Meals & local sweets budget`;
+                    document.getElementById('calc-food-sub').textContent = `₹${foodPerPersonPerDay}/day per person`;
 
                     document.getElementById('calc-sightseeing-cost').textContent = `₹ ${totalSightseeing.toLocaleString('en-IN')}`;
-                    document.getElementById('calc-sightseeing-sub').textContent = `Local Toto, cab & spot tickets`;
+                    document.getElementById('calc-sightseeing-sub').textContent = `Shared Toto & entry tickets`;
 
-                    // Update Smart Tip
+                    // Update Smart Local Route Insight
                     const tipBox = document.getElementById('calc-explorer-tip-box');
                     if (tipBox) {
                         tipBox.innerHTML = `
                             <strong style="color: #38bdf8;">💡 Local Route Insight:</strong> ${dest.tip}
-                            <br><span style="color: #fbbf24; font-weight: 700; margin-top: 4px; display: inline-block;">🍬 Culinary Highlight:</span> ${dest.sweets}
+                            <br><span style="color: #fbbf24; font-weight: 700; margin-top: 5px; display: inline-block;">🍬 Culinary & Sweet Highlight:</span> ${dest.sweets}
                         `;
                     }
                 }
