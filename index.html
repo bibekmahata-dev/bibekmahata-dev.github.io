@@ -13863,9 +13863,10 @@ function saveHype(id, eventTarget = null) {
 
     updateLiveHypeCounters();
 
-    // 6. Asynchronous Cloud Database Increment
-    const cloudImg = new Image();
-    cloudImg.src = `https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fbibekmahata-dev.github.io%2Fmember_${encodeURIComponent(id)}`;
+    // 6. Asynchronous Real-Time Cloud Database Increment
+    try {
+        fetch(`https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fbibekmahata-dev.github.io%2Fmember_${encodeURIComponent(id)}`, { cache: 'no-cache', mode: 'no-cors' }).catch(() => {});
+    } catch(e) {}
 
     return current;
 }
