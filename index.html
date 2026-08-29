@@ -8353,6 +8353,57 @@
                         };
 
                         const masterRouteTrainDatabase = [
+                            // 22301 Vande Bharat Express (HWH -> NJP UP)
+                            {
+                                no: '22301',
+                                name: 'Howrah - NJP Vande Bharat Express',
+                                type: 'Vande Bharat SF',
+                                stops: ['HWH', 'BHP', 'MLDT', 'BOE', 'NJP'],
+                                times: { 'HWH': '05:55', 'BHP': '07:37', 'MLDT': '10:30', 'BOE': '11:38', 'NJP': '13:25' },
+                                pfs: { 'HWH': '10', 'BHP': '1', 'MLDT': '1', 'BOE': '2', 'NJP': '1' },
+                                routeDesc: 'Howrah ➔ New Jalpaiguri (Fastest 7.5hr connection to North Bengal Hills)'
+                            },
+                            // 22302 Vande Bharat Express (NJP -> HWH DOWN)
+                            {
+                                no: '22302',
+                                name: 'NJP - Howrah Vande Bharat Express',
+                                type: 'Vande Bharat SF',
+                                stops: ['NJP', 'BOE', 'MLDT', 'BHP', 'HWH'],
+                                times: { 'NJP': '15:05', 'BOE': '16:28', 'MLDT': '17:55', 'BHP': '20:52', 'HWH': '22:35' },
+                                pfs: { 'NJP': '1', 'BOE': '1', 'MLDT': '1', 'BHP': '2', 'HWH': '10' },
+                                routeDesc: 'New Jalpaiguri ➔ Howrah (Fastest return express with world-class seating)'
+                            },
+                            // 12857 Tamralipta Express (HWH -> DGHA UP)
+                            {
+                                no: '12857',
+                                name: 'Tamralipta Express',
+                                type: 'Superfast',
+                                stops: ['HWH', 'SRC', 'TMZ', 'KATI', 'DGHA'],
+                                times: { 'HWH': '06:45', 'SRC': '07:00', 'TMZ': '08:24', 'KATI': '09:22', 'DGHA': '10:05' },
+                                pfs: { 'HWH': '20', 'SRC': '1', 'TMZ': '1', 'KATI': '2', 'DGHA': '1' },
+                                routeDesc: 'Howrah ➔ Digha Flag Station (Morning direct coastal sea express)'
+                            },
+                            // 12858 Tamralipta Express (DGHA -> HWH DOWN)
+                            {
+                                no: '12858',
+                                name: 'Tamralipta Express',
+                                type: 'Superfast',
+                                stops: ['DGHA', 'KATI', 'TMZ', 'SRC', 'HWH'],
+                                times: { 'DGHA': '10:35', 'KATI': '11:15', 'TMZ': '12:12', 'SRC': '13:28', 'HWH': '13:55' },
+                                pfs: { 'DGHA': '1', 'KATI': '1', 'TMZ': '2', 'SRC': '3', 'HWH': '19' },
+                                routeDesc: 'Digha ➔ Howrah (Afternoon return express from the beach)'
+                            },
+                            // 12871 Ispat Express (HWH -> TIG via KGP & JGM)
+                            {
+                                no: '12871',
+                                name: 'Ispat Express',
+                                type: 'Superfast',
+                                stops: ['HWH', 'KGP', 'JGM', 'CKU', 'GTS', 'TATA'],
+                                times: { 'HWH': '06:55', 'KGP': '08:35', 'JGM': '09:05', 'CKU': '09:30', 'GTS': '09:55', 'TATA': '10:45' },
+                                pfs: { 'HWH': '21', 'KGP': '1', 'JGM': '2', 'CKU': '2', 'GTS': '1', 'TATA': '3' },
+                                routeDesc: 'Howrah ➔ Jhargram & Tatanagar (Direct morning express to Junglemahal)'
+                            },
+
                             // 12883 Rupashi Bangla (HWH -> PRR UP)
                             {
                                 no: '12883',
@@ -10744,6 +10795,76 @@
                                 bookingUrl: 'https://www.wbtdcl.com/',
                                 amenities: ['👑 Royal Palace Grounds', '🏹 Tribal Craft Centre', '🌲 Sal Forest Canopy Trails'],
                                 desc: 'Experience royal palace heritage amidst the lush red-soil jungles of Jhargram with guided nature trails and authentic Santhali cultural performances.'
+                            },
+                            {
+                                id: 'darjeeling-meghbalika',
+                                name: 'WBTDCL Meghbalika Tourist Lodge',
+                                category: 'HILLS_NORTH_BENGAL',
+                                org: 'WBTDCL Government Property',
+                                orgColor: '#0ea5e9',
+                                location: 'The Mall Road, Darjeeling - 734101',
+                                tariff: '₹2,200 - ₹5,500 / night',
+                                phone: '03542254050',
+                                phoneDisplay: '0354-2254050',
+                                bookingUrl: 'https://www.wbtdcl.com/',
+                                amenities: ['🏔️ Mt. Kanchenjunga View', '🚶 50m from Chowrasta Mall', '☕ Fresh Darjeeling First Flush Lounge'],
+                                desc: 'High-altitude state lodge situated right beside Darjeeling Mall, offering breathtaking morning views of snow-capped Kanchenjunga.'
+                            },
+                            {
+                                id: 'jhargram-tourist-complex',
+                                name: 'WBTDCL Jhargram Tourist Complex',
+                                category: 'MEDINIPUR_BANKURA',
+                                org: 'WBTDCL Government Property',
+                                orgColor: '#22c55e',
+                                location: 'Near Jhargram Rajbari, Jhargram - 721507',
+                                tariff: '₹1,100 - ₹2,800 / night',
+                                phone: '03221255023',
+                                phoneDisplay: '03221-255023',
+                                bookingUrl: 'https://www.wbtdcl.com/',
+                                amenities: ['🌲 Sal Woodland Campus', '🏛️ Near Royal Palace', '🍛 Tribal Santhali Thali'],
+                                desc: 'Quiet government property located near Jhargram Royal Palace and dense sal forests of Junglemahal.'
+                            },
+                            {
+                                id: 'sajnekhali-mangrove-lodge',
+                                name: 'WBTDCL Sajnekhali Tourist Lodge',
+                                category: 'COASTAL_KOLKATA',
+                                org: 'WBTDCL Government Property',
+                                orgColor: '#10b981',
+                                location: 'Sajnekhali Island, Sundarbans Tiger Reserve - 743370',
+                                tariff: '₹2,000 - ₹4,500 / night',
+                                phone: '03322436440',
+                                phoneDisplay: '033-22436440 (WBTDCL Central)',
+                                bookingUrl: 'https://www.wbtdcl.com/',
+                                amenities: ['🐅 Inside Tiger Reserve', '🚤 Island Boat Transfers', '🦅 Sajnekhali Watchtower Walkway'],
+                                desc: 'The only government tourist lodge situated inside the deep Sundarbans delta with direct watchtower and river cruise access.'
+                            },
+                            {
+                                id: 'shantiniketan-shantabitan',
+                                name: 'WBTDCL Shantabitan Tourist Lodge',
+                                category: 'MEDINIPUR_BANKURA',
+                                org: 'WBTDCL Government Property',
+                                orgColor: '#f59e0b',
+                                location: 'Bolpur, Santiniketan, Birbhum - 731204',
+                                tariff: '₹1,500 - ₹3,800 / night',
+                                phone: '03463252699',
+                                phoneDisplay: '03463-252699',
+                                bookingUrl: 'https://www.wbtdcl.com/',
+                                amenities: ['🎨 Visva-Bharati Ashram Walking Distance', '🌿 Sprawling Gardens', '🎶 Evening Baul Performances'],
+                                desc: 'Serene state lodge located in the UNESCO heritage town of Santiniketan, surrounded by red laterite groves.'
+                            },
+                            {
+                                id: 'lava-nature-resort',
+                                name: 'WBFDC Lava Nature Resort',
+                                category: 'HILLS_NORTH_BENGAL',
+                                org: 'WBFDC Forest Dept Resort',
+                                orgColor: '#10b981',
+                                location: 'Lava Pine Forest Ridge, Kalimpong - 734319',
+                                tariff: '₹1,200 - ₹3,000 / night',
+                                phone: '03552255012',
+                                phoneDisplay: '03552-255012 (Lava Range)',
+                                bookingUrl: 'https://wbfdc.net/',
+                                amenities: ['🌲 Pine Canopy Cottages', '❄️ Foggy Valley Views', '🚶 Trekking Basecamp for Neora Valley'],
+                                desc: 'Eco-friendly wooden cottages managed by the West Bengal Forest Development Corporation amidst misty pine and fir canopies.'
                             }
                         ];
 
