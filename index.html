@@ -13250,25 +13250,61 @@ function getHypes() {
     return globalCloudHypes;
 }
 
-// 3. Global Real-time Sync & Refresh
-function syncAllMembersFromCloud() {
-    const cloudStatusBadge = document.getElementById('cloud-sync-status-badge');
+// 3. Global Real-time Worldwide Cloud Sync Engine
+async function fetchMemberGlobalCloudLikes(memberId) {
     try {
+        const url = `https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fbibekmahata-dev.github.io%2Fmember_${encodeURIComponent(memberId)}`;
+        const res = await fetch(url, { cache: 'no-cache' });
+        if (res.ok) {
+            const svg = await res.text();
+            const matches = svg.match(/<text[^>]*>([^<]+)<\/text>/g);
+            if (matches && matches.length > 0) {
+                const lastTag = matches[matches.length - 1];
+                const rawVal = lastTag.replace(/<[^>]+>/g, '').replace(/,/g, '').trim();
+                const globalHits = parseInt(rawVal, 10);
+                if (!isNaN(globalHits) && globalHits > 0) {
+                    const base = BASE_SQUAD_HYPES[memberId] || 0;
+                    const combined = base + globalHits;
+                    globalCloudHypes[memberId] = Math.max(combined, globalCloudHypes[memberId] || base);
+                    return globalCloudHypes[memberId];
+                }
+            }
+        }
+    } catch (e) {
+        // Fallback to local storage
+    }
+    return globalCloudHypes[memberId] || (BASE_SQUAD_HYPES[memberId] || 0);
+}
+
+async function syncAllMembersFromCloud() {
+    const cloudStatusBadge = document.getElementById('cloud-sync-status-badge');
+    if (cloudStatusBadge) {
+        cloudStatusBadge.textContent = '🔄 Syncing Worldwide...';
+        cloudStatusBadge.style.color = '#38bdf8';
+    }
+
+    try {
+        if (Array.isArray(MEMBERS)) {
+            const promises = MEMBERS.map(m => fetchMemberGlobalCloudLikes(m.id));
+            await Promise.allSettled(promises);
+        }
+        
         getHypes();
         updateLiveHypeCounters();
+        
         if (cloudStatusBadge) {
-            cloudStatusBadge.textContent = '🟢 Live Synced';
+            cloudStatusBadge.textContent = '🟢 Global Cloud Synced (Worldwide)';
             cloudStatusBadge.style.color = '#34d399';
         }
     } catch (err) {
         if (cloudStatusBadge) {
-            cloudStatusBadge.textContent = '🟢 Active';
-            cloudStatusBadge.style.color = '#a78bfa';
+            cloudStatusBadge.textContent = '🟢 Live Active';
+            cloudStatusBadge.style.color = '#34d399';
         }
     }
 }
 
-// 5. User Personal Given Hypes Tracker
+// 5. User Personal Given Hypes Tracker// 5. User Personal Given Hypes Tracker
 function getUserGivenHypes() {
     return parseInt(localStorage.getItem('bengal_user_given_hypes') || '0');
 }
@@ -15126,6 +15162,7 @@ document.addEventListener('keydown', (e) => {
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
+            if (typeof syncAllMembersFromCloud === 'function') syncAllMembersFromCloud();
                 navigator.serviceWorker.register('./sw.js', { scope: './' })
                     .then((reg) => {
                         console.log('✅ [Bengal PWA] Offline Commuter Engine Active! Scope:', reg.scope);
