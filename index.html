@@ -10460,10 +10460,11 @@
                             <div style="font-size: 12.5px; color: #94a3b8; margin-top: 3px;">Plan your journey with realistic train fares, homestay rates, meals & local transit across West Bengal.</div>
                         </div>
                     </div>
-                    <div style="display: flex; gap: 8px; align-items: center;">
-                        <span style="font-size: 11.5px; color: #38bdf8; background: rgba(56, 189, 248, 0.12); padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.25); font-weight: 700;">
-                            🚆 Live IRCTC & SBSTC Slabs
-                        </span>
+                    <div style="display: flex; gap: 6px; align-items: center; background: rgba(0,0,0,0.4); padding: 4px; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.25); flex-wrap: wrap;">
+                        <button type="button" class="calc-curr-btn active" data-curr="INR" onclick="setCalcCurrency('INR')" style="background: rgba(56, 189, 248, 0.25); color: #38bdf8; border: 1px solid #38bdf8; padding: 4px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 800; cursor: pointer; transition: all 0.2s;">🇮🇳 ₹ INR</button>
+                        <button type="button" class="calc-curr-btn" data-curr="USD" onclick="setCalcCurrency('USD')" style="background: rgba(255,255,255,0.05); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s;">🇺🇸 $ USD</button>
+                        <button type="button" class="calc-curr-btn" data-curr="EUR" onclick="setCalcCurrency('EUR')" style="background: rgba(255,255,255,0.05); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s;">🇪🇺 € EUR</button>
+                        <button type="button" class="calc-curr-btn" data-curr="GBP" onclick="setCalcCurrency('GBP')" style="background: rgba(255,255,255,0.05); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s;">🇬🇧 £ GBP</button>
                     </div>
                 </div>
 
@@ -10709,7 +10710,43 @@
                     }
                 };
 
+                // Global Multi-Currency Conversion Rates (INR Base)
+                const CURRENCY_RATES = {
+                    INR: { symbol: '₹', rate: 1.0, flag: '🇮🇳' },
+                    USD: { symbol: '$', rate: 0.0114, flag: '🇺🇸' }, // 1 USD ≈ ₹87.50
+                    EUR: { symbol: '€', rate: 0.0105, flag: '🇪🇺' }, // 1 EUR ≈ ₹95.00
+                    GBP: { symbol: '£', rate: 0.0089, flag: '🇬🇧' }  // 1 GBP ≈ ₹112.00
+                };
+
                 let currentCalcTier = 'student';
+                let currentCalcCurrency = 'INR';
+
+                function setCalcCurrency(curr) {
+                    currentCalcCurrency = curr;
+                    document.querySelectorAll('.calc-curr-btn').forEach(btn => {
+                        if (btn.dataset.curr === curr) {
+                            btn.style.background = 'rgba(56, 189, 248, 0.25)';
+                            btn.style.borderColor = '#38bdf8';
+                            btn.style.color = '#38bdf8';
+                        } else {
+                            btn.style.background = 'rgba(255,255,255,0.05)';
+                            btn.style.borderColor = 'rgba(255,255,255,0.1)';
+                            btn.style.color = '#cbd5e1';
+                        }
+                    });
+                    calculateTripBudget();
+                }
+
+                function formatPrice(inrAmount) {
+                    const c = CURRENCY_RATES[currentCalcCurrency] || CURRENCY_RATES.INR;
+                    if (currentCalcCurrency === 'INR') {
+                        return `₹ ${Math.round(inrAmount).toLocaleString('en-IN')}`;
+                    } else {
+                        const val = inrAmount * c.rate;
+                        const formatted = val < 10 ? val.toFixed(2) : Math.round(val).toLocaleString('en-US');
+                        return `${c.symbol} ${formatted}`;
+                    }
+                }
 
                 function setCalcTier(tier) {
                     currentCalcTier = tier;
@@ -10753,16 +10790,15 @@
 
                     // 2. Lodging Cost (Nights = Days - 1; 1-Day Trip = ₹0 lodging)
                     const nights = Math.max(0, days - 1);
-                    // Rooms needed (2 people share 1 room; 3 people = 2 rooms, etc.)
                     const rooms = Math.ceil(people / 2);
                     const roomRate = dest.lodgingNight[currentCalcTier] || 400;
                     const totalLodging = nights * rooms * roomRate;
 
-                    // 3. Food Cost (Meals + Sweets per person per day)
+                    // 3. Food Cost
                     const foodPerPersonPerDay = dest.foodDay[currentCalcTier] || 120;
                     const totalFood = foodPerPersonPerDay * people * days;
 
-                    // 4. Local Sightseeing & Toto/Auto (per person per day)
+                    // 4. Local Sightseeing & Toto/Auto
                     const sightseeingPerPersonPerDay = dest.sightseeingDay[currentCalcTier] || 50;
                     const totalSightseeing = sightseeingPerPersonPerDay * people * days;
 
@@ -10770,29 +10806,36 @@
                     const grandTotal = totalTransit + totalLodging + totalFood + totalSightseeing;
                     const perPerson = Math.round(grandTotal / people);
 
-                    // Update UI Numbers
-                    document.getElementById('calc-total-cost').textContent = `₹ ${grandTotal.toLocaleString('en-IN')}`;
-                    document.getElementById('calc-per-person').textContent = `₹ ${perPerson.toLocaleString('en-IN')} / person`;
+                    // Update UI Numbers with Multi-Currency Formatter
+                    document.getElementById('calc-total-cost').textContent = formatPrice(grandTotal);
+                    document.getElementById('calc-per-person').textContent = `${formatPrice(perPerson)} / person`;
                     document.getElementById('calc-duration-summary').textContent = `${days} Day${days > 1 ? 's' : ''} • ${people} Traveler${people > 1 ? 's' : ''}`;
 
-                    document.getElementById('calc-transit-cost').textContent = `₹ ${totalTransit.toLocaleString('en-IN')}`;
-                    document.getElementById('calc-transit-sub').textContent = `Return tickets (₹${transitPerPerson}/person)`;
+                    document.getElementById('calc-transit-cost').textContent = formatPrice(totalTransit);
+                    document.getElementById('calc-transit-sub').textContent = `Return tickets (${formatPrice(transitPerPerson)}/person)`;
 
-                    document.getElementById('calc-lodging-cost').textContent = `₹ ${totalLodging.toLocaleString('en-IN')}`;
-                    document.getElementById('calc-lodging-sub').textContent = nights === 0 ? 'Day trip (₹0 room cost)' : `${nights} night${nights > 1 ? 's' : ''} (${rooms} room${rooms > 1 ? 's' : ''})`;
+                    document.getElementById('calc-lodging-cost').textContent = formatPrice(totalLodging);
+                    document.getElementById('calc-lodging-sub').textContent = nights === 0 ? 'Day trip (No room cost)' : `${nights} night${nights > 1 ? 's' : ''} (${rooms} room${rooms > 1 ? 's' : ''})`;
 
-                    document.getElementById('calc-food-cost').textContent = `₹ ${totalFood.toLocaleString('en-IN')}`;
-                    document.getElementById('calc-food-sub').textContent = `₹${foodPerPersonPerDay}/day per person`;
+                    document.getElementById('calc-food-cost').textContent = formatPrice(totalFood);
+                    document.getElementById('calc-food-sub').textContent = `${formatPrice(foodPerPersonPerDay)}/day per person`;
 
-                    document.getElementById('calc-sightseeing-cost').textContent = `₹ ${totalSightseeing.toLocaleString('en-IN')}`;
+                    document.getElementById('calc-sightseeing-cost').textContent = formatPrice(totalSightseeing);
                     document.getElementById('calc-sightseeing-sub').textContent = `Shared Toto & entry tickets`;
 
-                    // Update Smart Local Route Insight
+                    // Update Smart Local Route & Foreign Tourist Insight
                     const tipBox = document.getElementById('calc-explorer-tip-box');
                     if (tipBox) {
+                        const foreignTipHTML = currentCalcCurrency !== 'INR' ? `
+                            <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 11px; color: #a78bfa;">
+                                🛂 <strong>Foreign Traveler Tip:</strong> Book train tickets using International Visa/Mastercard via official IRCTC Foreign Tourist Quota (FTQ) or at Howrah/Kolkata International Counters. 5G tourist SIMs available at Kolkata Airport (CCU).
+                            </div>
+                        ` : '';
+
                         tipBox.innerHTML = `
                             <strong style="color: #38bdf8;">💡 Local Route Insight:</strong> ${dest.tip}
                             <br><span style="color: #fbbf24; font-weight: 700; margin-top: 5px; display: inline-block;">🍬 Culinary & Sweet Highlight:</span> ${dest.sweets}
+                            ${foreignTipHTML}
                         `;
                     }
                 }
