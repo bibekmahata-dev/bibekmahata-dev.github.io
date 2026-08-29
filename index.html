@@ -210,16 +210,16 @@
         }
 
         :root {
-            --bg-body: #090c13;
-            --bg-header: rgba(12, 16, 26, 0.94);
-            --bg-card: #0f1422;
-            --bg-card-hover: #141b2e;
-            --bg-modal: #0a0d18;
-            --bg-element: #162035;
+            --bg-body: #070709;
+            --bg-header: rgba(14, 14, 18, 0.95);
+            --bg-card: #121216;
+            --bg-card-hover: #18181f;
+            --bg-modal: #0d0d10;
+            --bg-element: #1c1c24;
 
             --text-primary: #fbf9f4;
-            --text-secondary: #a3adc2;
-            --text-muted: #6b778d;
+            --text-secondary: #a8a8b3;
+            --text-muted: #6f6f7d;
 
             --border-color: rgba(212, 175, 55, 0.18);
             --border-hover: #d4af37;
@@ -238,7 +238,7 @@
             --radius-lg: 16px;
             --radius-full: 9999px;
 
-            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.5);
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.6);
             --shadow-hover: 0 12px 36px rgba(212, 175, 55, 0.15);
 
             --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -303,7 +303,7 @@
         }
 
         .announcement-banner {
-            background: #07090f;
+            background: #08080a;
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             color: #a3adc2;
             padding: 8px 16px;
@@ -331,13 +331,13 @@
 
         body {
             font-family: var(--font-body);
-            background-color: #090c13;
+            background-color: #070709;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.12) 0px, transparent 55%),
-                radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.08) 0px, transparent 55%),
-                radial-gradient(at 50% 50%, rgba(212, 175, 55, 0.05) 0px, transparent 60%),
-                radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.08) 0px, transparent 55%),
-                radial-gradient(at 100% 100%, rgba(212, 175, 55, 0.1) 0px, transparent 55%);
+                radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.07) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(212, 175, 55, 0.04) 0px, transparent 60%),
+                radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.06) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(212, 175, 55, 0.08) 0px, transparent 50%);
             background-attachment: fixed;
             color: var(--text-primary);
             min-height: 100vh;
@@ -441,7 +441,7 @@
            STATS HERO BANNER
            ====================================== */
         .stats-banner {
-            background: linear-gradient(135deg, #131b2e 0%, #1a253d 100%);
+            background: linear-gradient(135deg, #121216 0%, #1a253d 100%);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
             padding: 24px clamp(16px, 3vw, 32px);
@@ -629,7 +629,7 @@
             white-space: nowrap;
         }
         .map-filter-btn:hover { background: rgba(0,0,0,0.1); }
-        .map-filter-btn.active { background: #0f172a; color: white; border-color: #0f172a; }
+        .map-filter-btn.active { background: #121216; color: white; border-color: #121216; }
         
         /* Glassmorphism for Leaflet Popup */
         .leaflet-popup-content-wrapper {
@@ -1208,7 +1208,7 @@
         .leaderboard-card.rank-1 { border-color: #fbbf24; }
         .leaderboard-card.rank-1 .leaderboard-rank { background: #fbbf24; }
         .leaderboard-card.rank-2 { border-color: #cbd5e1; }
-        .leaderboard-card.rank-2 .leaderboard-rank { background: #cbd5e1; color: #1e293b; }
+        .leaderboard-card.rank-2 .leaderboard-rank { background: #cbd5e1; color: #18181f; }
         .leaderboard-card.rank-3 { border-color: #b45309; }
         .leaderboard-card.rank-3 .leaderboard-rank { background: #b45309; }
         .leaderboard-photo {
@@ -1965,17 +1965,17 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(12, 16, 26, 0.94);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.15);
+            background: rgba(16, 16, 22, 0.96);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(212, 175, 55, 0.15);
             border-radius: 30px;
             padding: 6px 14px;
             display: flex;
             align-items: center;
             gap: 8px;
             z-index: 9000;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             max-width: 95vw;
             overflow-x: auto;
             scrollbar-width: none;
@@ -2372,7 +2372,7 @@
             --bg-element: #e2e8f0;
             --border-color: #cbd5e1;
             --border-hover: #0ea5e9;
-            --text-primary: #0f172a;
+            --text-primary: #121216;
             --text-secondary: #475569;
             --text-muted: #94a3b8;
         }
@@ -2408,7 +2408,7 @@
         }
         .compare-select {
             width: 100%;
-            background: #1e293b;
+            background: #18181f;
             color: #f8fafc;
             border: 1px solid rgba(212, 175, 55, 0.4);
             border-radius: var(--radius-md);
@@ -2524,7 +2524,7 @@
             left: -9999px;
             width: 400px;
             height: 600px;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(135deg, #121216 0%, #18181f 100%);
             border: 4px solid #f59e0b;
             border-radius: 24px;
             padding: 32px;
@@ -2977,7 +2977,7 @@
                 font-size: 11px !important;
                 height: 28px !important;
                 border-radius: 6px !important;
-                background: #1e293b !important;
+                background: #18181f !important;
                 color: #ffffff !important;
                 border: 1px solid rgba(255, 255, 255, 0.2) !important;
                 outline: none !important;
@@ -3135,7 +3135,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
         }
         .goog-te-gadget .goog-te-combo option {
-            background: #0f172a !important;
+            background: #121216 !important;
             color: #ffffff !important;
         }
         .goog-te-gadget-simple .goog-te-menu-value span {
@@ -3208,7 +3208,7 @@
             align-items: center !important;
         }
         .goog-te-gadget .goog-te-combo option {
-            background: #0f172a !important;
+            background: #121216 !important;
             color: #ffffff !important;
             font-weight: 600 !important;
         }
@@ -3267,7 +3267,7 @@
             width: 100%;
             height: 380px;
             position: relative;
-            background: #0b1120;
+            background: #0d0d10;
         }
 
         .standalone-places-card {
@@ -3350,7 +3350,7 @@
             width: 100% !important;
             height: 420px !important;
             position: relative !important;
-            background: #0b1120 !important;
+            background: #0d0d10 !important;
             margin: 0 !important;
             padding: 0 !important;
             flex: 1 1 auto !important;
@@ -3467,7 +3467,7 @@
             overflow: hidden !important;
             position: relative !important;
             flex-shrink: 0 !important;
-            background: #0f172a !important;
+            background: #121216 !important;
             border: 1px solid rgba(212, 175, 55, 0.3) !important;
             box-sizing: border-box !important;
         }
@@ -3618,7 +3618,7 @@
             width: 100% !important;
             height: 480px !important; /* 10%+ Bigger */
             position: relative !important;
-            background: #0b1120 !important;
+            background: #0d0d10 !important;
             margin: 0 !important;
             padding: 0 !important;
             flex: 1 1 auto !important;
@@ -4074,7 +4074,7 @@
             height: 14px;
             border-radius: 50%;
             border: 2.5px solid #d4af37;
-            background: #0f172a;
+            background: #121216;
             flex-shrink: 0;
             box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
         }
@@ -4243,7 +4243,7 @@
         
         .wimt-app-card {
             background: #0b1329;
-            border: 1.5px solid #1e293b;
+            border: 1.5px solid #18181f;
             border-radius: 16px;
             padding: 18px;
             margin-bottom: 24px;
@@ -4291,7 +4291,7 @@
         }
 
         .wimt-search-box {
-            background: #0f172a;
+            background: #121216;
             border: 1px solid #334155;
             border-radius: 12px;
             padding: 14px 16px;
@@ -4310,7 +4310,7 @@
             height: 14px;
             border-radius: 50%;
             border: 2.5px solid #d4af37;
-            background: #0f172a;
+            background: #121216;
             flex-shrink: 0;
         }
 
@@ -4346,7 +4346,7 @@
         }
 
         .wimt-station-select option {
-            background: #0f172a;
+            background: #121216;
             color: #ffffff;
         }
 
@@ -4366,7 +4366,7 @@
             transform: translateY(-50%);
             width: 36px;
             height: 36px;
-            background: #0f172a;
+            background: #121216;
             border: 1.5px solid #22c55e;
             color: #22c55e;
             border-radius: 50%;
@@ -4413,7 +4413,7 @@
         }
 
         .wimt-lookup-card {
-            background: #0f172a;
+            background: #121216;
             border: 1px solid #334155;
             border-radius: 10px;
             padding: 10px 14px;
@@ -4454,7 +4454,7 @@
         }
 
         .wimt-history-container {
-            background: #0f172a;
+            background: #121216;
             border: 1px solid #334155;
             border-radius: 12px;
             overflow: hidden;
@@ -4512,7 +4512,7 @@
         }
 
         .wimt-bottom-btn {
-            background: #0f172a;
+            background: #121216;
             border: 1px solid #334155;
             color: #cbd5e1;
             padding: 10px;
@@ -5110,7 +5110,7 @@
    ================================================================ */
 :root {
     --bg-primary: #090d16;
-    --bg-secondary: #0f172a;
+    --bg-secondary: #121216;
     --bg-card: rgba(15, 23, 42, 0.95);
     --border-card: rgba(212, 175, 55, 0.25);
     --accent-gold: #eab308;
@@ -6822,7 +6822,7 @@
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 28px; margin-bottom: 40px;">
                     
                     <!-- Professional Live Weather Station -->
-                    <div id="weather-card-container" class="fade-up card" style="height: 100%; box-sizing: border-box; border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; position: relative; overflow: hidden; background: linear-gradient(145deg, #0f172a, #0b1120); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+                    <div id="weather-card-container" class="fade-up card" style="height: 100%; box-sizing: border-box; border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; position: relative; overflow: hidden; background: linear-gradient(145deg, #121216, #0d0d10); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
                         
                         <!-- Station Header & District Switcher -->
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
@@ -7729,7 +7729,7 @@
 <div id="transit-section" style="scroll-margin-top: 80px;" style="margin-bottom: 40px; padding-bottom: 75px; scroll-margin-top: 80px;">
 
                     <!-- 📢 BENGAL RAILWAY VOICE & AUDIO GUIDE SOUNDBOARD -->
-                    <div id="railway-soundboard-studio" style="background: linear-gradient(145deg, #0f1422, #080c14); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 18px; padding: 22px 26px; margin-bottom: 26px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+                    <div id="railway-soundboard-studio" style="background: linear-gradient(145deg, #121216, #09090c); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 18px; padding: 22px 26px; margin-bottom: 26px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
                         
                         <!-- Top Accent Banner -->
                         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 18px; border-bottom: 1px solid rgba(212, 175, 55, 0.18); padding-bottom: 14px;">
@@ -8046,7 +8046,7 @@
                     
                     <div style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
                         <!-- Clock Panel -->
-                        <div style="background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; min-width: 250px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); flex: 1;">
+                        <div style="background: linear-gradient(135deg, #18181f, #121216); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; min-width: 250px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); flex: 1;">
                             <div id="real-time-date" style="color: #94a3b8; font-size: 12px; text-transform: uppercase; font-weight: 600; letter-spacing: 1.5px; margin-bottom: 8px;"></div>
                             <div id="real-time-clock" style="color: #d4af37; font-size: 32px; font-family: 'Space Grotesk', monospace; font-weight: 700; letter-spacing: 2px; text-shadow: 0 0 10px rgba(212, 175, 55,0.4);">--:--:-- --</div>
                             <div id="station-clock-label" style="color: rgba(255,255,255,0.7); font-size: 11.5px; font-weight: 700; margin-top: 8px; font-family: monospace;">STATION: GARHBETA (GBA)</div>
@@ -10633,7 +10633,7 @@
                             <label style="display: block; color: #e2e8f0; font-size: 13px; font-weight: 700; margin-bottom: 7px;">
                                 📍 1. Select Destination in West Bengal:
                             </label>
-                            <select id="calc-destination" onchange="calculateTripBudget()" style="width: 100%; background: #0f172a; border: 1px solid rgba(212, 175, 55, 0.4); color: #ffffff; padding: 10px 14px; border-radius: 10px; font-size: 13.5px; font-weight: 600; outline: none; cursor: pointer; box-sizing: border-box;">
+                            <select id="calc-destination" onchange="calculateTripBudget()" style="width: 100%; background: #121216; border: 1px solid rgba(212, 175, 55, 0.4); color: #ffffff; padding: 10px 14px; border-radius: 10px; font-size: 13.5px; font-weight: 600; outline: none; cursor: pointer; box-sizing: border-box;">
                                 <option value="gangani">🏜️ Gangani Grand Canyon (Garhbeta / Paschim Medinipur)</option>
                                 <option value="bishnupur">🏛️ Bishnupur Terracotta Temples & Silk (Bankura)</option>
                                 <option value="darjeeling">🚂 Darjeeling Himalayan Toy Train & Tiger Hill</option>
@@ -12099,7 +12099,7 @@
 
     <!-- ========== ABOUT US MODAL (STUDENT CREATOR STORY) ========== -->
     <div class="modal-overlay" id="about-overlay">
-        <div class="modal" style="max-width: 680px; border-top: 4px solid #d4af37; background: #0f172a;">
+        <div class="modal" style="max-width: 680px; border-top: 4px solid #d4af37; background: #121216;">
             <button class="modal__close" onclick="closeAboutModal()">✕</button>
             <div style="margin-bottom: 16px;">
                 <div style="color: #d4af37; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px;">Student Creator Initiative</div>
@@ -12127,7 +12127,7 @@
 
     <!-- ========== PRIVACY POLICY MODAL (ADSENSE COMPLIANT) ========== -->
     <div class="modal-overlay" id="privacy-overlay">
-        <div class="modal" style="max-width: 680px; border-top: 4px solid #d4af37; background: #0f172a;">
+        <div class="modal" style="max-width: 680px; border-top: 4px solid #d4af37; background: #121216;">
             <button class="modal__close" onclick="closePrivacyModal()">✕</button>
             <div style="margin-bottom: 20px;">
                 <h2 style="font-family: 'Outfit', sans-serif; font-size: 22px; color: #d4af37; font-weight: 800;">Privacy Policy & Terms</h2>
@@ -12151,14 +12151,14 @@
 
     <!-- ========== CONTACT / FEEDBACK MODAL ========== -->
     <div class="modal-overlay" id="contact-overlay">
-        <div class="modal" style="max-width: 540px; border-top: 4px solid #d4af37; background: #0f172a; text-align: center;">
+        <div class="modal" style="max-width: 540px; border-top: 4px solid #d4af37; background: #121216; text-align: center;">
             <button class="modal__close" onclick="closeContactModal()">✕</button>
             <div style="font-size: 36px; margin-bottom: 8px;">📬</div>
             <h2 style="font-family: 'Outfit', sans-serif; font-size: 22px; color: #d4af37; font-weight: 800;">Contact Bengal Explorers</h2>
             <p style="color: #94a3b8; font-size: 13.5px; margin: 8px 0 20px; line-height: 1.6;">
                 Have feedback, travel photo submissions, or partnership inquiries? Reach out to our Class 12 student creator team!
             </p>
-            <div style="background: rgba(0,0,0,0.3); border: 1px solid #1e293b; border-radius: 10px; padding: 16px; margin-bottom: 20px; text-align: left;">
+            <div style="background: rgba(0,0,0,0.3); border: 1px solid #18181f; border-radius: 10px; padding: 16px; margin-bottom: 20px; text-align: left;">
                 <div style="color: #cbd5e1; font-size: 13px; margin-bottom: 8px;">📍 <strong>Location:</strong> Garhbeta / Paschim Medinipur, West Bengal</div>
                 <div style="color: #cbd5e1; font-size: 13px; margin-bottom: 8px;">📧 <strong>Email:</strong> <a href="mailto:bibek.workdev01@gmail.com" style="color: #d4af37; text-decoration: none;">bibek.workdev01@gmail.com</a></div>
                 <div style="color: #cbd5e1; font-size: 13px;">📸 <strong>Instagram:</strong> <a href="https://www.instagram.com/bibek.cs" target="_blank" style="color: #f43f5e; text-decoration: none;">@bibek.cs</a></div>
@@ -14105,7 +14105,7 @@ document.addEventListener('keydown', (e) => {
     <!-- Google Maps Directions Modal -->
     <div id="gmap-directions-modal" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); flex-direction:column; align-items:center; justify-content:center; padding:16px;">
         <!-- Header Bar -->
-        <div style="width:100%; max-width:960px; display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:linear-gradient(135deg, #1e293b, #0f172a); border-radius:14px 14px 0 0; border:1px solid rgba(212, 175, 55,0.3); border-bottom:none;">
+        <div style="width:100%; max-width:960px; display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:linear-gradient(135deg, #18181f, #121216); border-radius:14px 14px 0 0; border:1px solid rgba(212, 175, 55,0.3); border-bottom:none;">
             <div style="display:flex; align-items:center; gap:10px;">
                 <span style="font-size:20px;">🗺️</span>
                 <span id="gmap-directions-title" style="color:#f1f5f9; font-weight:700; font-size:15px; font-family:'Hind Siliguri',sans-serif;">ডিরেকশন</span>
@@ -14714,7 +14714,7 @@ document.addEventListener('keydown', (e) => {
          🚀 1-CLICK VIRAL SOCIAL SHARE MODAL & QR CODE
          ======================================================== -->
     <div id="viral-share-modal" style="display: none; position: fixed; inset: 0; z-index: 999999; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 16px;">
-        <div style="background: linear-gradient(145deg, #0f172a, #1e293b); border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 20px; width: 100%; max-width: 480px; padding: 24px; box-shadow: 0 25px 60px rgba(0,0,0,0.8); position: relative;">
+        <div style="background: linear-gradient(145deg, #121216, #18181f); border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 20px; width: 100%; max-width: 480px; padding: 24px; box-shadow: 0 25px 60px rgba(0,0,0,0.8); position: relative;">
             
             <!-- Close Button -->
             <button onclick="closeViralShareModal()" style="position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;">✕</button>
@@ -14802,7 +14802,7 @@ document.addEventListener('keydown', (e) => {
          🧲 VISITOR RETENTION ENGINE 2: MY SAVED COMMUTES & FAVORITES MODAL
          ======================================================== -->
     <div id="saved-favorites-modal" style="display: none; position: fixed; inset: 0; z-index: 999999; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 16px;">
-        <div style="background: linear-gradient(145deg, #0f172a, #1e293b); border: 1px solid rgba(251, 191, 36, 0.4); border-radius: 20px; width: 100%; max-width: 520px; max-height: 85vh; display: flex; flex-direction: column; padding: 24px; box-shadow: 0 25px 60px rgba(0,0,0,0.8); position: relative; box-sizing: border-box;">
+        <div style="background: linear-gradient(145deg, #121216, #18181f); border: 1px solid rgba(251, 191, 36, 0.4); border-radius: 20px; width: 100%; max-width: 520px; max-height: 85vh; display: flex; flex-direction: column; padding: 24px; box-shadow: 0 25px 60px rgba(0,0,0,0.8); position: relative; box-sizing: border-box;">
             
             <button onclick="closeSavedFavoritesModal()" style="position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;">✕</button>
 
@@ -14829,7 +14829,7 @@ document.addEventListener('keydown', (e) => {
          🧲 VISITOR RETENTION ENGINE 3: SMART RESPONSIVE MODAL
          ======================================================== -->
     <div id="exit-intent-modal" style="display: none; position: fixed; inset: 0; z-index: 999999; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 16px;">
-        <div style="background: linear-gradient(145deg, #0f172a, #1e293b); border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 20px; width: 100%; max-width: 460px; padding: 26px; box-shadow: 0 25px 60px rgba(0,0,0,0.85); position: relative; text-align: center; box-sizing: border-box;">
+        <div style="background: linear-gradient(145deg, #121216, #18181f); border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 20px; width: 100%; max-width: 460px; padding: 26px; box-shadow: 0 25px 60px rgba(0,0,0,0.85); position: relative; text-align: center; box-sizing: border-box;">
             
             <button onclick="closeExitIntentModal()" aria-label="Close" style="position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;">✕</button>
 
@@ -15399,7 +15399,7 @@ document.addEventListener('keydown', (e) => {
 
     <!-- 🌐 ROYAL HERITAGE LANGUAGE MODAL -->
     <div id="global-language-modal" style="display: none; position: fixed; inset: 0; z-index: 999999; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 16px;">
-        <div style="background: linear-gradient(145deg, #0f1422, #090c14); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 20px; max-width: 580px; width: 100%; padding: 26px; box-shadow: 0 25px 60px rgba(0,0,0,0.8); position: relative; max-height: 90vh; overflow-y: auto;">
+        <div style="background: linear-gradient(145deg, #121216, #090c14); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 20px; max-width: 580px; width: 100%; padding: 26px; box-shadow: 0 25px 60px rgba(0,0,0,0.8); position: relative; max-height: 90vh; overflow-y: auto;">
             
             <!-- Modal Header -->
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.18); padding-bottom: 14px;">
