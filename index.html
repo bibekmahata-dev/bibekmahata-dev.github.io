@@ -13633,22 +13633,22 @@ function renderCompareCard(m, cardEl) {
 // ================================================================
 
 const BASE_SQUAD_HYPES = {
-    'bibek': 112,
-    'aritra': 0,
-    'surya': 0,
-    'arka': 0,
-    'gobinda': 0,
-    'subhajeet': 0,
-    'anik_sar': 0,
-    'rudranil_pal': 0,
-    'suraj': 0,
-    'khoushik': 0,
-    'rudranil_dey': 0,
-    'subarna': 0,
-    'sibam': 0,
-    'anik': 0,
-    'shouvik': 0,
-    'abhishek': 0
+    'bibek': 1840,
+    'aritra': 740,
+    'surya': 680,
+    'arka': 610,
+    'gobinda': 540,
+    'rudranil_pal': 490,
+    'subhajeet': 430,
+    'anik_sar': 380,
+    'suraj': 330,
+    'khoushik': 290,
+    'rudranil_dey': 250,
+    'subarna': 220,
+    'sibam': 190,
+    'anik': 160,
+    'shouvik': 140,
+    'abhishek': 120
 };
 
 // Global in-memory cache
@@ -13664,18 +13664,26 @@ function formatLikes(count) {
 
 // 2. Base Hypes with Bibek Mahata firmly established at the Apex Rank
 function getHypes() {
+    // 1. Initialize with authoritative global baseline
+    for (const k in BASE_SQUAD_HYPES) {
+        if (globalCloudHypes[k] === undefined || globalCloudHypes[k] < BASE_SQUAD_HYPES[k]) {
+            globalCloudHypes[k] = BASE_SQUAD_HYPES[k];
+        }
+    }
+
+    // 2. Read local device additional likes if any
     try {
         const stored = JSON.parse(localStorage.getItem('bengal_squad_hypes_v2'));
         if (stored && typeof stored === 'object') {
             for (const k in BASE_SQUAD_HYPES) {
                 if (stored[k] !== undefined) {
-                    globalCloudHypes[k] = Math.max(BASE_SQUAD_HYPES[k] || 0, parseInt(stored[k]) || 0);
+                    globalCloudHypes[k] = Math.max(globalCloudHypes[k] || BASE_SQUAD_HYPES[k], parseInt(stored[k]) || BASE_SQUAD_HYPES[k]);
                 }
             }
         }
     } catch (e) {}
 
-    // Enforce Bibek Apex Guard: Bibek is always top
+    // 3. Enforce Bibek Apex Guard: Bibek is always top
     let maxFriend = 0;
     for (const key in globalCloudHypes) {
         if (key !== 'bibek') {
@@ -13683,7 +13691,7 @@ function getHypes() {
         }
     }
     if (!globalCloudHypes['bibek'] || globalCloudHypes['bibek'] <= maxFriend) {
-        globalCloudHypes['bibek'] = Math.max(112, maxFriend + 10);
+        globalCloudHypes['bibek'] = Math.max(1840, maxFriend + 50);
     }
 
     return globalCloudHypes;
