@@ -6070,16 +6070,28 @@
                     <!-- Highlighted Glowing Multilingual Badge -->
                     <!-- Global 1-Click Multi-Language Quick Ribbon -->
                     <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-                        <div style="display: flex; gap: 4px; background: rgba(0,0,0,0.35); border: 1px solid rgba(56, 189, 248, 0.25); padding: 3px 6px; border-radius: 20px;">
+                        <!-- Group 1: International Languages First -->
+                        <div style="display: flex; gap: 3px; background: rgba(0,0,0,0.4); border: 1px solid rgba(56, 189, 248, 0.25); padding: 3px 6px; border-radius: 20px; align-items: center;">
+                            <span style="font-size: 10px; color: #38bdf8; font-weight: 800; padding: 0 4px; text-transform: uppercase;">🌍 Global:</span>
                             <button type="button" class="global-flag-pill active" data-lang="en" onclick="triggerGlobalLanguage('en')" title="English (Default)" style="background: #0284c7; color: #ffffff; border: 1px solid #38bdf8; padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">🇬🇧 EN</button>
-                            <button type="button" class="global-flag-pill" data-lang="bn" onclick="triggerGlobalLanguage('bn')" title="বাংলা (Bengali)" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">🇮🇳 বাংলা</button>
-                            <button type="button" class="global-flag-pill" data-lang="hi" onclick="triggerGlobalLanguage('hi')" title="हिन्दी (Hindi)" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">🇮🇳 हिन्दी</button>
                             <button type="button" class="global-flag-pill" data-lang="es" onclick="triggerGlobalLanguage('es')" title="Español (Spanish)" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">🇪🇸 ES</button>
                             <button type="button" class="global-flag-pill" data-lang="fr" onclick="triggerGlobalLanguage('fr')" title="Français (French)" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">🇫🇷 FR</button>
                             <button type="button" class="global-flag-pill" data-lang="de" onclick="triggerGlobalLanguage('de')" title="Deutsch (German)" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">🇩🇪 DE</button>
                             <button type="button" class="global-flag-pill" data-lang="ja" onclick="triggerGlobalLanguage('ja')" title="日本語 (Japanese)" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">🇯🇵 JA</button>
+                            <button type="button" class="global-flag-pill" data-lang="it" onclick="triggerGlobalLanguage('it')" title="Italiano (Italian)" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">🇮🇹 IT</button>
                         </div>
-                        <div class="language-picker-badge" title="All 100+ World Languages">
+
+                        <!-- Group 2: Indian Regional Languages (Hindi, Bengali, Tamil, Malayalam) -->
+                        <div style="display: flex; gap: 3px; background: rgba(0,0,0,0.4); border: 1px solid rgba(245, 158, 11, 0.3); padding: 3px 6px; border-radius: 20px; align-items: center;">
+                            <span style="font-size: 10px; color: #fbbf24; font-weight: 800; padding: 0 4px; text-transform: uppercase;">🇮🇳 India:</span>
+                            <button type="button" class="global-flag-pill" data-lang="hi" onclick="triggerGlobalLanguage('hi')" title="हिन्दी (Hindi)" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">हिन्दी</button>
+                            <button type="button" class="global-flag-pill" data-lang="bn" onclick="triggerGlobalLanguage('bn')" title="বাংলা (Bengali)" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">বাংলা</button>
+                            <button type="button" class="global-flag-pill" data-lang="ta" onclick="triggerGlobalLanguage('ta')" title="தமிழ் (Tamil)" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">தமிழ்</button>
+                            <button type="button" class="global-flag-pill" data-lang="ml" onclick="triggerGlobalLanguage('ml')" title="മലയാളം (Malayalam)" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">മലയാളം</button>
+                        </div>
+
+                        <!-- Dropdown for Additional Languages -->
+                        <div class="language-picker-badge" title="All World Languages">
                             <span style="font-size: 13px;">🌐</span>
                             <div id="google_translate_element"></div>
                         </div>
@@ -14120,7 +14132,7 @@ document.addEventListener('keydown', (e) => {
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
-                includedLanguages: 'en,bn,hi,es,fr,de,ja,zh-CN,ru,ar,it,pt,ta,te,mr,gu',
+                includedLanguages: 'en,es,fr,de,ja,it,ru,zh-CN,ar,hi,bn,ta,ml',
                 layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                 autoDisplay: false
             }, 'google_translate_element');
