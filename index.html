@@ -7972,8 +7972,30 @@
 
 <div id="transit-section" style="scroll-margin-top: 80px;" style="margin-bottom: 40px; padding-bottom: 75px; scroll-margin-top: 80px;" data-app-cat="transit">
 
+                    <!-- ========================================================
+                         🚆 TRANSIT & COMMUTER SUB-NAVIGATION TABS
+                         ======================================================== -->
+                    <div id="transit-subnav-ribbon" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; padding: 12px; background: rgba(15, 23, 42, 0.9); border: 1.5px solid #38bdf8; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                        <button type="button" onclick="switchTransitSubTab('all', this)" class="transit-subnav-btn active" style="flex: 1 1 auto; min-width: 140px; background: #0284c7; border: 1px solid #38bdf8; color: #ffffff; padding: 9px 14px; border-radius: 8px; font-size: 12px; font-weight: 800; cursor: pointer; text-align: center; text-transform: uppercase; transition: all 0.2s;">
+                            🌟 All Transit Tools
+                        </button>
+                        <button type="button" onclick="switchTransitSubTab('trains', this)" class="transit-subnav-btn" style="flex: 1 1 auto; min-width: 140px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; padding: 9px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center; text-transform: uppercase; transition: all 0.2s;">
+                            🚆 Train Finder
+                        </button>
+                        <button type="button" onclick="switchTransitSubTab('departures', this)" class="transit-subnav-btn" style="flex: 1 1 auto; min-width: 140px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; padding: 9px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center; text-transform: uppercase; transition: all 0.2s;">
+                            🚉 Station Board &amp; Clock
+                        </button>
+                        <button type="button" onclick="switchTransitSubTab('buses', this)" class="transit-subnav-btn" style="flex: 1 1 auto; min-width: 140px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; padding: 9px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center; text-transform: uppercase; transition: all 0.2s;">
+                            🚌 SBSTC Bus Portal
+                        </button>
+                        <button type="button" onclick="switchTransitSubTab('audio-taxis', this)" class="transit-subnav-btn" style="flex: 1 1 auto; min-width: 140px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; padding: 9px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center; text-transform: uppercase; transition: all 0.2s;">
+                            📢 Audio PA &amp; Taxis
+                        </button>
+                    </div>
+
+
                     <!-- 📢 BENGAL RAILWAY VOICE & AUDIO GUIDE SOUNDBOARD -->
-                    <div id="railway-soundboard-studio" style="background: linear-gradient(135deg, rgba(234, 179, 8, 0.22), rgba(15, 23, 42, 0.98), rgba(56, 189, 248, 0.18)); border: 2.5px solid #eab308; border-radius: 20px; padding: 24px 28px; margin-bottom: 30px; animation: studioBorderPulse 4s ease-in-out infinite; position: relative; overflow: hidden;">
+                    <div id="railway-soundboard-studio" style="background: linear-gradient(135deg, rgba(234, 179, 8, 0.22), rgba(15, 23, 42, 0.98), rgba(56, 189, 248, 0.18)); border: 2.5px solid #eab308; border-radius: 20px; padding: 24px 28px; margin-bottom: 30px; animation: studioBorderPulse 4s ease-in-out infinite; position: relative; overflow: hidden;" data-transit-module="audio-taxis">
                         
                         <!-- Top Accent Banner -->
                         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 16px;">
@@ -8053,7 +8075,7 @@
                     <!-- ========================================================
                          🛂 INTERNATIONAL TRAVELER & FOREIGN TOURIST TRANSIT GUIDE
                          ======================================================== -->
-                    <div class="bengal-route-card" id="foreign-tourist-transit-guide" style="margin-bottom: 24px; border: 1px solid rgba(234, 179, 8, 0.35); background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(22, 33, 54, 0.98));">
+                    <div class="bengal-route-card" id="foreign-tourist-transit-guide" style="margin-bottom: 24px; border: 1px solid rgba(234, 179, 8, 0.35); background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(22, 33, 54, 0.98));" data-transit-module="audio-taxis">
                         
                         <!-- Header -->
                         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 14px;">
@@ -8225,7 +8247,7 @@
 
 
                     <!-- 🚆 PANEL 1: BENGAL EXPLORERS POINT-TO-POINT TRAIN FINDER -->
-                    <div class="bengal-route-card" id="bengal-route-finder-panel">
+                    <div class="bengal-route-card" id="bengal-route-finder-panel" data-transit-module="trains">
                         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
                             <div style="display: flex; align-items: center; gap: 10px;">
                                 <span style="font-size: 26px;">🚆</span>
@@ -16165,6 +16187,46 @@ function switchAppViewMode(mode, btnEl) {
     const ribbon = document.getElementById('app-mode-ribbon');
     if (ribbon) {
         ribbon.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+}
+</script>
+
+
+<script>
+// ================================================================
+// 🚆 TRANSIT SUB-NAVIGATION TAB SWITCHER
+// ================================================================
+function switchTransitSubTab(tabName, btnEl) {
+    document.querySelectorAll('.transit-subnav-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.background = 'rgba(255,255,255,0.06)';
+        btn.style.borderColor = 'rgba(255,255,255,0.15)';
+        btn.style.color = '#cbd5e1';
+    });
+    if (btnEl) {
+        btnEl.classList.add('active');
+        btnEl.style.background = '#0284c7';
+        btnEl.style.borderColor = '#38bdf8';
+        btnEl.style.color = '#ffffff';
+    }
+
+    const allTransitModules = document.querySelectorAll('[data-transit-module]');
+    if (tabName === 'all') {
+        allTransitModules.forEach(mod => mod.style.display = '');
+    } else {
+        allTransitModules.forEach(mod => {
+            const modType = mod.getAttribute('data-transit-module') || '';
+            if (modType === tabName) {
+                mod.style.display = '';
+            } else {
+                mod.style.display = 'none';
+            }
+        });
+    }
+
+    const subnav = document.getElementById('transit-subnav-ribbon');
+    if (subnav) {
+        subnav.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 }
 </script>
