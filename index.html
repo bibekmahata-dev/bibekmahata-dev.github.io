@@ -11795,16 +11795,20 @@
             function switchVaultTab(tabKey, btn) {
                 document.querySelectorAll('.vault-pane').forEach(el => el.style.display = 'none');
                 document.querySelectorAll('.vault-tab-btn').forEach(b => {
+                    b.classList.remove('active');
                     b.style.background = 'rgba(255,255,255,0.05)';
                     b.style.borderColor = 'rgba(255,255,255,0.12)';
                     b.style.color = '#cbd5e1';
                 });
                 const target = document.getElementById('vault-pane-' + tabKey);
                 if (target) target.style.display = 'block';
-                if (btn) {
-                    btn.style.background = 'rgba(234, 179, 8, 0.25)';
-                    btn.style.borderColor = '#eab308';
-                    btn.style.color = '#fde047';
+                
+                const activeBtn = btn || document.querySelector(`.vault-tab-btn[onclick*="${tabKey}"]`);
+                if (activeBtn) {
+                    activeBtn.classList.add('active');
+                    activeBtn.style.background = 'rgba(234, 179, 8, 0.25)';
+                    activeBtn.style.borderColor = '#eab308';
+                    activeBtn.style.color = '#fde047';
                 }
             }
         </script>

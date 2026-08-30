@@ -4,8 +4,8 @@
    Version: 1.0.0
    ============================================================================== */
 
-const CACHE_NAME = 'bengal-explorers-v64';
-const DATA_CACHE_NAME = 'bengal-data-cache-v64';
+const CACHE_NAME = 'bengal-explorers-v65';
+const DATA_CACHE_NAME = 'bengal-data-cache-v65';
 
 // Critical Core Assets for Offline App Shell
 const APP_SHELL = [
