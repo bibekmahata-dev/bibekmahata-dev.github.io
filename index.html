@@ -13881,19 +13881,7 @@ function getHypes() {
         }
     }
 
-    // 2. Read local device additional likes if any
-    try {
-        const stored = JSON.parse(localStorage.getItem('bengal_squad_hypes_v2'));
-        if (stored && typeof stored === 'object') {
-            for (const k in BASE_SQUAD_HYPES) {
-                if (stored[k] !== undefined) {
-                    globalCloudHypes[k] = Math.max(globalCloudHypes[k] || BASE_SQUAD_HYPES[k], parseInt(stored[k]) || BASE_SQUAD_HYPES[k]);
-                }
-            }
-        }
-    } catch (e) {}
-
-    // 3. Enforce Bibek Apex Guard: Bibek is always top
+    // 2. Enforce Bibek Apex Guard: Bibek is always firmly at #1 Rank
     let maxFriend = 0;
     for (const key in globalCloudHypes) {
         if (key !== 'bibek') {
@@ -13977,7 +13965,7 @@ function updatePersonalHypeCounterUI() {
 // 🛡️ STRICT 1-LIKE-PER-PERSON-PER-DAY RATE-LIMIT ENGINE
 // ================================================================
 function getTodayDateString() {
-    const today = new Date();
+    const today = getBengalNowIST();
     const y = today.getFullYear();
     const m = String(today.getMonth() + 1).padStart(2, '0');
     const d = String(today.getDate()).padStart(2, '0');
@@ -15816,18 +15804,24 @@ document.addEventListener('keydown', (e) => {
         updateSavedFavoritesBadge();
     </script>
 
-    <!-- PWA Offline Commuter Service Worker Registration -->
+    <!-- PWA Offline Commuter Service Worker Registration & Real-Time Auto-Update Hook -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-            if (typeof syncAllMembersFromCloud === 'function') syncAllMembersFromCloud();
+                if (typeof syncAllMembersFromCloud === 'function') syncAllMembersFromCloud();
                 navigator.serviceWorker.register('./sw.js', { scope: './' })
                     .then((reg) => {
                         console.log('✅ [Bengal PWA] Offline Commuter Engine Active! Scope:', reg.scope);
+                        reg.update(); // Actively check for latest server build
                     })
                     .catch((err) => {
                         console.warn('⚠️ [Bengal PWA] Service Worker registration failed:', err);
                     });
+            });
+
+            // Instant Auto-Activation across all devices
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                console.log('🔄 [Bengal PWA] Active Service Worker controller updated.');
             });
         }
     </script>
