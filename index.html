@@ -6145,9 +6145,28 @@
     <main class="main">
 
         <!-- ========================================================
+             📱 APP-STYLE SMART CATEGORY MODE SWITCHER RIBBON
+             ======================================================== -->
+        <div id="app-mode-ribbon" style="position: sticky; top: 70px; z-index: 99; margin-bottom: 24px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 16px; padding: 8px 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 16px;">📱</span>
+                <span style="font-size: 11.5px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px;">Explore Mode:</span>
+            </div>
+            <div style="display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; flex-wrap: wrap; flex: 1; justify-content: flex-end;">
+                <button type="button" onclick="switchAppViewMode('all', this)" class="app-mode-btn active" style="background: #0284c7; border: 1px solid #38bdf8; color: #ffffff; padding: 6px 13px; border-radius: 20px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🌟 All Views</button>
+                <button type="button" onclick="switchAppViewMode('transit', this)" class="app-mode-btn" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; padding: 6px 13px; border-radius: 20px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🚆 Trains &amp; Transit</button>
+                <button type="button" onclick="switchAppViewMode('explore', this)" class="app-mode-btn" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; padding: 6px 13px; border-radius: 20px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🗺️ Map &amp; Sights</button>
+                <button type="button" onclick="switchAppViewMode('culture', this)" class="app-mode-btn" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; padding: 6px 13px; border-radius: 20px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🍵 Culture &amp; Vault</button>
+                <button type="button" onclick="switchAppViewMode('budget', this)" class="app-mode-btn" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; padding: 6px 13px; border-radius: 20px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s; white-space: nowrap;">💰 Budget &amp; Weather</button>
+                <button type="button" onclick="switchAppViewMode('squad', this)" class="app-mode-btn" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; padding: 6px 13px; border-radius: 20px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s; white-space: nowrap;">👑 Squad &amp; Hub</button>
+            </div>
+        </div>
+
+
+        <!-- ========================================================
              🌍 GLOBAL TRAVELERS & INTERNATIONAL VISITORS SPOTLIGHT HUB
              ======================================================== -->
-        <div id="global-travelers-welcome-hub" style="margin-bottom: 28px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(20, 35, 60, 0.98)); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 18px; padding: 22px 24px; box-shadow: 0 12px 35px rgba(0,0,0,0.5); position: relative; overflow: hidden;">
+        <div id="global-travelers-welcome-hub" style="margin-bottom: 28px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(20, 35, 60, 0.98)); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 18px; padding: 22px 24px; box-shadow: 0 12px 35px rgba(0,0,0,0.5); position: relative; overflow: hidden;" data-app-cat="transit explore culture budget squad">
             
             <!-- Ambient Glow Effect -->
             <div style="position: absolute; top: -50px; right: -50px; width: 180px; height: 180px; background: radial-gradient(circle, rgba(56, 189, 248, 0.2), transparent 70%); border-radius: 50%; pointer-events: none;"></div>
@@ -6257,7 +6276,7 @@
         
 
         <!-- Featured Squad Inspirational Quote Wall -->
-        <div class="quote-wall" id="quote-wall">
+        <div class="quote-wall" id="quote-wall" data-app-cat="squad">
             <img onerror="this.onerror=null; this.src='assets/gangani/gangani-1.png';" class="quote-wall__avatar" id="quote-avatar" src="assets/agents/gobinda.jpg" alt="Gobinda Nag" loading="lazy" decoding="async">
             <div class="quote-wall__content">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
@@ -7020,7 +7039,7 @@
             }
         </script>
 
-<section id="West Bengal-guide-section" style="padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.05); scroll-margin-top: 80px;" style="padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.05);">
+<section id="West Bengal-guide-section" style="padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.05); scroll-margin-top: 80px;" style="padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.05);" data-app-cat="budget explore">
             <div class="section-header" style="text-align: center; margin-bottom: 36px;">
                 <div class="section-title fade-up">🛰️ WEST BENGAL METEOROLOGY & 2026 CULTURAL CALENDAR</div>
                 <div style="color: var(--text-muted); font-size: 14px; margin-top: 6px;">Real-Time Multi-District Weather Station, 7-Day Precision Forecasts & Official Cultural Calendar</div>
@@ -7948,7 +7967,7 @@
                 
                     
 
-<div id="transit-section" style="scroll-margin-top: 80px;" style="margin-bottom: 40px; padding-bottom: 75px; scroll-margin-top: 80px;">
+<div id="transit-section" style="scroll-margin-top: 80px;" style="margin-bottom: 40px; padding-bottom: 75px; scroll-margin-top: 80px;" data-app-cat="transit">
 
                     <!-- 📢 BENGAL RAILWAY VOICE & AUDIO GUIDE SOUNDBOARD -->
                     <div id="railway-soundboard-studio" style="background: linear-gradient(135deg, rgba(234, 179, 8, 0.22), rgba(15, 23, 42, 0.98), rgba(56, 189, 248, 0.18)); border: 2.5px solid #eab308; border-radius: 20px; padding: 24px 28px; margin-bottom: 30px; animation: studioBorderPulse 4s ease-in-out infinite; position: relative; overflow: hidden;">
@@ -11792,7 +11811,7 @@
 <!-- ========================================================
              🚨 23-DISTRICT EMERGENCY SOS & TOURIST SAFETY HELPLINE HUB
              ======================================================== -->
-        <section class="section" id="emergency-sos-section" style="margin-top: 50px; scroll-margin-top: 80px;">
+        <section class="section" id="emergency-sos-section" style="margin-top: 50px; scroll-margin-top: 80px;" data-app-cat="transit budget squad explore culture">
             <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 27, 75, 0.95)); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 20px; padding: 24px; box-shadow: 0 15px 40px rgba(239, 68, 68, 0.15); position: relative; overflow: hidden;">
                 
                 <!-- Glowing Accent Line -->
@@ -16093,6 +16112,59 @@ document.addEventListener('keydown', (e) => {
         </div>
         <button onclick="acceptCookieConsent()" style="background: linear-gradient(135deg, #38bdf8, #0ea5e9); color: #ffffff; border: none; padding: 8px 20px; border-radius: 8px; font-size: 12.5px; font-weight: 800; cursor: pointer; white-space: nowrap; transition: transform 0.2s;">Accept & Continue</button>
     </div>
+
+
+<script>
+// ================================================================
+// 📱 APP-STYLE SMART CATEGORY MODE SWITCHER ENGINE
+// Architect: Bibek Mahata (bibek.cs)
+// ================================================================
+function switchAppViewMode(mode, btnEl) {
+    // 1. Update button active states
+    document.querySelectorAll('.app-mode-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.background = 'rgba(255,255,255,0.06)';
+        btn.style.borderColor = 'rgba(255,255,255,0.12)';
+        btn.style.color = '#cbd5e1';
+    });
+    if (btnEl) {
+        btnEl.classList.add('active');
+        btnEl.style.background = '#0284c7';
+        btnEl.style.borderColor = '#38bdf8';
+        btnEl.style.color = '#ffffff';
+    }
+
+    // 2. Toggle sections
+    const allCategorizedElements = document.querySelectorAll('[data-app-cat]');
+    if (mode === 'all') {
+        allCategorizedElements.forEach(el => el.style.display = '');
+    } else {
+        allCategorizedElements.forEach(el => {
+            const cats = (el.getAttribute('data-app-cat') || '').split(' ');
+            if (cats.includes(mode)) {
+                el.style.display = '';
+            } else {
+                el.style.display = 'none';
+            }
+        });
+    }
+
+    // 3. Leaflet Map Invalidation Guard: prevents gray tiles
+    if (mode === 'all' || mode === 'explore') {
+        setTimeout(() => {
+            if (window.hangoutMap && typeof window.hangoutMap.invalidateSize === 'function') {
+                window.hangoutMap.invalidateSize();
+            }
+        }, 150);
+    }
+
+    // 4. Smooth scroll to top of content
+    const ribbon = document.getElementById('app-mode-ribbon');
+    if (ribbon) {
+        ribbon.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+}
+</script>
 
 </body>
 </html>
