@@ -15851,7 +15851,7 @@ document.addEventListener('keydown', (e) => {
         // 5. GLOWING TOP SCROLL PROGRESS BAR
         // --------------------------------------------------------
         let isScrollTicking = false;
-        window.addEventListener('scroll', () => {, { passive: true });
+        window.addEventListener('scroll', () => {
             if (!isScrollTicking) {
                 window.requestAnimationFrame(() => {
                     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -15998,7 +15998,7 @@ document.addEventListener('keydown', (e) => {
         // Mobile Trigger: Fast scroll up near top after spending 20+ seconds on site
         let lastScrollY = window.scrollY;
         let pageStartTime = Date.now();
-        window.addEventListener('scroll', () => {, { passive: true });
+        window.addEventListener('scroll', () => {
             if (isMobile && !exitModalTriggered && !sessionStorage.getItem('bengal_exit_seen')) {
                 const currentScrollY = window.scrollY;
                 const timeSpent = (Date.now() - pageStartTime) / 1000;
