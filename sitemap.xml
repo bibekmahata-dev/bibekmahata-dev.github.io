@@ -171,7 +171,39 @@
     <priority>0.85</priority>
   </url>
 
-  <!-- 11. CONTACT & FEEDBACK HUB (PRIORITY 0.6) -->
+  <!-- 11. DEDICATED TRAVEL GUIDE: SUNDARBANS TIGER SAFARI (PRIORITY 0.85) -->
+  <url>
+    <loc>https://bibekmahata-dev.github.io/guide-sundarbans.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 12. DEDICATED TRAVEL GUIDE: PURULIA AYODHYA HILLS & CHHAU (PRIORITY 0.85) -->
+  <url>
+    <loc>https://bibekmahata-dev.github.io/guide-purulia.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 13. DEDICATED TRAVEL GUIDE: MUKUTMANIPUR DAM & JHILIMILI (PRIORITY 0.85) -->
+  <url>
+    <loc>https://bibekmahata-dev.github.io/guide-mukutmanipur.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 14. DEDICATED TRAVEL GUIDE: COOCH BEHAR ROYAL PALACE (PRIORITY 0.85) -->
+  <url>
+    <loc>https://bibekmahata-dev.github.io/guide-coochbehar.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 15. CONTACT & FEEDBACK HUB (PRIORITY 0.6) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/contact.html</loc>
     <lastmod>2026-08-31</lastmod>
@@ -179,7 +211,7 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- 12. PRIVACY POLICY & COMPLIANCE (PRIORITY 0.5) -->
+  <!-- 16. PRIVACY POLICY & COMPLIANCE (PRIORITY 0.5) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/privacy.html</loc>
     <lastmod>2026-08-31</lastmod>
