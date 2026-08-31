@@ -6692,7 +6692,7 @@
                 
                 marker.bindPopup(`
                     <div style="width: 220px; font-family: 'Plus Jakarta Sans', sans-serif;">
-                        <img src="${place.image}" style="width: 100%; height: 110px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;" alt="${place.title}" onerror="this.src='assets/gangani/gangani-1.png'">
+                        <img src="${place.image}" style="width: 100%; height: 110px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;" alt="${place.title}" onerror="this.src='assets/gangani/gangani-1.png'" loading="lazy" decoding="async">
                         <div style="font-weight: 800; font-size: 14px; color: #ffffff; line-height: 1.25; margin-bottom: 4px;">${place.title}</div>
                         <div style="font-size: 11px; color: #facc15; font-weight: 700; margin-bottom: 8px;">${place.rating} • <span style="color: #38bdf8; text-transform: uppercase;">${place.category}</span></div>
                         <div style="margin-top: 6px;">
@@ -6797,7 +6797,7 @@
                 
                 <div class="explorer-card" id="card-${id}" onclick="selectPlace('${id}')" data-category="${place.category}">
                     <div class="explorer-card__thumb-box">
-                        <img src="${place.image}" alt="${place.title}" class="explorer-card__img-real" loading="lazy" onerror="this.src='assets/gangani/gangani-1.png'">
+                        <img src="${place.image}" alt="${place.title}" class="explorer-card__img-real" loading="lazy" onerror="this.src='assets/gangani/gangani-1.png'" decoding="async">
                         <span class="category-badge-chip">${place.category}</span>
                     </div>
                     <div class="explorer-card__content">
@@ -12724,7 +12724,7 @@
 
                 <!-- Bibek Mahata Creator Signature Card -->
                 <div class="creator-card-section" style="display: flex; align-items: center; gap: 24px; flex-wrap: wrap; text-align: left; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
-                    <img src="assets/bibek_mahata.jpg" alt="Bibek Mahata — Founder & Lead Developer" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; object-position: center 15%; border: 3px solid #38bdf8; box-shadow: 0 0 25px rgba(56, 189, 248, 0.45); flex-shrink: 0; margin: 0 auto;">
+                    <img src="assets/bibek_mahata.jpg" alt="Bibek Mahata — Founder & Lead Developer" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; object-position: center 15%; border: 3px solid #38bdf8; box-shadow: 0 0 25px rgba(56, 189, 248, 0.45); flex-shrink: 0; margin: 0 auto;" loading="lazy" decoding="async">
                     <div style="flex: 1; min-width: 260px;">
                         <div class="creator-badge" style="margin-bottom: 6px; display: inline-block;">👑 CHIEF ARCHITECT & LEAD DEVELOPER</div>
                         <h3 class="creator-title" style="margin: 0 0 6px; font-size: 20px; color: #ffffff;">Bibek Mahata</h3>
@@ -15554,7 +15554,7 @@ document.addEventListener('keydown', (e) => {
         // 5. GLOWING TOP SCROLL PROGRESS BAR
         // --------------------------------------------------------
         let isScrollTicking = false;
-        window.addEventListener('scroll', () => {
+        window.addEventListener('scroll', () => {, { passive: true });
             if (!isScrollTicking) {
                 window.requestAnimationFrame(() => {
                     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -15701,7 +15701,7 @@ document.addEventListener('keydown', (e) => {
         // Mobile Trigger: Fast scroll up near top after spending 20+ seconds on site
         let lastScrollY = window.scrollY;
         let pageStartTime = Date.now();
-        window.addEventListener('scroll', () => {
+        window.addEventListener('scroll', () => {, { passive: true });
             if (isMobile && !exitModalTriggered && !sessionStorage.getItem('bengal_exit_seen')) {
                 const currentScrollY = window.scrollY;
                 const timeSpent = (Date.now() - pageStartTime) / 1000;
