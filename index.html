@@ -11105,6 +11105,9 @@
                                 <option value="jhargram">🌲 Jhargram Sal Forest & Royal Palace (Junglemahal)</option>
                                 <option value="kolkata">🏛️ Kolkata Heritage & City of Joy</option>
                                 <option value="sundarbans">🌿 Sundarbans Mangrove Safari & Delta</option>
+                                <option value="purulia">⛰️ Purulia Ayodhya Hills & Marble Lake</option>
+                                <option value="mukutmanipur">🚤 Mukutmanipur Dam & Jhilimili Sal Forests</option>
+                                <option value="coochbehar">👑 Cooch Behar Royal Palace & Heritage City</option>
                                 <option value="kalimpong_dooars">🏔️ Kalimpong, Dooars & Tea Valleys</option>
                             </select>
                         </div>
@@ -11317,6 +11320,42 @@
                         tip: "Take Canning Local from Sealdah (1 hr 15 mins, ticket only ₹15!), then shared auto/van to Godkhali Ghat. Join a shared boat tour with lifejackets.",
                         sweets: "Pure Sundarbans Wild Mangrove Honey & Nolen Gur Sandesh."
                     },
+                    purulia: {
+                        name: "Purulia Ayodhya Hills & Marble Lake",
+                        baseTransit: 220,
+                        transitMultiplier: { student: 1, comfort: 2.5, luxury: 5.5 },
+                        hotelPerNight: { student: 600, comfort: 1900, luxury: 4200 },
+                        foodPerDay: { student: 300, comfort: 700, luxury: 1500 },
+                        localTransitPerDay: { student: 250, comfort: 650, luxury: 1800 },
+                        miscPerDay: { student: 100, comfort: 300, luxury: 800 },
+                        tip: "Take Rupashi Bangla Exp (Howrah to Purulia). Hire a Baghmundi jeep for Marble Lake & Bamni Falls sunset.",
+                        sweets: "Purulia Chhana Pora, Gur Jilapi & Mahua Pitha",
+                        foreignTip: "Catch authentic Chhau Dance rehearsal in Charida village. Verified guides speak English."
+                    },
+                    mukutmanipur: {
+                        name: "Mukutmanipur Dam & Jhilimili Sal Forests",
+                        baseTransit: 180,
+                        transitMultiplier: { student: 1, comfort: 2.2, luxury: 5.0 },
+                        hotelPerNight: { student: 550, comfort: 1700, luxury: 3800 },
+                        foodPerDay: { student: 280, comfort: 650, luxury: 1400 },
+                        localTransitPerDay: { student: 200, comfort: 500, luxury: 1500 },
+                        miscPerDay: { student: 80, comfort: 250, luxury: 600 },
+                        tip: "Rent a country boat at sunrise to Bonpukuria Deer Park island. Drive the Jhilimili canopy road at noon.",
+                        sweets: "Bankura Mecha Sandesh & Mahua Flavored Rosogolla",
+                        foreignTip: "Stay at WBTDCL Mukutmanipur Tourism Property right overlooking the 11-km earthen lake."
+                    },
+                    coochbehar: {
+                        name: "Cooch Behar Royal Palace & Heritage City",
+                        baseTransit: 450,
+                        transitMultiplier: { student: 1, comfort: 2.8, luxury: 6.0 },
+                        hotelPerNight: { student: 700, comfort: 2200, luxury: 4800 },
+                        foodPerDay: { student: 350, comfort: 800, luxury: 1700 },
+                        localTransitPerDay: { student: 200, comfort: 600, luxury: 1600 },
+                        miscPerDay: { student: 150, comfort: 400, luxury: 900 },
+                        tip: "Take Vande Bharat or Saraighat Express to New Cooch Behar (NCB). Durbar Hall closes at 5 PM.",
+                        sweets: "Cooch Behar Malpoa, Chhana Murki & Rajbari Sandesh",
+                        foreignTip: "Foreign passports require ticket counter registration at Palace entrance. Photography permitted."
+                    },
                     kalimpong_dooars: {
                         name: "Kalimpong, Dooars & Tea Valleys",
                         transit: { student: 950, comfort: 2100, luxury: 5200 }, // Train to New Mal/Siliguri + Shared bus/jeep
@@ -11456,6 +11495,74 @@
                             ${foreignTipHTML}
                         `;
                     }
+                }
+
+                
+                function generateSmartItinerary() {
+                    const destKey = document.getElementById('calc-destination')?.value || 'gangani';
+                    const dest = BENGAL_TRIP_DATA[destKey] || BENGAL_TRIP_DATA.gangani;
+                    const days = parseInt(document.getElementById('calc-days-slider')?.value || '2', 10);
+                    const total = document.getElementById('calc-total-cost')?.textContent || '₹2,500';
+                    const people = document.getElementById('calc-people-slider')?.value || '2';
+
+                    let timelineHtml = `
+                        <div style="background: rgba(15, 23, 42, 0.95); border: 1.5px solid #38bdf8; border-radius: 16px; padding: 22px; margin-top: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.6);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">
+                                <div>
+                                    <span style="font-size: 11px; font-weight: 800; background: rgba(56,189,248,0.2); color: #38bdf8; padding: 3px 10px; border-radius: 12px; text-transform: uppercase;">✨ Generated Smart Itinerary</span>
+                                    <h3 style="color: #ffffff; font-size: 18px; font-weight: 800; margin: 4px 0 0; font-family: var(--font-title);">${days}-Day ${dest.name} Expedition</h3>
+                                </div>
+                                <span style="font-size: 13px; font-weight: 800; color: #34d399; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); padding: 4px 12px; border-radius: 8px;">Est. Total: ${total} (${people} Travelers)</span>
+                            </div>
+
+                            <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px;">
+                                <div style="background: rgba(0,0,0,0.35); border-left: 3px solid #38bdf8; padding: 10px 14px; border-radius: 0 8px 8px 0;">
+                                    <strong style="color: #38bdf8; font-size: 13px;">🌅 Day 1: Morning Arrival &amp; Core Trail</strong>
+                                    <div style="font-size: 12px; color: #cbd5e1; margin-top: 4px;">• Catch early morning train/transit to regional gateway.<br>• Check into verified stay &amp; enjoy local breakfast.<br>• 10:00 AM - 01:30 PM: Guided tour of main historical &amp; scenic landmarks.<br>• 04:30 PM - 06:00 PM: Golden hour sunset photography viewpoint.</div>
+                                </div>
+                    `;
+
+                    if (days >= 2) {
+                        timelineHtml += `
+                                <div style="background: rgba(0,0,0,0.35); border-left: 3px solid #eab308; padding: 10px 14px; border-radius: 0 8px 8px 0;">
+                                    <strong style="color: #fde047; font-size: 13px;">🌲 Day 2: Forest Trail &amp; Cultural Immersion</strong>
+                                    <div style="font-size: 12px; color: #cbd5e1; margin-top: 4px;">• 06:30 AM: Sunrise walk &amp; local tea stall tasting.<br>• 09:30 AM: Visit regional artisan workshops &amp; handicraft clusters.<br>• 01:00 PM: Authentic Bengali thali lunch with ${dest.sweets}.<br>• 05:00 PM: Evening return train board or lakeside relaxation.</div>
+                                </div>
+                        `;
+                    }
+
+                    if (days >= 3) {
+                        timelineHtml += `
+                                <div style="background: rgba(0,0,0,0.35); border-left: 3px solid #a855f7; padding: 10px 14px; border-radius: 0 8px 8px 0;">
+                                    <strong style="color: #c084fc; font-size: 13px;">🏛️ Day 3: Hidden Gems &amp; Souvenir Shopping</strong>
+                                    <div style="font-size: 12px; color: #cbd5e1; margin-top: 4px;">• Off-the-beaten-path village trail &amp; wildlife watchtowers.<br>• Biswa Bangla souvenir procurement &amp; departure connection.</div>
+                                </div>
+                        `;
+                    }
+
+                    timelineHtml += `
+                            </div>
+
+                            <div style="background: rgba(56,189,248,0.08); border: 1px dashed rgba(56,189,248,0.3); border-radius: 10px; padding: 12px; font-size: 12px; color: #94a3b8; margin-bottom: 14px;">
+                                <strong style="color: #38bdf8;">💡 Architect Route Tip:</strong> ${dest.tip}
+                            </div>
+
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <button type="button" onclick="window.print()" style="flex: 1; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #ffffff; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;">🖨️ Print / Save PDF</button>
+                                <button type="button" onclick="copyTripBudgetSummary()" style="flex: 1; background: rgba(56,189,248,0.2); border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;">📋 Copy Text</button>
+                            </div>
+                        </div>
+                    `;
+
+                    let container = document.getElementById('ai-itinerary-output');
+                    if (!container) {
+                        const parent = document.getElementById('trip-budget-calculator-section');
+                        container = document.createElement('div');
+                        container.id = 'ai-itinerary-output';
+                        parent.querySelector('div').appendChild(container);
+                    }
+                    container.innerHTML = timelineHtml;
+                    container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
 
                 function copyTripBudgetSummary() {
