@@ -11138,7 +11138,7 @@
                                 </label>
                                 <span id="calc-days-val" style="color: #38bdf8; font-weight: 800; font-size: 14px; font-family: 'Space Grotesk', monospace;">1 Day (Day Trip)</span>
                             </div>
-                            <input type="range" id="calc-days-slider" min="1" max="7" value="1" step="1" oninput="updateDaysInput(this.value)" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
+                            <input type="range" id="calc-days-slider" min="1" max="7" value="1" step="1" oninput="updateDaysInput(this.value)" onchange="updateDaysInput(this.value)" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
                             <div style="display: flex; justify-content: space-between; font-size: 10.5px; color: #64748b; margin-top: 4px;">
                                 <span>1 Day</span>
                                 <span>2 Days</span>
@@ -11156,7 +11156,7 @@
                                 </label>
                                 <span id="calc-people-val" style="color: #34d399; font-weight: 800; font-size: 14px; font-family: 'Space Grotesk', monospace;">2 Persons</span>
                             </div>
-                            <input type="range" id="calc-people-slider" min="1" max="10" value="2" step="1" oninput="updatePeopleInput(this.value)" style="width: 100%; accent-color: #34d399; cursor: pointer;">
+                            <input type="range" id="calc-people-slider" min="1" max="10" value="2" step="1" oninput="updatePeopleInput(this.value)" onchange="updatePeopleInput(this.value)" style="width: 100%; accent-color: #34d399; cursor: pointer;">
                             <div style="display: flex; justify-content: space-between; font-size: 10.5px; color: #64748b; margin-top: 4px;">
                                 <span>Solo (1)</span>
                                 <span>Duo (2)</span>
@@ -11322,32 +11322,31 @@
                     },
                     purulia: {
                         name: "Purulia Ayodhya Hills & Marble Lake",
-                        baseTransit: 220,
-                        transitMultiplier: { student: 1, comfort: 2.5, luxury: 5.5 },
-                        hotelPerNight: { student: 600, comfort: 1900, luxury: 4200 },
-                        foodPerDay: { student: 300, comfort: 700, luxury: 1500 },
-                        localTransitPerDay: { student: 250, comfort: 650, luxury: 1800 },
-                        miscPerDay: { student: 100, comfort: 300, luxury: 800 },
-                        tip: "Take Rupashi Bangla Exp (Howrah to Purulia). Hire a Baghmundi jeep for Marble Lake & Bamni Falls sunset.",
-                        sweets: "Purulia Chhana Pora, Gur Jilapi & Mahua Pitha",
-                        foreignTip: "Catch authentic Chhau Dance rehearsal in Charida village. Verified guides speak English."
+                        transit: { student: 150, comfort: 380, luxury: 1100 },
+                        lodgingNight: { student: 550, comfort: 1600, luxury: 4200 },
+                        foodDay: { student: 150, comfort: 380, luxury: 850 },
+                        sightseeingDay: { student: 180, comfort: 450, luxury: 1400 },
+                        tip: "Take 12883 Rupashi Bangla Express from Howrah to Purulia (06:25 AM). Hire a shared jeep from Baghmundi to cover Marble Lake, Bamni Falls and Charida village.",
+                        sweets: "Authentic Purulia Chhana Pora, Gur Jilapi & Mahua Pitha."
                     },
                     mukutmanipur: {
                         name: "Mukutmanipur Dam & Jhilimili Sal Forests",
-                        baseTransit: 180,
-                        transitMultiplier: { student: 1, comfort: 2.2, luxury: 5.0 },
-                        hotelPerNight: { student: 550, comfort: 1700, luxury: 3800 },
-                        foodPerDay: { student: 280, comfort: 650, luxury: 1400 },
-                        localTransitPerDay: { student: 200, comfort: 500, luxury: 1500 },
-                        miscPerDay: { student: 80, comfort: 250, luxury: 600 },
-                        tip: "Rent a country boat at sunrise to Bonpukuria Deer Park island. Drive the Jhilimili canopy road at noon.",
-                        sweets: "Bankura Mecha Sandesh & Mahua Flavored Rosogolla",
-                        foreignTip: "Stay at WBTDCL Mukutmanipur Tourism Property right overlooking the 11-km earthen lake."
+                        transit: { student: 160, comfort: 360, luxury: 950 },
+                        lodgingNight: { student: 500, comfort: 1500, luxury: 3800 },
+                        foodDay: { student: 140, comfort: 350, luxury: 800 },
+                        sightseeingDay: { student: 120, comfort: 300, luxury: 850 },
+                        tip: "Take express train to Bankura Junction, then direct SBSTC bus to Mukutmanipur. Rent a shared motorized country boat to Bonpukuria Deer Park island.",
+                        sweets: "Bankura Mecha Sandesh & Mahua Flavored Rosogolla."
                     },
                     coochbehar: {
                         name: "Cooch Behar Royal Palace & Heritage City",
-                        baseTransit: 450,
-                        transitMultiplier: { student: 1, comfort: 2.8, luxury: 6.0 },
+                        transit: { student: 450, comfort: 1200, luxury: 3200 },
+                        lodgingNight: { student: 600, comfort: 1800, luxury: 4500 },
+                        foodDay: { student: 180, comfort: 420, luxury: 950 },
+                        sightseeingDay: { student: 100, comfort: 280, luxury: 750 },
+                        tip: "Take 12345 Saraighat Express or Vande Bharat to New Cooch Behar (NCB). Victor Jubilee Palace entry is ₹25 for Indians, open 10 AM to 5 PM.",
+                        sweets: "Cooch Behar Rajbari Malpoa, Chhana Murki & Sandesh."
+                    },
                         hotelPerNight: { student: 700, comfort: 2200, luxury: 4800 },
                         foodPerDay: { student: 350, comfort: 800, luxury: 1700 },
                         localTransitPerDay: { student: 200, comfort: 600, luxury: 1600 },
