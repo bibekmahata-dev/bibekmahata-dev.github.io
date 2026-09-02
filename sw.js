@@ -4,13 +4,14 @@
    Version: 1.0.0
    ============================================================================== */
 
-const CACHE_NAME = 'bengal-explorers-v84';
-const DATA_CACHE_NAME = 'bengal-data-cache-v84';
+const CACHE_NAME = 'bengal-explorers-v85';
+const DATA_CACHE_NAME = 'bengal-data-cache-v85';
 
 // Critical Core Assets for Offline App Shell
 const APP_SHELL = [
     '/',
     '/index.html',
+    '/assets/css/style.css',
     '/about.html',
     '/blog.html',
     '/contact.html',
