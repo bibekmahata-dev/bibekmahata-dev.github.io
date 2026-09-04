@@ -8938,6 +8938,7 @@ const compareCard1 = document.getElementById('compare-card-1');
 const compareCard2 = document.getElementById('compare-card-2');
 
 function openCompareModal() {
+    if (!compareOverlay || !compareSelect1 || !compareSelect2) return;
     playClickSound();
     if (!compareSelect1.children.length) {
         MEMBERS.forEach((m, idx) => {
@@ -8955,11 +8956,13 @@ function openCompareModal() {
 }
 
 function closeCompareModal() {
+    if (!compareOverlay) return;
     compareOverlay.classList.remove('open');
     document.body.style.overflow = '';
 }
 
 function updateComparison() {
+    if (!compareSelect1 || !compareSelect2) return;
     playClickSound();
     const id1 = compareSelect1.value;
     const id2 = compareSelect2.value;
@@ -8967,8 +8970,8 @@ function updateComparison() {
     const m1 = MEMBERS.find(m => m.id === id1);
     const m2 = MEMBERS.find(m => m.id === id2);
 
-    if (m1) renderCompareCard(m1, compareCard1);
-    if (m2) renderCompareCard(m2, compareCard2);
+    if (m1 && compareCard1) renderCompareCard(m1, compareCard1);
+    if (m2 && compareCard2) renderCompareCard(m2, compareCard2);
 }
 
 function renderCompareCard(m, cardEl) {
