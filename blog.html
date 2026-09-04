@@ -374,6 +374,155 @@
             .stay-booking-card { padding: 12px !important; }
             .booking-links-grid { grid-template-columns: 1fr !important; }
         }
+    
+        /* ========================================================
+           INTERACTIVE SEARCH & CATEGORY FILTER STYLES
+           ======================================================== */
+        .blog-filter-hub {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.75));
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .search-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            font-size: 16px;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        .blog-search-input {
+            width: 100%;
+            padding: 13px 42px 13px 44px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1.5px solid rgba(56, 189, 248, 0.3);
+            border-radius: 12px;
+            color: #ffffff;
+            font-family: var(--font-body);
+            font-size: 14.5px;
+            outline: none;
+            transition: all 0.25s ease;
+            box-sizing: border-box;
+        }
+        .blog-search-input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+            background: rgba(15, 23, 42, 1);
+        }
+        .blog-search-input::placeholder {
+            color: #94a3b8;
+        }
+        .search-clear-btn {
+            position: absolute;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #94a3b8;
+            font-size: 14px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .search-clear-btn:hover {
+            background: rgba(244, 63, 94, 0.2);
+            color: #f43f5e;
+        }
+        .filter-chips-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .filter-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 7px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .filter-chip:hover {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: rgba(56, 189, 248, 0.4);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+        .filter-chip.active {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(139, 92, 246, 0.3));
+            border-color: #38bdf8;
+            color: #38bdf8;
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.3);
+        }
+        .filter-status-bar {
+            margin-top: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 10px;
+        }
+        .no-guides-card {
+            background: var(--bg-card);
+            border: 1.5px dashed rgba(56, 189, 248, 0.35);
+            border-radius: 16px;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .no-guides-icon {
+            font-size: 44px;
+            margin-bottom: 12px;
+        }
+        .no-guides-card h3 {
+            font-family: var(--font-title);
+            font-size: 18px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .no-guides-card p {
+            color: var(--text-muted);
+            font-size: 13.5px;
+            max-width: 420px;
+            margin: 0 auto 18px;
+        }
+        .reset-filters-btn {
+            background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+            border: none;
+            color: #090d16;
+            font-weight: 800;
+            font-size: 13px;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .reset-filters-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+        }
+
     </style>
     <!-- JSON-LD BreadcrumbList Schema -->
     <script type="application/ld+json">
@@ -417,11 +566,41 @@
 
     <!-- Main Content -->
     <main class="blog-container">
+        <!-- ========================================================
+             INTERACTIVE SEARCH & CATEGORY FILTER ENGINE
+             ======================================================== -->
+        <div class="blog-filter-hub" id="blog-filter-hub">
+            <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="blog-search-input" class="blog-search-input" placeholder="Search destination, district, or keyword (e.g. Darjeeling, Gangani, Terracotta)..." aria-label="Search travel guides" autocomplete="off">
+                <button type="button" id="blog-search-clear" class="search-clear-btn" aria-label="Clear search" style="display: none;">✕</button>
+            </div>
+            <div class="filter-chips-wrapper">
+                <button type="button" class="filter-chip active" data-filter="all">🌟 All Guides (11)</button>
+                <button type="button" class="filter-chip" data-filter="hills">⛰️ Hills & Canyons</button>
+                <button type="button" class="filter-chip" data-filter="heritage">🏛️ Heritage & Temples</button>
+                <button type="button" class="filter-chip" data-filter="nature">🌿 Wildlife & Nature</button>
+                <button type="button" class="filter-chip" data-filter="coastal">🌊 Coastal & Beaches</button>
+                <button type="button" class="filter-chip" data-filter="food">🍯 Heritage Food</button>
+            </div>
+            <div class="filter-status-bar">
+                <span id="guides-count-display">Showing 11 of 11 travel guides</span>
+            </div>
+        </div>
+
+        <!-- No Results Fallback Card (Hidden by default) -->
+        <div id="no-guides-found" class="no-guides-card" style="display: none;">
+            <div class="no-guides-icon">🧭</div>
+            <h3>No destinations match your search</h3>
+            <p>Try searching for a different town, keyword, or clear your filters to explore all guides.</p>
+            <button type="button" class="reset-filters-btn" onclick="resetBlogFilters()">Reset Filters & Search</button>
+        </div>
+
 
         <!-- ========================================================
              GUIDE 1: GANGANI GRAND CANYON (GARHBETA)
              ======================================================== -->
-        <article class="guide-article">
+        <article class="guide-article" data-category="hills" data-search="gangani grand canyon garhbeta paschim medinipur silabati river bakasura rarh bhumi natural wonder laterite gorges">
             <div class="guide-header">
                 <div class="guide-meta">
                     <span class="guide-tag tag-canyon">Natural Wonder</span>
@@ -486,7 +665,7 @@
         <!-- ========================================================
              GUIDE 2: DARJEELING HIMALAYAN RAILWAY
              ======================================================== -->
-        <article class="guide-article">
+        <article class="guide-article" id="guide-darjeeling" data-category="hills" data-search="darjeeling toy train kanchenjunga ghum unesco mountain heritage tiger hill tea estate himalayan hill station">
             <div class="guide-header">
                 <div class="guide-meta">
                     <span class="guide-tag tag-hill">UNESCO Mountain Heritage</span>
@@ -546,7 +725,7 @@
         <!-- ========================================================
              GUIDE 3: BISHNUPUR TERRACOTTA ARCHITECTURE
              ======================================================== -->
-        <article class="guide-article">
+        <article class="guide-article" id="guide-bishnupur" data-category="heritage" data-search="bishnupur malla terracotta temples rasmancha shyamrai bankura baluchari silk mecha sandesh ancient architecture">
             <div class="guide-header">
                 <div class="guide-meta">
                     <span class="guide-tag tag-heritage">Ancient Architecture</span>
@@ -605,7 +784,7 @@
         <!-- ========================================================
              GUIDE 4: SUNDARBANS BIOSPHERE RESERVE
              ======================================================== -->
-        <article class="guide-article">
+        <article class="guide-article" id="guide-sundarbans" data-category="nature" data-search="sundarbans royal bengal tiger mangrove unesco delta wildlife safari south 24 parganas sajnekhali sanctuary boat">
             <div class="guide-header">
                 <div class="guide-meta">
                     <span class="guide-tag tag-wildlife">Wildlife Sanctuary</span>
@@ -659,7 +838,7 @@
         <!-- ========================================================
              GUIDE 5: DIGHA & THE COASTAL CORRIDOR
              ======================================================== -->
-        <article class="guide-article">
+        <article class="guide-article" id="guide-digha" data-category="coastal" data-search="digha mandarmani shankarpur coastal highway purba medinipur bay of bengal beach marine drive horizons sea">
             <div class="guide-header">
                 <div class="guide-meta">
                     <span class="guide-tag tag-beach">Coastal Horizons</span>
@@ -715,7 +894,7 @@
         <!-- ========================================================
              GUIDE 6: PURULIA AYODHYA HILLS & JOYCHANDI PAHAR
              ======================================================== -->
-        <article class="guide-article" id="guide-purulia">
+        <article class="guide-article" id="guide-purulia" data-category="hills" data-search="purulia ayodhya hills bamni falls turga chhau mask dance granite peaks saheb bandh waterfalls">
             <div class="guide-header">
                 <div class="guide-meta">
                     <span class="guide-tag tag-wildlife" style="background: rgba(168, 85, 247, 0.15); color: #c084fc;">Hills & Waterfalls</span>
@@ -777,7 +956,7 @@
         <!-- ========================================================
              GUIDE 7: MUKUTMANIPUR & JHILIMILI SAL FORESTS
              ======================================================== -->
-        <article class="guide-article" id="guide-mukutmanipur">
+        <article class="guide-article" id="guide-mukutmanipur" data-category="nature" data-search="mukutmanipur jhilimili kangsabati dam earth dam kumari river bankura forest canopy deer park lakes">
             <div class="guide-header">
                 <div class="guide-meta">
                     <span class="guide-tag tag-beach" style="background: rgba(14, 165, 233, 0.15); color: #38bdf8;">Lakes & Forests</span>
@@ -839,7 +1018,7 @@
         <!-- ========================================================
              GUIDE 8: COOCH BEHAR ROYAL PALACE & HERITAGE
              ======================================================== -->
-        <article class="guide-article" id="guide-coochbehar">
+        <article class="guide-article" id="guide-coochbehar" data-category="heritage" data-search="cooch behar palace rajbari nripendra narayan italian renaissance north bengal madan mohan sagar dighi royal">
             <div class="guide-header">
                 <div class="guide-meta">
                     <span class="guide-tag tag-heritage">Royal Heritage</span>
@@ -906,7 +1085,7 @@
         <!-- ========================================================
              GUIDE 9: CHASING SUNRISE AT 8,482 FT: TIGER HILL & BATASIA LOOP
              ======================================================== -->
-        <article class="guide-article" id="guide-tigerhill">
+        <article class="guide-article" id="guide-tigerhill" data-category="hills" data-search="tiger hill batasia loop darjeeling sunrise kanchenjunga ghum railway war memorial everest himalayan">
             <div class="guide-header">
                 <div class="guide-meta">
                     <span class="guide-tag tag-hill">Himalayan Sunrise</span>
@@ -970,7 +1149,7 @@
         <!-- ========================================================
              GUIDE 10: THE WHISPERING TERRACOTTA: BISHNUPUR MALLA TEMPLE TRAIL
              ======================================================== -->
-        <article class="guide-article" id="guide-bishnupur-trail">
+        <article class="guide-article" id="guide-bishnupur-trail" data-category="heritage" data-search="whispering terracotta bishnupur jor bangla radhe shyam temple dalmadal cannon bankura walking tour ancient architecture">
             <div class="guide-header">
                 <div class="guide-meta">
                     <span class="guide-tag tag-heritage">Ancient Architecture</span>
@@ -1031,7 +1210,7 @@
         <!-- ========================================================
              GUIDE 11: 100-YEAR-OLD HERITAGE FOOD TRAIL OF NORTH KOLKATA
              ======================================================== -->
-        <article class="guide-article" id="guide-kolkata-food">
+        <article class="guide-article" id="guide-kolkata-food" data-category="food" data-search="north kolkata food trail nobin chandra das rosogolla ledikeni bhim nag girish nakur nolen gur sandesh college street culinary heritage sweets">
             <div class="guide-header">
                 <div class="guide-meta">
                     <span class="guide-tag tag-canyon" style="background: rgba(245, 158, 11, 0.18); color: #fbbf24;">Culinary Heritage</span>
@@ -1120,5 +1299,106 @@
             });
         }
     </script>
+    <!-- Interactive Blog Search & Filter Engine -->
+    <script>
+        (function() {
+            const searchInput = document.getElementById('blog-search-input');
+            const clearBtn = document.getElementById('blog-search-clear');
+            const filterChips = document.querySelectorAll('.filter-chip');
+            const articles = document.querySelectorAll('.guide-article');
+            const countDisplay = document.getElementById('guides-count-display');
+            const noGuidesCard = document.getElementById('no-guides-found');
+
+            let activeFilter = 'all';
+
+            function filterArticles() {
+                const query = searchInput.value.trim().toLowerCase();
+                let visibleCount = 0;
+
+                if (query.length > 0) {
+                    clearBtn.style.display = 'flex';
+                } else {
+                    clearBtn.style.display = 'none';
+                }
+
+                articles.forEach(article => {
+                    const category = article.getAttribute('data-category') || '';
+                    const searchData = (article.getAttribute('data-search') || '').toLowerCase();
+                    const textContent = article.textContent.toLowerCase();
+
+                    const matchesCategory = (activeFilter === 'all' || category === activeFilter);
+                    const matchesQuery = (!query || searchData.includes(query) || textContent.includes(query));
+
+                    if (matchesCategory && matchesQuery) {
+                        article.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        article.style.display = 'none';
+                    }
+                });
+
+                // Update count badge
+                countDisplay.textContent = `Showing ${visibleCount} of ${articles.length} travel guides`;
+
+                // Show/hide empty state
+                if (visibleCount === 0) {
+                    noGuidesCard.style.display = 'block';
+                } else {
+                    noGuidesCard.style.display = 'none';
+                }
+            }
+
+            // Category chip click listeners
+            filterChips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    filterChips.forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    activeFilter = chip.getAttribute('data-filter');
+                    filterArticles();
+                });
+            });
+
+            // Live Search Input Listener
+            searchInput.addEventListener('input', filterArticles);
+
+            // Clear Button Listener
+            clearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                filterArticles();
+                searchInput.focus();
+            });
+
+            // Global reset function for fallback card
+            window.resetBlogFilters = function() {
+                searchInput.value = '';
+                filterChips.forEach(c => c.classList.remove('active'));
+                const allChip = document.querySelector('.filter-chip[data-filter="all"]');
+                if (allChip) allChip.classList.add('active');
+                activeFilter = 'all';
+                filterArticles();
+            };
+
+            // Support URL Query Params (?cat=hills or ?q=gangani)
+            const urlParams = new URLSearchParams(window.location.search);
+            const catParam = urlParams.get('cat');
+            const qParam = urlParams.get('q');
+
+            if (qParam) {
+                searchInput.value = qParam;
+            }
+            if (catParam) {
+                const targetChip = document.querySelector(`.filter-chip[data-filter="${catParam}"]`);
+                if (targetChip) {
+                    filterChips.forEach(c => c.classList.remove('active'));
+                    targetChip.classList.add('active');
+                    activeFilter = catParam;
+                }
+            }
+            if (qParam || catParam) {
+                filterArticles();
+            }
+        })();
+    </script>
+
 </body>
 </html>

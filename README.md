@@ -18,6 +18,7 @@
 - 🌤️ **Real-Time Weather Station**: Live temperature, humidity, and weather conditions powered by the Open-Meteo API.
 - 🏛️ **Cultural & GI Heritage Vault**: In-depth chronicles of West Bengal GI-tagged sweets (*Bishnupur Mecha Sandesh, Bardhaman Mihidana, Khirpai Babarsa*), folk traditions (*Chhau, Baul*), and festivals.
 - 📱 **Progressive Web App (PWA)**: Full offline commuter mode with multi-strategy Service Worker caching.
+- 🔎 **Interactive Travel Chronicle Search & Filter Engine**: Instant keyword search and multi-category filtering across all regional travel guides.
 - 🔍 **SEO & Google Knowledge Graph**: Structured Data schemas (WebSite, Person, ItemList, Blog, SearchAction).
 
 ---
