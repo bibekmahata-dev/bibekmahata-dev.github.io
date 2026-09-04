@@ -3663,6 +3663,30 @@
                                     else if (train.type.includes('Superfast')) typeColor = '#22c55e';
                                     else if (train.type.includes('MEMU') || train.type.includes('Local')) typeColor = '#a855f7';
 
+                                    // Dynamic Live Departure Countdown Calculator
+                                    let countdownBadgeHtml = '';
+                                    if (!status.isCancelled && train.rawTime && train.rawTime !== '--:--') {
+                                        const now = new Date();
+                                        const [depH, depM] = train.rawTime.split(':').map(Number);
+                                        const nowMinutes = now.getHours() * 60 + now.getMinutes();
+                                        const trainMinutes = depH * 60 + depM;
+                                        const diffMins = trainMinutes - nowMinutes;
+
+                                        if (diffMins > 0 && diffMins <= 15) {
+                                            countdownBadgeHtml = `<span class="transit-countdown-pill urgent">⚡ In ${diffMins}m • PF ${train.depPf}</span>`;
+                                        } else if (diffMins > 15 && diffMins <= 60) {
+                                            countdownBadgeHtml = `<span class="transit-countdown-pill upcoming">🟢 In ${diffMins}m</span>`;
+                                        } else if (diffMins > 60) {
+                                            const h = Math.floor(diffMins / 60);
+                                            const m = diffMins % 60;
+                                            countdownBadgeHtml = `<span class="transit-countdown-pill upcoming">🟢 In ${h}h ${m > 0 ? m + 'm' : ''}</span>`;
+                                        } else if (diffMins <= 0 && diffMins > -15) {
+                                            countdownBadgeHtml = `<span class="transit-countdown-pill urgent">🏃 At Platform</span>`;
+                                        } else {
+                                            countdownBadgeHtml = `<span class="transit-countdown-pill departed">⚪ Departed Today</span>`;
+                                        }
+                                    }
+
                                     html += `
                                         <div class="train-card visible" style="margin-bottom: 0;">
                                             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
@@ -3695,6 +3719,20 @@
                                                     <div style="font-size: 17px; font-family: 'Space Grotesk', monospace; font-weight: 800; color: #ffffff;">${train.arrTime}</div>
                                                     <div style="color: #94a3b8; font-size: 10px; font-weight: 600;">Direct</div>
                                                 </div>
+                                            </div>
+
+                                            <!-- Dynamic Transit Actions & Live Tracker Shortcuts -->
+                                            <div class="transit-action-bar">
+                                                <a href="https://enquiry.indianrail.gov.in/mntes/" target="_blank" rel="noopener noreferrer" class="transit-action-btn primary" title="Check Live GPS Running Status on NTES">
+                                                    <span>📡</span> Live NTES Status
+                                                </a>
+                                                <a href="https://www.railyatri.in/live-train-status/${train.no}" target="_blank" rel="noopener noreferrer" class="transit-action-btn" title="Track Live GPS Location on RailYatri">
+                                                    <span>📍</span> GPS Radar
+                                                </a>
+                                                <a href="https://www.irctc.co.in/" target="_blank" rel="noopener noreferrer" class="transit-action-btn" title="Check Official IRCTC Availability">
+                                                    <span>🎟️</span> IRCTC
+                                                </a>
+                                                ${countdownBadgeHtml ? `<div style="margin-left: auto;">${countdownBadgeHtml}</div>` : ''}
                                             </div>
                                         </div>
                                     `;
@@ -3855,7 +3893,19 @@
                             updateRealTimeClock();
                             toggleStation();
                             executeBengalRouteSearch(false);
-                        });
+                        }
+
+                        // Auto-refresh dynamic transit countdowns every 60 seconds
+                        if (!window.transitTimerInit) {
+                            window.transitTimerInit = true;
+                            setInterval(() => {
+                                const panel = document.getElementById('bengal-route-finder-panel');
+                                if (panel && document.getElementById('route-results-list')) {
+                                    executeBengalRouteSearch(false);
+                                }
+                            }, 60000);
+                        }
+);
 
                         // Fallback immediate execution
                         toggleStation();
@@ -3865,7 +3915,19 @@
                         setInterval(() => {
                             toggleStation();
                             executeBengalRouteSearch(false);
-                        }, 60000);
+                        }
+
+                        // Auto-refresh dynamic transit countdowns every 60 seconds
+                        if (!window.transitTimerInit) {
+                            window.transitTimerInit = true;
+                            setInterval(() => {
+                                const panel = document.getElementById('bengal-route-finder-panel');
+                                if (panel && document.getElementById('route-results-list')) {
+                                    executeBengalRouteSearch(false);
+                                }
+                            }, 60000);
+                        }
+, 60000);
                     </script>
 
                 <!-- ========================================================
