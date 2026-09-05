@@ -799,7 +799,7 @@
     <div class="floating-dock">
         <button class="dock-btn" onclick="document.getElementById('railway-soundboard-studio').scrollIntoView({behavior: 'smooth'})" style="color: #fef08a; font-weight: 800; border: 1px solid rgba(234, 179, 8, 0.4);" title="Railway PA Soundboard & Audio Guide">📢 Audio</button>
         <button class="dock-btn" onclick="document.getElementById('transit-section').scrollIntoView({behavior: 'smooth'})" title="Live Train & Bus Transit Radar">🚆 Transit</button>
-        <button class="dock-btn" onclick="document.getElementById(\'trip-budget-calculator-section\').scrollIntoView({behavior: \'smooth\'})" style="color: #4ade80; font-weight: 700;" title="Trip Budget & Fare Calculator">💰 Budget</button>
+        <button class="dock-btn" onclick="document.getElementById('trip-budget-calculator-section').scrollIntoView({behavior: 'smooth'})" style="color: #4ade80; font-weight: 700;" title="Trip Budget & Fare Calculator">💰 Budget</button>
         <button class="dock-btn" onclick="document.getElementById('West Bengal-guide-section').scrollIntoView({behavior: 'smooth'})" title="Live Multi-District Meteorology Hub">🛰️ Weather</button>
         <button class="dock-btn" onclick="document.getElementById('hangout-map').scrollIntoView({behavior: 'smooth'})" title="Interactive Tourism & Route Map">🗺️ Map</button>
         <button class="dock-btn" onclick="document.getElementById('emergency-sos-section').scrollIntoView({behavior: 'smooth'})" title="24/7 Emergency SOS Helpline" style="color: #f87171;">🚨 SOS</button>
@@ -2676,6 +2676,7 @@
                         fetchLiveCurrencyRates();
                     </script>
                 </div>
+            </div>
 
 <!-- Dynamic Train Board Section -->
                 
@@ -2756,26 +2757,6 @@
                             <button class="studio-pad-btn studio-pad-rose" onclick="window.playDestinationAudioGuide('bishnupur');" title="Play spoken narrative of Bishnupur">
                                 <span style="font-size: 17px;">🏛️</span>
                                 <span>Bishnupur Guide</span>
-                            </button>
-                        </div>
-                    </div>
-                            <span style="font-size: 11px; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); padding: 4px 10px; border-radius: 8px;">0ms Lag • 100% Offline PWA</span>
-                        </div>
-                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                            <button class="audio-guide-trigger" style="margin-top:0; background: linear-gradient(135deg, #fef08a, #eab308); color: #090e1a; font-weight: 900; padding: 8px 16px; font-size: 13px;" onclick="playStationChime(); showQuickToast('🔔 Railway Chime Triggered (587Hz & 783Hz)');">
-                                <span>🔔 Test Station Chime</span>
-                            </button>
-                            <button class="audio-guide-trigger" style="margin-top:0; padding: 8px 14px; font-size: 12.5px;" onclick="playStationPAVoice('12814', 'Steel Express', '1', 'Howrah Junction')">
-                                <span>📢 Steel Express PA</span>
-                            </button>
-                            <button class="audio-guide-trigger" style="margin-top:0; padding: 8px 14px; font-size: 12.5px;" onclick="playStationPAVoice('12884', 'Rupashi Bangla Superfast', '2', 'Howrah Junction')">
-                                <span>📢 Rupashi Bangla PA</span>
-                            </button>
-                            <button class="audio-guide-trigger" style="margin-top:0; padding: 8px 14px; font-size: 12.5px;" onclick="playStationPAVoice('12301', 'Howrah - New Delhi Rajdhani Express', '9', 'New Delhi')">
-                                <span>📢 Rajdhani Express PA</span>
-                            </button>
-                            <button class="audio-guide-trigger" style="margin-top:0; padding: 8px 14px; font-size: 12.5px;" onclick="playDestinationAudioGuide('gangani')">
-                                <span>🏞️ Gangani Audio Guide</span>
                             </button>
                         </div>
                     </div>
@@ -3893,47 +3874,23 @@
                             updateRealTimeClock();
                             toggleStation();
                             executeBengalRouteSearch(false);
-                        }
-
-                        // Auto-refresh dynamic transit countdowns every 60 seconds
-                        if (!window.transitTimerInit) {
-                            window.transitTimerInit = true;
-                            setInterval(() => {
-                                const panel = document.getElementById('bengal-route-finder-panel');
-                                if (panel && document.getElementById('route-results-list')) {
-                                    executeBengalRouteSearch(false);
-                                }
-                            }, 60000);
-                        }
-);
+                        });
 
                         // Fallback immediate execution
                         toggleStation();
                         executeBengalRouteSearch(false);
 
-                        // Auto-refresh train statuses every 60 seconds
+                        // Auto-refresh train statuses and dynamic countdowns every 60 seconds
                         setInterval(() => {
                             toggleStation();
                             executeBengalRouteSearch(false);
-                        }
-
-                        // Auto-refresh dynamic transit countdowns every 60 seconds
-                        if (!window.transitTimerInit) {
-                            window.transitTimerInit = true;
-                            setInterval(() => {
-                                const panel = document.getElementById('bengal-route-finder-panel');
-                                if (panel && document.getElementById('route-results-list')) {
-                                    executeBengalRouteSearch(false);
-                                }
-                            }, 60000);
-                        }
-, 60000);
+                        }, 60000);
                     </script>
 
                 <!-- ========================================================
                      🚌 MASTER WEST BENGAL BUS TRANSIT HUB
                      ======================================================== -->
-                <div id="bus-portal-section" style="margin-bottom: 45px; scroll-margin-top: 80px;">
+                <div id="bus-portal-section" data-transit-module="buses" style="margin-bottom: 45px; scroll-margin-top: 80px;">
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <div style="font-size: 28px;">🚌</div>
@@ -4748,7 +4705,7 @@
                 <!-- ========================================================
                      🧭 MULTI-MODAL JOURNEY PLANNER & COST COMPARISON ENGINE
                      ======================================================== -->
-                <div id="multi-modal-planner-section" style="margin-bottom: 45px; scroll-margin-top: 80px;">
+                <div id="multi-modal-planner-section" data-transit-module="trains buses" style="margin-bottom: 45px; scroll-margin-top: 80px;">
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <div style="font-size: 28px;">🧭</div>
@@ -5281,6 +5238,7 @@
                         </div>
                         
                     </div>
+                </div>
 
                 <!-- State Tourist Info -->
                 <div style="margin-bottom: 40px;">
@@ -11283,7 +11241,8 @@ function switchTransitSubTab(tabName, btnEl) {
     } else {
         allTransitModules.forEach(mod => {
             const modType = mod.getAttribute('data-transit-module') || '';
-            if (modType === tabName) {
+            const types = modType.split(/\s+/);
+            if (types.includes(tabName)) {
                 mod.style.display = '';
             } else {
                 mod.style.display = 'none';
@@ -11349,5 +11308,6 @@ function highlightPillarTarget(el) {
 }
 </script>
 
+</main>
 </body>
 </html>
