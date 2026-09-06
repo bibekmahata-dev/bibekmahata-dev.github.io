@@ -4,8 +4,8 @@
    Version: 1.0.0
    ============================================================================== */
 
-const CACHE_NAME = 'bengal-explorers-v89';
-const DATA_CACHE_NAME = 'bengal-data-cache-v89';
+const CACHE_NAME = 'bengal-explorers-v90';
+const DATA_CACHE_NAME = 'bengal-data-cache-v90';
 
 // Critical Core Assets for Offline App Shell
 const APP_SHELL = [
@@ -69,11 +69,15 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
     const requestUrl = new URL(event.request.url);
 
-    // Skip non-GET requests and AdSense / Analytics telemetry
+    // Skip non-GET requests, ads.txt, and AdSense / DoubleClick / Analytics telemetry
     if (event.request.method !== 'GET') return;
-    if (requestUrl.hostname.includes('googleads') || 
+    if (requestUrl.pathname === '/ads.txt' ||
+        requestUrl.hostname.includes('googleads') || 
         requestUrl.hostname.includes('googlesyndication') || 
-        requestUrl.hostname.includes('adtrafficquality')) {
+        requestUrl.hostname.includes('doubleclick') || 
+        requestUrl.hostname.includes('adtrafficquality') ||
+        requestUrl.hostname.includes('google-analytics') ||
+        requestUrl.hostname.includes('googletagmanager')) {
         return;
     }
 
