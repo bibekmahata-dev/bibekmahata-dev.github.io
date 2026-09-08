@@ -182,33 +182,143 @@
 
     <div class="main-wrapper">
         <div class="content-card">
-            <h1>Contact & Feedback Hub</h1>
-            <div class="subtitle">Direct Communication with Bibek Mahata & The Student Team</div>
+            <h1>Contact &amp; Feedback Hub</h1>
+            <div class="subtitle">Direct Communication with Bibek Mahata &amp; The Student Creator Initiative &bull; Garhbeta, West Bengal</div>
             
-            <h2>Get in Touch</h2>
-            <p>Have questions regarding transit timetables, local photography contributions, or regional field guides? We welcome all traveler messages and constructive feedback!</p>
+            <h2>1. Welcome to Our Traveler &amp; Commuter Desk</h2>
+            <p>At <strong>Bengal Explorers</strong>, every transit timetable lookup, route suggestion, and local field report helps make traveling across West Bengal safer, faster, and more accessible. Whether you are a daily commuter navigating local trains between Kharagpur, Midnapore, and Howrah, a traveler planning an expedition to the red gorges of Gangani or the terracotta temples of Bishnupur, or a student developer interested in civic tech, our lines of communication are always open.</p>
+            <p>Our editorial and development operations are managed directly by <strong>Bibek Mahata</strong> alongside our Class 12 student creator crew based in <strong>Garhbeta, Paschim Medinipur (PIN: 721127)</strong>. We welcome all feedback, bug reports, timetable updates, and regional travel stories.</p>
 
+            <h2>2. Interactive Feedback &amp; Message Dispatcher</h2>
+            <p>Use the communication console below to send us your message directly. Your feedback helps us update bus frequencies, confirm train platform allocations, and verify seasonal opening times of state heritage monuments.</p>
+
+            <form id="contact-feedback-form" style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 14px; padding: 24px; margin: 24px 0;" onsubmit="handleContactSubmit(event)">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 16px;">
+                    <div>
+                        <label for="sender-name" style="display: block; font-size: 13px; font-weight: 700; color: #38bdf8; margin-bottom: 6px;">Your Full Name *</label>
+                        <input type="text" id="sender-name" required placeholder="e.g. Sourav Banerjee" style="width: 100%; padding: 10px 14px; background: rgba(30, 41, 59, 0.8); border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 14px;">
+                    </div>
+                    <div>
+                        <label for="sender-email" style="display: block; font-size: 13px; font-weight: 700; color: #38bdf8; margin-bottom: 6px;">Email Address *</label>
+                        <input type="email" id="sender-email" required placeholder="name@example.com" style="width: 100%; padding: 10px 14px; background: rgba(30, 41, 59, 0.8); border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 14px;">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 16px;">
+                    <div>
+                        <label for="feedback-category" style="display: block; font-size: 13px; font-weight: 700; color: #38bdf8; margin-bottom: 6px;">Inquiry Category *</label>
+                        <select id="feedback-category" required style="width: 100%; padding: 10px 14px; background: rgba(30, 41, 59, 0.8); border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 14px;">
+                            <option value="transit">🚆 Transit Timetable Update or Correction</option>
+                            <option value="guide">🗺️ Field Guide Suggestion / New Destination</option>
+                            <option value="photo">📸 Photo Contribution / Cultural Story</option>
+                            <option value="bug">🐛 Technical Bug / PWA Offline Engine Report</option>
+                            <option value="ads">📢 Advertising / Sponsorship / Partnerships</option>
+                            <option value="other">💬 General Traveler Message</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="subject-line" style="display: block; font-size: 13px; font-weight: 700; color: #38bdf8; margin-bottom: 6px;">Subject *</label>
+                        <input type="text" id="subject-line" required placeholder="Brief summary of your inquiry" style="width: 100%; padding: 10px 14px; background: rgba(30, 41, 59, 0.8); border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 14px;">
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label for="message-content" style="display: block; font-size: 13px; font-weight: 700; color: #38bdf8; margin-bottom: 6px;">Your Detailed Message *</label>
+                    <textarea id="message-content" required rows="5" placeholder="Share specific route numbers, station names, monument details, or feedback..." style="width: 100%; padding: 12px 14px; background: rgba(30, 41, 59, 0.8); border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 14px; line-height: 1.6; resize: vertical;"></textarea>
+                </div>
+
+                <button type="submit" style="background: linear-gradient(135deg, #0284c7, #38bdf8); color: #090d16; font-weight: 800; font-size: 14px; border: none; padding: 12px 28px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(56,189,248,0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                    <span>✉️ Dispatch Message Directly to Bibek Mahata</span>
+                </button>
+                <div id="form-status-msg" style="display: none; margin-top: 14px; padding: 12px; border-radius: 8px; font-size: 13.5px; font-weight: 600;"></div>
+            </form>
+
+            <h2>3. Official Communication Channels &amp; Regional Bureau</h2>
             <div class="contact-channel-card">
                 <div class="channel-item">
-                    <span>📧</span>
-                    <div><strong>Official Contact:</strong> <a href="mailto:bibek.workdev01@gmail.com" style="color: #38bdf8; text-decoration: none; font-weight: 700;">bibek.workdev01@gmail.com</a></div>
+                    <span style="font-size: 20px;">📧</span>
+                    <div><strong>Official Lead Developer Email:</strong> <a href="mailto:bibek.workdev01@gmail.com" style="color: #38bdf8; text-decoration: underline; font-weight: 700;">bibek.workdev01@gmail.com</a></div>
                 </div>
                 <div class="channel-item">
-                    <span>📍</span>
-                    <div><strong>Headquarters:</strong> Garhbeta, Paschim Medinipur, West Bengal 721127, India</div>
+                    <span style="font-size: 20px;">📍</span>
+                    <div><strong>Regional Headquarters:</strong> Garhbeta Block II, District Paschim Medinipur, West Bengal, Postal PIN: 721127, India</div>
                 </div>
                 <div class="channel-item">
-                    <span>🎓</span>
-                    <div><strong>Initiative:</strong> Class 12 Student Creator & Developer Crew</div>
+                    <span style="font-size: 20px;">🎓</span>
+                    <div><strong>Institutional Profile:</strong> Class 12 Higher Secondary Science Initiative &bull; Pure Open-Source Civic Technology</div>
                 </div>
                 <div class="channel-item">
-                    <span>🐙</span>
-                    <div><strong>GitHub:</strong> <a href="https://github.com/bibekmahata-dev" target="_blank" style="color: #38bdf8; text-decoration: none;" rel="noopener noreferrer">github.com/bibekmahata-dev</a></div>
+                    <span style="font-size: 20px;">🐙</span>
+                    <div><strong>Open-Source Codebase:</strong> <a href="https://github.com/bibekmahata-dev" target="_blank" style="color: #38bdf8; text-decoration: none; font-weight: 600;" rel="noopener noreferrer">github.com/bibekmahata-dev</a></div>
+                </div>
+                <div class="channel-item">
+                    <span style="font-size: 20px;">🌐</span>
+                    <div><strong>Official Social Hubs:</strong> 
+                        <a href="https://www.instagram.com/bibek.cs" target="_blank" style="color: #f43f5e; margin: 0 6px; font-weight: 700; text-decoration: none;" rel="noopener noreferrer">Instagram (@bibek.cs)</a> &bull; 
+                        <a href="https://www.facebook.com/share/1Z9HSMDvAV/" target="_blank" style="color: #3b82f6; margin: 0 6px; font-weight: 700; text-decoration: none;" rel="noopener noreferrer">Facebook</a> &bull; 
+                        <a href="https://youtube.com/@bibekgamer_444?si=Tpliwr4pKk8DpN09" target="_blank" style="color: #ef4444; margin: 0 6px; font-weight: 700; text-decoration: none;" rel="noopener noreferrer">YouTube Channel</a>
+                    </div>
                 </div>
             </div>
 
-            <h2>Response Time</h2>
-            <p>As full-time Class 12 students, we typically respond to inquiries within <strong>24 to 48 hours</strong>. Thank you for supporting open student creators in West Bengal!</p>
+            <h2>4. Bengal Explorers Student Initiative Team Roster</h2>
+            <p>Bengal Explorers is not a faceless aggregator; it is maintained by passionate students and regional researchers living in the towns and villages of South Bengal:</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 18px 0;">
+                <div style="background: rgba(30, 41, 59, 0.5); border: 1px solid #1e293b; border-radius: 10px; padding: 14px;">
+                    <div style="font-weight: 800; color: #fff; font-size: 15px;">Bibek Mahata (bibek.cs)</div>
+                    <div style="color: #38bdf8; font-size: 12px; font-weight: 700; text-transform: uppercase;">Founder &amp; Lead Systems Architect</div>
+                    <div style="color: #94a3b8; font-size: 12.5px; margin-top: 4px;">PWA architecture, radar engine, geodata telemetry.</div>
+                </div>
+                <div style="background: rgba(30, 41, 59, 0.5); border: 1px solid #1e293b; border-radius: 10px; padding: 14px;">
+                    <div style="font-weight: 800; color: #fff; font-size: 15px;">Aritra Dey</div>
+                    <div style="color: #22c55e; font-size: 12px; font-weight: 700; text-transform: uppercase;">Heritage &amp; Culture Storyteller</div>
+                    <div style="color: #94a3b8; font-size: 12.5px; margin-top: 4px;">Folk oral traditions, Malla dynasty temple research.</div>
+                </div>
+                <div style="background: rgba(30, 41, 59, 0.5); border: 1px solid #1e293b; border-radius: 10px; padding: 14px;">
+                    <div style="font-weight: 800; color: #fff; font-size: 15px;">Surya Sankha Ghosh</div>
+                    <div style="color: #a855f7; font-size: 12px; font-weight: 700; text-transform: uppercase;">Visual &amp; Graphic Design Lead</div>
+                    <div style="color: #94a3b8; font-size: 12.5px; margin-top: 4px;">UI design systems, photography curation.</div>
+                </div>
+                <div style="background: rgba(30, 41, 59, 0.5); border: 1px solid #1e293b; border-radius: 10px; padding: 14px;">
+                    <div style="font-weight: 800; color: #fff; font-size: 15px;">Arka Sarkar</div>
+                    <div style="color: #f59e0b; font-size: 12px; font-weight: 700; text-transform: uppercase;">Highway &amp; Route Scout</div>
+                    <div style="color: #94a3b8; font-size: 12.5px; margin-top: 4px;">State Highway 2 &amp; Junglemahal road connectivity.</div>
+                </div>
+                <div style="background: rgba(30, 41, 59, 0.5); border: 1px solid #1e293b; border-radius: 10px; padding: 14px;">
+                    <div style="font-weight: 800; color: #fff; font-size: 15px;">Gobinda Nag</div>
+                    <div style="color: #38bdf8; font-size: 12px; font-weight: 700; text-transform: uppercase;">Cycling Trail Pathfinder</div>
+                    <div style="color: #94a3b8; font-size: 12.5px; margin-top: 4px;">Silabati riverbank trails and eco-cycling tours.</div>
+                </div>
+                <div style="background: rgba(30, 41, 59, 0.5); border: 1px solid #1e293b; border-radius: 10px; padding: 14px;">
+                    <div style="font-weight: 800; color: #fff; font-size: 15px;">Rudranil Pal</div>
+                    <div style="color: #ec4899; font-size: 12px; font-weight: 700; text-transform: uppercase;">Operations &amp; Schedule Anchor</div>
+                    <div style="color: #94a3b8; font-size: 12.5px; margin-top: 4px;">Railway station timetable audits and NTES cross-checks.</div>
+                </div>
+            </div>
+
+            <h2>5. Editorial Verification Policy &amp; Timetable Updates</h2>
+            <p>Our goal is 100% operational reliability. When a traveler submits a correction regarding a bus departure time, a changed railway platform, or updated ferry fares in the Sundarbans or Digha:</p>
+            <ul style="padding-left: 20px; margin-bottom: 14px; font-size: 14.5px;">
+                <li><strong>Verification Check:</strong> Our field team verifies the change against official bulletins (NTES, South Eastern Railway press releases, or SBSTC central depot announcements).</li>
+                <li><strong>Live Code Deployment:</strong> Once verified, the updated timetable or advisory is committed directly to our GitHub repository and pushed to production within 24 hours.</li>
+                <li><strong>PWA Cache Update:</strong> We increment our Service Worker cache version (e.g. <code>bengal-explorers-v92</code>), ensuring all offline commuter smartphones immediately download the fresh schedule upon their next Internet handshake.</li>
+            </ul>
+
+            <h2>6. Frequently Asked Questions (FAQ)</h2>
+            <div style="display: flex; flex-direction: column; gap: 12px; margin: 18px 0;">
+                <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid #1e293b; border-radius: 10px; padding: 16px;">
+                    <strong style="color: #38bdf8; font-size: 14.5px;">Q1: Can I submit photographs or travel experiences to be featured in your guides?</strong>
+                    <p style="margin: 6px 0 0; font-size: 13.5px; color: #cbd5e1;">Yes! We actively celebrate authentic local photography. Please email high-resolution images taken by you along with GPS coordinates and location descriptions to <code>bibek.workdev01@gmail.com</code>. We provide full named creative attribution on the respective guide page.</p>
+                </div>
+                <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid #1e293b; border-radius: 10px; padding: 16px;">
+                    <strong style="color: #38bdf8; font-size: 14.5px;">Q2: What is your typical response turnaround?</strong>
+                    <p style="margin: 6px 0 0; font-size: 13.5px; color: #cbd5e1;">Because our team balances higher secondary academic coursework alongside technical development, we review all incoming messages during dedicated evening office hours (5:00 PM to 8:30 PM IST) and reply within 24 to 48 hours.</p>
+                </div>
+                <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid #1e293b; border-radius: 10px; padding: 16px;">
+                    <strong style="color: #38bdf8; font-size: 14.5px;">Q3: How do I report a bug or display error on mobile screens?</strong>
+                    <p style="margin: 6px 0 0; font-size: 13.5px; color: #cbd5e1;">Select the <em>"Technical Bug"</em> category in the form above and mention your device model and browser (e.g. Samsung Galaxy, Chrome v128). We will inspect the viewport CSS and push a responsive patch.</p>
+                </div>
+            </div>
         </div>
     </div>
     <!-- PWA Offline Commuter Service Worker Registration -->
