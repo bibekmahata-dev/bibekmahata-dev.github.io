@@ -5,7 +5,7 @@
   <!-- 1. PRIMARY ROOT HOMEPAGE & IDENTITY HUB (MAX PRIORITY 1.0) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     
@@ -110,7 +110,7 @@
   <!-- 3. BENGAL TRAVEL CHRONICLES & MASTER GUIDES (HIGH PRIORITY 0.9) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/blog.html</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -182,7 +182,7 @@
   <!-- 12. DEDICATED TRAVEL GUIDE: PURULIA AYODHYA HILLS & CHHAU (PRIORITY 0.85) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-purulia.html</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -190,7 +190,7 @@
   <!-- 13. DEDICATED TRAVEL GUIDE: MUKUTMANIPUR DAM & JHILIMILI (PRIORITY 0.85) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-mukutmanipur.html</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -198,12 +198,20 @@
   <!-- 14. DEDICATED TRAVEL GUIDE: COOCH BEHAR ROYAL PALACE (PRIORITY 0.85) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-coochbehar.html</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 15. CONTACT & FEEDBACK HUB (PRIORITY 0.6) -->
+  <!-- 15. DEDICATED TRAVEL GUIDE: SHANTINIKETAN UNESCO HERITAGE & BOLPUR (PRIORITY 0.9) -->
+  <url>
+    <loc>https://bibekmahata-dev.github.io/guide-shantiniketan.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 16. CONTACT & FEEDBACK HUB (PRIORITY 0.6) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/contact.html</loc>
     <lastmod>2026-09-08</lastmod>
@@ -211,7 +219,7 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- 16. PRIVACY POLICY & COMPLIANCE (PRIORITY 0.5) -->
+  <!-- 17. PRIVACY POLICY & COMPLIANCE (PRIORITY 0.5) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/privacy.html</loc>
     <lastmod>2026-09-08</lastmod>
