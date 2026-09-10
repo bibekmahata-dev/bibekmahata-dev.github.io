@@ -34,11 +34,6 @@
       <image:caption>Gobinda Nag, Bengal Explorers Squad Member &amp; Adventure Cyclist from West Bengal</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://bibekmahata-dev.github.io/assets/agents/rudranil_pal.jpg</image:loc>
-      <image:title>Rudranil Pal — River Navigator &amp; Maritime Explorer</image:title>
-      <image:caption>Rudranil Pal, Bengal Explorers Squad Member &amp; River Explorer from West Bengal</image:caption>
-    </image:image>
-    <image:image>
       <image:loc>https://bibekmahata-dev.github.io/assets/agents/subhajeet.jpg</image:loc>
       <image:title>Subhajeet Sen — Lead Strategist &amp; Power Commander</image:title>
       <image:caption>Subhajeet Sen, Bengal Explorers Squad Member &amp; Lead Strategist from West Bengal</image:caption>
@@ -47,6 +42,16 @@
       <image:loc>https://bibekmahata-dev.github.io/assets/agents/anik_sar.jpg</image:loc>
       <image:title>Anik Sar — Automotive Aficionado</image:title>
       <image:caption>Anik Sar, Bengal Explorers Squad Member &amp; Automotive Enthusiast from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/rudranil_pal.jpg</image:loc>
+      <image:title>Rudranil Pal — River Navigator &amp; Maritime Explorer</image:title>
+      <image:caption>Rudranil Pal, Bengal Explorers Squad Member &amp; River Explorer from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/aritra.jpg</image:loc>
+      <image:title>Aritra Dey — Local Heritage &amp; Cultural Writer</image:title>
+      <image:caption>Aritra Dey, Bengal Explorers Squad Member &amp; Cultural Writer from West Bengal</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://bibekmahata-dev.github.io/assets/agents/khoushik.jpg</image:loc>
@@ -82,11 +87,6 @@
       <image:loc>https://bibekmahata-dev.github.io/assets/agents/abhishek.jpg</image:loc>
       <image:title>Abhishek Mandal — Visual Arts &amp; Portrait Photography</image:title>
       <image:caption>Abhishek Mandal, Bengal Explorers Squad Member &amp; Portrait Photographer from West Bengal</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://bibekmahata-dev.github.io/assets/agents/aritra.jpg</image:loc>
-      <image:title>Aritra Dey — Local Heritage &amp; Cultural Writer</image:title>
-      <image:caption>Aritra Dey, Bengal Explorers Squad Member &amp; Cultural Writer from West Bengal</image:caption>
     </image:image>
   </url>
 
