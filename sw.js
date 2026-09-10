@@ -4,8 +4,8 @@
    Version: 1.0.0
    ============================================================================== */
 
-const CACHE_NAME = 'bengal-explorers-v93';
-const DATA_CACHE_NAME = 'bengal-data-cache-v93';
+const CACHE_NAME = 'bengal-explorers-v94';
+const DATA_CACHE_NAME = 'bengal-data-cache-v94';
 
 // Critical Core Assets for Offline App Shell
 const APP_SHELL = [
@@ -33,6 +33,8 @@ const APP_SHELL = [
     '/favicon.png',
     '/assets/bibek_mahata.jpg',
     '/assets/gangani/gangani-1.png',
+    '/assets/gangani/gangani-2.png',
+    '/assets/gangani/gangani-3.png',
     'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css',
     'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js',
     'https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Great+Vibes&family=Hind+Siliguri:wght@400;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap'
