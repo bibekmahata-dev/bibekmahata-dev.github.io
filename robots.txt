@@ -1,9 +1,6 @@
 User-agent: *
 Allow: /
 
-User-agent: Mediapartners-Google
-Allow: /
-
 User-agent: Googlebot
 Allow: /
 
@@ -13,4 +10,23 @@ Allow: /assets/agents/
 Allow: /assets/gangani/
 Allow: /
 
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Mediapartners-Google
+Allow: /
+
 Sitemap: https://bibekmahata-dev.github.io/sitemap.xml
+Host: https://bibekmahata-dev.github.io
