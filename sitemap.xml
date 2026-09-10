@@ -14,9 +14,9 @@
       <image:caption>Bibek Mahata, Founder of Bengal Explorers and Lead Software Engineer from Paschim Medinipur</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://bibekmahata-dev.github.io/assets/agents/aritra.jpg</image:loc>
-      <image:title>Aritra Dey — Local Heritage &amp; Cultural Writer</image:title>
-      <image:caption>Aritra Dey, Bengal Explorers Squad Member &amp; Cultural Writer from West Bengal</image:caption>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/suraj.jpg</image:loc>
+      <image:title>Suraj Mandal — Dependable Companion</image:title>
+      <image:caption>Suraj Mandal, Bengal Explorers Squad Member &amp; Core Team from West Bengal</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://bibekmahata-dev.github.io/assets/agents/surya.jpg</image:loc>
@@ -47,11 +47,6 @@
       <image:loc>https://bibekmahata-dev.github.io/assets/agents/anik_sar.jpg</image:loc>
       <image:title>Anik Sar — Automotive Aficionado</image:title>
       <image:caption>Anik Sar, Bengal Explorers Squad Member &amp; Automotive Enthusiast from West Bengal</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://bibekmahata-dev.github.io/assets/agents/suraj.jpg</image:loc>
-      <image:title>Suraj Mandal — Dependable Companion</image:title>
-      <image:caption>Suraj Mandal, Bengal Explorers Squad Member &amp; Core Team from West Bengal</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://bibekmahata-dev.github.io/assets/agents/khoushik.jpg</image:loc>
@@ -87,6 +82,11 @@
       <image:loc>https://bibekmahata-dev.github.io/assets/agents/abhishek.jpg</image:loc>
       <image:title>Abhishek Mandal — Visual Arts &amp; Portrait Photography</image:title>
       <image:caption>Abhishek Mandal, Bengal Explorers Squad Member &amp; Portrait Photographer from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/aritra.jpg</image:loc>
+      <image:title>Aritra Dey — Local Heritage &amp; Cultural Writer</image:title>
+      <image:caption>Aritra Dey, Bengal Explorers Squad Member &amp; Cultural Writer from West Bengal</image:caption>
     </image:image>
   </url>
 
