@@ -7,4 +7,10 @@ Allow: /
 User-agent: Googlebot
 Allow: /
 
+User-agent: Googlebot-Image
+Allow: /assets/
+Allow: /assets/agents/
+Allow: /assets/gangani/
+Allow: /
+
 Sitemap: https://bibekmahata-dev.github.io/sitemap.xml

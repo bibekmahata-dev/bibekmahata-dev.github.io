@@ -1,139 +1,229 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- 1. PRIMARY ROOT HOMEPAGE & IDENTITY HUB -->
+  <!-- 1. PRIMARY ROOT HOMEPAGE & SQUAD HUB (OFFICIAL GOOGLE IMAGE DIRECTORY) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/bibek_mahata.jpg</image:loc>
+      <image:title>Bibek Mahata — Founder &amp; Lead Software Engineer</image:title>
+      <image:caption>Bibek Mahata, Founder of Bengal Explorers and Lead Software Engineer from Paschim Medinipur</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/aritra.jpg</image:loc>
+      <image:title>Aritra Dey — Local Heritage &amp; Cultural Writer</image:title>
+      <image:caption>Aritra Dey, Bengal Explorers Squad Member &amp; Cultural Writer from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/surya.jpg</image:loc>
+      <image:title>Surya Sankha Ghosh — Creative Visuals &amp; Design Lead</image:title>
+      <image:caption>Surya Sankha Ghosh, Bengal Explorers Squad Member &amp; Visuals Lead from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/arka.jpg</image:loc>
+      <image:title>Arka Sarkar — Highway &amp; Route Explorer</image:title>
+      <image:caption>Arka Sarkar, Bengal Explorers Squad Member &amp; Route Explorer from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/gobinda.jpg</image:loc>
+      <image:title>Gobinda Nag — High-Speed Cyclist &amp; Style Pioneer</image:title>
+      <image:caption>Gobinda Nag, Bengal Explorers Squad Member &amp; Adventure Cyclist from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/rudranil_pal.jpg</image:loc>
+      <image:title>Rudranil Pal — River Navigator &amp; Maritime Explorer</image:title>
+      <image:caption>Rudranil Pal, Bengal Explorers Squad Member &amp; River Explorer from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/subhajeet.jpg</image:loc>
+      <image:title>Subhajeet Sen — Lead Strategist &amp; Power Commander</image:title>
+      <image:caption>Subhajeet Sen, Bengal Explorers Squad Member &amp; Lead Strategist from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/anik_sar.jpg</image:loc>
+      <image:title>Anik Sar — Automotive Aficionado</image:title>
+      <image:caption>Anik Sar, Bengal Explorers Squad Member &amp; Automotive Enthusiast from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/suraj.jpg</image:loc>
+      <image:title>Suraj Mandal — Dependable Companion</image:title>
+      <image:caption>Suraj Mandal, Bengal Explorers Squad Member &amp; Core Team from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/khoushik.jpg</image:loc>
+      <image:title>Khoushik Choudhary — Director of Tactical Supplies &amp; Logistics</image:title>
+      <image:caption>Khoushik Choudhary, Bengal Explorers Squad Member &amp; Logistics Director from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/rudranil_dey.jpg</image:loc>
+      <image:title>Rudranil Dey — Master Tea Connoisseur &amp; Hospitality Lead</image:title>
+      <image:caption>Rudranil Dey, Bengal Explorers Squad Member &amp; Hospitality Lead from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/subarna.jpg</image:loc>
+      <image:title>Subarna Lohar — Silent Guardian &amp; Observation Specialist</image:title>
+      <image:caption>Subarna Lohar, Bengal Explorers Squad Member &amp; Observation Specialist from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/sibam.jpg</image:loc>
+      <image:title>Sibam Dhabal — High Canopy Adventurer &amp; Trail Master</image:title>
+      <image:caption>Sibam Dhabal, Bengal Explorers Squad Member &amp; Trail Master from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/anik.jpg</image:loc>
+      <image:title>Anik Mandal — Night Security Warden &amp; Community Guide</image:title>
+      <image:caption>Anik Mandal, Bengal Explorers Squad Member &amp; Community Guide from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/shouvik.jpg</image:loc>
+      <image:title>Shouvik Singha Mahapatra — Charisma Icon &amp; Night Style Ambassador</image:title>
+      <image:caption>Shouvik Singha Mahapatra, Bengal Explorers Squad Member &amp; Media Lead from West Bengal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/agents/abhishek.jpg</image:loc>
+      <image:title>Abhishek Mandal — Visual Arts &amp; Portrait Photography</image:title>
+      <image:caption>Abhishek Mandal, Bengal Explorers Squad Member &amp; Portrait Photographer from West Bengal</image:caption>
+    </image:image>
   </url>
 
-  <!-- 2. FOUNDER & CHIEF ARCHITECT PROFILE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/about.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/bibek_mahata.jpg</image:loc>
+      <image:title>Bibek Mahata — Founder Profile</image:title>
+      <image:caption>Bibek Mahata, Founder and Software Engineer behind Bengal Explorers</image:caption>
+    </image:image>
   </url>
 
-  <!-- 3. BENGAL TRAVEL CHRONICLES & MASTER GUIDES -->
   <url>
     <loc>https://bibekmahata-dev.github.io/blog.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/gangani/gangani-1.png</image:loc>
+      <image:title>Bengal Explorers Travel Chronicles &amp; Field Dossiers</image:title>
+      <image:caption>Curated field guides and travel stories across West Bengal</image:caption>
+    </image:image>
   </url>
 
-  <!-- 4. DEDICATED TRAVEL GUIDE: GANGANI GRAND CANYON -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-gangani.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/gangani/gangani-1.png</image:loc>
+      <image:title>Gangani Grand Canyon Garhbeta</image:title>
+      <image:caption>Laterite gorge canyon of Gangani along Silabati River in Garhbeta, Paschim Medinipur</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/gangani/gangani-2.png</image:loc>
+      <image:title>Gangani Red Soil Formations</image:title>
+      <image:caption>Crimson laterite cliffs and natural earthen labyrinths at Gangani</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/gangani/gangani-3.png</image:loc>
+      <image:title>Silabati River Trek at Gangani</image:title>
+      <image:caption>Silabati riverbed trails beneath the 70-foot clay buttresses</image:caption>
+    </image:image>
   </url>
 
-  <!-- 5. DEDICATED TRAVEL GUIDE: BISHNUPUR TERRACOTTA -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-bishnupur.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 6. DEDICATED TRAVEL GUIDE: DARJEELING HIMALAYAN -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-darjeeling.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 7. DEDICATED TRAVEL GUIDE: DIGHA & COASTAL BENGAL -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-digha.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 8. DEDICATED TRAVEL GUIDE: JHARGRAM & JANGALMAHAL -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-jhargram.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 9. DEDICATED TRAVEL GUIDE: BENGAL GI SWEETS TRAIL -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-bengal-sweets.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 10. DEDICATED TRAVEL GUIDE: KOLKATA HERITAGE & FOOD -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-kolkata-heritage.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 11. DEDICATED TRAVEL GUIDE: SUNDARBANS NATIONAL PARK -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-sundarbans.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 12. DEDICATED TRAVEL GUIDE: PURULIA AYODHYA HILLS -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-purulia.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 13. DEDICATED TRAVEL GUIDE: MUKUTMANIPUR DAM & JHILIMILI -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-mukutmanipur.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 14. DEDICATED TRAVEL GUIDE: COOCH BEHAR ROYAL PALACE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-coochbehar.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- 15. DEDICATED TRAVEL GUIDE: SHANTINIKETAN UNESCO HERITAGE & BOLPUR -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-shantiniketan.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.90</priority>
   </url>
 
-  <!-- 16. CONTACT & FEEDBACK HUB -->
   <url>
     <loc>https://bibekmahata-dev.github.io/contact.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
 
-  <!-- 17. PRIVACY POLICY & COMPLIANCE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/privacy.html</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
