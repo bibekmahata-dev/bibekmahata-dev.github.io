@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/License-MIT-a855f7?style=for-the-badge)](LICENSE)
 
 > **The ultimate digital dashboard and cultural explorer for West Bengal, India.**  
-> Built and architected by **Bibek Mahata** (ibek.cs).
+> Built and architected by **Bibek Mahata** (bibek.cs).
 
 ---
 
@@ -17,29 +17,31 @@
 - 🗺️ **Interactive GIS Leaflet Map**: Custom interactive maps covering natural wonders, heritage temples, and wildlife sanctuaries across Bengal.
 - 🌤️ **Real-Time Weather Station**: Live temperature, humidity, and weather conditions powered by the Open-Meteo API.
 - 🏛️ **Cultural & GI Heritage Vault**: In-depth chronicles of West Bengal GI-tagged sweets (*Bishnupur Mecha Sandesh, Bardhaman Mihidana, Khirpai Babarsa*), folk traditions (*Chhau, Baul*), and festivals.
-- 📱 **Progressive Web App (PWA)**: Full offline commuter mode with multi-strategy Service Worker caching.
+- 📱 **Progressive Web App (PWA)**: Full offline commuter mode with multi-strategy Service Worker caching (`v104`).
 - 🔎 **Interactive Travel Chronicle Search & Filter Engine**: Instant keyword search and multi-category filtering across all regional travel guides.
-- 🔍 **SEO & Google Knowledge Graph**: Structured Data schemas (WebSite, Person, ItemList, Blog, SearchAction).
+- 🤝 **Squad Ambassador & Social Sharing Suite**: Deep-linking (`?explorer=name`) with personal invitation toasts and 1-tap WhatsApp introduction workflows.
+- 🧠 **Google & Bing Knowledge Graph Friendship Entity Schema**: Declared Schema.org `Person` + `knows` graph connecting founder Bibek Mahata with all 15 close friends & co-creators.
+- 📡 **Multi-Engine IndexNow Instant Crawl Protocol**: Direct API broadcasting to Bing, Yandex, Seznam, and standard `sitemaps.org` 0.9 XML.
 
 ---
 
 ## 📂 Project Architecture
 
-`
+```
 bibekmahata-dev.github.io/
 ├── index.html                   # Main Portal & Transit Dashboard
-├── about.html                   # Founder Biography & Tech Portfolio
+├── about.html                   # Founder Biography, FAQ & Tech Portfolio
 ├── blog.html                    # Travel Chronicles & Master Itineraries
 ├── contact.html & privacy.html  # Legal & User Feedback Hub
 ├── 404.html                     # Custom Error Page
-├── sw.js & manifest.json        # PWA Service Worker (v85) & Web Manifest
-├── sitemap.xml & robots.txt     # Search Engine Indexing Schemas
+├── sw.js & manifest.json        # PWA Service Worker (v104) & Web Manifest
+├── sitemap.xml & robots.txt     # Multi-Engine Indexing Schemas
 ├── assets/
 │   ├── css/style.css            # Modularized Dark Slate Design System
 │   ├── agents/                  # Squad Member Profiles & WebP Portfolios
 │   ├── gangani/                 # Grand Canyon Visual Gallery
 │   └── bibek_mahata.webp        # Founder Portrait
-└── 11 Dedicated Travel Guides:
+└── 12 Dedicated Travel Guides:
     ├── guide-gangani.html       # Garhbeta Grand Canyon
     ├── guide-bishnupur.html     # Terracotta Temples
     ├── guide-darjeeling.html    # Himalayan Toy Train
@@ -50,8 +52,9 @@ bibekmahata-dev.github.io/
     ├── guide-sundarbans.html    # Mangrove Tiger Safari
     ├── guide-purulia.html       # Ayodhya Hills & Chhau Dance
     ├── guide-mukutmanipur.html  # Kangsabati Dam
-    └── guide-coochbehar.html    # Royal Rajbari
-`
+    ├── guide-coochbehar.html    # Royal Rajbari
+    └── guide-shantiniketan.html # UNESCO World Heritage Site & Bolpur
+```
 
 ---
 
