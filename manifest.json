@@ -57,6 +57,13 @@
             "description": "Portfolio of Bibek Mahata",
             "url": "/about.html",
             "icons": [{ "src": "favicon.png", "sizes": "96x96" }]
+        },
+        {
+            "name": "Creator Squad Hub",
+            "short_name": "Squad Hub",
+            "description": "Meet the 16 Bengal Explorers co-creators",
+            "url": "/#squad-section",
+            "icons": [{ "src": "favicon.png", "sizes": "96x96" }]
         }
     ]
 }

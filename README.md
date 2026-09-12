@@ -17,7 +17,7 @@
 - 🗺️ **Interactive GIS Leaflet Map**: Custom interactive maps covering natural wonders, heritage temples, and wildlife sanctuaries across Bengal.
 - 🌤️ **Real-Time Weather Station**: Live temperature, humidity, and weather conditions powered by the Open-Meteo API.
 - 🏛️ **Cultural & GI Heritage Vault**: In-depth chronicles of West Bengal GI-tagged sweets (*Bishnupur Mecha Sandesh, Bardhaman Mihidana, Khirpai Babarsa*), folk traditions (*Chhau, Baul*), and festivals.
-- 📱 **Progressive Web App (PWA)**: Full offline commuter mode with multi-strategy Service Worker caching (`v104`).
+- 📱 **Progressive Web App (PWA)**: Full offline commuter mode with multi-strategy Service Worker caching (`v105`).
 - 🔎 **Interactive Travel Chronicle Search & Filter Engine**: Instant keyword search and multi-category filtering across all regional travel guides.
 - 🤝 **Squad Ambassador & Social Sharing Suite**: Deep-linking (`?explorer=name`) with personal invitation toasts and 1-tap WhatsApp introduction workflows.
 - 🧠 **Google & Bing Knowledge Graph Friendship Entity Schema**: Declared Schema.org `Person` + `knows` graph connecting founder Bibek Mahata with all 15 close friends & co-creators.
@@ -34,7 +34,7 @@ bibekmahata-dev.github.io/
 ├── blog.html                    # Travel Chronicles & Master Itineraries
 ├── contact.html & privacy.html  # Legal & User Feedback Hub
 ├── 404.html                     # Custom Error Page
-├── sw.js & manifest.json        # PWA Service Worker (v104) & Web Manifest
+├── sw.js & manifest.json        # PWA Service Worker (v105) & Web Manifest
 ├── sitemap.xml & robots.txt     # Multi-Engine Indexing Schemas
 ├── assets/
 │   ├── css/style.css            # Modularized Dark Slate Design System
