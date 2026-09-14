@@ -878,7 +878,13 @@
             });
         };
     </script>
-
+    <style>
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <div class="announcement-banner">
@@ -1049,14 +1055,14 @@
                  ⚡ DUAL-MODE AUDIENCE SWITCHER (LOCALS & EXPLORERS)
                  ======================================================== -->
             <div style="display: flex; gap: 14px; margin: 20px 0 16px 0; flex-wrap: wrap; justify-content: center;">
-                <a href="#transit-section" style="flex: 1; min-width: 270px; max-width: 420px; background: linear-gradient(135deg, rgba(2, 132, 199, 0.35), rgba(15, 23, 42, 0.85)); border: 2px solid #38bdf8; border-radius: 14px; padding: 14px 18px; text-decoration: none; color: #ffffff; display: flex; align-items: center; gap: 14px; box-shadow: 0 4px 20px rgba(56, 189, 248, 0.25); transition: all 0.25s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='#7dd3fc'; this.style.boxShadow='0 8px 25px rgba(56, 189, 248, 0.4)';" onmouseout="this.style.transform='none'; this.style.borderColor='#38bdf8'; this.style.boxShadow='0 4px 20px rgba(56, 189, 248, 0.25)';">
+                <a href="#transit-section" style="flex: 1 1 260px; min-width: 0; max-width: 420px; width: 100%; box-sizing: border-box; background: linear-gradient(135deg, rgba(2, 132, 199, 0.35), rgba(15, 23, 42, 0.85)); border: 2px solid #38bdf8; border-radius: 14px; padding: 14px 18px; text-decoration: none; color: #ffffff; display: flex; align-items: center; gap: 14px; box-shadow: 0 4px 20px rgba(56, 189, 248, 0.25); transition: all 0.25s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='#7dd3fc'; this.style.boxShadow='0 8px 25px rgba(56, 189, 248, 0.4)';" onmouseout="this.style.transform='none'; this.style.borderColor='#38bdf8'; this.style.boxShadow='0 4px 20px rgba(56, 189, 248, 0.25)';">
                     <span style="font-size: 32px; filter: drop-shadow(0 2px 8px rgba(56, 189, 248, 0.5));">🚆</span>
                     <div>
                         <div style="font-size: 14px; font-weight: 900; color: #38bdf8; font-family: var(--font-title, sans-serif); letter-spacing: 0.5px;">DAILY COMMUTERS &amp; LOCALS</div>
                         <div style="font-size: 12px; color: #cbd5e1; margin-top: 2px;">Live Suburban Trains, SBSTC Buses &amp; Weather &rarr;</div>
                     </div>
                 </a>
-                <a href="#west-bengal-explorers-guide" style="flex: 1; min-width: 270px; max-width: 420px; background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(15, 23, 42, 0.85)); border: 2px solid #4ade80; border-radius: 14px; padding: 14px 18px; text-decoration: none; color: #ffffff; display: flex; align-items: center; gap: 14px; box-shadow: 0 4px 20px rgba(34, 197, 94, 0.25); transition: all 0.25s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='#86efac'; this.style.boxShadow='0 8px 25px rgba(34, 197, 94, 0.4)';" onmouseout="this.style.transform='none'; this.style.borderColor='#4ade80'; this.style.boxShadow='0 4px 20px rgba(34, 197, 94, 0.25)';">
+                <a href="#west-bengal-explorers-guide" style="flex: 1 1 260px; min-width: 0; max-width: 420px; width: 100%; box-sizing: border-box; background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(15, 23, 42, 0.85)); border: 2px solid #4ade80; border-radius: 14px; padding: 14px 18px; text-decoration: none; color: #ffffff; display: flex; align-items: center; gap: 14px; box-shadow: 0 4px 20px rgba(34, 197, 94, 0.25); transition: all 0.25s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='#86efac'; this.style.boxShadow='0 8px 25px rgba(34, 197, 94, 0.4)';" onmouseout="this.style.transform='none'; this.style.borderColor='#4ade80'; this.style.boxShadow='0 4px 20px rgba(34, 197, 94, 0.25)';">
                     <span style="font-size: 32px; filter: drop-shadow(0 2px 8px rgba(34, 197, 94, 0.5));">🎒</span>
                     <div>
                         <div style="font-size: 14px; font-weight: 900; color: #4ade80; font-family: var(--font-title, sans-serif); letter-spacing: 0.5px;">EXPLORERS &amp; TOURISTS</div>
@@ -1201,7 +1207,7 @@
             <div style="max-width: 1100px; margin: 0 auto; padding: 0 16px;">
                 
                 <!-- Multi-District Weather Hub & Calendar Grid -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 28px; margin-bottom: 40px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 28px; margin-bottom: 40px;">
                     
                     <!-- Professional Live Weather Station -->
                     <div id="weather-card-container" class="fade-up card" style="height: 100%; box-sizing: border-box; border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; position: relative; overflow: hidden; background: linear-gradient(145deg, #0f172a, #0b1120); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
@@ -2481,14 +2487,14 @@
                     
                     <div style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
                         <!-- Clock Panel -->
-                        <div style="background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; min-width: 250px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); flex: 1;">
+                        <div style="background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; min-width: min(100%, 250px); width: 100%; box-sizing: border-box; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); flex: 1;">
                             <div id="real-time-date" style="color: #94a3b8; font-size: 12px; text-transform: uppercase; font-weight: 600; letter-spacing: 1.5px; margin-bottom: 8px;"></div>
                             <div id="real-time-clock" style="color: #38bdf8; font-size: 32px; font-family: 'Space Grotesk', monospace; font-weight: 700; letter-spacing: 2px; text-shadow: 0 0 10px rgba(56,189,248,0.4);">--:--:-- --</div>
                             <div id="station-clock-label" style="color: rgba(255,255,255,0.7); font-size: 11.5px; font-weight: 700; margin-top: 8px; font-family: monospace;">STATION: GARHBETA (GBA)</div>
                         </div>
                         
                         <!-- Departures Board -->
-                        <div style="flex: 2; min-width: 300px;">
+                        <div style="flex: 2; min-width: min(100%, 280px); width: 100%; box-sizing: border-box;">
                             <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.1);">
                                 <div style="color: #94a3b8; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Upcoming Station Departures</div>
                                 <div style="color: var(--text-muted); font-size: 11px;">Auto-updates every minute</div>
@@ -6381,7 +6387,7 @@
                         </div>
 
                         <!-- LODGES GRID CONTAINER -->
-                        <div id="govt-lodges-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+                        <div id="govt-lodges-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px;">
                             <!-- Injected by JS -->
                         </div>
 
@@ -6740,7 +6746,7 @@
                 </div>
 
                 <!-- Calculator Body: 2 Columns on Desktop, 1 Column on Mobile -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 24px; align-items: start;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 24px; align-items: start;">
                     
                     <!-- LEFT COLUMN: CONTROLS -->
                     <div style="display: flex; flex-direction: column; gap: 18px;">

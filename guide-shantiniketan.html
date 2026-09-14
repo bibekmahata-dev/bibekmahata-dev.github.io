@@ -335,12 +335,12 @@
             min-height: 100px;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .guide-hero { min-height: 340px; padding: 25px 18px; }
             .guide-container { padding: 20px 14px 60px; }
             .itinerary-step { flex-direction: column; gap: 4px; }
             .step-time { min-width: auto; }
-            .travel-table { display: block; overflow-x: auto; }
+            .travel-table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         }
     </style>
 </head>
@@ -515,48 +515,50 @@
                 Shantiniketan is located approximately 153 km northwest of Kolkata in Birbhum district and is exceptionally well-connected by Indian Railways via <strong>Bolpur Shantiniketan Railway Station (Code: BHP)</strong>.
             </p>
 
-            <table class="travel-table">
-                <thead>
-                    <tr>
-                        <th>Train Name & Number</th>
-                        <th>Origin & Time</th>
-                        <th>Bolpur Arrival</th>
-                        <th>Duration & Frequency</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>12337 Shantiniketan Express</strong> (Top Choice)</td>
-                        <td>Howrah (HWH) @ 10:05 AM</td>
-                        <td>Bolpur (BHP) @ 12:20 PM</td>
-                        <td>2 hrs 15 mins (Daily)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>13017 Ganadevata Express</strong> (Early Morning)</td>
-                        <td>Howrah (HWH) @ 06:05 AM</td>
-                        <td>Bolpur (BHP) @ 08:35 AM</td>
-                        <td>2 hrs 30 mins (Daily)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>22301 Vande Bharat Express</strong> (Premium)</td>
-                        <td>Howrah (HWH) @ 05:55 AM</td>
-                        <td>Bolpur (BHP) @ 07:37 AM</td>
-                        <td>1 hr 42 mins (Except Wed)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>12345 Saraighat Express</strong> (Afternoon)</td>
-                        <td>Howrah (HWH) @ 15:55 PM</td>
-                        <td>Bolpur (BHP) @ 17:55 PM</td>
-                        <td>2 hrs 00 mins (Daily)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>12338 Shantiniketan Return Express</strong></td>
-                        <td>Bolpur (BHP) @ 13:10 PM</td>
-                        <td>Howrah (HWH) @ 15:40 PM</td>
-                        <td>2 hrs 30 mins (Daily)</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 16px 0;">
+                <table class="travel-table">
+                    <thead>
+                        <tr>
+                            <th>Train Name & Number</th>
+                            <th>Origin & Time</th>
+                            <th>Bolpur Arrival</th>
+                            <th>Duration & Frequency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>12337 Shantiniketan Express</strong> (Top Choice)</td>
+                            <td>Howrah (HWH) @ 10:05 AM</td>
+                            <td>Bolpur (BHP) @ 12:20 PM</td>
+                            <td>2 hrs 15 mins (Daily)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>13017 Ganadevata Express</strong> (Early Morning)</td>
+                            <td>Howrah (HWH) @ 06:05 AM</td>
+                            <td>Bolpur (BHP) @ 08:35 AM</td>
+                            <td>2 hrs 30 mins (Daily)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>22301 Vande Bharat Express</strong> (Premium)</td>
+                            <td>Howrah (HWH) @ 05:55 AM</td>
+                            <td>Bolpur (BHP) @ 07:37 AM</td>
+                            <td>1 hr 42 mins (Except Wed)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>12345 Saraighat Express</strong> (Afternoon)</td>
+                            <td>Howrah (HWH) @ 15:55 PM</td>
+                            <td>Bolpur (BHP) @ 17:55 PM</td>
+                            <td>2 hrs 00 mins (Daily)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>12338 Shantiniketan Return Express</strong></td>
+                            <td>Bolpur (BHP) @ 13:10 PM</td>
+                            <td>Howrah (HWH) @ 15:40 PM</td>
+                            <td>2 hrs 30 mins (Daily)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <h3>Local Getting Around in Shantiniketan</h3>
             <ul>
@@ -627,42 +629,44 @@
         <!-- Seasons & Weather -->
         <section>
             <h2><span>⛅</span> Seasonal Weather Matrix & Celebrated Festivals</h2>
-            <table class="travel-table">
-                <thead>
-                    <tr>
-                        <th>Season & Months</th>
-                        <th>Temperature</th>
-                        <th>Atmosphere & Notable Festivals</th>
-                        <th>Travel Recommendation</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Winter</strong><br>(Nov – Feb)</td>
-                        <td>11°C to 24°C</td>
-                        <td>Crisp golden sunshine, blooming mustard fields, and morning mist over the Khoai. <strong>Poush Mela</strong> (late December) brings thousands of folk singers and rural craftsmen.</td>
-                        <td>⭐⭐⭐⭐⭐<br>Peak Travel Season</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Spring</strong><br>(Feb – Mar)</td>
-                        <td>18°C to 30°C</td>
-                        <td>The entire town turns crimson-orange with blazing Palash and Shimul flowers. <strong>Basanta Utsav</strong> (celebrated during Holi) welcomes spring with Tagore’s songs, yellow attire, and organic herbal abir.</td>
-                        <td>⭐⭐⭐⭐⭐<br>Cultural High Point</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Monsoon</strong><br>(Jul – Sep)</td>
-                        <td>25°C to 33°C</td>
-                        <td>The red laterite soil turns deeply dramatic and saturated. Kopai river swells with rainwater; lush green paddy fields stretch to the horizon. <strong>Briksharopan</strong> (tree planting festival).</td>
-                        <td>⭐⭐⭐⭐<br>Poetic & Budget Friendly</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Summer</strong><br>(Apr – Jun)</td>
-                        <td>28°C to 42°C</td>
-                        <td>Intense dry Rarh heat with afternoon heatwaves (Loo). Early mornings and breezy evenings are pleasant, but daytime outdoor exploration is physically demanding.</td>
-                        <td>⭐⭐<br>Off-Peak / Plan Mornings</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 16px 0;">
+                <table class="travel-table">
+                    <thead>
+                        <tr>
+                            <th>Season & Months</th>
+                            <th>Temperature</th>
+                            <th>Atmosphere & Notable Festivals</th>
+                            <th>Travel Recommendation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Winter</strong><br>(Nov – Feb)</td>
+                            <td>11°C to 24°C</td>
+                            <td>Crisp golden sunshine, blooming mustard fields, and morning mist over the Khoai. <strong>Poush Mela</strong> (late December) brings thousands of folk singers and rural craftsmen.</td>
+                            <td>⭐⭐⭐⭐⭐<br>Peak Travel Season</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Spring</strong><br>(Feb – Mar)</td>
+                            <td>18°C to 30°C</td>
+                            <td>The entire town turns crimson-orange with blazing Palash and Shimul flowers. <strong>Basanta Utsav</strong> (celebrated during Holi) welcomes spring with Tagore’s songs, yellow attire, and organic herbal abir.</td>
+                            <td>⭐⭐⭐⭐⭐<br>Cultural High Point</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Monsoon</strong><br>(Jul – Sep)</td>
+                            <td>25°C to 33°C</td>
+                            <td>The red laterite soil turns deeply dramatic and saturated. Kopai river swells with rainwater; lush green paddy fields stretch to the horizon. <strong>Briksharopan</strong> (tree planting festival).</td>
+                            <td>⭐⭐⭐⭐<br>Poetic & Budget Friendly</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Summer</strong><br>(Apr – Jun)</td>
+                            <td>28°C to 42°C</td>
+                            <td>Intense dry Rarh heat with afternoon heatwaves (Loo). Early mornings and breezy evenings are pleasant, but daytime outdoor exploration is physically demanding.</td>
+                            <td>⭐⭐<br>Off-Peak / Plan Mornings</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
         <!-- Gastronomy -->
@@ -687,47 +691,49 @@
                 Whether you are a university student traveling on a shoestring budget or a family seeking heritage luxury, Shantiniketan offers exceptional value:
             </p>
 
-            <table class="travel-table">
-                <thead>
-                    <tr>
-                        <th>Expense Category</th>
-                        <th>Student / Budget Plan</th>
-                        <th>Standard / Heritage Plan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Round-Trip Train (Kolkata &harr; Bolpur)</strong></td>
-                        <td>₹170 (2S / Unreserved Express)</td>
-                        <td>₹640 – ₹1,200 (CC / Executive Vande Bharat)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Lodging (Per Night)</strong></td>
-                        <td>₹500 – ₹800 (Hostel / Budget Homestay)</td>
-                        <td>₹2,200 – ₹4,500 (Heritage Resort / WBTDCL Lodge)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Local Commute</strong></td>
-                        <td>₹120 (Bicycle Rental / Shared Toto)</td>
-                        <td>₹800 – ₹1,000 (Private Reserved Toto Full Day)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Food & Dining</strong></td>
-                        <td>₹350 (Local Rice Hotels & Roadside Tea)</td>
-                        <td>₹850 – ₹1,400 (Heritage Cafés & Bengali Thali)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Museum Tickets & Entry</strong></td>
-                        <td>₹50 (Student ID concessions)</td>
-                        <td>₹150 (Museum & Camera Passes)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Estimated Daily Total (Per Person)</strong></td>
-                        <td><strong>₹1,190 – ₹1,490</strong></td>
-                        <td><strong>₹3,200 – ₹4,800</strong></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 16px 0;">
+                <table class="travel-table">
+                    <thead>
+                        <tr>
+                            <th>Expense Category</th>
+                            <th>Student / Budget Plan</th>
+                            <th>Standard / Heritage Plan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Round-Trip Train (Kolkata &harr; Bolpur)</strong></td>
+                            <td>₹170 (2S / Unreserved Express)</td>
+                            <td>₹640 – ₹1,200 (CC / Executive Vande Bharat)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lodging (Per Night)</strong></td>
+                            <td>₹500 – ₹800 (Hostel / Budget Homestay)</td>
+                            <td>₹2,200 – ₹4,500 (Heritage Resort / WBTDCL Lodge)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Local Commute</strong></td>
+                            <td>₹120 (Bicycle Rental / Shared Toto)</td>
+                            <td>₹800 – ₹1,000 (Private Reserved Toto Full Day)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Food & Dining</strong></td>
+                            <td>₹350 (Local Rice Hotels & Roadside Tea)</td>
+                            <td>₹850 – ₹1,400 (Heritage Cafés & Bengali Thali)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Museum Tickets & Entry</strong></td>
+                            <td>₹50 (Student ID concessions)</td>
+                            <td>₹150 (Museum & Camera Passes)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Estimated Daily Total (Per Person)</strong></td>
+                            <td><strong>₹1,190 – ₹1,490</strong></td>
+                            <td><strong>₹3,200 – ₹4,800</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
         <!-- In-Article Ad Slot Bottom -->
