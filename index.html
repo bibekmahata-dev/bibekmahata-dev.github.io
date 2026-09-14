@@ -1825,6 +1825,14 @@
                             // Initialize live date and calendar
                             updateLiveBengaliToday();
                             renderMasterCalendar();
+
+                            // Auto-refresh live date when crossing midnight or returning to tab
+                            setInterval(updateLiveBengaliToday, 60000);
+                            document.addEventListener('visibilitychange', () => {
+                                if (document.visibilityState === 'visible') {
+                                    updateLiveBengaliToday();
+                                }
+                            });
                         </script>
                     </div>
 
