@@ -897,10 +897,10 @@
     
     <!-- Global search consolidated in top header -->
         <script>
-        // High-Scale Smart Cached Global News Engine (10-minute LocalStorage TTL)
+        // High-Scale Smart Cached Bengal & National News Engine (10-minute LocalStorage TTL)
         async function fetchBreakingNews() {
-            const cacheKey = 'bengal_news_cache_v1';
-            const cacheTimeKey = 'bengal_news_time_v1';
+            const cacheKey = 'bengal_news_cache_v2';
+            const cacheTimeKey = 'bengal_news_time_v2';
             const cachedData = localStorage.getItem(cacheKey);
             const cachedTime = localStorage.getItem(cacheTimeKey);
             const now = Date.now();
@@ -912,11 +912,21 @@
             }
 
             try {
-                const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Fworld%2Frss.xml');
-                const data = await res.json();
+                // Primary: The Hindu National & Regional News (Fast, live, authenticated)
+                let feedUrl = encodeURIComponent('https://www.thehindu.com/news/national/feeder/default.rss');
+                let res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}`);
+                let data = await res.json();
+                
+                // Secondary Fallback if primary is unavailable
+                if (!data || !data.items || data.items.length === 0) {
+                    feedUrl = encodeURIComponent('https://feeds.feedburner.com/ndtvnews-india-news');
+                    res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}`);
+                    data = await res.json();
+                }
+
                 if(data && data.items && data.items.length > 0) {
-                    const headlines = data.items.slice(0, 15).map(item => item.title).join(' &nbsp;&nbsp;&nbsp; 🔴 &nbsp;&nbsp;&nbsp; ');
-                    const html = '🚨 <strong>LIVE GLOBAL NEWS:</strong> &nbsp;&nbsp;&nbsp; ' + headlines;
+                    const headlines = data.items.slice(0, 15).map(item => item.title.replace(/\s+/g, ' ').trim()).join(' &nbsp;&nbsp;&nbsp; 🔴 &nbsp;&nbsp;&nbsp; ');
+                    const html = '🚨 <strong>LIVE TRANSIT & REGIONAL RADAR:</strong> &nbsp;&nbsp;&nbsp; ' + headlines;
                     document.getElementById('breaking-news-marquee').innerHTML = html;
                     localStorage.setItem(cacheKey, html);
                     localStorage.setItem(cacheTimeKey, now.toString());
@@ -926,7 +936,7 @@
                 if (cachedData) {
                     document.getElementById('breaking-news-marquee').innerHTML = cachedData;
                 } else {
-                    document.getElementById('breaking-news-marquee').innerHTML = '🚨 <strong>BENGAL EXPLORERS LIVE:</strong> Welcome to the official West Bengal Student Travel & Transit Portal!';
+                    document.getElementById('breaking-news-marquee').innerHTML = '🚨 <strong>BENGAL EXPLORERS LIVE:</strong> Official West Bengal Commuter Transit & Explorer Portal • Live Weather & Railways Radar Active';
                 }
             }
         }
@@ -1354,7 +1364,7 @@
                                     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                                     
                                     for(let i=1; i<daily.time.length; i++) {
-                                        const dateObj = new Date(daily.time[i]);
+                                        const dateObj = new Date(daily.time[i] + 'T00:00:00');
                                         const dayName = i === 1 ? 'Tomorrow' : days[dateObj.getDay()];
                                         const maxT = Math.round(daily.temperature_2m_max[i]);
                                         const minT = Math.round(daily.temperature_2m_min[i]);
@@ -1377,6 +1387,28 @@
                                     }
                                     if(forecastContainer.lastElementChild) {
                                         forecastContainer.lastElementChild.style.borderBottom = 'none';
+                                    }
+
+                                    // Real-time live AQI sync for selected district
+                                    try {
+                                        const aqiResp = await fetch(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=us_aqi`);
+                                        const aqiData = await aqiResp.json();
+                                        if (aqiData && aqiData.current && aqiData.current.us_aqi !== null) {
+                                            const val = aqiData.current.us_aqi;
+                                            const aqiEl = document.getElementById('weather-aqi');
+                                            if (aqiEl) {
+                                                let label = 'Good';
+                                                let color = '#22c55e';
+                                                if (val > 50 && val <= 100) { label = 'Moderate'; color = '#fbbf24'; }
+                                                else if (val > 100 && val <= 150) { label = 'Sensitive'; color = '#f97316'; }
+                                                else if (val > 150 && val <= 200) { label = 'Poor'; color = '#f43f5e'; }
+                                                else if (val > 200) { label = 'Severe'; color = '#a855f7'; }
+                                                aqiEl.textContent = `${label} (${val})`;
+                                                aqiEl.style.color = color;
+                                            }
+                                        }
+                                    } catch(aqiErr) {
+                                        console.warn('Weather card AQI sync note:', aqiErr);
                                     }
                                     
                                 } catch (e) {
@@ -1840,49 +1872,54 @@
                             panel.innerHTML = '<div style="text-align: center; color: #38bdf8; padding: 20px;">📡 Fetching satellite PM2.5 & AQI data for ' + name + '...</div>';
 
                             try {
-                                const res = await fetch(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=european_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone`);
+                                const res = await fetch(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=us_aqi,european_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone`);
                                 const data = await res.json();
                                 const c = data.current;
 
-                                const aqi = c.european_aqi !== null ? c.european_aqi : Math.round(c.pm2_5 * 2.1);
+                                const aqi = (c.us_aqi !== null && c.us_aqi !== undefined) ? c.us_aqi : (c.european_aqi !== null ? Math.round(c.european_aqi * 1.5) : Math.round(c.pm2_5 * 2.1));
                                 let badgeText = 'Good';
                                 let badgeColor = '#22c55e';
                                 let badgeBg = 'rgba(34, 197, 94, 0.15)';
                                 let advisory = '🌿 Air quality is optimal. Perfect for outdoor walking, cycling, and travel.';
 
-                                if (aqi <= 20) {
-                                    badgeText = 'Excellent (Clean)';
+                                if (aqi <= 50) {
+                                    badgeText = 'Good (Clean Air)';
                                     badgeColor = '#22c55e';
                                     badgeBg = 'rgba(34, 197, 94, 0.15)';
-                                    advisory = '🌿 Pristine clean air. Ideal for sightseeing & hill trekking.';
-                                } else if (aqi <= 40) {
-                                    badgeText = 'Good';
-                                    badgeColor = '#4ade80';
-                                    badgeBg = 'rgba(74, 222, 128, 0.15)';
-                                    advisory = '✅ Normal breathable conditions for all outdoor activities.';
-                                } else if (aqi <= 60) {
-                                    badgeText = 'Moderate';
+                                    advisory = '🌿 Pristine clean air. Ideal for sightseeing & outdoor travel.';
+                                } else if (aqi <= 100) {
+                                    badgeText = 'Moderate / Satisfactory';
                                     badgeColor = '#fbbf24';
                                     badgeBg = 'rgba(251, 191, 36, 0.15)';
-                                    advisory = '⚠️ Acceptable air quality. Unusually sensitive individuals should take care.';
-                                } else if (aqi <= 80) {
-                                    badgeText = 'Poor / Smoggy';
+                                    advisory = '✅ Acceptable air quality. Normal breathable conditions for outdoor travel.';
+                                } else if (aqi <= 150) {
+                                    badgeText = 'Sensitive Groups';
                                     badgeColor = '#f97316';
                                     badgeBg = 'rgba(249, 115, 22, 0.15)';
-                                    advisory = '🟠 Noticeable haze. Sensitive travelers should limit strenuous outdoor exertion.';
-                                } else {
-                                    badgeText = 'Unhealthy';
+                                    advisory = '⚠️ Sensitive individuals (asthma/elderly) should limit prolonged outdoor exertion.';
+                                } else if (aqi <= 200) {
+                                    badgeText = 'Poor / Unhealthy';
                                     badgeColor = '#f43f5e';
                                     badgeBg = 'rgba(244, 63, 94, 0.15)';
-                                    advisory = '🔴 High particulate density. Mask recommended during prolonged city travel.';
+                                    advisory = '🟠 Noticeable haze & smog. Mask recommended during prolonged city commute.';
+                                } else if (aqi <= 300) {
+                                    badgeText = 'Very Poor';
+                                    badgeColor = '#a855f7';
+                                    badgeBg = 'rgba(168, 85, 247, 0.15)';
+                                    advisory = '🟣 High particulate density. Avoid strenuous outdoor exercise.';
+                                } else {
+                                    badgeText = 'Severe / Hazardous';
+                                    badgeColor = '#ef4444';
+                                    badgeBg = 'rgba(239, 68, 68, 0.2)';
+                                    advisory = '🔴 Serious pollution advisory. Use N95 mask and stay indoors where possible.';
                                 }
 
                                 panel.innerHTML = `
                                     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
                                         <div>
-                                            <div style="color: #94a3b8; font-size: 11px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">European AQI Index</div>
+                                            <div style="color: #94a3b8; font-size: 11px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">National AQI (CPCB / 0–500 Standard)</div>
                                             <div style="font-size: 48px; font-family: 'Space Grotesk', sans-serif; font-weight: 800; color: ${badgeColor}; line-height: 1; margin-top: 4px;">
-                                                ${aqi} <span style="font-size: 18px; color: #cbd5e1; font-weight: 600;">/ 100</span>
+                                                ${aqi} <span style="font-size: 18px; color: #cbd5e1; font-weight: 600;">/ 500</span>
                                             </div>
                                             <div style="margin-top: 6px;">
                                                 <span style="font-size: 11px; font-weight: 800; color: ${badgeColor}; background: ${badgeBg}; border: 1px solid ${badgeColor}; padding: 3px 10px; border-radius: 6px; text-transform: uppercase;">${badgeText}</span>
@@ -1963,12 +2000,20 @@
                                 } else if (now > sunsetDate && now <= blueHourEnd) {
                                     photoStatus = '🌌 Blue Hour Twilight Active Now! (Deep Indigo Skies)';
                                     photoColor = '#818cf8';
-                                } else if (now < sunriseDate) {
-                                    const diffMins = Math.round((sunriseDate - now) / 60000);
+                                } else if (now > blueHourEnd) {
+                                    // Nighttime after evening blue hour has concluded
+                                    const nextSunrise = (data.daily && data.daily.sunrise && data.daily.sunrise[1]) ? new Date(data.daily.sunrise[1]) : new Date(sunriseDate.getTime() + 86400000);
+                                    const diffMins = Math.max(0, Math.round((nextSunrise - now) / 60000));
                                     const diffH = Math.floor(diffMins / 60);
                                     const diffM = diffMins % 60;
-                                    photoStatus = `⏳ Next Sunrise & Morning Golden Hour in ${diffH}h ${diffM}m`;
-                                    photoColor = '#38bdf8';
+                                    photoStatus = `🌌 Night Sky Active (Astro / Stargazing) • Next Sunrise in ${diffH}h ${diffM}m (${formatTime(nextSunrise)})`;
+                                    photoColor = '#818cf8';
+                                } else if (now < sunriseDate) {
+                                    const diffMins = Math.max(0, Math.round((sunriseDate - now) / 60000));
+                                    const diffH = Math.floor(diffMins / 60);
+                                    const diffM = diffMins % 60;
+                                    photoStatus = `⏳ Pre-Dawn Night Sky • Next Sunrise & Golden Hour in ${diffH}h ${diffM}m`;
+                                    photoColor = '#818cf8';
                                 } else {
                                     const diffMins = Math.round((goldenEveningStart - now) / 60000);
                                     if (diffMins > 0) {
@@ -1976,6 +2021,9 @@
                                         const diffM = diffMins % 60;
                                         photoStatus = `⏳ Evening Golden Hour starts in ${diffH}h ${diffM}m (${formatTime(goldenEveningStart)})`;
                                         photoColor = '#fbbf24';
+                                    } else {
+                                        photoStatus = '☀️ Regular Daylight Lighting';
+                                        photoColor = '#38bdf8';
                                     }
                                 }
 
@@ -2839,130 +2887,79 @@
                         let sortedUpcomingTrains = [];
 
                         function getSimulatedStatus(trainNo, dateStr, rawTime24) {
-                            let hashStr = trainNo + dateStr;
-                            let hash = 0;
-                            for (let i = 0; i < hashStr.length; i++) {
-                                hash = ((hash << 5) - hash) + hashStr.charCodeAt(i);
-                                hash = hash & hash;
-                            }
-                            const absHash = Math.abs(hash);
                             const now = new Date();
                             const currentMinTotal = now.getHours() * 60 + now.getMinutes();
 
-                            // Parse train departure time to minutes
                             let trainMinTotal = -1;
                             if (rawTime24 && rawTime24 !== '--:--') {
                                 const [th, tm] = rawTime24.split(':').map(Number);
                                 trainMinTotal = th * 60 + tm;
                             }
 
-                            // 1. CANCELLED / NOT RUNNING TODAY (~7% chance)
-                            if (absHash % 100 < 7) {
-                                const reasons = [
-                                    'Track Maintenance Work on Section',
-                                    'Signal Upgrade Work by Indian Railways',
-                                    'Crew Link Shortage Today',
-                                    'Rake Not Available (Under Maintenance)',
-                                    'Waterlogging / Weather Advisory on Route'
-                                ];
-                                const reason = reasons[absHash % reasons.length];
-                                return {
-                                    type: 'CANCELLED',
-                                    isCancelled: true,
-                                    isDelayed: false,
-                                    msg: '🔴 CANCELLED TODAY',
-                                    class: 'status-delayed',
-                                    reason: reason,
-                                    delayMins: 0,
-                                    badgeColor: '#f43f5e',
-                                    badgeBg: 'rgba(244, 63, 94, 0.15)',
-                                    badgeBorder: 'rgba(244, 63, 94, 0.4)'
-                                };
-                            }
-
-                            // Time-based statuses (only if rawTime24 is available)
                             if (trainMinTotal >= 0) {
                                 const diff = trainMinTotal - currentMinTotal;
 
-                                // 2. DEPARTED (more than 15 mins ago)
+                                // 1. DEPARTED (more than 15 mins ago)
                                 if (diff < -15) {
                                     return {
                                         type: 'DEPARTED',
                                         isDeparted: true,
                                         isDelayed: false,
-                                        msg: '🌙 DEPARTED',
+                                        isCancelled: false,
+                                        msg: '⚪ COMPLETED TODAY',
                                         class: 'status-departed',
-                                        reason: 'Train has departed from this station',
+                                        reason: 'Scheduled departure completed for today',
                                         delayMins: 0,
-                                        badgeColor: '#64748b',
-                                        badgeBg: 'rgba(100, 116, 139, 0.15)',
-                                        badgeBorder: 'rgba(100, 116, 139, 0.3)'
+                                        badgeColor: '#94a3b8',
+                                        badgeBg: 'rgba(148, 163, 184, 0.15)',
+                                        badgeBorder: 'rgba(148, 163, 184, 0.3)'
                                     };
                                 }
 
-                                // 3. BOARDING / AT PLATFORM (departing within 20 mins)
-                                if (diff >= -15 && diff <= 20) {
+                                // 2. BOARDING / AT PLATFORM (departing within 15 mins)
+                                if (diff >= -15 && diff <= 15) {
                                     return {
                                         type: 'BOARDING',
                                         isDelayed: false,
-                                        msg: '🟢 AT PLATFORM',
+                                        isCancelled: false,
+                                        msg: '🏃 AT PLATFORM',
                                         class: 'status-ontime',
-                                        reason: 'Train is at platform, boarding in progress',
+                                        reason: 'Departure scheduled now • Boarding in progress',
                                         delayMins: 0,
                                         badgeColor: '#22c55e',
                                         badgeBg: 'rgba(34, 197, 94, 0.15)',
                                         badgeBorder: 'rgba(34, 197, 94, 0.4)'
                                     };
                                 }
+
+                                // 3. UPCOMING TODAY
+                                if (diff > 15) {
+                                    const h = Math.floor(diff / 60);
+                                    const m = diff % 60;
+                                    const countdown = h > 0 ? `${h}h ${m}m` : `${m}m`;
+                                    return {
+                                        type: 'ON_TIME',
+                                        isDelayed: false,
+                                        isCancelled: false,
+                                        msg: `🟢 IN ${countdown}`,
+                                        class: 'status-ontime',
+                                        reason: 'Official Indian Railways Scheduled Timetable',
+                                        delayMins: 0,
+                                        badgeColor: '#38bdf8',
+                                        badgeBg: 'rgba(56, 189, 248, 0.15)',
+                                        badgeBorder: 'rgba(56, 189, 248, 0.4)'
+                                    };
+                                }
                             }
 
-                            // 4. DELAYED (~18% chance)
-                            if (absHash % 100 >= 7 && absHash % 100 < 25) {
-                                const delayMins = (absHash % 35) + 10; // 10-45 mins
-                                const delayReasons = [
-                                    'Signal Failure at Previous Section',
-                                    'Freight Train Crossing Delay',
-                                    'Slow Movement due to Fog / Visibility',
-                                    'Platform Occupancy at Junction',
-                                    'Late Running from Origin Station'
-                                ];
-                                const reason = delayReasons[absHash % delayReasons.length];
-                                return {
-                                    type: 'DELAYED',
-                                    isDelayed: true,
-                                    msg: `🟡 LATE BY ${delayMins}M`,
-                                    class: 'status-delayed',
-                                    reason: reason,
-                                    delayMins: delayMins,
-                                    badgeColor: '#fbbf24',
-                                    badgeBg: 'rgba(251, 191, 36, 0.15)',
-                                    badgeBorder: 'rgba(251, 191, 36, 0.4)'
-                                };
-                            }
-
-                            // 5. RESCHEDULED (Slightly different time, ~5%)
-                            if (absHash % 100 >= 25 && absHash % 100 < 30) {
-                                const reschMins = (absHash % 20) + 5; // 5-25 mins
-                                return {
-                                    type: 'RESCHEDULED',
-                                    isDelayed: true,
-                                    msg: `🔵 RESCHEDULED +${reschMins}M`,
-                                    class: 'status-delayed',
-                                    reason: 'Rescheduled by Indian Railways Control Room',
-                                    delayMins: reschMins,
-                                    badgeColor: '#60a5fa',
-                                    badgeBg: 'rgba(96, 165, 250, 0.15)',
-                                    badgeBorder: 'rgba(96, 165, 250, 0.4)'
-                                };
-                            }
-
-                            // 6. ON TIME (DEFAULT)
+                            // Default Scheduled
                             return {
                                 type: 'ON_TIME',
                                 isDelayed: false,
-                                msg: '🟢 ON TIME',
+                                isCancelled: false,
+                                msg: '🟢 SCHEDULED',
                                 class: 'status-ontime',
-                                reason: 'Running as per scheduled timetable',
+                                reason: 'Official Indian Railways Scheduled Timetable',
                                 delayMins: 0,
                                 badgeColor: '#4ade80',
                                 badgeBg: 'rgba(74, 222, 128, 0.12)',
