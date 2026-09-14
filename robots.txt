@@ -8,6 +8,7 @@ User-agent: Googlebot-Image
 Allow: /assets/
 Allow: /assets/agents/
 Allow: /assets/gangani/
+Allow: /assets/places/
 Allow: /
 
 User-agent: Bingbot
