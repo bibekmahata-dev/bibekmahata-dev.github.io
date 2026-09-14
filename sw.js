@@ -4,8 +4,8 @@
    Version: 1.0.0
    ============================================================================== */
 
-const CACHE_NAME = 'bengal-explorers-v110';
-const DATA_CACHE_NAME = 'bengal-data-cache-v110';
+const CACHE_NAME = 'bengal-explorers-v111';
+const DATA_CACHE_NAME = 'bengal-data-cache-v111';
 
 // Critical Core Assets for Offline App Shell
 const APP_SHELL = [
@@ -35,6 +35,20 @@ const APP_SHELL = [
     '/assets/gangani/gangani-1.png',
     '/assets/gangani/gangani-2.png',
     '/assets/gangani/gangani-3.png',
+    '/assets/sections/hero-bengal-gateway.jpg',
+    '/assets/sections/hero-bengal-gateway.webp',
+    '/assets/sections/transit-local-train.jpg',
+    '/assets/sections/transit-local-train.webp',
+    '/assets/sections/transit-state-bus.jpg',
+    '/assets/sections/transit-state-bus.webp',
+    '/assets/sections/meteorology-weather-radar.jpg',
+    '/assets/sections/meteorology-weather-radar.webp',
+    '/assets/sections/govt-lodges-wbtdcl.jpg',
+    '/assets/sections/govt-lodges-wbtdcl.webp',
+    '/assets/sections/emergency-sos-response.jpg',
+    '/assets/sections/emergency-sos-response.webp',
+    '/assets/sections/trip-budget-planner.jpg',
+    '/assets/sections/trip-budget-planner.webp',
     'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css',
     'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js',
     'https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Great+Vibes&family=Hind+Siliguri:wght@400;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap'
