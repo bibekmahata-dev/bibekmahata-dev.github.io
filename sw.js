@@ -4,8 +4,8 @@
    Version: 1.0.0
    ============================================================================== */
 
-const CACHE_NAME = 'bengal-explorers-v111';
-const DATA_CACHE_NAME = 'bengal-data-cache-v111';
+const CACHE_NAME = 'bengal-explorers-v112';
+const DATA_CACHE_NAME = 'bengal-data-cache-v112';
 
 // Critical Core Assets for Offline App Shell
 const APP_SHELL = [
@@ -43,6 +43,8 @@ const APP_SHELL = [
     '/assets/sections/transit-state-bus.webp',
     '/assets/sections/meteorology-weather-radar.jpg',
     '/assets/sections/meteorology-weather-radar.webp',
+    '/assets/sections/bengal-cultural-calendar.jpg',
+    '/assets/sections/bengal-cultural-calendar.webp',
     '/assets/sections/govt-lodges-wbtdcl.jpg',
     '/assets/sections/govt-lodges-wbtdcl.webp',
     '/assets/sections/emergency-sos-response.jpg',

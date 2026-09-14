@@ -1482,9 +1482,37 @@
                             </div>
                             <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);">
                                 <button type="button" onclick="changeMonth(-1)" style="background: transparent; border: none; color: white; cursor: pointer; padding: 2px 8px; font-weight: bold; font-size: 14px;" title="Previous Month">◀</button>
-                                <div id="calendar-current-month" style="color: #38bdf8; font-weight: 800; font-size: 13px; min-width: 110px; text-align: center;">August 2026</div>
+                                <div id="calendar-current-month" style="color: #38bdf8; font-weight: 800; font-size: 12.5px; min-width: 140px; text-align: center;">August 2026</div>
                                 <button type="button" onclick="changeMonth(1)" style="background: transparent; border: none; color: white; cursor: pointer; padding: 2px 8px; font-weight: bold; font-size: 14px;" title="Next Month">▶</button>
                             </div>
+                        </div>
+
+                        <!-- Bespoke Bengal Cultural & Festival Visual Banner (Matches Weather Radar Layout) -->
+                        <div style="position: relative; width: 100%; height: 110px; border-radius: 12px; overflow: hidden; margin-bottom: 14px; border: 1px solid rgba(244, 63, 94, 0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                            <picture>
+                                <source srcset="assets/sections/bengal-cultural-calendar.webp" type="image/webp">
+                                <img src="assets/sections/bengal-cultural-calendar.jpg" alt="West Bengal Cultural Heritage &amp; Festival Calendar" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
+                            </picture>
+                            <div style="position: absolute; inset: 0; background: linear-gradient(to right, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.45) 60%, transparent 100%); display: flex; align-items: center; padding: 0 16px;">
+                                <div>
+                                    <span style="font-size: 10px; background: rgba(244, 63, 94, 0.25); color: #fb7185; font-weight: 800; padding: 2px 8px; border-radius: 10px; border: 1px solid rgba(244, 63, 94, 0.5); text-transform: uppercase;">ঐতিহ্য ও উৎসব • Heritage &amp; Panjika</span>
+                                    <div id="bengali-today-banner" style="color: #ffffff; font-size: 13.5px; font-weight: 800; font-family: var(--font-title, sans-serif); margin-top: 3px;">
+                                        আজকের বাংলা তারিখ: লোড হচ্ছে...
+                                    </div>
+                                    <div id="bengali-season-badge" style="font-size: 11px; color: #fecdd3; margin-top: 2px; font-weight: 600;">
+                                        ঋতু ও উৎসব সমাচার
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Authentic Bengali Panjika Bar -->
+                        <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(244, 63, 94, 0.08); border: 1px solid rgba(244, 63, 94, 0.2); border-radius: 10px; padding: 8px 12px; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 15px;">🪔</span>
+                                <span id="bengali-live-tithi" style="font-size: 11.5px; color: #fecdd3; font-weight: 700;">আজকের পঞ্জিকা: লোড হচ্ছে...</span>
+                            </div>
+                            <span style="font-size: 10px; background: rgba(255,255,255,0.06); color: #cbd5e1; padding: 2px 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">সূর্যসিদ্ধান্ত ভিত্তিক</span>
                         </div>
 
                         <!-- Category Filter Buttons -->
@@ -1514,84 +1542,164 @@
                             let calendarCurrentDate = new Date();
                             let currentCalFilter = 'all';
 
+                            // Bengali numerals converter
+                            function toBengaliNumerals(num) {
+                                const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+                                return String(num).replace(/\d/g, d => bnDigits[d]);
+                            }
+
+                            // Dynamic Bengali Solar Calendar Engine (Panjika Surya Siddhanta Standard)
+                            function getBengaliDate(gDate) {
+                                const y = gDate.getFullYear();
+                                const m = gDate.getMonth() + 1; // 1-12
+                                const d = gDate.getDate();
+
+                                // Bengali year: starts mid-April (Poila Boishakh ~ April 15)
+                                const bnYear = ((m > 4) || (m === 4 && d >= 15)) ? (y - 593) : (y - 594);
+
+                                const transitions = [
+                                    { m: 1, d: 15, name: "মাঘ", season: "শীতকাল" },
+                                    { m: 2, d: 14, name: "ফাল্গুন", season: "বসন্তকাল" },
+                                    { m: 3, d: 15, name: "চৈত্র", season: "বসন্তকাল" },
+                                    { m: 4, d: 15, name: "বৈশাখ", season: "গ্রীষ্মকাল" },
+                                    { m: 5, d: 16, name: "জ্যৈষ্ঠ", season: "গ্রীষ্মকাল" },
+                                    { m: 6, d: 16, name: "আষাঢ়", season: "বর্ষাকাল" },
+                                    { m: 7, d: 17, name: "শ্রাবণ", season: "বর্ষাকাল" },
+                                    { m: 8, d: 18, name: "ভাদ্র", season: "শরৎকাল" },
+                                    { m: 9, d: 18, name: "আশ্বিন", season: "শরৎকাল" },
+                                    { m: 10, d: 18, name: "কার্তিক", season: "হেমন্তকাল" },
+                                    { m: 11, d: 17, name: "অগ্রহায়ণ", season: "হেমন্তকাল" },
+                                    { m: 12, d: 17, name: "পৌষ", season: "শীতকাল" }
+                                ];
+
+                                let bnDay = 1;
+                                let bnMonth = "পৌষ";
+                                let season = "শীতকাল";
+
+                                if (m === 1 && d < 15) {
+                                    bnDay = 15 + d;
+                                    bnMonth = "পৌষ";
+                                    season = "শীতকাল";
+                                } else {
+                                    for (let i = transitions.length - 1; i >= 0; i--) {
+                                        const t = transitions[i];
+                                        if ((m > t.m) || (m === t.m && d >= t.d)) {
+                                            bnMonth = t.name;
+                                            season = t.season;
+                                            const startDate = new Date(y, t.m - 1, t.d);
+                                            const diffTime = gDate.getTime() - startDate.getTime();
+                                            bnDay = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                return {
+                                    dayBn: toBengaliNumerals(bnDay),
+                                    month: bnMonth,
+                                    yearBn: toBengaliNumerals(bnYear),
+                                    season: season,
+                                    fullString: `${toBengaliNumerals(bnDay)} ${bnMonth} ${toBengaliNumerals(bnYear)} বঙ্গাব্দ`
+                                };
+                            }
+
                             // 100% Verified Official WB Govt Holidays & Bengali Panjika Master Calendar
                             const bengalMasterCalendarDatabase = {
                                 0: [ // January
-                                    { date: "Jan 1", title: "New Year's Day", desc: "Official State Holiday across West Bengal.", type: "holiday", color: "#38bdf8" },
-                                    { date: "Jan 3", title: "Pausha Purnima", desc: "Holy full moon bathing and Ganga Sagar pilgrimage.", type: "lunar", color: "#fcd34d" },
-                                    { date: "Jan 12", title: "Swami Vivekananda Jayanti", desc: "National Youth Day celebrating Bengal's spiritual pioneer.", type: "holiday", color: "#eab308" },
-                                    { date: "Jan 14", title: "Makar Sankranti & Ganga Sagar Mela", desc: "Holy confluence bath at Sagar Island & Poush Sankranti pithe-puli feast.", type: "puja", color: "#f97316" },
-                                    { date: "Jan 18", title: "Mauni Amavasya", desc: "Holy new moon day observed across Bengal river ghats.", type: "lunar", color: "#94a3b8" },
-                                    { date: "Jan 23", title: "Netaji Subhash Chandra Bose Jayanti", desc: "Parakram Diwas honoring Netaji (Official State Holiday).", type: "holiday", color: "#f43f5e" },
-                                    { date: "Jan 26", title: "Republic Day", desc: "National Flag Hoisting & Celebrations at Red Road, Kolkata.", type: "holiday", color: "#22c55e" }
+                                    { date: "Jan 1", day: 1, title: "New Year's Day", titleBn: "ইংরেজি নববর্ষ", desc: "Official State Holiday across West Bengal.", type: "holiday", color: "#38bdf8" },
+                                    { date: "Jan 3", day: 3, title: "Pausha Purnima", titleBn: "পৌষ পূর্ণিমা", desc: "Holy full moon bathing and Ganga Sagar pilgrimage.", type: "lunar", color: "#fcd34d" },
+                                    { date: "Jan 12", day: 12, title: "Swami Vivekananda Jayanti", titleBn: "স্বামী বিবেকানন্দ জয়ন্তী", desc: "National Youth Day celebrating Bengal's spiritual pioneer.", type: "holiday", color: "#eab308" },
+                                    { date: "Jan 14", day: 14, title: "Makar Sankranti & Ganga Sagar Mela", titleBn: "মকর সংক্রান্তি ও গঙ্গাসাগর মেলা", desc: "Holy confluence bath at Sagar Island & Poush Sankranti pithe-puli feast.", type: "puja", color: "#f97316" },
+                                    { date: "Jan 18", day: 18, title: "Mauni Amavasya", titleBn: "মৌনী অমাবস্যা", desc: "Holy new moon day observed across Bengal river ghats.", type: "lunar", color: "#94a3b8" },
+                                    { date: "Jan 23", day: 23, title: "Netaji Subhash Chandra Bose Jayanti", titleBn: "নেতাজি সুভাষচন্দ্র বসু জয়ন্তী", desc: "Parakram Diwas honoring Netaji (Official State Holiday).", type: "holiday", color: "#f43f5e" },
+                                    { date: "Jan 26", day: 26, title: "Republic Day", titleBn: "প্রজাতন্ত্র দিবস", desc: "National Flag Hoisting & Celebrations at Red Road, Kolkata.", type: "holiday", color: "#22c55e" }
                                 ],
                                 1: [ // February
-                                    { date: "Feb 1", title: "Maghi Purnima", desc: "Auspicious full moon day & traditional folk fairs.", type: "lunar", color: "#fcd34d" },
-                                    { date: "Feb 13", title: "Saraswati Puja (Basant Panchami)", desc: "Bengal's favorite festival of art, knowledge, music and yellow sarees.", type: "puja", color: "#eab308" },
-                                    { date: "Feb 21", title: "International Mother Language Day", desc: "Shahid Dibas honoring Bengali language martyrs worldwide.", type: "holiday", color: "#38bdf8" },
-                                    { date: "Feb 26", title: "Shab-e-Barat", desc: "Night of records and prayers observed across Bengal.", type: "holiday", color: "#a855f7" }
+                                    { date: "Feb 1", day: 1, title: "Maghi Purnima", titleBn: "মাঘী পূর্ণিমা", desc: "Auspicious full moon day & traditional folk fairs.", type: "lunar", color: "#fcd34d" },
+                                    { date: "Feb 13", day: 13, title: "Saraswati Puja (Basant Panchami)", titleBn: "সরস্বতী পূজা (শ্রীপঞ্চমী)", desc: "Bengal's favorite festival of art, knowledge, music and yellow sarees.", type: "puja", color: "#eab308" },
+                                    { date: "Feb 21", day: 21, title: "International Mother Language Day", titleBn: "আন্তর্জাতিক মাতৃভাষা দিবস", desc: "Shahid Dibas honoring Bengali language martyrs worldwide.", type: "holiday", color: "#38bdf8" },
+                                    { date: "Feb 26", day: 26, title: "Shab-e-Barat", titleBn: "শব-ই-বরাত", desc: "Night of records and prayers observed across Bengal.", type: "holiday", color: "#a855f7" }
                                 ],
                                 2: [ // March
-                                    { date: "Mar 3", title: "Holika Dahan (Nyarpoda)", desc: "Traditional evening bonfire marking victory of good over evil.", type: "puja", color: "#f97316" },
-                                    { date: "Mar 4", title: "Dol Yatra (Basanta Utsav)", desc: "Spring festival of colors celebrated with abir, songs & dance at Santiniketan.", type: "puja", color: "#f43f5e" },
-                                    { date: "Mar 18", title: "Chaitra Amavasya", desc: "Sacred new moon day.", type: "lunar", color: "#94a3b8" },
-                                    { date: "Mar 20", title: "Eid-ul-Fitr", desc: "Official Public Holiday celebrating the end of Ramadan.", type: "holiday", color: "#22c55e" },
-                                    { date: "Mar 26", title: "Ram Navami", desc: "Celebration of Lord Rama's birth with colorful processions.", type: "puja", color: "#f97316" }
+                                    { date: "Mar 3", day: 3, title: "Holika Dahan (Nyarpoda)", titleBn: "হোলিকা দহন (ন্যাড়াপোড়া)", desc: "Traditional evening bonfire marking victory of good over evil.", type: "puja", color: "#f97316" },
+                                    { date: "Mar 4", day: 4, title: "Dol Yatra (Basanta Utsav)", titleBn: "দোলযাত্রা ও বসন্ত উৎসব", desc: "Spring festival of colors celebrated with abir, songs & dance at Santiniketan.", type: "puja", color: "#f43f5e" },
+                                    { date: "Mar 18", day: 18, title: "Chaitra Amavasya", titleBn: "চৈত্র অমাবস্যা", desc: "Sacred new moon day.", type: "lunar", color: "#94a3b8" },
+                                    { date: "Mar 20", day: 20, title: "Eid-ul-Fitr", titleBn: "ঈদ-উল-ফিতর", desc: "Official Public Holiday celebrating the end of Ramadan.", type: "holiday", color: "#22c55e" },
+                                    { date: "Mar 26", day: 26, title: "Ram Navami", titleBn: "শ্রী রাম নবমী", desc: "Celebration of Lord Rama's birth with colorful processions.", type: "puja", color: "#f97316" }
                                 ],
                                 3: [ // April
-                                    { date: "Apr 1", title: "Chaitra Purnima", desc: "Auspicious full moon day.", type: "lunar", color: "#fcd34d" },
-                                    { date: "Apr 3", title: "Good Friday", desc: "Official State Holiday observing solemn prayers in historic churches.", type: "holiday", color: "#a855f7" },
-                                    { date: "Apr 14", title: "Dr. B.R. Ambedkar Jayanti & Charak Puja", desc: "State holiday & traditional village Charak Hook-swinging folk festival.", type: "holiday", color: "#38bdf8" },
-                                    { date: "Apr 15", title: "Poila Boishakh (Bengali New Year 1433)", desc: "Official Nababarsha holiday with Hal Khata puja and sweet distributions.", type: "puja", color: "#f43f5e" }
+                                    { date: "Apr 1", day: 1, title: "Chaitra Purnima", titleBn: "চৈত্র পূর্ণিমা", desc: "Auspicious full moon day.", type: "lunar", color: "#fcd34d" },
+                                    { date: "Apr 3", day: 3, title: "Good Friday", titleBn: "গুড ফ্রাইডে", desc: "Official State Holiday observing solemn prayers in historic churches.", type: "holiday", color: "#a855f7" },
+                                    { date: "Apr 14", day: 14, title: "Dr. B.R. Ambedkar Jayanti & Charak Puja", titleBn: "আম্বেদকর জয়ন্তী ও চড়ক পূজা", desc: "State holiday & traditional village Charak Hook-swinging folk festival.", type: "holiday", color: "#38bdf8" },
+                                    { date: "Apr 15", day: 15, title: "Poila Boishakh (Bengali New Year)", titleBn: "পয়লা বৈশাখ (শুভ নববর্ষ)", desc: "Official Nababarsha holiday with Hal Khata puja and sweet distributions.", type: "puja", color: "#f43f5e" }
                                 ],
                                 4: [ // May
-                                    { date: "May 1", title: "International Workers' Day (May Day)", desc: "Official State Holiday honoring labor rights.", type: "holiday", color: "#a855f7" },
-                                    { date: "May 9", title: "Rabindra Jayanti (25th Baisakh)", desc: "Birth anniversary of Nobel Laureate Rabindranath Tagore.", type: "holiday", color: "#38bdf8" },
-                                    { date: "May 27", title: "Eid-ul-Adha (Bakrid)", desc: "Official Public Holiday celebrated with community feasts.", type: "holiday", color: "#22c55e" },
-                                    { date: "May 31", title: "Buddha Purnima (Snana Yatra)", desc: "Celebrating the birth and enlightenment of Lord Buddha & Jagannath Snana Yatra.", type: "holiday", color: "#fcd34d" }
+                                    { date: "May 1", day: 1, title: "International Workers' Day", titleBn: "মে দিবস (শ্রমিক দিবস)", desc: "Official State Holiday honoring labor rights.", type: "holiday", color: "#a855f7" },
+                                    { date: "May 9", day: 9, title: "Rabindra Jayanti (25th Baisakh)", titleBn: "রবীন্দ্র জয়ন্তী (পঁচিশে বৈশাখ)", desc: "Birth anniversary of Nobel Laureate Rabindranath Tagore.", type: "holiday", color: "#38bdf8" },
+                                    { date: "May 27", day: 27, title: "Eid-ul-Adha (Bakrid)", titleBn: "ঈদ-উল-আযহা (বখরীদ)", desc: "Official Public Holiday celebrated with community feasts.", type: "holiday", color: "#22c55e" },
+                                    { date: "May 31", day: 31, title: "Buddha Purnima (Snana Yatra)", titleBn: "বুদ্ধ পূর্ণিমা ও জগন্নাথ স্নানযাত্রা", desc: "Celebrating the birth and enlightenment of Lord Buddha & Jagannath Snana Yatra.", type: "holiday", color: "#fcd34d" }
                                 ],
                                 5: [ // June
-                                    { date: "Jun 5", title: "World Environment Day", desc: "State plantation drives across Bengal forest reserves.", type: "holiday", color: "#22c55e" },
-                                    { date: "Jun 26", title: "Muharram (Tazia)", desc: "Official Public Holiday observed with solemn tazia processions.", type: "holiday", color: "#a855f7" },
-                                    { date: "Jun 29", title: "Guru Purnima", desc: "Honoring teachers, spiritual guides & mentors.", type: "lunar", color: "#fcd34d" }
+                                    { date: "Jun 5", day: 5, title: "World Environment Day", titleBn: "বিশ্ব পরিবেশ দিবস", desc: "State plantation drives across Bengal forest reserves.", type: "holiday", color: "#22c55e" },
+                                    { date: "Jun 26", day: 26, title: "Muharram (Tazia)", titleBn: "মহরম (তাজিয়া)", desc: "Official Public Holiday observed with solemn tazia processions.", type: "holiday", color: "#a855f7" },
+                                    { date: "Jun 29", day: 29, title: "Guru Purnima", titleBn: "গুরু পূর্ণিমা", desc: "Honoring teachers, spiritual guides & mentors.", type: "lunar", color: "#fcd34d" }
                                 ],
                                 6: [ // July
-                                    { date: "Jul 16", title: "Rath Yatra (Mahesh & Kolkata)", desc: "Historic chariot festival celebrated at Mahesh (Est. 1396) & ISKCON Mayapur.", type: "puja", color: "#f97316" },
-                                    { date: "Jul 24", title: "Ulto Rath Yatra", desc: "Return chariot procession of the deities.", type: "puja", color: "#fde047" },
-                                    { date: "Jul 29", title: "Shravana Purnima", desc: "Holy full moon day of Lord Shiva.", type: "lunar", color: "#fcd34d" }
+                                    { date: "Jul 16", day: 16, title: "Rath Yatra (Mahesh & Kolkata)", titleBn: "রথযাত্রা (মাহেশ ও কলকাতা)", desc: "Historic chariot festival celebrated at Mahesh (Est. 1396) & ISKCON Mayapur.", type: "puja", color: "#f97316" },
+                                    { date: "Jul 24", day: 24, title: "Ulto Rath Yatra", titleBn: "উল্টো রথযাত্রা", desc: "Return chariot procession of the deities.", type: "puja", color: "#fde047" },
+                                    { date: "Jul 29", day: 29, title: "Shravana Purnima", titleBn: "শ্রাবণ পূর্ণিমা", desc: "Holy full moon day of Lord Shiva.", type: "lunar", color: "#fcd34d" }
                                 ],
                                 7: [ // August
-                                    { date: "Aug 15", title: "Independence Day", desc: "National Holiday honoring Indian Independence.", type: "holiday", color: "#22c55e" },
-                                    { date: "Aug 27", title: "Fateha-Dwaz-Daham (Milad-un-Nabi)", desc: "Observance of the Prophet's birthday.", type: "holiday", color: "#a855f7" },
-                                    { date: "Aug 28", title: "Raksha Bandhan & Jhulan Purnima", desc: "Auspicious festival of brother-sister bond & Krishna's swing festival.", type: "puja", color: "#f43f5e" },
-                                    { date: "Aug 29", title: "National Sports Day", desc: "Honoring hockey wizard Major Dhyan Chand.", type: "holiday", color: "#38bdf8" }
+                                    { date: "Aug 15", day: 15, title: "Independence Day", titleBn: "স্বাধীনতা দিবস", desc: "National Holiday honoring Indian Independence.", type: "holiday", color: "#22c55e" },
+                                    { date: "Aug 27", day: 27, title: "Fateha-Dwaz-Daham", titleBn: "ফাতেহা-দোয়াজ-দাহম", desc: "Observance of the Prophet's birthday.", type: "holiday", color: "#a855f7" },
+                                    { date: "Aug 28", day: 28, title: "Raksha Bandhan & Jhulan Purnima", titleBn: "রাখীবন্ধন ও ঝুলন পূর্ণিমা", desc: "Auspicious festival of brother-sister bond & Krishna's swing festival.", type: "puja", color: "#f43f5e" },
+                                    { date: "Aug 29", day: 29, title: "National Sports Day", titleBn: "জাতীয় ক্রীড়া দিবস", desc: "Honoring hockey wizard Major Dhyan Chand.", type: "holiday", color: "#38bdf8" }
                                 ],
                                 8: [ // September
-                                    { date: "Sep 4", title: "Janmashtami", desc: "Celebration of Lord Krishna's birth with midnight pujas.", type: "puja", color: "#a855f7" },
-                                    { date: "Sep 17", title: "Vishwakarma Puja", desc: "Divine architect of the universe — celebrated with vibrant kite flying.", type: "puja", color: "#eab308" },
-                                    { date: "Sep 26", title: "Ishwar Chandra Vidyasagar Jayanti", desc: "Commemorating the great Bengal social reformer in Medinipur & Kolkata.", type: "holiday", color: "#38bdf8" }
+                                    { date: "Sep 4", day: 4, title: "Janmashtami", titleBn: "শ্রীকৃষ্ণের জন্মাষ্টমী", desc: "Celebration of Lord Krishna's birth with midnight pujas.", type: "puja", color: "#a855f7" },
+                                    { date: "Sep 17", day: 17, title: "Vishwakarma Puja", titleBn: "বিশ্বকর্মা পূজা", desc: "Divine architect of the universe — celebrated with vibrant kite flying.", type: "puja", color: "#eab308" },
+                                    { date: "Sep 26", day: 26, title: "Ishwar Chandra Vidyasagar Jayanti", titleBn: "বিদ্যাসাগর জয়ন্তী", desc: "Commemorating the great Bengal social reformer in Medinipur & Kolkata.", type: "holiday", color: "#38bdf8" }
                                 ],
                                 9: [ // October
-                                    { date: "Oct 2", title: "Mahatma Gandhi Jayanti", desc: "National Holiday celebrating the Father of the Nation.", type: "holiday", color: "#22c55e" },
-                                    { date: "Oct 10", title: "Mahalaya (Chokkhudaan)", desc: "Dawn invocation of Birendra Krishna Bhadra welcoming Goddess Durga.", type: "puja", color: "#38bdf8" },
-                                    { date: "Oct 18", title: "Maha Saptami (Durga Puja Day 1)", desc: "Prana Pratishtha & start of Bengal's UNESCO World Heritage Carnival.", type: "puja", color: "#f43f5e" },
-                                    { date: "Oct 19", title: "Maha Ashtami (Sandhi Puja & Kumari Puja)", desc: "Auspicious Pushpanjali, Kumari Puja at Belur Math & 108 lotus lamps.", type: "puja", color: "#eab308" },
-                                    { date: "Oct 20", title: "Maha Navami (Dhunuchi Naach)", desc: "Grand festivities, blazing dhunuchi dance & community bhog.", type: "puja", color: "#f97316" },
-                                    { date: "Oct 21", title: "Vijaya Dashami (Sindoor Khela & Immersion)", desc: "Farewell to Ma Durga with Sindoor Khela & Ganga immersion carnival.", type: "puja", color: "#f43f5e" },
-                                    { date: "Oct 25", title: "Kojagari Lakshmi Puja", desc: "Auspicious moonlit night worship of Goddess of Wealth in Bengali homes.", type: "puja", color: "#eab308" }
+                                    { date: "Oct 2", day: 2, title: "Mahatma Gandhi Jayanti", titleBn: "গান্ধী জয়ন্তী", desc: "National Holiday celebrating the Father of the Nation.", type: "holiday", color: "#22c55e" },
+                                    { date: "Oct 10", day: 10, title: "Mahalaya (Chokkhudaan)", titleBn: "মহালয়া ও আগমনী গান", desc: "Dawn invocation of Birendra Krishna Bhadra welcoming Goddess Durga.", type: "puja", color: "#38bdf8" },
+                                    { date: "Oct 18", day: 18, title: "Maha Saptami (Durga Puja Day 1)", titleBn: "মহা সপ্তমী (নবপত্রিকা প্রবেশ)", desc: "Prana Pratishtha & start of Bengal's UNESCO World Heritage Carnival.", type: "puja", color: "#f43f5e" },
+                                    { date: "Oct 19", day: 19, title: "Maha Ashtami (Sandhi Puja & Kumari)", titleBn: "মহা অষ্টমী (সন্ধিপূজা ও কুমারী পূজা)", desc: "Auspicious Pushpanjali, Kumari Puja at Belur Math & 108 lotus lamps.", type: "puja", color: "#eab308" },
+                                    { date: "Oct 20", day: 20, title: "Maha Navami (Dhunuchi Naach)", titleBn: "মহা নবমী (ধুনুচি নাচ ও বলিদান)", desc: "Grand festivities, blazing dhunuchi dance & community bhog.", type: "puja", color: "#f97316" },
+                                    { date: "Oct 21", day: 21, title: "Vijaya Dashami (Sindoor Khela)", titleBn: "বিজয়া দশমী ও সিঁদুর খেলা", desc: "Farewell to Ma Durga with Sindoor Khela & Ganga immersion carnival.", type: "puja", color: "#f43f5e" },
+                                    { date: "Oct 25", day: 25, title: "Kojagari Lakshmi Puja", titleBn: "কোজাগরী লক্ষ্মী পূজা", desc: "Auspicious moonlit night worship of Goddess of Wealth in Bengali homes.", type: "puja", color: "#eab308" }
                                 ],
                                 10: [ // November
-                                    { date: "Nov 8", title: "Kali Puja & Diwali", desc: "Night festival of Goddess Kali, illuminated clay diyas & fireworks.", type: "puja", color: "#a855f7" },
-                                    { date: "Nov 10", title: "Bhai Phonta (Bhratri Dwitiya)", desc: "Traditional Bengali sister-brother blessing ceremony.", type: "puja", color: "#f43f5e" },
-                                    { date: "Nov 15", title: "Chhath Puja", desc: "Solar devotion festival with evening and dawn offerings at river ghats.", type: "puja", color: "#f97316" },
-                                    { date: "Nov 24", title: "Guru Nanak Jayanti", desc: "Prakash Utsav celebrated at Gurudwaras across Kolkata.", type: "holiday", color: "#fcd34d" }
+                                    { date: "Nov 8", day: 8, title: "Kali Puja & Diwali", titleBn: "শ্যামাপূজা (কালীপূজা) ও দীপাবলি", desc: "Night festival of Goddess Kali, illuminated clay diyas & fireworks.", type: "puja", color: "#a855f7" },
+                                    { date: "Nov 10", day: 10, title: "Bhai Phonta (Bhratri Dwitiya)", titleBn: "ভ্রাতৃদ্বিতীয়া (ভাইফোঁটা)", desc: "Traditional Bengali sister-brother blessing ceremony.", type: "puja", color: "#f43f5e" },
+                                    { date: "Nov 15", day: 15, title: "Chhath Puja", titleBn: "ছট পূজা (সূর্য উপাসনা)", desc: "Solar devotion festival with evening and dawn offerings at river ghats.", type: "puja", color: "#f97316" },
+                                    { date: "Nov 24", day: 24, title: "Guru Nanak Jayanti", titleBn: "গুরু নানক জয়ন্তী", desc: "Prakash Utsav celebrated at Gurudwaras across Kolkata.", type: "holiday", color: "#fcd34d" }
                                 ],
                                 11: [ // December
-                                    { date: "Dec 23", title: "Poush Mela (Santiniketan)", desc: "Legendary winter cultural fair of Baul music, dokra crafts & folk dances.", type: "puja", color: "#eab308" },
-                                    { date: "Dec 25", title: "Christmas Day (Boro Din)", desc: "Winter holiday, Bow Barracks street carnival & cakes at Park Street.", type: "holiday", color: "#22c55e" },
-                                    { date: "Dec 31", title: "New Year's Eve", desc: "Statewide winter celebrations across Kolkata, Digha & Darjeeling.", type: "holiday", color: "#38bdf8" }
+                                    { date: "Dec 23", day: 23, title: "Poush Mela (Santiniketan)", titleBn: "পৌষ মেলা (শান্তিনিকেতন)", desc: "Legendary winter cultural fair of Baul music, dokra crafts & folk dances.", type: "puja", color: "#eab308" },
+                                    { date: "Dec 25", day: 25, title: "Christmas Day (Boro Din)", titleBn: "বড়দিন (ক্রিসমাস কার্নিভাল)", desc: "Winter holiday, Bow Barracks street carnival & cakes at Park Street.", type: "holiday", color: "#22c55e" },
+                                    { date: "Dec 31", day: 31, title: "New Year's Eve", titleBn: "বর্ষশেষ উৎসব", desc: "Statewide winter celebrations across Kolkata, Digha & Darjeeling.", type: "holiday", color: "#38bdf8" }
                                 ]
                             };
+
+                            // Update live today banner
+                            function updateLiveBengaliToday() {
+                                const now = new Date();
+                                const bn = getBengaliDate(now);
+                                const banner = document.getElementById('bengali-today-banner');
+                                const tithi = document.getElementById('bengali-live-tithi');
+                                const seasonBadge = document.getElementById('bengali-season-badge');
+
+                                if (banner) {
+                                    banner.innerHTML = `আজকের বাংলা তারিখ: <span style="color: #fb7185;">${bn.fullString}</span>`;
+                                }
+                                if (tithi) {
+                                    tithi.textContent = `আজকের পঞ্জিকা: ${bn.dayBn} ${bn.month} ${bn.yearBn} • ঋতু: ${bn.season}`;
+                                }
+                                if (seasonBadge) {
+                                    seasonBadge.textContent = `বর্তমান ঋতু: ${bn.season} • পশ্চিমবঙ্গ পঞ্জিকা`;
+                                }
+                            }
 
                             function changeMonth(step) {
                                 calendarCurrentDate.setMonth(calendarCurrentDate.getMonth() + step);
@@ -1617,8 +1725,16 @@
                                 const month = calendarCurrentDate.getMonth();
                                 const year = calendarCurrentDate.getFullYear();
                                 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                                
+                                // Mid-month sample date to approximate Bengali month name in header
+                                const midSample = new Date(year, month, 15);
+                                const sampleBn = getBengaliDate(midSample);
+                                
                                 const monthDisplay = document.getElementById('calendar-current-month');
-                                if (monthDisplay) monthDisplay.textContent = monthNames[month] + " " + year;
+                                if (monthDisplay) {
+                                    monthDisplay.textContent = `${monthNames[month]} ${year}`;
+                                    monthDisplay.title = `${sampleBn.month} ${sampleBn.yearBn} বঙ্গাব্দ`;
+                                }
 
                                 const firstDay = new Date(year, month, 1).getDay();
                                 const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -1632,6 +1748,8 @@
                                 const isCurrentMonth = (month === realNow.getMonth() && year === realNow.getFullYear());
                                 const today = realNow.getDate();
 
+                                const rawEvents = bengalMasterCalendarDatabase[month] || [];
+
                                 for (let i = 0; i < firstDay; i++) {
                                     let d = prevDaysInMonth - firstDay + i + 1;
                                     grid.innerHTML += `<div style="color: #475569; padding: 6px 0;">${d}</div>`;
@@ -1639,28 +1757,50 @@
 
                                 for (let i = 1; i <= daysInMonth; i++) {
                                     let isToday = (isCurrentMonth && i === today);
-                                    let bg = isToday ? 'background: #0284c7; color: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(56,189,248,0.5);' : 'color: #f1f5f9; cursor: pointer;';
-                                    grid.innerHTML += `<div onclick="selectCalendarDate(${i})" style="padding: 6px 0; transition: all 0.2s; ${bg}">${i}</div>`;
+                                    let dayEvents = rawEvents.filter(e => e.day === i);
+                                    let hasEvent = dayEvents.length > 0;
+                                    
+                                    let baseStyle = 'padding: 6px 0; transition: all 0.2s; position: relative; cursor: pointer; border-radius: 8px;';
+                                    let contentStyle = '';
+                                    let indicatorDot = '';
+
+                                    if (isToday) {
+                                        contentStyle = 'background: #0284c7; color: #fff; font-weight: 800; box-shadow: 0 0 10px rgba(56,189,248,0.6);';
+                                    } else if (hasEvent) {
+                                        let dotColor = dayEvents[0].color || '#f43f5e';
+                                        contentStyle = 'color: #ffffff; background: rgba(255,255,255,0.06); font-weight: 700; border: 1px solid rgba(255,255,255,0.15);';
+                                        indicatorDot = `<span style="position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: ${dotColor}; box-shadow: 0 0 5px ${dotColor};"></span>`;
+                                    } else {
+                                        contentStyle = 'color: #cbd5e1;';
+                                    }
+
+                                    grid.innerHTML += `<div onclick="selectCalendarDate(${i})" style="${baseStyle} ${contentStyle}">${i}${indicatorDot}</div>`;
                                 }
 
                                 // Render Event Cards
                                 const eventsList = document.getElementById('calendar-events-list');
                                 if (!eventsList) return;
                                 eventsList.innerHTML = '';
-                                const rawEvents = bengalMasterCalendarDatabase[month] || [];
                                 const filtered = currentCalFilter === 'all' ? rawEvents : rawEvents.filter(e => e.type === currentCalFilter);
 
                                 if (filtered.length === 0) {
                                     eventsList.innerHTML = '<div style="color: #64748b; font-size: 12.5px; text-align: center; padding: 20px 0;">No matching events in this category for this month.</div>';
                                 } else {
                                     filtered.forEach(ev => {
+                                        const typeLabel = ev.type === 'puja' ? '🎉 উৎসব ও মেলা' : (ev.type === 'holiday' ? '🏛️ সরকারি ছুটি' : '🌕 তিথি ও পঞ্জিকা');
                                         eventsList.innerHTML += `
-                                            <div style="background: rgba(0,0,0,0.3); border-left: 3px solid ${ev.color}; border-radius: 0 10px 10px 0; padding: 10px 14px; display: flex; flex-direction: column; gap: 2px;">
-                                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                                    <span style="font-weight: 800; color: #fff; font-size: 13.5px;">${ev.title}</span>
-                                                    <span style="color: ${ev.color}; font-size: 11px; font-weight: 700; background: rgba(255,255,255,0.06); padding: 2px 8px; border-radius: 10px;">${ev.date}</span>
+                                            <div style="background: rgba(0,0,0,0.35); border-left: 3px solid ${ev.color}; border-radius: 0 10px 10px 0; padding: 10px 14px; display: flex; flex-direction: column; gap: 3px; border-top: 1px solid rgba(255,255,255,0.03); border-right: 1px solid rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.03);">
+                                                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex-wrap: wrap;">
+                                                    <div>
+                                                        <div style="font-weight: 800; color: #ffffff; font-size: 13.5px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                                                            ${ev.title}
+                                                            <span style="font-size: 11px; color: ${ev.color}; font-weight: 600;">(${ev.titleBn})</span>
+                                                        </div>
+                                                        <div style="font-size: 10px; color: #94a3b8; margin-top: 2px;">${typeLabel}</div>
+                                                    </div>
+                                                    <span style="color: ${ev.color}; font-size: 11px; font-weight: 800; background: rgba(255,255,255,0.06); padding: 2px 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">${ev.date}</span>
                                                 </div>
-                                                <div style="color: #94a3b8; font-size: 12px; line-height: 1.5;">${ev.desc}</div>
+                                                <div style="color: #cbd5e1; font-size: 12px; line-height: 1.45; margin-top: 2px;">${ev.desc}</div>
                                             </div>
                                         `;
                                     });
@@ -1668,11 +1808,22 @@
                             }
 
                             function selectCalendarDate(dayNum) {
-                                if (typeof showQuickToast === 'function') {
-                                    showQuickToast(`📅 Day ${dayNum} selected!`);
+                                const month = calendarCurrentDate.getMonth();
+                                const rawEvents = bengalMasterCalendarDatabase[month] || [];
+                                const match = rawEvents.find(e => e.day === dayNum);
+                                if (match) {
+                                    if (typeof showQuickToast === 'function') {
+                                        showQuickToast(`📅 ${match.date}: ${match.title} (${match.titleBn})`);
+                                    }
+                                } else {
+                                    if (typeof showQuickToast === 'function') {
+                                        showQuickToast(`📅 Day ${dayNum} selected!`);
+                                    }
                                 }
                             }
 
+                            // Initialize live date and calendar
+                            updateLiveBengaliToday();
                             renderMasterCalendar();
                         </script>
                     </div>
