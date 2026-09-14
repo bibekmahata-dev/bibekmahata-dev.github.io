@@ -6,6 +6,7 @@ Allow: /
 
 User-agent: Googlebot-Image
 Allow: /assets/
+Allow: /assets/sections/
 Allow: /assets/agents/
 Allow: /assets/gangani/
 Allow: /assets/places/
@@ -13,6 +14,8 @@ Allow: /
 
 User-agent: Bingbot
 Allow: /
+Allow: /assets/
+Allow: /assets/sections/
 
 User-agent: Slurp
 Allow: /
