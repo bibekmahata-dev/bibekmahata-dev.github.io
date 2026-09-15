@@ -2914,6 +2914,23 @@
             margin-bottom: 8px !important;
         }
 
+        /* 4. Weather & Cultural Calendar Mobile Switcher Engine */
+        .weather-cal-switcher {
+            width: 94%;
+            max-width: 480px;
+            box-sizing: border-box;
+        }
+        @media (max-width: 992px) {
+            #weather-calendar-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        @media (min-width: 993px) {
+            #weather-card-container, #calendar-card-container {
+                display: flex !important;
+            }
+        }
+
 
         /* ========================================================
            🌐 PROMINENT LANGUAGE SELECTOR & GOOGLE TRANSLATE STYLING
