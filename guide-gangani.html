@@ -303,9 +303,17 @@
             min-height: 100px;
         }
 
-        @media (max-width: 640px) {
-            .guide-container { padding: 20px 10px 75px; }
-            .author-box { flex-direction: column; text-align: center; }
+        @media (max-width: 768px) {
+            .guide-container { padding: 14px 6px 75px !important; width: 100% !important; max-width: 100% !important; }
+            .guide-hero h1 { font-size: clamp(20px, 5.2vw, 26px) !important; line-height: 1.3 !important; }
+            .guide-content { font-size: 16px !important; line-height: 1.75 !important; }
+            .guide-content h2 { font-size: 20px !important; }
+            .guide-content h3 { font-size: 17px !important; }
+            .info-box { padding: 14px 10px !important; margin: 18px 0 !important; }
+            .transit-table-wrapper { margin: 16px 0 !important; }
+            .transit-table th, .transit-table td { padding: 9px 8px !important; font-size: 13px !important; }
+            .author-box { flex-direction: column !important; text-align: center !important; padding: 16px 12px !important; margin: 30px 0 20px !important; }
+            .ad-slot-container { padding: 12px 6px !important; margin: 20px 0 !important; }
         }
     </style>
 </head>
