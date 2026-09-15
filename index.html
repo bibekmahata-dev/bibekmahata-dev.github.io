@@ -691,7 +691,7 @@
             <div style="position: relative; width: 100%; border-radius: 16px; overflow: hidden; margin: 16px 0 20px 0; border: 1.5px solid rgba(56, 189, 248, 0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
                 <picture>
                     <source srcset="assets/sections/hero-bengal-gateway.webp" type="image/webp">
-                    <img src="assets/sections/hero-bengal-gateway.jpg" alt="West Bengal Tourism and Civic Gateway - Howrah Bridge, Kolkata and Himalayas" style="width: 100%; height: clamp(180px, 24vw, 300px); object-fit: cover; display: block;" loading="eager" decoding="async">
+                    <img src="assets/sections/hero-bengal-gateway.jpg" alt="West Bengal Tourism and Civic Gateway - Howrah Bridge, Kolkata and Himalayas" style="width: 100%; height: clamp(230px, 30vw, 360px); object-fit: cover; display: block;" loading="eager" decoding="async">
                 </picture>
                 <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.35) 55%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(14px, 3vw, 24px); box-sizing: border-box;">
                     <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 6px;">
@@ -905,7 +905,7 @@
                         </div>
                         
                         <!-- Doppler Meteorological Weather Radar Visual Banner -->
-                        <div style="position: relative; width: 100%; height: 110px; border-radius: 12px; overflow: hidden; margin-bottom: 16px; border: 1px solid rgba(56, 189, 248, 0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <div style="position: relative; width: 100%; height: clamp(140px, 20vw, 160px); border-radius: 12px; overflow: hidden; margin-bottom: 16px; border: 1px solid rgba(56, 189, 248, 0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
                             <picture>
                                 <source srcset="assets/sections/meteorology-weather-radar.webp" type="image/webp">
                                 <img src="assets/sections/meteorology-weather-radar.jpg" alt="West Bengal Doppler Weather Radar Observatory and Monsoon Satellite" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
@@ -1128,10 +1128,10 @@
                         </div>
 
                         <!-- Bespoke Bengal Cultural & Festival Visual Banner (Matches Weather Radar Layout) -->
-                        <div style="position: relative; width: 100%; height: 110px; border-radius: 12px; overflow: hidden; margin-bottom: 14px; border: 1px solid rgba(244, 63, 94, 0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-                            <picture>
-                                <source srcset="assets/sections/bengal-cultural-calendar.webp" type="image/webp">
-                                <img src="assets/sections/bengal-cultural-calendar.jpg" alt="West Bengal Cultural Heritage &amp; Festival Calendar" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
+                        <div style="position: relative; width: 100%; height: clamp(140px, 20vw, 160px); border-radius: 12px; overflow: hidden; margin-bottom: 14px; border: 1px solid rgba(244, 63, 94, 0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                            <picture id="calendar-banner-picture">
+                                <source id="calendar-banner-source" srcset="assets/sections/bengal-cultural-calendar.webp" type="image/webp">
+                                <img id="calendar-banner-img" src="assets/sections/bengal-cultural-calendar.jpg" alt="West Bengal Cultural Heritage &amp; Festival Calendar" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s ease;" loading="lazy" decoding="async">
                             </picture>
                             <div style="position: absolute; inset: 0; background: linear-gradient(to right, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.45) 60%, transparent 100%); display: flex; align-items: center; padding: 0 16px;">
                                 <div>
@@ -1374,6 +1374,34 @@
                                 if (monthDisplay) {
                                     monthDisplay.textContent = `${monthNames[month]} ${year}`;
                                     monthDisplay.title = `${sampleBn.month} ${sampleBn.yearBn} বঙ্গাব্দ`;
+                                }
+
+                                const monthFestivalVisuals = [
+                                    { img: 'assets/places/shantiniketan-sonajhuri-haat.jpg', festival: 'পৌষ মেলা ও গঙ্গাসাগর স্নান • Poush Mela & Gangasagar', badge: 'শীতকালীন উৎসব' },
+                                    { img: 'assets/places/shantiniketan-upasana-griha.jpg', festival: 'শ্রী পঞ্চমী ও সরস্বতী পূজা • Saraswati Puja & Basanta Agamoni', badge: 'বসন্ত পঞ্চমী' },
+                                    { img: 'assets/places/shantiniketan-baul-singers.jpg', festival: 'বসন্ত উৎসব ও দোলযাত্রা • Basanta Utsav & Dol Jatra', badge: 'রঙের উৎসব' },
+                                    { img: 'assets/places/kolkata-princep-ghat.jpg', festival: 'পয়লা বৈশাখ ও শুভ নববর্ষ • Poila Boishakh Bengali New Year', badge: 'নববর্ষ সূচনা' },
+                                    { img: 'assets/places/darjeeling-tea-garden.jpg', festival: 'রবীন্দ্র জয়ন্তী ও পাহাড় ভ্রমণ • Rabindra Jayanti Celebrations', badge: 'সাংস্কৃতিক উৎসব' },
+                                    { img: 'assets/places/mayapur-chandrodaya-mandir.jpg', festival: 'মাহেশ ও মায়াপুর রথযাত্রা • Historic Rath Yatra Mahotsav', badge: 'পবিত্র রথযাত্রা' },
+                                    { img: 'assets/places/sundarbans-mangrove.jpg', festival: 'ঝুলন যাত্রা ও সুন্দরবন নৌভ্রমণ • Jhulan Yatra & Mangrove Cruise', badge: 'বর্ষাকালীন মেলা' },
+                                    { img: 'assets/places/bishnupur-rasmancha.jpg', festival: 'বিষ্ণুপুর ঝাঁপান মেলা ও জন্মাষ্টমী • Jhapan Mela & Janmashtami', badge: 'ঐতিহ্যবাহী মেলা' },
+                                    { img: 'assets/places/kolkata-durga-puja-pandal.jpg', festival: 'মহালয়া ও আন্তর্জাতিক দুর্গাপূজা • UNESCO Durga Puja Carnival', badge: 'ইউনেস্কো বিশ্ব ঐতিহ্য' },
+                                    { img: 'assets/places/kolkata-victoria-night.jpg', festival: 'কালীপূজা, দীপাবলি ও জগদ্ধাত্রী পূজা • Kali Puja, Diwali & Jagaddhatri', badge: 'আলোর উৎসব' },
+                                    { img: 'assets/places/coochbehar-palace.jpg', festival: 'উত্তরবঙ্গের রাজকীয় রাস মেলা • Historic Koch Dynasty Rash Mela', badge: 'রাজকীয় মেলা' },
+                                    { img: 'assets/places/darjeeling-batasia-loop.jpg', festival: 'দার্জিলিং তুষারপাত ও বড়দিন • Winter Hills & Christmas Festivities', badge: 'শীতের আমেজ' }
+                                ];
+
+                                const fv = monthFestivalVisuals[month];
+                                const bannerImg = document.getElementById('calendar-banner-img');
+                                const bannerSource = document.getElementById('calendar-banner-source');
+                                const seasonBadge = document.getElementById('bengali-season-badge');
+                                if (bannerImg && fv) {
+                                    bannerImg.src = fv.img;
+                                    if (bannerSource) bannerSource.srcset = fv.img.replace('.jpg', '.webp');
+                                    bannerImg.alt = fv.festival;
+                                }
+                                if (seasonBadge && fv) {
+                                    seasonBadge.innerHTML = `✨ <strong>${fv.badge}:</strong> ${fv.festival}`;
                                 }
 
                                 const firstDay = new Date(year, month, 1).getDay();
@@ -2374,7 +2402,7 @@
                         </div>
 
                         <!-- Authentic Eastern Railway Local EMU Visual Banner -->
-                        <div style="position: relative; width: 100%; height: clamp(140px, 18vw, 190px); border-radius: 12px; overflow: hidden; margin-bottom: 18px; border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <div style="position: relative; width: 100%; height: clamp(175px, 22vw, 230px); border-radius: 12px; overflow: hidden; margin-bottom: 18px; border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
                             <picture>
                                 <source srcset="assets/sections/transit-local-train.webp" type="image/webp">
                                 <img src="assets/sections/transit-local-train.jpg" alt="Eastern Railway EMU Suburban Local Train Platform in West Bengal" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
@@ -3294,7 +3322,7 @@
                     <div class="bus-portal-inner-card" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95)); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 16px; padding: clamp(12px, 2.8vw, 24px); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
                         
                         <!-- Authentic State Express Bus Visual Banner -->
-                        <div style="position: relative; width: 100%; height: clamp(140px, 18vw, 190px); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <div style="position: relative; width: 100%; height: clamp(175px, 22vw, 230px); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
                             <picture>
                                 <source srcset="assets/sections/transit-state-bus.webp" type="image/webp">
                                 <img src="assets/sections/transit-state-bus.jpg" alt="West Bengal State Transport SBSTC NBSTC AC Express Bus on Highway" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
@@ -4655,8 +4683,88 @@
                     </div>
                     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 20px;">
                         
+                        <!-- Card: Princep Ghat & Hooghly Sunset -->
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
+                                <img src="assets/places/kolkata-princep-ghat.jpg" alt="Princep Ghat Hooghly River Sunset" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
+                                <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
+                            </div>
+                            <div style="position: absolute; z-index: 2; backdrop-filter: blur(4px); box-shadow: 0 2px 8px rgba(0,0,0,0.5); top: 12px; right: 12px; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Riverside Heritage</div>
+                            <div class="place-name" style="color: white; font-weight: 700; font-size: 18px; margin-bottom: 4px; padding-right: 60px;">Princep Ghat &amp; Hooghly Riverfront</div>
+                            <div style="color: #38bdf8; font-size: 12px; font-weight: 600; margin-bottom: 12px;">Kolkata Promenade</div>
+                            <div style="color: var(--text-secondary); font-size: 14px; line-height: 1.6;">Built in 1843 with majestic Palladian Corinthian columns under Vidyasagar Setu. Experience unforgettable twilight wooden boat rides and golden hour river breezes.</div>
+                            <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between;">
+                                <a href="guide-kolkata-heritage.html" style="color: #38bdf8; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">📖 Read Field Guide &rarr;</a>
+                                <span style="color: #94a3b8; font-size: 12px; font-weight: 600;">Twilight Boating</span>
+                            </div>
+                        </div>
+
+                        <!-- Card: Batasia Loop & DHR -->
+                        <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
+                                <img src="assets/places/darjeeling-batasia-loop.jpg" alt="Batasia Loop Toy Train Darjeeling" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
+                                <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
+                            </div>
+                            <div style="position: absolute; z-index: 2; backdrop-filter: blur(4px); box-shadow: 0 2px 8px rgba(0,0,0,0.5); top: 12px; right: 12px; background: rgba(168, 85, 247, 0.15); color: #a855f7; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase;">UNESCO Railway</div>
+                            <div class="place-name" style="color: white; font-weight: 700; font-size: 18px; margin-bottom: 4px; padding-right: 60px;">Batasia Loop &amp; War Memorial</div>
+                            <div style="color: #38bdf8; font-size: 12px; font-weight: 600; margin-bottom: 12px;">Darjeeling Hills</div>
+                            <div style="color: var(--text-secondary); font-size: 14px; line-height: 1.6;">Legendary spiral railway engineering marvel offering 360-degree panoramic views of Mt. Kanchenjunga as the authentic steam Toy Train circles manicured alpine flower gardens.</div>
+                            <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between;">
+                                <a href="guide-darjeeling.html" style="color: #38bdf8; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">📖 Read Field Guide &rarr;</a>
+                                <span style="color: #94a3b8; font-size: 12px; font-weight: 600;">Steam Joyride</span>
+                            </div>
+                        </div>
+
+                        <!-- Card: Durga Puja Carnival -->
+                        <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
+                                <img src="assets/places/kolkata-durga-puja-pandal.jpg" alt="UNESCO Durga Puja Carnival" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
+                                <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
+                            </div>
+                            <div style="position: absolute; z-index: 2; backdrop-filter: blur(4px); box-shadow: 0 2px 8px rgba(0,0,0,0.5); top: 12px; right: 12px; background: rgba(234, 179, 8, 0.15); color: #fde047; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase;">UNESCO Carnival</div>
+                            <div class="place-name" style="color: white; font-weight: 700; font-size: 18px; margin-bottom: 4px; padding-right: 60px;">Durga Puja Heritage Art Trail</div>
+                            <div style="color: #38bdf8; font-size: 12px; font-weight: 600; margin-bottom: 12px;">Worldwide Cultural Capital</div>
+                            <div style="color: var(--text-secondary); font-size: 14px; line-height: 1.6;">Inscribed by UNESCO as Intangible Cultural Heritage. The planet's largest open-air art festival featuring illuminated monumental pandals, traditional Dhak drumming, and royal bonedi bari rituals.</div>
+                            <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between;">
+                                <a href="blog.html#guide-kolkata-heritage" style="color: #38bdf8; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">📖 Explore Circuits &rarr;</a>
+                                <span style="color: #94a3b8; font-size: 12px; font-weight: 600;">World Festival</span>
+                            </div>
+                        </div>
+
+                        <!-- Card: Bishnupur Madan Mohan -->
+                        <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
+                                <img src="assets/places/bishnupur-madan-mohan.jpg" alt="Madan Mohan Terracotta Temple" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
+                                <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
+                            </div>
+                            <div style="position: absolute; z-index: 2; backdrop-filter: blur(4px); box-shadow: 0 2px 8px rgba(0,0,0,0.5); top: 12px; right: 12px; background: rgba(245, 158, 11, 0.15); color: #f59e0b; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase;">1694 AD Terracotta</div>
+                            <div class="place-name" style="color: white; font-weight: 700; font-size: 18px; margin-bottom: 4px; padding-right: 60px;">Madan Mohan Temple Heritage</div>
+                            <div style="color: #38bdf8; font-size: 12px; font-weight: 600; margin-bottom: 12px;">Bishnupur, Bankura</div>
+                            <div style="color: var(--text-secondary); font-size: 14px; line-height: 1.6;">Consecrated in 1694 AD by Malla King Durjana Singh. Renowned for its curved 'chala' terracotta roof and intricately engraved bas-relief brick murals depicting the Mahabharata and Krishna Leela.</div>
+                            <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between;">
+                                <a href="guide-bishnupur.html" style="color: #38bdf8; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">📖 Read Field Guide &rarr;</a>
+                                <span style="color: #94a3b8; font-size: 12px; font-weight: 600;">Malla Dynastic</span>
+                            </div>
+                        </div>
+
+                        <!-- Card: Mayapur Chandrodaya -->
+                        <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
+                                <img src="assets/places/mayapur-chandrodaya-mandir.jpg" alt="ISKCON Chandrodaya Temple Mayapur" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
+                                <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
+                            </div>
+                            <div style="position: absolute; z-index: 2; backdrop-filter: blur(4px); box-shadow: 0 2px 8px rgba(0,0,0,0.5); top: 12px; right: 12px; background: rgba(34, 197, 94, 0.15); color: #22c55e; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Spiritual Wonder</div>
+                            <div class="place-name" style="color: white; font-weight: 700; font-size: 18px; margin-bottom: 4px; padding-right: 60px;">ISKCON Chandrodaya Temple</div>
+                            <div style="color: #38bdf8; font-size: 12px; font-weight: 600; margin-bottom: 12px;">Mayapur, Nadia</div>
+                            <div style="color: var(--text-secondary); font-size: 14px; line-height: 1.6;">Global headquarters of Gaudiya Vaishnavism situated at the sacred confluence of the Ganga and Jalangi rivers. Home to the monumental Vedic Planetarium and divine kirtans.</div>
+                            <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between;">
+                                <a href="blog.html#guide-mayapur" style="color: #38bdf8; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">📖 Read Field Guide &rarr;</a>
+                                <span style="color: #94a3b8; font-size: 12px; font-weight: 600;">Holy Confluence</span>
+                            </div>
+                        </div>
+                        
+                        <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/sundarbans-tiger.jpg" alt="Sundarbans National Park" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4671,7 +4779,7 @@
                         </div>
                         
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/darjeeling-kanchenjunga.jpg" alt="Darjeeling" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4686,7 +4794,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/kolkata-victoria-memorial.jpg" alt="Victoria Memorial & Kolkata Heritage" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4701,7 +4809,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/digha-beach.jpg" alt="Digha Beach" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4716,7 +4824,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/murshidabad-hazarduari.jpg" alt="Hazarduari Palace" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4731,7 +4839,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/mandarmani-beach.jpg" alt="Mandarmani Beach" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4747,7 +4855,7 @@
                         
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/kalimpong-deolo.jpg" alt="Kalimpong" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4762,7 +4870,7 @@
                         </div>
                         
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/bishnupur-rasmancha.jpg" alt="Bishnupur" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4777,7 +4885,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/coochbehar-palace.jpg" alt="Cooch Behar Palace" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4792,7 +4900,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/jaldapara-rhino.jpg" alt="Jaldapara National Park" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4807,7 +4915,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/howrah-belur-math.jpg" alt="Belur Math" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4822,7 +4930,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/kolkata-dakshineswar.jpg" alt="Dakshineswar Kali Temple" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4837,7 +4945,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/kurseong-hills.jpg" alt="Kurseong" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4852,7 +4960,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/gorumara-forest.jpg" alt="Gorumara National Park" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4867,7 +4975,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/mukutmanipur-dam.jpg" alt="Mukutmanipur" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4882,7 +4990,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/mayapur-chandrodaya.jpg" alt="Mayapur" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4897,7 +5005,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/gangani/gangani-1.png" alt="Gangani Grand Canyon" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4915,7 +5023,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/purulia-ayodhya-hills.jpg" alt="Ayodhya Hills & Purulia" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4930,7 +5038,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/jhargram-rajbari.jpg" alt="Jhargram Royal Palace" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4945,7 +5053,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/bengal-rosogolla.jpg" alt="Bengal GI Sweets Trail" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -4960,7 +5068,7 @@
                         </div>
 
                         <div class="fade-up place-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; position: relative; overflow: hidden;">
-                            <div style="margin: -20px -20px 14px -20px; height: 140px; overflow: hidden; position: relative;">
+                            <div style="margin: -20px -20px 14px -20px; height: 180px; overflow: hidden; position: relative;">
                                 <img src="assets/places/shantiniketan-upasana-griha.jpg" alt="Shantiniketan & Bolpur" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.65) 100%); pointer-events: none;"></div>
                             </div>
@@ -5811,6 +5919,15 @@
                      TAB 1: DARJEELING TEA CONNOISSEUR
                      ========================================== -->
                 <div id="vault-pane-tea" class="vault-pane" style="display: block;">
+                    <div style="position: relative; width: 100%; height: clamp(160px, 22vw, 220px); border-radius: 12px; overflow: hidden; margin-bottom: 16px; border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <img src="assets/places/darjeeling-tea-garden.jpg" alt="Makaibari & Happy Valley Darjeeling Tea Estates" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
+                        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.25) 60%, transparent 100%); display: flex; align-items: flex-end; padding: 12px 16px;">
+                            <div>
+                                <span style="font-size: 10px; background: rgba(56, 189, 248, 0.25); color: #38bdf8; font-weight: 800; padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.5); text-transform: uppercase;">Champagne of Teas</span>
+                                <div style="color: #ffffff; font-size: 14px; font-weight: 800; font-family: var(--font-title, sans-serif); margin-top: 2px;">High-Altitude Himalayan Organic Tea Valleys</div>
+                            </div>
+                        </div>
+                    </div>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 16px;">
                         
                         <!-- 4 Seasonal Flushes -->
@@ -5851,6 +5968,15 @@
                      TAB 2: FOREIGN FOODIE & STREET EATS
                      ========================================== -->
                 <div id="vault-pane-food" class="vault-pane" style="display: none;">
+                    <div style="position: relative; width: 100%; height: clamp(160px, 22vw, 220px); border-radius: 12px; overflow: hidden; margin-bottom: 16px; border: 1px solid rgba(244, 63, 94, 0.35); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <img src="assets/places/bengal-sandesh.jpg" alt="Traditional Bengali Sweets & Culinary Trail" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
+                        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.25) 60%, transparent 100%); display: flex; align-items: flex-end; padding: 12px 16px;">
+                            <div>
+                                <span style="font-size: 10px; background: rgba(244, 63, 94, 0.25); color: #fb7185; font-weight: 800; padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(244, 63, 94, 0.5); text-transform: uppercase;">Culinary Paradise</span>
+                                <div style="color: #ffffff; font-size: 14px; font-weight: 800; font-family: var(--font-title, sans-serif); margin-top: 2px;">Kolkata Biryani, Ilish Bhapa &amp; 200-Year Mishti Masterworks</div>
+                            </div>
+                        </div>
+                    </div>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 16px;">
                         
                         <!-- Iconic Dishes -->
@@ -5891,6 +6017,15 @@
                      TAB 3: BENGAL'S 3 UNESCO WORLD HERITAGE SITES
                      ========================================== -->
                 <div id="vault-pane-unesco" class="vault-pane" style="display: none;">
+                    <div style="position: relative; width: 100%; height: clamp(160px, 22vw, 220px); border-radius: 12px; overflow: hidden; margin-bottom: 16px; border: 1px solid rgba(234, 179, 8, 0.35); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <img src="assets/places/darjeeling-toy-train.jpg" alt="Darjeeling Himalayan Railway UNESCO World Heritage" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
+                        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.25) 60%, transparent 100%); display: flex; align-items: flex-end; padding: 12px 16px;">
+                            <div>
+                                <span style="font-size: 10px; background: rgba(234, 179, 8, 0.25); color: #fde047; font-weight: 800; padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(234, 179, 8, 0.5); text-transform: uppercase;">Global Treasures</span>
+                                <div style="color: #ffffff; font-size: 14px; font-weight: 800; font-family: var(--font-title, sans-serif); margin-top: 2px;">Bengal's 3 UNESCO World Heritage Sites (DHR, Sundarbans, Santiniketan)</div>
+                            </div>
+                        </div>
+                    </div>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 16px;">
                         
                         <!-- Site 1: DHR -->
@@ -5921,6 +6056,15 @@
                      TAB 4: WILDLIFE & SAFARI BLUEPRINT
                      ========================================== -->
                 <div id="vault-pane-wildlife" class="vault-pane" style="display: none;">
+                    <div style="position: relative; width: 100%; height: clamp(160px, 22vw, 220px); border-radius: 12px; overflow: hidden; margin-bottom: 16px; border: 1px solid rgba(34, 197, 94, 0.35); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <img src="assets/places/jaldapara-rhino.jpg" alt="Jaldapara Rhino Safari Dooars Forests" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
+                        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.25) 60%, transparent 100%); display: flex; align-items: flex-end; padding: 12px 16px;">
+                            <div>
+                                <span style="font-size: 10px; background: rgba(34, 197, 94, 0.25); color: #4ade80; font-weight: 800; padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(34, 197, 94, 0.5); text-transform: uppercase;">Wildlife Sanctuaries</span>
+                                <div style="color: #ffffff; font-size: 14px; font-weight: 800; font-family: var(--font-title, sans-serif); margin-top: 2px;">Indian One-Horned Rhinoceros &amp; Royal Bengal Tiger Safaris</div>
+                            </div>
+                        </div>
+                    </div>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 16px;">
                         
                         <!-- Sundarbans -->
@@ -5957,6 +6101,15 @@
                      TAB 5: AUTHENTIC SOUVENIRS & BISWA BANGLA
                      ========================================== -->
                 <div id="vault-pane-crafts" class="vault-pane" style="display: none;">
+                    <div style="position: relative; width: 100%; height: clamp(160px, 22vw, 220px); border-radius: 12px; overflow: hidden; margin-bottom: 16px; border: 1px solid rgba(168, 85, 247, 0.35); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <img src="assets/places/purulia-chhau-mask.jpg" alt="Purulia Chhau Mask & Terracotta Handicrafts" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
+                        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.25) 60%, transparent 100%); display: flex; align-items: flex-end; padding: 12px 16px;">
+                            <div>
+                                <span style="font-size: 10px; background: rgba(168, 85, 247, 0.25); color: #c084fc; font-weight: 800; padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(168, 85, 247, 0.5); text-transform: uppercase;">Living Heritage</span>
+                                <div style="color: #ffffff; font-size: 14px; font-weight: 800; font-family: var(--font-title, sans-serif); margin-top: 2px;">Ancient Dokra Metalcraft, Chhau Masks &amp; Baluchari Silk Weaving</div>
+                            </div>
+                        </div>
+                    </div>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 16px;">
                         
                         <!-- Top Souvenirs -->
@@ -6085,7 +6238,7 @@
                         <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(234, 179, 8, 0.2); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;">
                             <div>
                                 ${item.image ? `
-                                    <div style="width: 100%; height: 130px; border-radius: 8px; overflow: hidden; margin-bottom: 10px;">
+                                    <div style="width: 100%; height: 165px; border-radius: 8px; overflow: hidden; margin-bottom: 10px;">
                                         <img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                     </div>
                                 ` : ''}
@@ -6138,7 +6291,7 @@
                 </div>
 
                 <!-- Official Emergency Response Visual Banner -->
-                <div style="position: relative; width: 100%; height: clamp(140px, 20vw, 210px); border-radius: 14px; overflow: hidden; margin-bottom: 20px; border: 1.5px solid rgba(239, 68, 68, 0.45); box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);">
+                <div style="position: relative; width: 100%; height: clamp(175px, 24vw, 250px); border-radius: 14px; overflow: hidden; margin-bottom: 20px; border: 1.5px solid rgba(239, 68, 68, 0.45); box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);">
                     <picture>
                         <source srcset="assets/sections/emergency-sos-response.webp" type="image/webp">
                         <img src="assets/sections/emergency-sos-response.jpg" alt="West Bengal State Emergency Command Response Service 112 Vehicles and Responders" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
@@ -6374,7 +6527,7 @@
                     <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95)); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
                         
                         <!-- Official WBTDCL Govt Lodges Visual Banner -->
-                        <div style="position: relative; width: 100%; height: clamp(140px, 18vw, 190px); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <div style="position: relative; width: 100%; height: clamp(175px, 22vw, 230px); border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
                             <picture>
                                 <source srcset="assets/sections/govt-lodges-wbtdcl.webp" type="image/webp">
                                 <img src="assets/sections/govt-lodges-wbtdcl.jpg" alt="Official West Bengal Tourism Development Corporation WBTDCL Heritage Tourist Lodge" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
@@ -6696,7 +6849,7 @@
                                     <div class="train-card visible" style="margin-bottom: 0; background: rgba(15, 23, 42, 0.85); display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;">
                                         <div>
                                             ${lodge.image ? `
-                                                <div style="width: 100%; height: 130px; border-radius: 8px; overflow: hidden; margin-bottom: 12px;">
+                                                <div style="width: 100%; height: 165px; border-radius: 8px; overflow: hidden; margin-bottom: 12px;">
                                                     <img src="${lodge.image}" alt="${lodge.name}" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
                                                 </div>
                                             ` : ''}
@@ -6781,7 +6934,7 @@
                 </div>
 
                 <!-- Backpacker Trip Planning Desk Visual Banner -->
-                <div style="position: relative; width: 100%; height: clamp(140px, 20vw, 210px); border-radius: 14px; overflow: hidden; margin-bottom: 24px; border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                <div style="position: relative; width: 100%; height: clamp(175px, 24vw, 250px); border-radius: 14px; overflow: hidden; margin-bottom: 24px; border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
                     <picture>
                         <source srcset="assets/sections/trip-budget-planner.webp" type="image/webp">
                         <img src="assets/sections/trip-budget-planner.jpg" alt="Bengal Explorer Trip Budget Planner and Topographical Field Map" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async">
