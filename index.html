@@ -630,7 +630,6 @@
                 <a href="#squad-section" class="header__nav-link">👑 Squad</a>
                 <a href="blog.html" class="header__nav-link" style="color: #d4af37; font-weight: 700;">📖 Blog</a>
                 <a href="#about-section" class="header__nav-link">ℹ️ About</a>
-                <a href="#" onclick="openCompareModal(); return false;" class="header__nav-link">⚔️ Compare</a>
                 <a href="https://www.facebook.com/share/1Z9HSMDvAV/" target="_blank" class="header__nav-link" style="color: #3b82f6;" rel="noopener noreferrer">📘 FB</a>
                 <a href="https://www.instagram.com/bibek.cs?igsh=MXFxdjNxa25oNGFodA==" target="_blank" class="header__nav-link" style="color: #f43f5e;" rel="noopener noreferrer">📸 Insta</a>
             </nav>
@@ -6612,8 +6611,104 @@
 
             document.addEventListener('DOMContentLoaded', () => {
                 switchDistrictEmergency('medinipur');
+                renderSosDistricts();
             });
             switchDistrictEmergency('medinipur');
+
+            function sendLiveGpsSos() {
+                const statusVal = document.getElementById('hud-status-val');
+                if (navigator.geolocation) {
+                    if (statusVal) statusVal.textContent = 'Acquiring GPS... 📡';
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            const lat = position.coords.latitude.toFixed(5);
+                            const lng = position.coords.longitude.toFixed(5);
+                            const mapsUrl = `https://maps.google.com/?q=${lat},${lng}`;
+                            const msg = encodeURIComponent(`🚨 EMERGENCY SOS from West Bengal Traveler!\nI need urgent emergency assistance.\nMy Live GPS Location: ${mapsUrl}`);
+                            const whatsappUrl = `https://api.whatsapp.com/send?text=${msg}`;
+                            window.open(whatsappUrl, '_blank');
+                            if (statusVal) statusVal.textContent = 'Cruising 🟢';
+                        },
+                        (err) => {
+                            console.warn('Geolocation failed for SOS, sending fallback:', err);
+                            const msg = encodeURIComponent(`🚨 EMERGENCY SOS from West Bengal Traveler!\nI am in an emergency situation in West Bengal and require immediate assistance!`);
+                            const whatsappUrl = `https://api.whatsapp.com/send?text=${msg}`;
+                            window.open(whatsappUrl, '_blank');
+                            if (statusVal) statusVal.textContent = 'Cruising 🟢';
+                        },
+                        { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+                    );
+                } else {
+                    const msg = encodeURIComponent(`🚨 EMERGENCY SOS from West Bengal Traveler!\nI am in an emergency situation in West Bengal and require immediate assistance!`);
+                    const whatsappUrl = `https://api.whatsapp.com/send?text=${msg}`;
+                    window.open(whatsappUrl, '_blank');
+                }
+            }
+
+            const WB_ALL_23_DISTRICT_EMERGENCY = [
+                { district: "Alipurduar", hq: "Alipurduar", control: "03564-255555", police: "03564-255100", hosp: "Alipurduar District Hospital" },
+                { district: "Bankura", hq: "Bankura (Bishnupur)", control: "03242-250324", police: "03242-250222", hosp: "Bankura Sammilani Medical College" },
+                { district: "Birbhum", hq: "Suri & Bolpur", control: "03462-255222", police: "03462-255301", hosp: "Suri Sadar Hospital & Bolpur Sub-Div" },
+                { district: "Cooch Behar", hq: "Cooch Behar", control: "03582-227007", police: "03582-222333", hosp: "MJN Medical College & Hospital" },
+                { district: "Dakshin Dinajpur", hq: "Balurghat", control: "03522-255644", police: "03522-255222", hosp: "Balurghat District Hospital" },
+                { district: "Darjeeling", hq: "Darjeeling & Siliguri", control: "0354-2255749", police: "0354-2252222", hosp: "Darjeeling District Hospital & NBMCH" },
+                { district: "Hooghly", hq: "Chinsurah", control: "033-26802119", police: "033-26802315", hosp: "Imambara Sadar Hospital" },
+                { district: "Howrah", hq: "Howrah & Uluberia", control: "033-26411212", police: "033-26411444", hosp: "Howrah District Hospital" },
+                { district: "Jalpaiguri", hq: "Jalpaiguri", control: "03561-230007", police: "03561-230466", hosp: "Jalpaiguri Super Speciality Hospital" },
+                { district: "Jhargram", hq: "Jhargram (Junglemahal)", control: "03221-255100", police: "03221-255102", hosp: "Jhargram Super Speciality Hospital" },
+                { district: "Kalimpong", hq: "Kalimpong", control: "03552-255222", police: "03552-255100", hosp: "Kalimpong Sub-Divisional Hospital" },
+                { district: "Kolkata", hq: "Lalbazar Central", control: "033-22143230", police: "100 / 112", hosp: "SSKM Hospital & Calcutta Medical College" },
+                { district: "Malda", hq: "English Bazar", control: "03512-252324", police: "03512-252525", hosp: "Malda Medical College & Hospital" },
+                { district: "Murshidabad", hq: "Berhampore", control: "03482-250003", police: "03482-251222", hosp: "Murshidabad Medical College" },
+                { district: "Nadia", hq: "Krishnanagar & Kalyani", control: "03472-251201", police: "03472-252222", hosp: "Kalyani AIIMS & Krishnanagar District" },
+                { district: "North 24 Parganas", hq: "Barasat & Bidhannagar", control: "033-25846200", police: "033-25846211", hosp: "Barasat District Hospital" },
+                { district: "Paschim Bardhaman", hq: "Asansol & Durgapur", control: "0341-2250100", police: "0341-2250111", hosp: "Asansol District Hospital" },
+                { district: "Paschim Medinipur", hq: "Medinipur & Garhbeta", control: "03222-275344", police: "03222-275222", hosp: "Midnapore Medical College & Hospital" },
+                { district: "Purba Bardhaman", hq: "Burdwan City", control: "0342-2662495", police: "0342-2662222", hosp: "Burdwan Medical College & Hospital" },
+                { district: "Purba Medinipur", hq: "Tamluk & Digha Coastal", control: "03228-263013", police: "03228-263222", hosp: "Tamluk District & Digha State General" },
+                { district: "Purulia", hq: "Purulia Sadar", control: "03252-222302", police: "03252-222222", hosp: "Deben Mahato Medical College" },
+                { district: "South 24 Parganas", hq: "Alipore & Sundarbans", control: "033-24791555", police: "033-24791560", hosp: "Canning Sub-Div & Diamond Harbour Hospital" },
+                { district: "Uttar Dinajpur", hq: "Raiganj", control: "03523-252222", police: "03523-252100", hosp: "Raiganj Medical College & Hospital" }
+            ];
+
+            function renderSosDistricts(filterText = '') {
+                const grid = document.getElementById('sos-districts-grid');
+                if (!grid) return;
+                const query = filterText.toLowerCase().trim();
+                const filtered = WB_ALL_23_DISTRICT_EMERGENCY.filter(item => 
+                    item.district.toLowerCase().includes(query) || 
+                    item.hq.toLowerCase().includes(query) ||
+                    item.hosp.toLowerCase().includes(query)
+                );
+                
+                if (filtered.length === 0) {
+                    grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 20px; color: #94a3b8; font-size: 13px;">No matching district found. Try searching e.g. "Medinipur", "Darjeeling", or "Bankura".</div>';
+                    return;
+                }
+
+                grid.innerHTML = filtered.map(item => `
+                    <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px;">
+                                <strong style="color: #ffffff; font-size: 13.5px;">${item.district}</strong>
+                                <span style="font-size: 10px; color: #38bdf8; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.25); padding: 1px 6px; border-radius: 4px;">${item.hq}</span>
+                            </div>
+                            <div style="font-size: 11.5px; color: #94a3b8; margin-bottom: 2px;">🏥 ${item.hosp}</div>
+                        </div>
+                        <div style="display: flex; gap: 6px; margin-top: 10px;">
+                            <a href="tel:${item.police.replace(/[^0-9]/g, '')}" style="flex: 1; text-align: center; background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.35); padding: 6px 4px; border-radius: 6px; font-size: 11px; font-weight: 700; text-decoration: none;">🚔 Police: ${item.police}</a>
+                            <a href="tel:${item.control.replace(/[^0-9]/g, '')}" style="flex: 1; text-align: center; background: rgba(56,189,248,0.15); color: #38bdf8; border: 1px solid rgba(56,189,248,0.35); padding: 6px 4px; border-radius: 6px; font-size: 11px; font-weight: 700; text-decoration: none;">📞 Control</a>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            function searchSosDistricts() {
+                const input = document.getElementById('sos-district-search');
+                const val = input ? input.value : '';
+                renderSosDistricts(val);
+            }
+            renderSosDistricts();
         </script>
 
         
@@ -10030,64 +10125,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// ======================================
-// SQUAD LEGENDS COMPARISON TOOL LOGIC
-// ======================================
-const compareOverlay = document.getElementById('compare-overlay');
-const compareSelect1 = document.getElementById('compare-select-1');
-const compareSelect2 = document.getElementById('compare-select-2');
-const compareCard1 = document.getElementById('compare-card-1');
-const compareCard2 = document.getElementById('compare-card-2');
-
-function openCompareModal() {
-    if (!compareOverlay || !compareSelect1 || !compareSelect2) return;
-    playClickSound();
-    if (!compareSelect1.children.length) {
-        MEMBERS.forEach((m, idx) => {
-            const opt1 = new Option(`${m.name} (${m.tag})`, m.id);
-            const opt2 = new Option(`${m.name} (${m.tag})`, m.id);
-            compareSelect1.add(opt1);
-            compareSelect2.add(opt2);
-        });
-        compareSelect1.selectedIndex = 0;
-        compareSelect2.selectedIndex = 1;
-    }
-    updateComparison();
-    compareOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeCompareModal() {
-    if (!compareOverlay) return;
-    compareOverlay.classList.remove('open');
-    document.body.style.overflow = '';
-}
-
-function updateComparison() {
-    if (!compareSelect1 || !compareSelect2) return;
-    playClickSound();
-    const id1 = compareSelect1.value;
-    const id2 = compareSelect2.value;
-    
-    const m1 = MEMBERS.find(m => m.id === id1);
-    const m2 = MEMBERS.find(m => m.id === id2);
-
-    if (m1 && compareCard1) renderCompareCard(m1, compareCard1);
-    if (m2 && compareCard2) renderCompareCard(m2, compareCard2);
-}
-
-function renderCompareCard(m, cardEl) {
-    const strengthsHTML = (m.strengths || []).map(s => `<li style="font-size: 11.5px; margin-bottom: 4px; text-align: left;">🌟 ${s}</li>`).join('');
-    cardEl.innerHTML = `
-        <img onerror="this.onerror=null; this.src='assets/gangani/gangani-1.png';" src="${m.photo}" alt="${m.name}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 8px; border: 2px solid #38bdf8;" loading="lazy" decoding="async">
-        <h3 style="font-size: 18px; color: #fff; font-family: var(--font-title);">${m.name}</h3>
-        <div style="font-size: 12px; color: #38bdf8; font-weight: 700; margin-bottom: 6px;">${m.prestigeTitle || m.tag}</div>
-        <div style="font-size: 11px; background: rgba(234, 179, 8, 0.15); color: #eab308; padding: 2px 8px; border-radius: 99px; display: inline-block; margin-bottom: 10px;">👑 ${m.distinction || 'HONORED MEMBER'}</div>
-        <div style="font-style: italic; font-size: 12px; color: #cbd5e1; margin-bottom: 12px;">"${m.quote}"</div>
-        <ul style="list-style: none; padding: 0;">${strengthsHTML}</ul>
-    `;
-}
-
 // ================================================================
 // 🌐 MASTER GLOBAL REAL-TIME CLOUD HYPES ENGINE (MULTI-DEVICE SYNC)
 // Architect: Bibek Mahata (bibek.cs)
@@ -11603,7 +11640,7 @@ document.addEventListener('keydown', (e) => {
                 cancelAnimationFrame(animationFrameId);
                 animationFrameId = null;
             }
-            const mapStatus = document.getElementById('map-status');
+            const mapStatus = document.getElementById('integrated-map-status') || document.getElementById('map-status');
             if (mapStatus) {
                 mapStatus.textContent = '📍 User location reset. Click any destination to navigate.';
                 mapStatus.style.background = 'rgba(56, 189, 248, 0.9)';
