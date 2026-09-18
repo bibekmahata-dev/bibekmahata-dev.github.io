@@ -9067,230 +9067,6 @@
     <!-- ========== JAVASCRIPT ========== -->
     <script>
 // ======================================
-// BENGAL TRAVEL PERSONA QUIZ ENGINE (100% ENGLISH PLACE-WISE MASTER BANK)
-// ======================================
-const HQ_MASTER_QUESTIONS = [
-    {
-        q: "Which iconic West Bengal landscape calls to you the most?",
-        opts: [
-            { text: "Misty Himalayan ridges & pine forests of Darjeeling & Kalimpong", type: "adventure" },
-            { text: "Ancient red-soil sal forests & rugged canyons of Garhbeta & Jhargram", type: "chill" },
-            { text: "Centuries-old terracotta temple complexes of Bishnupur & Gour", type: "heritage" },
-            { text: "Endless golden beaches of Digha & the tidal mangroves of Sundarbans", type: "coastal" }
-        ]
-    },
-    {
-        q: "What is your dream outdoor activity on a weekend getaway?",
-        opts: [
-            { text: "High-altitude hiking or off-road motorcycling on scenic hill passes", type: "adventure" },
-            { text: "Peaceful forest trail walking and village bird watching", type: "chill" },
-            { text: "Exploring colonial palaces, zamindari rajbaris, and antique museums", type: "heritage" },
-            { text: "Sunset speedboating or relaxing by the sound of crashing ocean waves", type: "coastal" }
-        ]
-    },
-    {
-        q: "How do you prefer to journey across Bengal's travel routes?",
-        opts: [
-            { text: "Two-wheeler motorcycle road trip across winding national highways", type: "adventure" },
-            { text: "Window-seat scenic local train journey with tea sellers & countryside views", type: "chill" },
-            { text: "Historic heritage toy train or chartered AC bus tour with travel guides", type: "heritage" },
-            { text: "Wooden boat cruise through river estuaries and mangrove creeks", type: "coastal" }
-        ]
-    },
-    {
-        q: "What must-have gear is packed at the top of your travel bag?",
-        opts: [
-            { text: "Navigation GPS, multi-tool kit, and high-altitude trekking boots", type: "adventure" },
-            { text: "Noise-cancelling headphones, travel journal, and comfortable cotton fits", type: "chill" },
-            { text: "DSLR camera with wide-angle lens for architecture and cultural folklore", type: "heritage" },
-            { text: "Polarized sunglasses, beachwear, and waterproof dry bag", type: "coastal" }
-        ]
-    },
-    {
-        q: "Which Bengal travel food experience gets you most excited?",
-        opts: [
-            { text: "Steaming hot Darjeeling momos, spicy thukpa & fresh mountain tea", type: "adventure" },
-            { text: "Traditional earthen-pot mutton kasha served on fresh sal leaves in a village", type: "chill" },
-            { text: "Legendary heritage sweets: Shaktigarh Langcha, Bardhaman Mihidana & Sandesh", type: "heritage" },
-            { text: "Freshly fried pomfret / hilsa with green chillies & chilled tender coconut", type: "coastal" }
-        ]
-    },
-    {
-        q: "How would you love to spend your travel evening?",
-        opts: [
-            { text: "Gathering around a brisk hillside campfire with acoustic songs & stories", type: "adventure" },
-            { text: "Stargazing under pitch-black skies in the quiet depths of a sal forest", type: "chill" },
-            { text: "Listening to evening conch shells, Baul folk music, and temple aarti", type: "heritage" },
-            { text: "Walking barefoot along the misty high-tide shoreline under moonlight", type: "coastal" }
-        ]
-    },
-    {
-        q: "What kind of travel photograph do you cherish the most?",
-        opts: [
-            { text: "Epic drone panorama over the red earth canyons of Gangani or Kanchenjunga", type: "adventure" },
-            { text: "Atmospheric golden-hour portrait inside a quiet bamboo grove or tea estate", type: "chill" },
-            { text: "Detailed macro photography of terracotta wall reliefs and historic gates", type: "heritage" },
-            { text: "Silhouette of fishing boats heading into a glowing ocean sunset", type: "coastal" }
-        ]
-    },
-    {
-        q: "When returning home from a journey, what do you cherish most?",
-        opts: [
-            { text: "The adrenaline rush of conquering challenging roads and rocky terrain", type: "adventure" },
-            { text: "Deep mental tranquility, peaceful thoughts, and refreshed energy", type: "chill" },
-            { text: "Enriching knowledge of Bengal's deep history, crafts, and heritage lore", type: "heritage" },
-            { text: "Unforgettable memories of open sea horizon and tidal river adventures", type: "coastal" }
-        ]
-    }
-];
-
-const HQ_RESULTS = {
-    adventure: {
-        title: "🏔️ Highland & Canyon Adventurer",
-        spots: "Gangani Grand Canyon (Garhbeta) • Sandakphu Ridge • Darjeeling Hill Tracks",
-        members: ["gobinda", "arka", "anik_sar"],
-        reason: "You thrive on speed, altitude, and rugged trails! From the dramatic red canyons of Garhbeta to high Himalayan ridges, your journey is defined by bold discovery."
-    },
-    chill: {
-        title: "🌿 Serene Forest & Countryside Wanderer",
-        spots: "Garhbeta Sal Forests • Santiniketan • Purulia Ayodhya Hills",
-        members: ["aritra", "khoushik", "suraj", "sibam"],
-        reason: "You seek peaceful nature, rustic countryside, and meaningful conversations. The whispering sal trees, clay lanes, and starry skies are your sanctuary."
-    },
-    heritage: {
-        title: "🏛️ Bengal Heritage & Architecture Connoisseur",
-        spots: "Bishnupur Terracotta Temples • Murshidabad Hazarduari • Kolkata Colonial Heritage",
-        members: ["bibek", "subarna", "shouvik", "surya"],
-        reason: "You are inspired by history, classical arts, and timeless architecture. Bengal's rich centuries of zamindari palaces, terracotta carvings, and lore resonate with you."
-    },
-    coastal: {
-        title: "🌊 Coastal Horizon & Mangrove Explorer",
-        spots: "Digha Coastline • Mandarmani Marine Drive • Sundarbans Mangrove Biosphere",
-        members: ["rudranil_pal", "rudranil_dey", "abhishek", "subhajeet", "anik"],
-        reason: "You are drawn to ocean breezes, endless water horizons, and rich biodiversity. Crashing waves, red crab beaches, and mangrove riverways are your ultimate escape."
-    }
-};
-
-let hqCurrentQ = 0;
-let hqActiveQuestions = [];
-let hqScores = { adventure: 0, chill: 0, heritage: 0, coastal: 0 };
-
-function initQuizQuestions() {
-    const shuffled = [...HQ_MASTER_QUESTIONS].sort(() => 0.5 - Math.random());
-    hqActiveQuestions = shuffled.slice(0, 8);
-    hqCurrentQ = 0;
-    hqScores = { adventure: 0, chill: 0, heritage: 0, coastal: 0 };
-}
-
-function renderHangoutQuestion() {
-    if (!hqActiveQuestions || hqActiveQuestions.length === 0) initQuizQuestions();
-    
-    const q = hqActiveQuestions[hqCurrentQ];
-    if (!q) return;
-    
-    const progressPercent = (hqCurrentQ / hqActiveQuestions.length) * 100;
-    const progressText = document.getElementById('hq-progress-text');
-    const matchRate = document.getElementById('hq-match-rate');
-    const bar = document.getElementById('hq-progress-bar');
-    
-    if (progressText) progressText.textContent = `Question ${hqCurrentQ + 1} of ${hqActiveQuestions.length}`;
-    if (matchRate) matchRate.textContent = `${Math.round(progressPercent)}%`;
-    if (bar) bar.style.width = `${progressPercent}%`;
-
-    const qEl = document.getElementById('hq-question');
-    if (qEl) qEl.textContent = q.q;
-    
-    const optBox = document.getElementById('hq-options');
-    if (!optBox) return;
-    optBox.innerHTML = '';
-    
-    q.opts.forEach((opt, index) => {
-        const btn = document.createElement('button');
-        btn.className = 'hq-btn';
-        btn.innerHTML = `<span style="opacity: 0.8; font-weight: 700; color: #38bdf8; margin-right: 8px;">${['A','B','C','D'][index]}.</span> ${opt.text}`;
-        
-        btn.onclick = () => {
-            if (hqScores[opt.type] !== undefined) hqScores[opt.type]++;
-            hqCurrentQ++;
-            if (typeof playClickSound === 'function') playClickSound();
-            
-            if (hqCurrentQ >= hqActiveQuestions.length) {
-                if (bar) bar.style.width = `100%`;
-                if (matchRate) matchRate.textContent = `100%`;
-                triggerQuizSuspense();
-            } else {
-                renderHangoutQuestion();
-            }
-        };
-        optBox.appendChild(btn);
-    });
-}
-
-function triggerQuizSuspense() {
-    const qArea = document.getElementById('hq-question-area');
-    const lArea = document.getElementById('hq-loading-area');
-    if (qArea) qArea.style.display = 'none';
-    if (lArea) lArea.style.display = 'block';
-    
-    setTimeout(() => {
-        if (lArea) lArea.style.display = 'none';
-        showHangoutResultGamified();
-    }, 1200);
-}
-
-function showHangoutResultGamified() {
-    const rArea = document.getElementById('hq-result-area');
-    if (rArea) rArea.style.display = 'block';
-    
-    let maxType = 'adventure';
-    let maxScore = -1;
-    for (const [type, score] of Object.entries(hqScores)) {
-        if (score > maxScore) { maxScore = score; maxType = type; }
-    }
-    
-    const result = HQ_RESULTS[maxType] || HQ_RESULTS['adventure'];
-    const matchId = result.members[Math.floor(Math.random() * result.members.length)];
-    const member = (typeof MEMBERS !== 'undefined' && Array.isArray(MEMBERS)) ? (MEMBERS.find(m => m.id === matchId) || MEMBERS[0]) : null;
-    
-    const titleEl = document.getElementById('hq-persona-title');
-    const spotsText = document.getElementById('hq-spots-text');
-    const photoEl = document.getElementById('hq-result-photo');
-    const nameEl = document.getElementById('hq-result-name');
-    const tagEl = document.getElementById('hq-result-tag');
-    const reasonEl = document.getElementById('hq-result-reason');
-    
-    if (titleEl) titleEl.textContent = result.title;
-    if (spotsText) spotsText.textContent = result.spots;
-    if (member) {
-        if (photoEl) photoEl.src = member.photo;
-        if (nameEl) nameEl.textContent = member.name;
-        if (tagEl) tagEl.textContent = member.tag + ' • ' + (member.prestigeTitle || '');
-    }
-    if (reasonEl) reasonEl.textContent = `"${result.reason}"`;
-    
-    if (typeof playFanfareSound === 'function') playFanfareSound();
-}
-
-function restartHangoutQuiz() {
-    initQuizQuestions();
-    const qArea = document.getElementById('hq-question-area');
-    const rArea = document.getElementById('hq-result-area');
-    const lArea = document.getElementById('hq-loading-area');
-    if (qArea) qArea.style.display = 'block';
-    if (rArea) rArea.style.display = 'none';
-    if (lArea) lArea.style.display = 'none';
-    
-    const bar = document.getElementById('hq-progress-bar');
-    if (bar) bar.style.width = `0%`;
-    renderHangoutQuestion();
-    if (typeof playClickSound === 'function') playClickSound();
-}
-
-// Auto init quiz
-initQuizQuestions();
-renderHangoutQuestion();
-
-// ======================================
 // ELITE PRESTIGE SYSTEMS
 // ======================================
 // 1. Splash Screen removed for performance
@@ -10814,22 +10590,27 @@ const categoryPills = document.getElementById('category-pills');
 let activeCategory = 'all';
 
 function filterMembers() {
-    const query = searchInput.value.toLowerCase().trim();
+    const grid = document.getElementById('squad-grid') || document.querySelector('.members-grid');
+    if (!grid) return;
+    const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
     const cards = grid.querySelectorAll('.member-card');
     let visibleCount = 0;
 
     cards.forEach(card => {
-        const matchesSearch = !query || card.dataset.searchable.includes(query);
-        const matchesCategory = activeCategory === 'all' || card.dataset.tag === activeCategory;
-        const matchesSpot = activeSpotFilter === 'all' || card.dataset.location.toLowerCase().includes(activeSpotFilter.toLowerCase());
+        const searchable = card.dataset.searchable || '';
+        const tag = card.dataset.tag || '';
+        const location = card.dataset.location || '';
+        const matchesSearch = !query || searchable.includes(query);
+        const matchesCategory = activeCategory === 'all' || tag === activeCategory;
+        const matchesSpot = typeof activeSpotFilter === 'undefined' || activeSpotFilter === 'all' || location.toLowerCase().includes(activeSpotFilter.toLowerCase());
         const isVisible = matchesSearch && matchesCategory && matchesSpot;
 
         card.classList.toggle('hidden', !isVisible);
         if (isVisible) visibleCount++;
     });
 
-    countEl.textContent = visibleCount;
-    noResults.classList.toggle('visible', visibleCount === 0);
+    if (countEl) countEl.textContent = visibleCount;
+    if (noResults) noResults.classList.toggle('visible', visibleCount === 0);
 }
 
 if (searchInput) searchInput.addEventListener('input', filterMembers);
