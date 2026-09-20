@@ -4,8 +4,8 @@
    Version: 1.0.0
    ============================================================================== */
 
-const CACHE_NAME = 'bengal-explorers-v117';
-const DATA_CACHE_NAME = 'bengal-data-cache-v117';
+const CACHE_NAME = 'bengal-explorers-v118';
+const DATA_CACHE_NAME = 'bengal-data-cache-v118';
 
 // Critical Core Assets for Offline App Shell
 const APP_SHELL = [
@@ -100,7 +100,15 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // Strategy A: Weather & Live APIs (Network First with Cache Fallback)
+    // Strategy A: Live Dynamic APIs (Counter, Geolocation, Currency) — Always Live Network
+    if (requestUrl.hostname.includes('jasoncameron.dev') ||
+        requestUrl.hostname.includes('ipwho.is') ||
+        requestUrl.hostname.includes('er-api.com')) {
+        event.respondWith(fetch(event.request));
+        return;
+    }
+
+    // Weather & Regional News (Network First with Offline Cache Fallback)
     if (requestUrl.hostname.includes('open-meteo.com') || requestUrl.hostname.includes('rss2json.com')) {
         event.respondWith(
             fetch(event.request)

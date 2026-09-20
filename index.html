@@ -543,21 +543,21 @@
             }
 
             try {
-                // Primary: The Hindu National & Regional News (Fast, live, authenticated)
-                let feedUrl = encodeURIComponent('https://www.thehindu.com/news/national/feeder/default.rss');
+                // Primary: The Hindu Kolkata & Bengal Regional Radar
+                let feedUrl = encodeURIComponent('https://www.thehindu.com/news/cities/kolkata/feeder/default.rss');
                 let res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}`);
                 let data = await res.json();
                 
                 // Secondary Fallback if primary is unavailable
                 if (!data || !data.items || data.items.length === 0) {
-                    feedUrl = encodeURIComponent('https://feeds.feedburner.com/ndtvnews-india-news');
+                    feedUrl = encodeURIComponent('https://www.thehindu.com/news/national/feeder/default.rss');
                     res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}`);
                     data = await res.json();
                 }
 
                 if(data && data.items && data.items.length > 0) {
                     const headlines = data.items.slice(0, 15).map(item => item.title.replace(/\s+/g, ' ').trim()).join(' &nbsp;&nbsp;&nbsp; 🔴 &nbsp;&nbsp;&nbsp; ');
-                    const html = '🚨 <strong>LIVE TRANSIT & REGIONAL RADAR:</strong> &nbsp;&nbsp;&nbsp; ' + headlines;
+                    const html = '🚨 <strong>LIVE BENGAL RADAR & REGIONAL UPDATES:</strong> &nbsp;&nbsp;&nbsp; ' + headlines;
                     document.getElementById('breaking-news-marquee').innerHTML = html;
                     localStorage.setItem(cacheKey, html);
                     localStorage.setItem(cacheTimeKey, now.toString());
@@ -1107,8 +1107,24 @@
                                 }
                             }
 
-                            // Load default statewide weather initially; only query GPS when user clicks "Auto GPS"
+                            // Auto-detect user's district seamlessly via IP for authentic local conditions
+                            async function autoDetectDistrict() {
+                                try {
+                                    const res = await fetch('https://ipwho.is/');
+                                    const data = await res.json();
+                                    if (data && data.success && data.latitude && data.longitude) {
+                                        const locLabel = data.city ? `${data.city}, ${data.region_code || 'WB'}` : (data.region || defaultLocation);
+                                        fetchWeatherForLocation(data.latitude, data.longitude, locLabel);
+                                        return;
+                                    }
+                                } catch (err) {
+                                    console.info('District auto-detect fallback active:', err);
+                                }
+                            }
+
+                            // Load initial station data, then refine with real detected district
                             fetchWeatherForLocation(weatherLat, weatherLon, defaultLocation);
+                            autoDetectDistrict();
                         </script>
                     </div>
 
@@ -9100,13 +9116,12 @@ async function updateGlobalVisitorCount() {
         currentCount = BASELINE_COUNT;
     }
 
-    // 2. Debounce by session to record authentic unique visits
+    // 2. Check session debounce to prevent multiple hits on simple page reloads
     const now = Date.now();
     const lastSession = parseInt(localStorage.getItem(SESSION_KEY) || '0', 10);
-    if (!lastSession || (now - lastSession) > SESSION_WINDOW) {
-        currentCount += 1;
+    const isNewSession = !lastSession || (now - lastSession) > SESSION_WINDOW;
+    if (isNewSession) {
         localStorage.setItem(SESSION_KEY, now.toString());
-        localStorage.setItem(STORE_KEY, currentCount.toString());
     }
 
     // 3. Instant 0ms Render with rolling odometer animation
@@ -9139,22 +9154,24 @@ async function updateGlobalVisitorCount() {
     // Instant display (zero lag, never shows "--" or "1")
     renderCount(currentCount, true);
 
-    // 4. Privacy-safe Cloud Sync (Never overrides with 1 on ad-blocker or network error)
+    // 4. Live Cloud Sync via Abacus Counter API (100% Unblocked & Authentic)
     try {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 4000);
-        const res = await fetch('https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fbibekmahata-dev.github.io%2Flive_portal_counter_v1', {
+        const endpoint = isNewSession
+            ? 'https://abacus.jasoncameron.dev/hit/bibekmahata_bengal_explorers/views'
+            : 'https://abacus.jasoncameron.dev/get/bibekmahata_bengal_explorers/views';
+
+        const res = await fetch(endpoint, {
             cache: 'no-cache',
             signal: controller.signal
         });
         clearTimeout(timeoutId);
 
         if (res.ok) {
-            const svgText = await res.text();
-            const match = svgText.match(/VISITORS:\s*([0-9,]+)/i);
-            if (match && match[1]) {
-                const cloudHits = parseInt(match[1].replace(/,/g, ''), 10);
-                const syncedTotal = Math.max(currentCount, BASELINE_COUNT + cloudHits);
+            const data = await res.json();
+            if (data && typeof data.value === 'number') {
+                const syncedTotal = Math.max(currentCount, BASELINE_COUNT + data.value);
                 if (syncedTotal > currentCount) {
                     currentCount = syncedTotal;
                     localStorage.setItem(STORE_KEY, currentCount.toString());
@@ -9163,8 +9180,6 @@ async function updateGlobalVisitorCount() {
             }
         }
     } catch (err) {
-        // Quiet non-destructive fallback:
-        // When blocked by uBlock/Brave/privacy filters, retain authentic accumulating count.
         console.info("Portal community counter operating on resilient local session store.");
     }
 }
