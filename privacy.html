@@ -214,7 +214,7 @@
             <p>A cookie is a compact text string stored on your device by your browser. We utilize strictly necessary local storage mechanisms and facilitate third-party advertising cookies under transparent categories:</p>
             <ul style="padding-left: 20px; margin-bottom: 14px; font-size: 14.5px;">
                 <li><strong>Strictly Necessary Technical Storage:</strong> Our client-side JavaScript engine saves minimal interface preferences into your browser's <code>localStorage</code> (such as your chosen transit station filter, active UI theme, or audio guide volume levels). These never leave your local device.</li>
-                <li><strong>Progressive Web App (PWA) Offline Cache:</strong> In compliance with Service Worker standards, our <code>sw.js</code> worker registers a local <code>CacheStorage</code> container (labeled <code>bengal-explorers-v92</code>). This caches static assets (CSS, route tables, vector icons) so rural commuters along remote rail tracks with intermittent cellular connectivity can access offline timetables.</li>
+                <li><strong>Progressive Web App (PWA) Offline Cache:</strong> In compliance with Service Worker standards, our <code>sw.js</code> worker registers a local <code>CacheStorage</code> container (labeled <code>bengal-explorers-v118</code>). This caches static assets (CSS, route tables, vector icons) so rural commuters along remote rail tracks with intermittent cellular connectivity can access offline timetables.</li>
                 <li><strong>Third-Party Advertising &amp; Analytical Cookies:</strong> Generated exclusively by Google Syndication and partnered ad tech networks to calculate non-fraudulent ad impressions, manage frequency capping, and detect bot traffic.</li>
             </ul>
             <p>You have full autonomy over cookie acceptance. Most web browsers allow you to modify security settings to refuse cookies, alert you when a cookie is issued, or purge existing cache cookies via browser developer settings.</p>
@@ -266,7 +266,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js', { scope: './' })
+                navigator.serviceWorker.register('./sw.js?v=118', { scope: './' })
                     .then((reg) => {
                         console.log('✅ [Bengal PWA] Offline Commuter Engine Active! Scope:', reg.scope);
                     })

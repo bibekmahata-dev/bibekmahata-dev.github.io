@@ -11869,7 +11869,7 @@ document.addEventListener('keydown', (e) => {
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 if (typeof syncAllMembersFromCloud === 'function') syncAllMembersFromCloud();
-                navigator.serviceWorker.register('./sw.js?v=59', { scope: './' })
+                navigator.serviceWorker.register('./sw.js?v=118', { scope: './' })
                     .then((reg) => {
                         console.log('✅ [Bengal PWA] Offline Commuter Engine Active! Scope:', reg.scope);
                         reg.update(); // Actively check for latest server build
