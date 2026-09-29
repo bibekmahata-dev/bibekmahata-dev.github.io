@@ -648,9 +648,9 @@
             <!-- Row 2: Full Width Clean Search Bar --><!-- Row 2: Full Width Clean Search Bar -->
             <div class="search-bar">
                 <span class="search-bar__icon">🔍</span>
-                <input type="text" class="search-bar__input" id="search-input" placeholder="Search squad, places, trains & guides..." autocomplete="off">
+                <input type="text" class="search-bar__input" id="search-input" placeholder="Search squad, places, trains & guides..." autocomplete="off" oninput="if(typeof filterMembers==='function')filterMembers();" onkeyup="if(typeof filterMembers==='function')filterMembers();">
             </div>
-            <div id="rena-easter-egg-spotlight" style="display: none; width: 100%; margin-top: 10px;"></div>
+            <div id="rena-easter-egg-spotlight" style="display: none; width: 100%; margin-top: 10px; max-height: 76vh; overflow-y: auto;"></div>
 
             <!-- Row 3: Swipeable Navigation Ribbon -->
             <nav class="header__nav">
@@ -5923,6 +5923,9 @@
             const expInput = document.getElementById('explorer-search-input');
             const expTitle = document.getElementById('explorer-results-title');
             if (!expInput) return;
+            if (typeof updateRenaEasterEggDisplay === 'function') {
+                updateRenaEasterEggDisplay(expInput.value, 'explorer');
+            }
             
             const query = expInput.value.toLowerCase().trim();
             const cards = document.querySelectorAll('.explorer-card');
@@ -10853,7 +10856,7 @@ function updateRenaEasterEggDisplay(rawQuery, sourceType) {
     const isMatched = isRenaEasterEggQuery(rawQuery);
     const headerSpotlight = document.getElementById('rena-easter-egg-spotlight');
     const explorerSpotlight = document.getElementById('rena-explorer-easter-egg');
-    const squadGrid = document.getElementById('squad-grid') || document.querySelector('.members-grid');
+    const squadGrid = document.getElementById('member-grid') || document.getElementById('squad-grid') || document.querySelector('.member-grid') || document.querySelector('.members-grid');
 
     if (isMatched) {
         const cardHTML = buildRenaEasterEggCardHTML(sourceType);
@@ -10918,11 +10921,14 @@ window.clearRenaEasterEggSearch = function() {
 };
 
 function filterMembers() {
-    const grid = document.getElementById('squad-grid') || document.querySelector('.members-grid');
-    if (!grid) return;
-    const rawVal = searchInput ? searchInput.value : '';
+    const activeInput = document.getElementById('search-input') || searchInput;
+    const rawVal = activeInput ? activeInput.value : '';
     const query = rawVal.toLowerCase().trim();
     const isRenaMatch = updateRenaEasterEggDisplay(rawVal, 'header');
+
+    const grid = document.getElementById('member-grid') || document.getElementById('squad-grid') || document.querySelector('.member-grid') || document.querySelector('.members-grid');
+    if (!grid) return;
+
     const cards = grid.querySelectorAll('.member-card');
     let visibleCount = isRenaMatch ? 1 : 0;
 
@@ -12207,7 +12213,7 @@ document.addEventListener('keydown', (e) => {
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 if (typeof syncAllMembersFromCloud === 'function') syncAllMembersFromCloud();
-                navigator.serviceWorker.register('./sw.js?v=118', { scope: './' })
+                navigator.serviceWorker.register('./sw.js?v=121', { scope: './' })
                     .then((reg) => {
                         console.log('✅ [Bengal PWA] Offline Commuter Engine Active! Scope:', reg.scope);
                         reg.update(); // Actively check for latest server build
