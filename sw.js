@@ -1,11 +1,15 @@
 /* ==============================================================================
    BENGAL EXPLORERS — SERVICE WORKER (OFFLINE COMMUTER ENGINE)
    Architect: Bibek Mahata (bibek.cs)
+   Special Easter Egg Profile: Rena (Miss Rena / Username: vlsια / Instagram: @rechalenne1208)
+   - Real person & special friend from Indonesia (WIB), studying Nutrition & Dietetics
+   - Sweet, playful, unique energy, marathon research student, late-night gamer & Indonesian music lover
+   - Special Note: "thankyou for being here and thankyou for being you" — Dedicated by Your coding guy (Bibek Mahata)
    Version: 1.0.0
    ============================================================================== */
 
-const CACHE_NAME = 'bengal-explorers-v124';
-const DATA_CACHE_NAME = 'bengal-data-cache-v124';
+const CACHE_NAME = 'bengal-explorers-v125';
+const DATA_CACHE_NAME = 'bengal-data-cache-v125';
 
 // Critical Core Assets for Offline App Shell
 const APP_SHELL = [
