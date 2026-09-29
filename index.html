@@ -11093,7 +11093,7 @@ function buildRenaEasterEggCardHTML(contextId) {
                 border: 2px solid #ffffff;
                 border-radius: 18px;
                 padding: 18px 22px;
-                margin-bottom: 18px;
+                margin-bottom: 14px;
                 position: relative;
                 z-index: 2;
                 animation: renaNoteGlow 3s ease-in-out infinite;
@@ -11104,12 +11104,38 @@ function buildRenaEasterEggCardHTML(contextId) {
                     </span>
                     <span style="font-size: 18px; animation: renaHeartBeat 1.8s infinite;">💗</span>
                 </div>
-                <div style="font-size: clamp(17px, 2.5vw, 22px); font-weight: 900; color: #ffffff; font-style: italic; line-height: 1.5; text-align: center; padding: 6px 0; text-shadow: 0 2px 14px rgba(236, 72, 153, 0.9); min-height: 32px;">
+                <div style="font-size: clamp(17px, 2.5vw, 22px); font-weight: 900; color: #ffffff; font-style: italic; line-height: 1.5; text-align: center; padding: 6px 0 2px 0; text-shadow: 0 2px 14px rgba(236, 72, 153, 0.9); min-height: 32px;">
                     <span class="rena-typewriter-text">&ldquo;thankyou for being here and thankyou for being you&rdquo;</span><span style="color: #fbbf24; font-style: normal; animation: renaCursorBlink 0.9s infinite;">|</span>
+                </div>
+                <div style="text-align: center; font-size: 12px; font-weight: 700; color: #fbcfe8; margin-top: 4px; letter-spacing: 0.2px;">
+                    🇮🇩 <em>&ldquo;Terima kasih sudah hadir di sini, dan terima kasih sudah menjadi dirimu yang begitu indah ✨&rdquo;</em>
                 </div>
                 <div style="text-align: right; margin-top: 8px; font-size: 13.5px; font-weight: 800; color: #fff1f2;">
                     — Dedicated by: <span style="color: #fde68a; text-decoration: underline; text-decoration-color: rgba(244, 114, 182, 0.8);">Your coding guy</span> 💻💖
                 </div>
+            </div>
+
+            <!-- Interactive Daily Care Rx for Future Nutritionist & Late-Night Gamer -->
+            <div onclick="cycleRenaCareNote(this)" style="
+                background: linear-gradient(90deg, rgba(15, 23, 42, 0.92) 0%, rgba(136, 19, 55, 0.72) 55%, rgba(23, 37, 84, 0.92) 100%);
+                border: 1.5px dashed rgba(251, 191, 36, 0.85);
+                border-radius: 14px;
+                padding: 11px 16px;
+                margin-bottom: 16px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                position: relative;
+                z-index: 2;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            " title="Tap for another sweet reminder!">
+                <div style="font-size: 12.5px; font-weight: 700; color: #ffffff; line-height: 1.45;">
+                    <span style="color: #fde68a; font-weight: 900; text-transform: uppercase; font-size: 10.5px; letter-spacing: 0.6px; display: block; margin-bottom: 2px;">🍓 Coding Guy's Care Rx for Our Future Nutritionist (Tap to Cycle ✨)</span>
+                    <span class="rena-care-rx-text">🥤 Hydration Check, Miss Nutritionist! Don't forget to drink water during your marathon research &amp; late-night gaming sessions 💖</span>
+                </div>
+                <span style="background: rgba(236, 72, 153, 0.3); border: 1px solid #f472b6; color: #ffffff; font-size: 11px; font-weight: 800; padding: 5px 10px; border-radius: 999px; white-space: nowrap; flex-shrink: 0;">Next Note 💌</span>
             </div>
 
             <!-- Footer Interactive Buttons -->
@@ -11171,6 +11197,58 @@ function buildRenaEasterEggCardHTML(contextId) {
     `;
 }
 
+let renaCareNoteIdx = 0;
+const RENA_CARE_NOTES = [
+    "🥤 Hydration Check, Miss Nutritionist! Don't forget to drink water during your marathon research & late-night gaming sessions 💖",
+    "🌙 Late-Night Gamer Alert: Remember to rest your eyes after carrying your matches, vlsια! 🎮✨",
+    "🍓 Brain Fuel Delivery: Sending virtual strawberry milk & sweet energy from India (IST) to Indonesia (WIB)! 🌸",
+    "📚 Marathon Research Mode: You are going to be the sweetest, smartest Nutrition & Dietetics expert in Indonesia! Proud of you 👑",
+    "🎶 Put on your favorite Indonesian playlist, take a deep breath, and keep shining with your unique energy, Miss Rena! 💫",
+    "💌 Secret Reminder: Whenever you search your name here, this little corner of the internet will always belong to you ✨"
+];
+
+window.cycleRenaCareNote = function(boxEl) {
+    renaCareNoteIdx = (renaCareNoteIdx + 1) % RENA_CARE_NOTES.length;
+    document.querySelectorAll('.rena-care-rx-text').forEach(el => {
+        el.textContent = RENA_CARE_NOTES[renaCareNoteIdx];
+    });
+    if (boxEl) {
+        boxEl.style.transform = 'scale(0.98)';
+        setTimeout(() => { boxEl.style.transform = 'scale(1)'; }, 140);
+    }
+    for (let i = 0; i < 5; i++) {
+        setTimeout(spawnSingleFallingRenaPetal, i * 60);
+    }
+};
+
+let lastRenaTrailTime = 0;
+function spawnRenaCursorSparkle(x, y) {
+    const now = Date.now();
+    if (now - lastRenaTrailTime < 55) return;
+    lastRenaTrailTime = now;
+    const symbols = ['💖', '✨', '🌸', '💗', '⭐'];
+    const sp = document.createElement('span');
+    sp.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    sp.style.cssText = `
+        position: fixed;
+        left: ${x}px;
+        top: ${y}px;
+        font-size: ${12 + Math.random() * 8}px;
+        pointer-events: none;
+        z-index: 99999999;
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.95;
+        filter: drop-shadow(0 0 6px rgba(236, 72, 153, 0.85));
+        transition: transform 0.85s ease-out, opacity 0.85s ease-out;
+    `;
+    document.body.appendChild(sp);
+    requestAnimationFrame(() => {
+        sp.style.transform = `translate(calc(-50% + ${(Math.random() - 0.5) * 36}px), calc(-50% - ${24 + Math.random() * 26}px)) scale(0.4)`;
+        sp.style.opacity = '0';
+    });
+    setTimeout(() => sp.remove(), 880);
+}
+
 function ensureRenaFullOverlayModal() {
     let overlay = document.getElementById('rena-luxury-overlay');
     if (!overlay) {
@@ -11193,6 +11271,14 @@ function ensureRenaFullOverlayModal() {
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) closeRenaFullShowcase();
         });
+        overlay.addEventListener('mousemove', (e) => {
+            spawnRenaCursorSparkle(e.clientX, e.clientY);
+        });
+        overlay.addEventListener('touchmove', (e) => {
+            if (e.touches && e.touches[0]) {
+                spawnRenaCursorSparkle(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
         document.body.appendChild(overlay);
     }
     return overlay;
@@ -12598,7 +12684,7 @@ document.addEventListener('keydown', (e) => {
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 if (typeof syncAllMembersFromCloud === 'function') syncAllMembersFromCloud();
-                navigator.serviceWorker.register('./sw.js?v=123', { scope: './' })
+                navigator.serviceWorker.register('./sw.js?v=124', { scope: './' })
                     .then((reg) => {
                         console.log('✅ [Bengal PWA] Offline Commuter Engine Active! Scope:', reg.scope);
                         reg.update(); // Actively check for latest server build
