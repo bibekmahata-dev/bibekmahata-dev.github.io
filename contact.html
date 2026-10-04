@@ -220,9 +220,16 @@
     </script>
 </head>
 <body>
-    <div class="top-nav">
-        <a href="index.html" class="nav-logo">Bengal Explorers</a>
-        <a href="index.html" class="back-btn">← Back to Portal</a>
+    <div class="top-nav" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding: 12px 20px;">
+        <a href="index.html" class="nav-logo">Bengal Explorers &bull; Bibek Mahata</a>
+        <nav style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 13px; font-weight: 700;">
+            <a href="index.html" style="color: #38bdf8; text-decoration: none;">🏠 Home</a>
+            <a href="index.html#featured-travel-guides" style="color: #4ade80; text-decoration: none;">🧭 Travel Guides</a>
+            <a href="blog.html" style="color: #fbbf24; text-decoration: none;">📖 Blog</a>
+            <a href="about.html" style="color: #cbd5e1; text-decoration: none;">ℹ️ About Us</a>
+            <a href="contact.html" style="color: #ffffff; text-decoration: underline; text-underline-offset: 4px;">📬 Contact</a>
+            <a href="privacy.html" style="color: #94a3b8; text-decoration: none;">🛡️ Privacy</a>
+        </nav>
     </div>
 
     <div class="main-wrapper">
@@ -341,20 +348,44 @@
                 </div>
             </div>
 
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); margin-top: 36px; padding-top: 24px;">
+                <div style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; text-align: center;">
+                    🧭 Field Guides &bull; 12 West Bengal Expeditions
+                </div>
+                <div style="display: flex; justify-content: center; gap: 12px 18px; flex-wrap: wrap; font-size: 12.5px; margin-bottom: 20px;">
+                    <a href="guide-gangani.html" style="color: #cbd5e1; text-decoration: none;">Gangani Gorge</a>
+                    <a href="guide-darjeeling.html" style="color: #cbd5e1; text-decoration: none;">Darjeeling DHR</a>
+                    <a href="guide-bishnupur.html" style="color: #cbd5e1; text-decoration: none;">Bishnupur Temples</a>
+                    <a href="guide-digha.html" style="color: #cbd5e1; text-decoration: none;">Digha Coast</a>
+                    <a href="guide-sundarbans.html" style="color: #cbd5e1; text-decoration: none;">Sundarbans Safari</a>
+                    <a href="guide-purulia.html" style="color: #cbd5e1; text-decoration: none;">Purulia Hills</a>
+                    <a href="guide-jhargram.html" style="color: #cbd5e1; text-decoration: none;">Jhargram Palace</a>
+                    <a href="guide-mukutmanipur.html" style="color: #cbd5e1; text-decoration: none;">Mukutmanipur Dam</a>
+                    <a href="guide-coochbehar.html" style="color: #cbd5e1; text-decoration: none;">Cooch Behar</a>
+                    <a href="guide-shantiniketan.html" style="color: #cbd5e1; text-decoration: none;">Shantiniketan</a>
+                    <a href="guide-kolkata-heritage.html" style="color: #cbd5e1; text-decoration: none;">Kolkata Heritage</a>
+                    <a href="guide-bengal-sweets.html" style="color: #cbd5e1; text-decoration: none;">27 GI Sweets</a>
+                </div>
+            </div>
+
             <div class="footer-nav">
-                <a href="index.html">Home</a>
+                <a href="index.html">🏠 Home</a>
                 <span style="color: #475569;">&bull;</span>
-                <a href="about.html">About Us</a>
+                <a href="index.html#featured-travel-guides" style="color: #4ade80;">🧭 Travel Guides</a>
                 <span style="color: #475569;">&bull;</span>
-                <a href="blog.html">Travel Chronicles</a>
+                <a href="about.html">ℹ️ About Us</a>
                 <span style="color: #475569;">&bull;</span>
-                <a href="privacy.html">Privacy Policy</a>
+                <a href="blog.html" style="color: #fbbf24;">📖 Travel Chronicles</a>
+                <span style="color: #475569;">&bull;</span>
+                <a href="contact.html" style="color: #fff; font-weight: 700;">📬 Contact</a>
+                <span style="color: #475569;">&bull;</span>
+                <a href="privacy.html">🛡️ Privacy Policy</a>
                 <span style="color: #475569;">&bull;</span>
                 <a href="terms.html">Terms of Service</a>
                 <span style="color: #475569;">&bull;</span>
                 <a href="disclaimer.html">Disclaimer</a>
                 <span style="color: #475569;">&bull;</span>
-                <a href="contact.html" style="color: #fff; font-weight: 700;">Contact</a>
+                <a href="sitemap.xml">🗺️ Sitemap</a>
             </div>
         </div>
     </div>
@@ -403,7 +434,7 @@
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js', { scope: './' })
+                navigator.serviceWorker.register('./sw.js?v=126', { scope: './' })
                     .then((reg) => {
                         console.log('✅ [Bengal PWA] Offline Commuter Engine Active! Scope:', reg.scope);
                     })
