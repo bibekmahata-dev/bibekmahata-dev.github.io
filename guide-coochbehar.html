@@ -303,6 +303,7 @@
             .author-box { flex-direction: column !important; text-align: center !important; padding: 16px 12px !important; }
         }
     </style>
+    <link rel="stylesheet" href="assets/css/mobile-nav.css">
 </head>
 <body>
 
@@ -544,7 +545,7 @@
 
     <footer style="background: rgba(15, 23, 42, 0.95); border-top: 1px solid var(--border-color); padding: 30px 20px; text-align: center; color: var(--text-muted); font-size: 13px;">
         <div>&copy; 2026 <strong>Bengal Explorers</strong> — Founded &amp; Maintained by <strong style="color: #38bdf8;">Bibek Mahata</strong></div>
-        <div style="font-size: 11.5px; margin-top: 6px;">Class 12 Student Creator Initiative • Paschim Medinipur, West Bengal, India</div>
+        <div style="font-size: 11.5px; margin-top: 6px;">Independent Software Developer Initiative • Paschim Medinipur, West Bengal, India</div>
         <div style="margin-top: 12px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
             <a href="index.html" style="color: #38bdf8; text-decoration: none;">Home</a>
             <a href="blog.html" style="color: #38bdf8; text-decoration: none;">Travel Chronicles</a>
@@ -556,12 +557,122 @@
         </div>
     </footer>
 
+    <!-- ========================================================
+         📱 NATIVE-APP MOBILE BOTTOM NAVIGATION BAR (GLASSMORPHIC)
+         ======================================================== -->
+    <nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="Mobile Bottom App Bar">
+        <a href="index.html#bengal-master-discovery-hub" class="mobile-nav-item" id="mob-nav-explore" onclick="setActiveMobileNav(this)">
+            <span class="mobile-nav-indicator"></span>
+            <span class="mobile-nav-icon">🧭</span>
+            <span class="mobile-nav-label">Explore</span>
+        </a>
+        <a href="index.html#transit-section" class="mobile-nav-item" id="mob-nav-transit" onclick="setActiveMobileNav(this)">
+            <span class="mobile-nav-indicator"></span>
+            <span class="mobile-nav-icon">🚆</span>
+            <span class="mobile-nav-label">Transit</span>
+        </a>
+        <a href="index.html#hangout-map" class="mobile-nav-item" id="mob-nav-map" onclick="setActiveMobileNav(this)">
+            <span class="mobile-nav-indicator"></span>
+            <span class="mobile-nav-icon">🗺️</span>
+            <span class="mobile-nav-label">Map</span>
+        </a>
+        <a href="blog.html" class="mobile-nav-item" id="mob-nav-blog" onclick="setActiveMobileNav(this)">
+            <span class="mobile-nav-indicator"></span>
+            <span class="mobile-nav-icon">📖</span>
+            <span class="mobile-nav-label">Blog</span>
+        </a>
+        <button type="button" class="mobile-nav-item" id="mob-nav-hub" onclick="toggleMobileQuickHubDrawer(true)">
+            <span class="mobile-nav-indicator"></span>
+            <span class="mobile-nav-icon">⚡</span>
+            <span class="mobile-nav-label">Quick Hub</span>
+        </button>
+    </nav>
+
+    <!-- Mobile Quick Hub Drawer (Glassmorphic Bottom Sheet) -->
+    <div class="mobile-hub-drawer-overlay" id="mobile-hub-drawer-overlay" onclick="toggleMobileQuickHubDrawer(false)"></div>
+    <div class="mobile-hub-drawer" id="mobile-hub-drawer" role="dialog" aria-modal="true" aria-label="Quick Utilities Hub">
+        <div class="mobile-hub-drag-handle" onclick="toggleMobileQuickHubDrawer(false)"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 20px;">⚡</span>
+                <strong style="color: #ffffff; font-size: 16px; font-family: 'Space Grotesk', -apple-system, sans-serif;">Bengal Explorers Quick Hub</strong>
+            </div>
+            <button type="button" onclick="toggleMobileQuickHubDrawer(false)" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer;">✕</button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 18px;">
+            <a href="index.html#emergency-sos-section" onclick="toggleMobileQuickHubDrawer(false)" style="background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 14px; padding: 14px 12px; text-decoration: none; display: flex; align-items: center; gap: 10px; color: #ffffff;">
+                <span style="font-size: 24px;">🚨</span>
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; color: #f87171;">Emergency SOS</div>
+                    <div style="font-size: 11px; color: #94a3b8;">23 Districts Helpline</div>
+                </div>
+            </a>
+
+            <a href="index.html#bengal-panjika-section" onclick="toggleMobileQuickHubDrawer(false)" style="background: rgba(244, 114, 182, 0.12); border: 1px solid rgba(244, 114, 182, 0.35); border-radius: 14px; padding: 14px 12px; text-decoration: none; display: flex; align-items: center; gap: 10px; color: #ffffff;">
+                <span style="font-size: 24px;">🗓️</span>
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; color: #f472b6;">Panjika Calendar</div>
+                    <div style="font-size: 11px; color: #94a3b8;">Festivals &amp; Tithi</div>
+                </div>
+            </a>
+
+            <a href="index.html#trip-budget-calculator-section" onclick="toggleMobileQuickHubDrawer(false)" style="background: rgba(234, 179, 8, 0.12); border: 1px solid rgba(234, 179, 8, 0.35); border-radius: 14px; padding: 14px 12px; text-decoration: none; display: flex; align-items: center; gap: 10px; color: #ffffff;">
+                <span style="font-size: 24px;">💰</span>
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; color: #facc15;">Trip Budget</div>
+                    <div style="font-size: 11px; color: #94a3b8;">Fare &amp; Cost Estimator</div>
+                </div>
+            </a>
+
+            <a href="index.html#global-explorer-cultural-vault" onclick="toggleMobileQuickHubDrawer(false)" style="background: rgba(168, 85, 247, 0.12); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 14px; padding: 14px 12px; text-decoration: none; display: flex; align-items: center; gap: 10px; color: #ffffff;">
+                <span style="font-size: 24px;">🏛️</span>
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; color: #c084fc;">Cultural Vault</div>
+                    <div style="font-size: 11px; color: #94a3b8;">27 GI Sweets &amp; Sights</div>
+                </div>
+            </a>
+
+            <a href="index.html#featured-travel-guides" onclick="toggleMobileQuickHubDrawer(false)" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 14px 12px; text-decoration: none; display: flex; align-items: center; gap: 10px; color: #ffffff;">
+                <span style="font-size: 24px;">🧭</span>
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; color: #38bdf8;">Travel Guides</div>
+                    <div style="font-size: 11px; color: #94a3b8;">12 Detailed Circuits</div>
+                </div>
+            </a>
+
+            <button type="button" onclick="toggleMobileQuickHubDrawer(false); openMobileNavShare();" style="background: rgba(34, 197, 94, 0.12); border: 1px solid rgba(34, 197, 94, 0.35); border-radius: 14px; padding: 14px 12px; text-decoration: none; display: flex; align-items: center; gap: 10px; color: #ffffff; text-align: left; cursor: pointer;">
+                <span style="font-size: 24px;">📲</span>
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; color: #4ade80;">Share Page</div>
+                    <div style="font-size: 11px; color: #94a3b8;">WhatsApp &amp; Friends</div>
+                </div>
+            </button>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 12px; color: #94a3b8;">
+                Founder: <strong style="color: #ffffff;">Bibek Mahata</strong> &bull; Paschim Medinipur
+            </div>
+            <a href="about.html" style="color: #38bdf8; font-size: 12px; font-weight: 700; text-decoration: none;">About Founder →</a>
+        </div>
+    </div>
+
+    <!-- PWA Offline Commuter Service Worker Registration & Mobile Nav Controller -->
+    <script src="assets/js/mobile-nav.js" defer></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js', { scope: './' });
+                navigator.serviceWorker.register('./sw.js?v=128', { scope: './' })
+                    .then((reg) => {
+                        console.log('✅ [Bengal PWA] Offline Commuter Engine Active! Scope:', reg.scope);
+                    })
+                    .catch((err) => {
+                        console.warn('⚠️ [Bengal PWA] Service Worker registration failed:', err);
+                    });
             });
         }
     </script>
+
 </body>
 </html>
