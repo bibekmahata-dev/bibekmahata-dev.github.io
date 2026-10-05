@@ -46,6 +46,11 @@
         html {
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            touch-action: manipulation;
         }
 
         img, picture, video, canvas, svg {
@@ -84,13 +89,17 @@
             transform: translateZ(0);
         }
 
-        /* Smooth momentum scrolling for touch devices */
+        /* Smooth momentum scrolling for touch devices & 120FPS rendering */
         .header__nav,
         #map-category-filters,
         .places-grid-container,
-        #calendar-events-list {
+        #calendar-events-list,
+        .ft-tab-btn-container,
+        .category-scroll-container,
+        .transit-ribbon-container {
             -webkit-overflow-scrolling: touch;
             overscroll-behavior-x: contain;
+            scroll-behavior: smooth;
         }
 
         /* Optimize heavy blur rendering on mobile */
@@ -158,6 +167,32 @@
             color: var(--text-primary);
             min-height: 100vh;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            letter-spacing: -0.011em;
+        }
+
+        /* Typography & Lettering Polish for Mobile & PC */
+        h1, h2, h3, h4, h5, h6 {
+            text-rendering: optimizeLegibility;
+            letter-spacing: -0.02em;
+        }
+
+        button, input, select, textarea {
+            font-family: inherit;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        .global-flag-pill,
+        .calc-curr-btn,
+        .ft-tab-btn,
+        .app-mode-btn,
+        .mobile-nav-label {
+            letter-spacing: 0.025em;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* ======================================
@@ -5741,14 +5776,21 @@
         padding: 16px 20px calc(24px + env(safe-area-inset-bottom, 0px)) 20px !important;
         box-shadow: 0 -15px 45px rgba(0, 0, 0, 0.8) !important;
         z-index: 999999 !important;
-        transform: translateY(100%) !important;
+        transform: translateY(100%) translateZ(0) !important;
+        -webkit-transform: translateY(100%) translateZ(0) !important;
+        will-change: transform !important;
+        backface-visibility: hidden !important;
+        -webkit-backface-visibility: hidden !important;
         transition: transform 0.32s cubic-bezier(0.33, 1, 0.68, 1) !important;
         overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        overscroll-behavior-y: contain !important;
         box-sizing: border-box !important;
     }
 
     .mobile-hub-drawer.open {
-        transform: translateY(0) !important;
+        transform: translateY(0) translateZ(0) !important;
+        -webkit-transform: translateY(0) translateZ(0) !important;
     }
 
     .mobile-hub-drag-handle {

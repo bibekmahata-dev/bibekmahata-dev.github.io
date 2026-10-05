@@ -668,6 +668,7 @@
                         <button type="button" class="global-flag-pill" data-lang="ar" onclick="triggerGlobalLanguage('ar')" title="العربية (Arabic)" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">🇦🇪 AR</button>
                         <button type="button" class="global-flag-pill" data-lang="pt" onclick="triggerGlobalLanguage('pt')" title="Português (Portuguese)" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">🇧🇷 PT</button>
                         <button type="button" class="global-flag-pill" data-lang="ko" onclick="triggerGlobalLanguage('ko')" title="한국어 (Korean)" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">🇰🇷 KO</button>
+                        <button type="button" class="global-flag-pill" data-lang="id" onclick="triggerGlobalLanguage('id')" title="Bahasa Indonesia (Indonesian)" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">🇮🇩 ID</button>
                     </div>
 
                     <!-- Group 2: Indian Regional Languages (Hindi, Bengali, Tamil, Malayalam) -->
@@ -2136,6 +2137,7 @@
                                             <option value="AUD">AUD (A$)</option>
                                             <option value="CAD">CAD (C$)</option>
                                             <option value="SGD">SGD (S$)</option>
+                                            <option value="IDR">IDR (🇮🇩 Rp Rupiah)</option>
                                         </select>
                                     </div>
                                 </div>
@@ -2438,7 +2440,8 @@
                             BDT: 0.714,
                             AUD: 55.40,
                             CAD: 61.20,
-                            SGD: 62.80
+                            SGD: 62.80,
+                            IDR: 0.00531
                         };
 
                         async function fetchLiveCurrencyRates() {
@@ -2455,6 +2458,7 @@
                                     liveExchangeRates.AUD = inr / data.rates.AUD;
                                     liveExchangeRates.CAD = inr / data.rates.CAD;
                                     liveExchangeRates.SGD = inr / data.rates.SGD;
+                                    if (data.rates.IDR) liveExchangeRates.IDR = inr / data.rates.IDR;
                                 }
                             } catch (e) {
                                 console.log("Using cached benchmark exchange rates");
@@ -2483,6 +2487,7 @@
                                 <div style="background: rgba(255,255,255,0.04); padding: 8px; border-radius: 6px; text-align: center;"><div style="color: #94a3b8; font-size: 10px;">1 EUR (€)</div><div style="color: #4ade80; font-weight: 800; font-size: 13px;">₹${liveExchangeRates.EUR.toFixed(2)}</div></div>
                                 <div style="background: rgba(255,255,255,0.04); padding: 8px; border-radius: 6px; text-align: center;"><div style="color: #94a3b8; font-size: 10px;">1 GBP (£)</div><div style="color: #4ade80; font-weight: 800; font-size: 13px;">₹${liveExchangeRates.GBP.toFixed(2)}</div></div>
                                 <div style="background: rgba(255,255,255,0.04); padding: 8px; border-radius: 6px; text-align: center;"><div style="color: #94a3b8; font-size: 10px;">1 AED (Dirham)</div><div style="color: #4ade80; font-weight: 800; font-size: 13px;">₹${liveExchangeRates.AED.toFixed(2)}</div></div>
+                                <div style="background: rgba(255,255,255,0.04); padding: 8px; border-radius: 6px; text-align: center;"><div style="color: #94a3b8; font-size: 10px;">10,000 IDR (🇮🇩 Rp)</div><div style="color: #4ade80; font-weight: 800; font-size: 13px;">₹${(liveExchangeRates.IDR * 10000).toFixed(2)}</div></div>
                                 <div style="background: rgba(255,255,255,0.04); padding: 8px; border-radius: 6px; text-align: center;"><div style="color: #94a3b8; font-size: 10px;">100 BDT (Taka)</div><div style="color: #4ade80; font-weight: 800; font-size: 13px;">₹${(liveExchangeRates.BDT * 100).toFixed(2)}</div></div>
                             `;
                         }
@@ -2655,8 +2660,8 @@
                             </div>
                         </div>
 
-                        <!-- 3 Interactive Tabs -->
-                        <div style="display: flex; gap: 8px; overflow-x: auto; margin-bottom: 16px; padding-bottom: 4px; scrollbar-width: none;">
+                        <!-- 5 Interactive Tabs -->
+                        <div style="display: flex; gap: 8px; overflow-x: auto; margin-bottom: 16px; padding-bottom: 4px; scrollbar-width: none;" class="ft-tab-btn-container">
                             <button type="button" class="ft-tab-btn active" data-tab="ftq" onclick="switchForeignTouristTab('ftq')" style="background: rgba(234, 179, 8, 0.2); border: 1px solid #eab308; color: #fde047; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: all 0.2s;">
                                 🎫 1. IRCTC Foreign Quota (FTQ)
                             </button>
@@ -2668,6 +2673,9 @@
                             </button>
                             <button type="button" class="ft-tab-btn" data-tab="taxis" onclick="switchForeignTouristTab('taxis')" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: all 0.2s;">
                                 🚖 4. Scam-Free Prepaid Taxis & Metro
+                            </button>
+                            <button type="button" class="ft-tab-btn" data-tab="indonesia" onclick="switchForeignTouristTab('indonesia')" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: all 0.2s;">
+                                🇮🇩 5. Wisatawan Indonesia
                             </button>
                         </div>
 
@@ -2729,6 +2737,23 @@
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 14px;">
                                 <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 10px; padding: 14px;">
                                     <div style="font-size: 13px; color: #38bdf8; font-weight: 800; margin-bottom: 6px;">📱 Instant 5G Tourist SIM Kiosks</div>
+                                    <div style="font-size: 12px; color: #cbd5e1; line-height: 1.55;">Official <strong>Airtel</strong> &amp; <strong>Reliance Jio</strong> kiosks are located directly inside Kolkata Airport (CCU) International Arrival Hall (Terminal 2). Requires physical passport copy &amp; visa stamp. Cost: ₹400–₹600 for 28-day 1.5GB/day 5G data pack.</div>
+                                </div>
+                                <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 10px; padding: 14px;">
+                                    <div style="font-size: 13px; color: #34d399; font-weight: 800; margin-bottom: 6px;">💱 Forex &amp; Currency Exchange</div>
+                                    <div style="font-size: 12px; color: #cbd5e1; line-height: 1.55;">Authorized <strong>Thomas Cook</strong> &amp; <strong>State Bank of India (SBI)</strong> currency exchange counters are operating 24/7 before customs and post-arrival exit gates at CCU Airport.</div>
+                                </div>
+                            </div>
+
+                            <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 10px; padding: 14px;">
+                                <div style="font-size: 13px; color: #34d399; font-weight: 800; margin-bottom: 4px;">🚕 Airport to City / Howrah Station Transit</div>
+                                <div style="font-size: 12px; color: #e2e8f0; line-height: 1.5;">
+                                    • <strong>Police Prepaid Taxi:</strong> Official Kolkata Police Prepaid Taxi Booth is outside Gate 4 (fixed transparent fares, no surge).<br>
+                                    • <strong>AC Volvo Bus Express:</strong> Route <strong>VS-1</strong> departs airport directly for Howrah Railway Station every 20 minutes (Fare: ₹100). Route <strong>VS-2</strong> goes to Esplanade / Park Street.
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- TAB 4 CONTENT: SCAM-FREE PREPAID TAXIS & SAFE TRANSIT -->
                         <div id="ft-content-taxis" class="ft-tab-content" style="display: none;">
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 14px;">
@@ -2764,20 +2789,53 @@
                             </div>
                         </div>
 
-                                    <div style="font-size: 12px; color: #cbd5e1; line-height: 1.55;">Official <strong>Airtel</strong> & <strong>Reliance Jio</strong> kiosks are located directly inside Kolkata Airport (CCU) International Arrival Hall (Terminal 2). Requires physical passport copy & visa stamp. Cost: ₹400–₹600 for 28-day 1.5GB/day 5G data pack.</div>
-                                </div>
-                                <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 10px; padding: 14px;">
-                                    <div style="font-size: 13px; color: #34d399; font-weight: 800; margin-bottom: 6px;">💱 Forex & Currency Exchange</div>
-                                    <div style="font-size: 12px; color: #cbd5e1; line-height: 1.55;">Authorized <strong>Thomas Cook</strong> & <strong>State Bank of India (SBI)</strong> currency exchange counters are operating 24/7 before customs and post-arrival exit gates at CCU Airport.</div>
+                        <!-- TAB 5 CONTENT: WISATAWAN INDONESIA (INDONESIAN TRAVELERS) -->
+                        <div id="ft-content-indonesia" class="ft-tab-content" style="display: none;">
+                            <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 10px; padding: 14px; margin-bottom: 14px;">
+                                <div style="font-size: 14px; color: #fca5a5; font-weight: 800; margin-bottom: 4px;">🇮🇩 Panduan Khusus Wisatawan Indonesia (Indonesian Traveler Guide)</div>
+                                <div style="font-size: 12.5px; color: #f1f5f9; line-height: 1.6;">
+                                    <em>Selamat datang di Benggala Barat!</em> Dari pesona pegunungan teh Darjeeling hingga hutan bakau Sundarbans dan sejarah megah Kolkata, panduan ini disiapkan khusus untuk wisatawan asal Indonesia dengan rekomendasi kuliner halal, rute penerbangan, dan pembayaran mudah.
                                 </div>
                             </div>
 
-                            <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 10px; padding: 14px;">
-                                <div style="font-size: 13px; color: #34d399; font-weight: 800; margin-bottom: 4px;">🚕 Airport to City / Howrah Station Transit</div>
-                                <div style="font-size: 12px; color: #e2e8f0; line-height: 1.5;">
-                                    • <strong>Police Prepaid Taxi:</strong> Official Kolkata Police Prepaid Taxi Booth is outside Gate 4 (fixed transparent fares, no surge).<br>
-                                    • <strong>AC Volvo Bus Express:</strong> Route <strong>VS-1</strong> departs airport directly for Howrah Railway Station every 20 minutes (Fare: ₹100). Route <strong>VS-2</strong> goes to Esplanade / Park Street.
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 14px;">
+                                <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 14px;">
+                                    <div style="font-size: 13px; color: #38bdf8; font-weight: 800; margin-bottom: 6px;">✈️ Penerbangan &amp; Visa (CGK/DPS ➔ CCU)</div>
+                                    <div style="font-size: 12px; color: #cbd5e1; line-height: 1.55;">
+                                        <strong>Rute Cepat:</strong> Jakarta (CGK) / Bali (DPS) menuju Kolkata (CCU) dengan 1 transit via Kuala Lumpur (AirAsia/Batik Air/Malaysia Airlines), Singapura (Singapore Airlines/Scoot), atau Bangkok (Thai Airways). Waktu tempuh total ~6–8 jam.<br>
+                                        <strong>e-Visa India:</strong> WNI wajib mengajukan e-Tourist Visa online resmi (30 hari / 1 tahun) sebelum keberangkatan di portal resmi pemerintah India. Biometrik cepat di Bandara CCU.
+                                    </div>
                                 </div>
+                                <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(34, 197, 94, 0.25); border-radius: 10px; padding: 14px;">
+                                    <div style="font-size: 13px; color: #34d399; font-weight: 800; margin-bottom: 6px;">🍛 Kuliner Halal &amp; Makanan Ramah Muslim</div>
+                                    <div style="font-size: 12px; color: #cbd5e1; line-height: 1.55;">
+                                        <strong>Kolkata Biryani Legendaris (100% Halal):</strong> Restoran terkenal seperti <em>Arsalan</em> (Park Circus), <em>Shiraz Golden Restaurant</em>, <em>Aminia</em>, dan <em>Royal Indian Hotel</em> menyajikan hidangan Halal bersertifikat.<br>
+                                        <strong>Kue Manis Benggala:</strong> Rasgulla, Sandesh, dan Mishti Doi dibuat murni dari susu sapi segar (lacto-vegetarian), sangat aman dan lezat!
+                                    </div>
+                                </div>
+                                <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(234, 179, 8, 0.25); border-radius: 10px; padding: 14px;">
+                                    <div style="font-size: 13px; color: #fde047; font-weight: 800; margin-bottom: 6px;">💳 Pembayaran &amp; Nilai Tukar Rupiah (IDR)</div>
+                                    <div style="font-size: 12px; color: #cbd5e1; line-height: 1.55;">
+                                        <strong>Kurs Rata-Rata:</strong> 1 INR ≈ 188 – 190 Rupiah (IDR). Belanja dan biaya hidup di Kolkata &amp; Darjeeling sangat terjangkau.<br>
+                                        <strong>Kartu Debit/Kredit:</strong> Kartu Visa &amp; Mastercard dari bank Indonesia (BCA, Mandiri, BNI, BRI) dapat digunakan di ATM berlogo Plus/Cirrus serta untuk pemesanan tiket kereta IRCTC Foreign Quota.
+                                    </div>
+                                </div>
+                                <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 10px; padding: 14px;">
+                                    <div style="font-size: 13px; color: #c084fc; font-weight: 800; margin-bottom: 6px;">🏔️ Wisata Favorit Wisatawan Indonesia</div>
+                                    <div style="font-size: 12px; color: #cbd5e1; line-height: 1.55;">
+                                        <strong>Darjeeling Himalayan Railway:</strong> Nikmati naik kereta uap Toy Train UNESCO dengan pemandangan Gunung Kanchenjunga.<br>
+                                        <strong>Kolkata Heritage:</strong> Victoria Memorial, Jembatan Howrah, dan New Market untuk belanja pashmina sutra otentik.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <a href="https://indianvisaonline.gov.in/evisa/tvoa.html" target="_blank" style="text-decoration: none; background: rgba(56, 189, 248, 0.2); border: 1px solid #38bdf8; color: #38bdf8; padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;" rel="noopener noreferrer">
+                                    🇮🇩 Portal Resmi e-Visa India WNI ↗
+                                </a>
+                                <button type="button" onclick="setCalcCurrency('IDR'); document.getElementById('trip-budget-calculator-section')?.scrollIntoView({behavior: 'smooth'});" style="background: rgba(234, 179, 8, 0.2); border: 1px solid #eab308; color: #fde047; padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+                                    💰 Hitung Biaya Wisata (Rupiah Rp) ⬇
+                                </button>
                             </div>
                         </div>
 
@@ -7560,6 +7618,7 @@
                         <button type="button" class="calc-curr-btn" data-curr="USD" onclick="setCalcCurrency('USD')" style="background: rgba(255,255,255,0.05); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s;">🇺🇸 $ USD</button>
                         <button type="button" class="calc-curr-btn" data-curr="EUR" onclick="setCalcCurrency('EUR')" style="background: rgba(255,255,255,0.05); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s;">🇪🇺 € EUR</button>
                         <button type="button" class="calc-curr-btn" data-curr="GBP" onclick="setCalcCurrency('GBP')" style="background: rgba(255,255,255,0.05); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s;">🇬🇧 £ GBP</button>
+                        <button type="button" class="calc-curr-btn" data-curr="IDR" onclick="setCalcCurrency('IDR')" style="background: rgba(255,255,255,0.05); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s;">🇮🇩 Rp IDR</button>
                     </div>
                 </div>
 
@@ -7862,7 +7921,8 @@
                     INR: { symbol: '₹', rate: 1.0, flag: '🇮🇳' },
                     USD: { symbol: '$', rate: 0.0114, flag: '🇺🇸' }, // 1 USD ≈ ₹87.50
                     EUR: { symbol: '€', rate: 0.0105, flag: '🇪🇺' }, // 1 EUR ≈ ₹95.00
-                    GBP: { symbol: '£', rate: 0.0089, flag: '🇬🇧' }  // 1 GBP ≈ ₹112.00
+                    GBP: { symbol: '£', rate: 0.0089, flag: '🇬🇧' }, // 1 GBP ≈ ₹112.00
+                    IDR: { symbol: 'Rp', rate: 188.5, flag: '🇮🇩' }  // 1 INR ≈ 188.5 IDR
                 };
 
                 let currentCalcTier = 'student';
@@ -7888,6 +7948,9 @@
                     const c = CURRENCY_RATES[currentCalcCurrency] || CURRENCY_RATES.INR;
                     if (currentCalcCurrency === 'INR') {
                         return `₹ ${Math.round(inrAmount).toLocaleString('en-IN')}`;
+                    } else if (currentCalcCurrency === 'IDR') {
+                        const val = inrAmount * c.rate;
+                        return `Rp ${Math.round(val).toLocaleString('id-ID')}`;
                     } else {
                         const val = inrAmount * c.rate;
                         const formatted = val < 10 ? val.toFixed(2) : Math.round(val).toLocaleString('en-US');
@@ -9666,6 +9729,14 @@
                     <div style="font-size: 11px; color: #94a3b8;">WhatsApp &amp; Friends</div>
                 </div>
             </button>
+
+            <a href="#foreign-tourist-transit-guide" onclick="toggleMobileQuickHubDrawer(false); switchForeignTouristTab('indonesia');" style="background: rgba(14, 165, 233, 0.12); border: 1px solid rgba(14, 165, 233, 0.35); border-radius: 14px; padding: 14px 12px; text-decoration: none; display: flex; align-items: center; gap: 10px; color: #ffffff; grid-column: span 2;">
+                <span style="font-size: 24px;">🌍</span>
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; color: #38bdf8;">International &amp; Wisatawan Indonesia Guide</div>
+                    <div style="font-size: 11px; color: #94a3b8;">IRCTC FTQ, Visa, Kuliner Halal, Nilai Tukar Rupiah (Rp IDR)</div>
+                </div>
+            </a>
         </div>
 
         <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px; display: flex; justify-content: space-between; align-items: center;">

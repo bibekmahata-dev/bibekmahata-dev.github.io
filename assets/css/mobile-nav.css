@@ -39,6 +39,11 @@
         align-items: center !important;
         padding: 4px 6px calc(4px + env(safe-area-inset-bottom, 0px)) 6px !important;
         box-sizing: border-box !important;
+        transform: translateZ(0) !important;
+        -webkit-transform: translateZ(0) !important;
+        backface-visibility: hidden !important;
+        -webkit-backface-visibility: hidden !important;
+        contain: layout paint style !important;
     }
 
     .mobile-nav-item {
@@ -130,14 +135,21 @@
         padding: 16px 20px calc(24px + env(safe-area-inset-bottom, 0px)) 20px !important;
         box-shadow: 0 -15px 45px rgba(0, 0, 0, 0.8) !important;
         z-index: 999999 !important;
-        transform: translateY(100%) !important;
+        transform: translateY(100%) translateZ(0) !important;
+        -webkit-transform: translateY(100%) translateZ(0) !important;
+        will-change: transform !important;
+        backface-visibility: hidden !important;
+        -webkit-backface-visibility: hidden !important;
         transition: transform 0.32s cubic-bezier(0.33, 1, 0.68, 1) !important;
         overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        overscroll-behavior-y: contain !important;
         box-sizing: border-box !important;
     }
 
     .mobile-hub-drawer.open {
-        transform: translateY(0) !important;
+        transform: translateY(0) translateZ(0) !important;
+        -webkit-transform: translateY(0) translateZ(0) !important;
     }
 
     .mobile-hub-drag-handle {
