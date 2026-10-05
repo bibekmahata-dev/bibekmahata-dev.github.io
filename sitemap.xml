@@ -5,7 +5,7 @@
   <!-- 1. PRIMARY ROOT HOMEPAGE & SQUAD HUB (OFFICIAL GOOGLE IMAGE DIRECTORY) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -90,9 +90,10 @@
     </image:image>
   </url>
 
+  <!-- 2. FOUNDER PROFILE & BIOGRAPHY (KNOWLEDGE GRAPH HUB) -->
   <url>
     <loc>https://bibekmahata-dev.github.io/about.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -102,9 +103,10 @@
     </image:image>
   </url>
 
+  <!-- 3. EXPEDITION CHRONICLES BLOG & EDITORIAL DOSSIERS -->
   <url>
     <loc>https://bibekmahata-dev.github.io/blog.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -114,9 +116,10 @@
     </image:image>
   </url>
 
+  <!-- 4. GANGANI GRAND CANYON FIELD GUIDE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-gangani.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -136,107 +139,177 @@
     </image:image>
   </url>
 
+  <!-- 5. BISHNUPUR TERRACOTTA TEMPLES FIELD GUIDE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-bishnupur.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/places/bishnupur-rasmancha-panoramic.jpg</image:loc>
+      <image:title>Bishnupur Rasmancha &amp; Terracotta Temples</image:title>
+      <image:caption>Terracotta architecture and historical Malla dynasty temples of Bishnupur, Bankura</image:caption>
+    </image:image>
   </url>
 
+  <!-- 6. DARJEELING HIMALAYAN EXPEDITION GUIDE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-darjeeling.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/places/darjeeling-batasia-loop.jpg</image:loc>
+      <image:title>Darjeeling Batasia Loop &amp; Himalayan Railway</image:title>
+      <image:caption>Panoramic views of Kanchenjunga and the UNESCO World Heritage Darjeeling Himalayan Toy Train</image:caption>
+    </image:image>
   </url>
 
+  <!-- 7. DIGHA & COASTAL BENGAL BEACH GUIDE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-digha.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/places/digha-beach.jpg</image:loc>
+      <image:title>Digha Beach &amp; Coastal Bengal</image:title>
+      <image:caption>Seafront promenade, New Digha beach trails, and Bay of Bengal coastal waters</image:caption>
+    </image:image>
   </url>
 
+  <!-- 8. JHARGRAM & JANGALMAHAL PALACE & FORESTS GUIDE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-jhargram.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/places/jhargram-rajbari.jpg</image:loc>
+      <image:title>Jhargram Rajbari Palace &amp; Sal Forests</image:title>
+      <image:caption>Royal heritage palace architecture and deep Sal canopies of Junglemahal</image:caption>
+    </image:image>
   </url>
 
+  <!-- 9. ROYAL BENGAL 27 GI SWEETS HERITAGE GUIDE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-bengal-sweets.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/places/bengal-rosogolla.jpg</image:loc>
+      <image:title>Bengal Rosogolla &amp; 27 GI Sweets Trail</image:title>
+      <image:caption>Authentic confectionery legacy, winter Nolen Gur, and 27 GI heritage sweets of West Bengal</image:caption>
+    </image:image>
   </url>
 
+  <!-- 10. KOLKATA 48-HOUR HERITAGE & FOOD GUIDE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-kolkata-heritage.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/places/kolkata-victoria-memorial.jpg</image:loc>
+      <image:title>Victoria Memorial &amp; Kolkata Colonial Heritage</image:title>
+      <image:caption>Colonial architecture, cultural promenades, and iconic heritage sights of Kolkata</image:caption>
+    </image:image>
   </url>
 
+  <!-- 11. SUNDARBANS NATIONAL PARK & TIGER SAFARI GUIDE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-sundarbans.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/places/sundarbans-tiger.jpg</image:loc>
+      <image:title>Sundarbans Mangrove Estuary &amp; Tiger Safari</image:title>
+      <image:caption>UNESCO World Heritage mangrove delta, watchtowers, and river boat safari expeditions</image:caption>
+    </image:image>
   </url>
 
+  <!-- 12. PURULIA AYODHYA HILLS & CHHAU GUIDE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-purulia.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/places/purulia-bamni-falls.jpg</image:loc>
+      <image:title>Bamni Falls &amp; Ayodhya Hills Purulia</image:title>
+      <image:caption>Rugged laterite peaks, perennial cascades, and vibrant Chhau mask dance heritage</image:caption>
+    </image:image>
   </url>
 
+  <!-- 13. MUKUTMANIPUR DAM & JHILIMILI FOREST GUIDE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-mukutmanipur.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/places/mukutmanipur-dam.jpg</image:loc>
+      <image:title>Mukutmanipur Earthen Dam &amp; Kangsabati Reservoir</image:title>
+      <image:caption>Second largest earthen dam in India, Pareshnath Hill, and sunset lake vistas</image:caption>
+    </image:image>
   </url>
 
+  <!-- 14. COOCH BEHAR PALACE & ROYAL HERITAGE GUIDE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-coochbehar.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/places/coochbehar-palace.jpg</image:loc>
+      <image:title>Cooch Behar Victor Jubilee Palace</image:title>
+      <image:caption>Italian Renaissance style royal palace and Koch dynasty heritage of North Bengal</image:caption>
+    </image:image>
   </url>
 
+  <!-- 15. SHANTINIKETAN UNESCO WORLD HERITAGE & BOLPUR GUIDE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/guide-shantiniketan.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://bibekmahata-dev.github.io/assets/places/shantiniketan-upasana-griha.jpg</image:loc>
+      <image:title>Shantiniketan Upasana Griha &amp; Visva-Bharati</image:title>
+      <image:caption>UNESCO World Heritage cultural ashram, Rabindranath Tagore legacy, and Sonajhurir Haat</image:caption>
+    </image:image>
   </url>
 
+  <!-- 16. CONTACT & SQUAD ENGAGEMENT PORTAL -->
   <url>
     <loc>https://bibekmahata-dev.github.io/contact.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
+  <!-- 17. PRIVACY POLICY & USER DATA TRANSPARENCY -->
   <url>
     <loc>https://bibekmahata-dev.github.io/privacy.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
+  <!-- 18. TERMS OF SERVICE & USAGE GOVERNANCE -->
   <url>
     <loc>https://bibekmahata-dev.github.io/terms.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
+  <!-- 19. DISCLAIMER & TRAVEL ADVISORY -->
   <url>
     <loc>https://bibekmahata-dev.github.io/disclaimer.html</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
