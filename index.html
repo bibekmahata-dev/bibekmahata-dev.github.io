@@ -737,30 +737,62 @@
              🌟 BENGAL EXPLORERS 4-PILLAR MASTER DISCOVERY DASHBOARD
              Transit • Maps • Foods • Tourism & Heritage
              ======================================================== -->
-        <div id="bengal-master-discovery-hub" data-app-cat="all transit explore culture budget squad" style="margin-bottom: 32px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(20, 35, 60, 0.98)); border: 2px solid #38bdf8; border-radius: 20px; padding: 24px 26px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); position: relative; overflow: hidden;" data-app-cat="transit explore culture budget squad">
+        <div id="bengal-master-discovery-hub" class="hero-glass-hub" data-app-cat="all transit explore culture budget squad" data-app-cat="transit explore culture budget squad">
             
             <!-- Ambient Radial Glow Effect -->
-            <div style="position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(56, 189, 248, 0.25), transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+            <div style="position: absolute; top: -70px; right: -70px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(56, 189, 248, 0.28), transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+            <div style="position: absolute; bottom: -80px; left: -80px; width: 260px; height: 260px; background: radial-gradient(circle, rgba(129, 140, 248, 0.2), transparent 70%); border-radius: 50%; pointer-events: none;"></div>
 
-            <!-- Grand Header & Live Worldwide Telemetry -->
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
-                <div style="display: flex; align-items: center; gap: 14px;">
-                    <div style="width: 50px; height: 50px; border-radius: 14px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(2, 132, 199, 0.4)); border: 1.5px solid #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 0 15px rgba(56,189,248,0.3);">
-                        🌍
-                    </div>
-                    <div>
-                        <h2 style="color: #ffffff; font-size: 20px; margin: 0; font-weight: 900; font-family: var(--font-title, serif); display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                            Bengal Explorers &bull; The Official Bengal Explore &amp; Tourism Portal
-                            <span style="background: rgba(34, 197, 94, 0.2); color: #4ade80; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 14px; border: 1px solid rgba(34, 197, 94, 0.5); text-transform: uppercase;">100% Authentic Public Portal</span>
-                        </h2>
-                        <div style="font-size: 12.5px; color: #94a3b8; margin-top: 3px;">The premier West Bengal explorer guide for real-time transit radar, interactive GIS maps, legendary foods &amp; UNESCO heritage.</div>
-                    </div>
+            <!-- 1. Real-Time Ambient Telemetry Status Bar -->
+            <div class="hero-live-status-bar">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="hero-pulse-dot"></span>
+                    <span style="color: #4ade80; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; font-size: 11px;">SYSTEM ONLINE &bull; LIVE REGIONAL RADAR</span>
                 </div>
-                
-                <!-- Live Telemetry Pill -->
-                <div style="display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.45); border: 1px solid rgba(56, 189, 248, 0.35); padding: 6px 14px; border-radius: 20px;">
-                    <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 10px #22c55e; animation: pulse 2s infinite;"></span>
-                    <span style="color: #38bdf8; font-size: 11.5px; font-weight: 700;">Global Visitors: 🇺🇸 🇬🇧 🇩🇪 🇯🇵 🇫🇷 🇦🇺 🇸🇬 🇨🇦</span>
+                <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+                    <span style="color: #cbd5e1; font-weight: 700; font-family: monospace; font-size: 12px; background: rgba(255,255,255,0.06); padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1);">
+                        🕒 IST: <span id="hero-live-clock" style="color: #38bdf8;">--:--:--</span>
+                    </span>
+                    <span style="color: #94a3b8; font-size: 11px; font-weight: 600;">
+                        Global: 🇺🇸 🇬🇧 🇩🇪 🇯🇵 🇫🇷 🇦🇺 🇸🇬 🇮🇩 🇨🇦
+                    </span>
+                </div>
+            </div>
+
+            <!-- 2. Hero Headline & Dynamic Greeting -->
+            <div style="margin-bottom: 16px;">
+                <div id="hero-greeting-text" style="font-size: 13px; color: #38bdf8; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                    ✨ Welcome, Explorer!
+                </div>
+                <h1 style="color: #ffffff; font-size: clamp(22px, 3.8vw, 34px); margin: 0 0 8px; font-weight: 900; font-family: 'Space Grotesk', var(--font-title, sans-serif); line-height: 1.25; background: linear-gradient(135deg, #ffffff 40%, #7dd3fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    Bengal Explorers &bull; Regional Travel &amp; Live Transit Gateway
+                </h1>
+                <p style="font-size: 13.5px; color: #cbd5e1; line-height: 1.6; margin: 0 0 14px; max-width: 950px;">
+                    West Bengal's premier independent portal for real-time suburban railway departures, inter-district bus networks, 24-spot GIS maps, 12 in-depth destination guides, and UNESCO cultural archives.
+                </p>
+
+                <!-- Hero Metric Glass Chips -->
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px;">
+                    <span class="hero-metric-pill"><span style="color: #38bdf8;">📍</span> 23 Districts Connected</span>
+                    <span class="hero-metric-pill"><span style="color: #4ade80;">🚆</span> Live Suburban Rail Radar</span>
+                    <span class="hero-metric-pill"><span style="color: #fbbf24;">🧭</span> 12 Editorial Guides (35,000+ Words)</span>
+                    <span class="hero-metric-pill"><span style="color: #c084fc;">⚡</span> 100% Free &amp; Open-Access</span>
+                </div>
+
+                <!-- 3. Smart Hero Search Bar & Instant Jump Chips -->
+                <div class="hero-search-wrapper">
+                    <span class="hero-search-icon">🔍</span>
+                    <input type="text" class="hero-search-input" id="hero-quick-search" placeholder="Quick search any train route, destination, terracotta temple, or district..." autocomplete="off">
+                </div>
+                <div class="hero-chips-container">
+                    <span class="hero-chip-label">⚡ Popular:</span>
+                    <a href="#transit-section" class="hero-quick-chip">🚆 Howrah &bull; Midnapore Trains</a>
+                    <a href="guide-digha.html" class="hero-quick-chip">🏖️ Digha Beach</a>
+                    <a href="guide-darjeeling.html" class="hero-quick-chip">🌄 Darjeeling Hills</a>
+                    <a href="guide-bishnupur.html" class="hero-quick-chip">🏛️ Bishnupur Temples</a>
+                    <a href="guide-sundarbans.html" class="hero-quick-chip">🐅 Sundarbans</a>
+                    <a href="guide-bengal-sweets.html" class="hero-quick-chip">🍰 27 GI Sweets</a>
+                    <a href="#emergency-sos-section" class="hero-quick-chip" style="color: #f87171; border-color: rgba(248,113,113,0.35);">🚨 23-District SOS</a>
                 </div>
             </div>
 
@@ -9543,12 +9575,197 @@
             </div>
         </footer>
 
+    <!-- ========================================================
+         📱 NATIVE-APP MOBILE BOTTOM NAVIGATION BAR (GLASSMORPHIC)
+         ======================================================== -->
+    <nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="Mobile Bottom App Bar">
+        <a href="#bengal-master-discovery-hub" class="mobile-nav-item active" id="mob-nav-explore" onclick="setActiveMobileNav(this)">
+            <span class="mobile-nav-indicator"></span>
+            <span class="mobile-nav-icon">🧭</span>
+            <span class="mobile-nav-label">Explore</span>
+        </a>
+        <a href="#transit-section" class="mobile-nav-item" id="mob-nav-transit" onclick="setActiveMobileNav(this)">
+            <span class="mobile-nav-indicator"></span>
+            <span class="mobile-nav-icon">🚆</span>
+            <span class="mobile-nav-label">Transit</span>
+        </a>
+        <a href="#hangout-map" class="mobile-nav-item" id="mob-nav-map" onclick="setActiveMobileNav(this)">
+            <span class="mobile-nav-indicator"></span>
+            <span class="mobile-nav-icon">🗺️</span>
+            <span class="mobile-nav-label">Map</span>
+        </a>
+        <button type="button" class="mobile-nav-item" id="mob-nav-radar" onclick="setActiveMobileNav(this); goToWeatherSection();">
+            <span class="mobile-nav-indicator"></span>
+            <span class="mobile-nav-icon">🌦️</span>
+            <span class="mobile-nav-label">Radar</span>
+        </button>
+        <button type="button" class="mobile-nav-item" id="mob-nav-hub" onclick="toggleMobileQuickHubDrawer(true)">
+            <span class="mobile-nav-indicator"></span>
+            <span class="mobile-nav-icon">⚡</span>
+            <span class="mobile-nav-label">Quick Hub</span>
+        </button>
+    </nav>
+
+    <!-- Mobile Quick Hub Drawer (Glassmorphic Bottom Sheet) -->
+    <div class="mobile-hub-drawer-overlay" id="mobile-hub-drawer-overlay" onclick="toggleMobileQuickHubDrawer(false)"></div>
+    <div class="mobile-hub-drawer" id="mobile-hub-drawer" role="dialog" aria-modal="true" aria-label="Quick Utilities Hub">
+        <div class="mobile-hub-drag-handle" onclick="toggleMobileQuickHubDrawer(false)"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 20px;">⚡</span>
+                <strong style="color: #ffffff; font-size: 16px; font-family: 'Space Grotesk', sans-serif;">Bengal Explorers Quick Hub</strong>
+            </div>
+            <button type="button" onclick="toggleMobileQuickHubDrawer(false)" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer;">✕</button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 18px;">
+            <a href="#emergency-sos-section" onclick="toggleMobileQuickHubDrawer(false)" style="background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 14px; padding: 14px 12px; text-decoration: none; display: flex; align-items: center; gap: 10px; color: #ffffff;">
+                <span style="font-size: 24px;">🚨</span>
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; color: #f87171;">Emergency SOS</div>
+                    <div style="font-size: 11px; color: #94a3b8;">23 Districts Helpline</div>
+                </div>
+            </a>
+
+            <button type="button" onclick="toggleMobileQuickHubDrawer(false); goToCalendarSection();" style="background: rgba(244, 114, 182, 0.12); border: 1px solid rgba(244, 114, 182, 0.35); border-radius: 14px; padding: 14px 12px; text-decoration: none; display: flex; align-items: center; gap: 10px; color: #ffffff; text-align: left; cursor: pointer;">
+                <span style="font-size: 24px;">🗓️</span>
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; color: #f472b6;">Panjika Calendar</div>
+                    <div style="font-size: 11px; color: #94a3b8;">Festivals &amp; Tithi</div>
+                </div>
+            </button>
+
+            <a href="#trip-budget-calculator-section" onclick="toggleMobileQuickHubDrawer(false)" style="background: rgba(234, 179, 8, 0.12); border: 1px solid rgba(234, 179, 8, 0.35); border-radius: 14px; padding: 14px 12px; text-decoration: none; display: flex; align-items: center; gap: 10px; color: #ffffff;">
+                <span style="font-size: 24px;">💰</span>
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; color: #facc15;">Trip Budget</div>
+                    <div style="font-size: 11px; color: #94a3b8;">Fare &amp; Cost Estimator</div>
+                </div>
+            </a>
+
+            <a href="#global-explorer-cultural-vault" onclick="toggleMobileQuickHubDrawer(false)" style="background: rgba(168, 85, 247, 0.12); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 14px; padding: 14px 12px; text-decoration: none; display: flex; align-items: center; gap: 10px; color: #ffffff;">
+                <span style="font-size: 24px;">🏛️</span>
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; color: #c084fc;">Cultural Vault</div>
+                    <div style="font-size: 11px; color: #94a3b8;">27 GI Sweets &amp; Sights</div>
+                </div>
+            </a>
+
+            <a href="blog.html" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 14px 12px; text-decoration: none; display: flex; align-items: center; gap: 10px; color: #ffffff;">
+                <span style="font-size: 24px;">📖</span>
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; color: #38bdf8;">Travel Blog</div>
+                    <div style="font-size: 11px; color: #94a3b8;">Expedition Chronicles</div>
+                </div>
+            </a>
+
+            <button type="button" onclick="toggleMobileQuickHubDrawer(false); openViralShareModal();" style="background: rgba(34, 197, 94, 0.12); border: 1px solid rgba(34, 197, 94, 0.35); border-radius: 14px; padding: 14px 12px; text-decoration: none; display: flex; align-items: center; gap: 10px; color: #ffffff; text-align: left; cursor: pointer;">
+                <span style="font-size: 24px;">📲</span>
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; color: #4ade80;">Share Portal</div>
+                    <div style="font-size: 11px; color: #94a3b8;">WhatsApp &amp; Friends</div>
+                </div>
+            </button>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 12px; color: #94a3b8;">
+                Founder: <strong style="color: #ffffff;">Bibek Mahata</strong> &bull; Paschim Medinipur
+            </div>
+            <a href="about.html" style="color: #38bdf8; font-size: 12px; font-weight: 700; text-decoration: none;">About Founder →</a>
+        </div>
+    </div>
+
     <!-- ========== JAVASCRIPT ========== -->
     <script>
 // ======================================
 // ELITE PRESTIGE SYSTEMS
 // ======================================
 // 1. Splash Screen removed for performance
+
+// ========================================================
+// 📱 NATIVE MOBILE BOTTOM NAV & HERO INTELLIGENCE ENGINE (v127)
+// ========================================================
+window.setActiveMobileNav = function(el) {
+    document.querySelectorAll('.mobile-nav-item').forEach(item => item.classList.remove('active'));
+    if (el) el.classList.add('active');
+};
+
+window.toggleMobileQuickHubDrawer = function(open) {
+    const overlay = document.getElementById('mobile-hub-drawer-overlay');
+    const drawer = document.getElementById('mobile-hub-drawer');
+    if (overlay && drawer) {
+        if (open) {
+            overlay.classList.add('open');
+            drawer.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        } else {
+            overlay.classList.remove('open');
+            drawer.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    }
+};
+
+// Automatic Active Tab Tracking on Scroll
+(function initMobileNavScrollObserver() {
+    const sectionMap = [
+        { id: 'bengal-master-discovery-hub', navId: 'mob-nav-explore' },
+        { id: 'transit-section', navId: 'mob-nav-transit' },
+        { id: 'hangout-map', navId: 'mob-nav-map' }
+    ];
+
+    window.addEventListener('scroll', () => {
+        const scrollPos = window.scrollY + 200;
+        for (let i = sectionMap.length - 1; i >= 0; i--) {
+            const section = document.getElementById(sectionMap[i].id);
+            if (section && section.offsetTop <= scrollPos) {
+                const navItem = document.getElementById(sectionMap[i].navId);
+                if (navItem && !navItem.classList.contains('active')) {
+                    document.querySelectorAll('.mobile-nav-item').forEach(item => item.classList.remove('active'));
+                    navItem.classList.add('active');
+                }
+                break;
+            }
+        }
+    }, { passive: true });
+})();
+
+// Real-Time Hero Clock & Time-Aware Greeting
+(function initHeroTimeIntelligence() {
+    function updateClock() {
+        const now = new Date();
+        const istStr = now.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour12: false });
+        const clockEl = document.getElementById('hero-live-clock');
+        if (clockEl) clockEl.textContent = istStr;
+
+        // Dynamic time-based greeting
+        const hrs = parseInt(now.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', hour12: false }));
+        let greeting = "✨ Welcome, Explorer!";
+        if (hrs >= 4 && hrs < 12) greeting = "🌅 Good Morning, Explorer!";
+        else if (hrs >= 12 && hrs < 17) greeting = "☀️ Good Afternoon, Explorer!";
+        else if (hrs >= 17 && hrs < 22) greeting = "🌇 Good Evening, Explorer!";
+        else greeting = "🌙 Good Night, Stargazer!";
+
+        const greetingEl = document.getElementById('hero-greeting-text');
+        if (greetingEl) greetingEl.textContent = greeting;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // Hero quick search sync with main search bar & filter engine
+    const heroSearch = document.getElementById('hero-quick-search');
+    const mainSearch = document.getElementById('search-input');
+    if (heroSearch && mainSearch) {
+        heroSearch.addEventListener('input', (e) => {
+            mainSearch.value = e.target.value;
+            if (typeof filterMembers === 'function') filterMembers();
+        });
+        mainSearch.addEventListener('input', (e) => {
+            heroSearch.value = e.target.value;
+        });
+    }
+})();
 
 // 3. Scroll Animations
 const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
@@ -13094,7 +13311,7 @@ document.addEventListener('keydown', (e) => {
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 if (typeof syncAllMembersFromCloud === 'function') syncAllMembersFromCloud();
-                navigator.serviceWorker.register('./sw.js?v=126', { scope: './' })
+                navigator.serviceWorker.register('./sw.js?v=127', { scope: './' })
                     .then((reg) => {
                         console.log('✅ [Bengal PWA] Offline Commuter Engine Active! Scope:', reg.scope);
                         reg.update(); // Actively check for latest server build
